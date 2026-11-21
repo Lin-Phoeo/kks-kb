@@ -16,13 +16,16 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 BROWSER_TESTS = {
+    'test_home_discovery.HomeDiscoveryTests.test_browser_home_discovery_search_assistant_resume_and_layout',
+    'test_catalog_browser.CatalogBrowserTests.test_browser_catalog_filter_clear_count_and_empty_state',
+    'test_catalog_browser.CatalogBrowserTests.test_browser_search_submit_readable_results_and_safe_highlights',
     'test_onboarding.OnboardingTests.test_browser_help_highlights_visible_page_controls',
     'test_reader_browser.ReaderBrowserTests.test_browser_reader_header_keeps_evidence_without_hiding_the_first_paragraph',
     'test_reader_browser.ReaderBrowserTests.test_browser_all_anchor_entry_points_clear_both_sticky_bars',
     'test_reader_browser.ReaderBrowserTests.test_browser_mobile_outline_collapses_after_selection_and_respects_large_text',
     'test_reader_browser.ReaderBrowserTests.test_browser_folded_anchor_opens_only_ancestors_and_survives_history',
 }
-BROWSER_ONLY_MODULES = {'test_reader_browser'}
+BROWSER_ONLY_MODULES = {'test_reader_browser', 'test_catalog_browser'}
 
 
 def leaves(suite):

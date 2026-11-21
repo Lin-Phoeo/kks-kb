@@ -1,50 +1,37 @@
 {% extends "base.html" %}
 {% block title %}{% if q %}搜「{{ q }}」 · {% endif %}全文搜索 · KKS 渲染知识库{% endblock %}
-{% block description %}在 KKS 渲染知识库中按关键词 + jieba 中文分词全文搜索 Koikatsu Sunshine 渲染与着色器文档{% endblock %}
+{% block description %}查找 KKS 创作资料中的参数、工具和操作说明，从相关片段回到原文。{% endblock %}
 {% block bar %}全文搜索{% endblock %}
+{% block body_class %}discovery-page search-discovery{% endblock %}
+{% block head_extra %}<link rel="stylesheet" href="/static/catalog.css?v=20261121-1">{% endblock %}
 {% block body %}
-<h1 style="font-size:22px;margin:26px 0 4px">全文搜索</h1>
-<p style="color:var(--dim);font-size:13px;margin:0 0 18px">关键词 + jieba 中文分词，命中处高亮</p>
-
-<form method="get" action="/search" style="display:flex;gap:9px;margin-bottom:8px">
+<header class="discovery-header"><div><h1>全文搜索</h1><p>找到参数、工具或操作说明，再回到原文核对。</p></div><a class="discovery-secondary" href="/browse{% if col %}?col={{ col|urlencode }}{% endif %}">浏览文档库</a></header>
+<form method="get" action="/search" class="discovery-search" role="search">
   <input type="hidden" name="col" value="{{ col or '' }}">
-  <input name="q" value="{{ q }}" placeholder="搜参数名、shader 名、现象描述…" autofocus
-         style="flex:1;padding:11px 14px;font-size:15px;font-family:inherit;color:var(--text);
-                background:var(--bg);border:1.5px solid var(--line-strong);border-radius:9px;outline:none">
-  <button class="btn" type="submit">搜索</button>
+  <label for="catalog-query">搜索资料</label>
+  <div class="discovery-field"><input id="catalog-query" type="search" name="q" value="{{ q }}" placeholder="参数名、工具名或现象描述" autocomplete="off"><button type="submit">搜索</button></div>
 </form>
 
 {% if q %}
   {% if hits %}
-  <p style="color:var(--dim);font-size:13px;margin:14px 0 4px">
-    找到 <b style="color:var(--text)">{{ hits|length }}</b> 处，分布在 {{ groups|length }} 个分类
-  </p>
+  <div class="discovery-results-meta"><p>显示 <strong>{{ hits|length }}</strong> 处相关内容</p><span>{{ groups|length }} 个分类{% if col %} · 当前分区{% endif %}</span></div>
   {% for gname, items in groups %}
-  <div class="sec-h">{{ gname }}（{{ items|length }}）</div>
+  <section class="catalog-group"><h2>{{ gname }}<span>{{ items|length }} 处</span></h2>
+  <ol class="catalog-search-results">
   {% for h in items %}
-  <a class="hit" href="/doc?path={{ h.path|urlencode }}">
-    <div class="hp">{{ h.path }}<span class="hs">{{ h.heading }}</span></div>
+  <li><a class="catalog-hit" href="/doc?path={{ h.path|urlencode }}">
+    <h3>{{ (h.heading or h.path.split('/')[-1])|reader_title }}</h3>
     {# 经 app/sanitize.highlight_snippet 转义后仅还原 <mark> 输出 #}
-    <div class="hx">{{ h.snippet|safe }}</div>
-  </a>
+    <p class="catalog-excerpt">{{ h.snippet|safe }}</p>
+    <span class="catalog-path">{{ h.path }}</span>
+  </a></li>
   {% endfor %}
+  </ol></section>
   {% endfor %}
   {% else %}
-  <div class="card" style="margin-top:18px">
-    <p style="margin:0">没有匹配「{{ q }}」的内容。换个说法试试，或<a href="/">直接提问</a>让模型组织答案。</p>
-  </div>
+  <section class="discovery-empty"><h2>没有找到相关内容</h2><p>没有匹配「{{ q }}」的结果。试试更短的关键词或工具的英文名称。</p><a href="/browse{% if col %}?col={{ col|urlencode }}{% endif %}">浏览{% if col %}当前分区{% else %}文档库{% endif %}</a></section>
   {% endif %}
 {% else %}
-  <div class="card" style="margin-top:18px">
-    <p style="margin:0 0 8px;color:var(--text2)">试试这些：</p>
-    <div class="examples" style="justify-content:flex-start;margin:0">
-      <a class="ex" href="/search?q=Cutoff">Cutoff</a>
-      <a class="ex" href="/search?q=TessBias">TessBias</a>
-      <a class="ex" href="/search?q=lightmap">lightmap</a>
-      <a class="ex" href="/search?q=MatCap">MatCap</a>
-      <a class="ex" href="/search?q=反射探针">反射探针</a>
-      <a class="ex" href="/search?q=manifest">manifest</a>
-    </div>
-  </div>
+  <section class="catalog-suggestions"><h2>可以从这些词开始</h2><nav aria-label="搜索示例">{% for term in ['Cutoff','TessBias','lightmap','MatCap','反射探针','manifest'] %}<a href="/search?q={{ term|urlencode }}{% if col %}&amp;col={{ col|urlencode }}{% endif %}">{{ term }}</a>{% endfor %}</nav></section>
 {% endif %}
 {% endblock %}

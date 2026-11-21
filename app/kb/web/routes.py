@@ -52,6 +52,7 @@ if os.path.isdir(_STATIC_DIR):
     app.mount("/static", StaticFiles(directory=_STATIC_DIR), name="static")
 
 templates = Jinja2Templates(directory=os.path.join(BASE, "templates"))
+templates.env.filters["reader_title"] = reader_title
 templates.env.globals["auth_on"] = bool(CFG.get("auth", {}).get("pass_sha256"))
 templates.env.globals["foot_build"] = datetime.now().strftime("%Y-%m-%d")
 templates.env.globals["COLLECTIONS"] = COLLECTIONS
