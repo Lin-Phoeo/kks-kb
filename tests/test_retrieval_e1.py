@@ -312,16 +312,20 @@ class VectorSwitchOnTests(unittest.TestCase):
 
 
 class ArgpartitionDemonstrationTests(unittest.TestCase):
-    def test_argpartition_prefix_is_not_exact_topk(self):
-        """论证为什么要换成 argsort：argpartition 窗口无序，首元素可能不是 argmax。"""
+    def test_valid_partition_window_need_not_be_exact_topk(self):
+        """分区只保证成员集合；用合法逆序窗口演示其前缀不保证精确top-k。"""
         n, k = 1000, 24
         sims = np.random.default_rng(1).random(n).astype(np.float32)
         kth = min(max(k * 4, k), n - 1)
-        buggy = np.argpartition(-sims, kth)[:max(k * 4, k)]
+        window = np.argpartition(-sims, kth)[:kth]
+        # NumPy may happen to return this partition sorted on some platforms.
+        # Any permutation within it remains valid; choose a deterministic worst order.
+        buggy = window[np.argsort(sims[window], kind="stable")]
+        self.assertEqual(set(buggy.tolist()), set(np.argsort(-sims)[:kth].tolist()))
         exact = np.argsort(-sims, kind="stable")[:k]
         self.assertNotEqual(buggy[:k].tolist(), exact.tolist())
         self.assertNotEqual(int(np.argmax(sims)), int(buggy[0]),
-                            "argpartition 窗口首元素不等于全局 argmax")
+                            "合法分区窗口首元素不保证为全局 argmax")
 
 
 class PathIndexEquivalenceTests(unittest.TestCase):
