@@ -15,7 +15,14 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-BROWSER_TEST = 'test_onboarding.OnboardingTests.test_browser_help_highlights_visible_page_controls'
+BROWSER_TESTS = {
+    'test_onboarding.OnboardingTests.test_browser_help_highlights_visible_page_controls',
+    'test_reader_browser.ReaderBrowserTests.test_browser_reader_header_keeps_evidence_without_hiding_the_first_paragraph',
+    'test_reader_browser.ReaderBrowserTests.test_browser_all_anchor_entry_points_clear_both_sticky_bars',
+    'test_reader_browser.ReaderBrowserTests.test_browser_mobile_outline_collapses_after_selection_and_respects_large_text',
+    'test_reader_browser.ReaderBrowserTests.test_browser_folded_anchor_opens_only_ancestors_and_survives_history',
+}
+BROWSER_ONLY_MODULES = {'test_reader_browser'}
 
 
 def leaves(suite):
@@ -33,7 +40,7 @@ def worker(module, output, browser):
         import jieba
         jieba.dt.tmp_dir = directory
         suite = unittest.defaultTestLoader.loadTestsFromName(module)
-        selected = [test for test in leaves(suite) if (test.id() == BROWSER_TEST) == browser]
+        selected = [test for test in leaves(suite) if (test.id() in BROWSER_TESTS) == browser]
         result = unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(selected))
         report = {'module': module, 'tests_run': result.testsRun,
                   'failures': len(result.failures), 'errors': len(result.errors),
@@ -51,7 +58,7 @@ def main():
     if args.module:
         return worker(args.module, args.output, args.browser)
     args.output.mkdir(parents=True, exist_ok=True)
-    modules = ['test_onboarding'] if args.browser else [p.stem for p in sorted((ROOT / 'tests').glob('test_*.py'))]
+    modules = sorted({name.split('.')[0] for name in BROWSER_TESTS}) if args.browser else [p.stem for p in sorted((ROOT / 'tests').glob('test_*.py')) if p.stem not in BROWSER_ONLY_MODULES]
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1', PYTHONUTF8='1')
     if args.browser:
         env['KKS_TEST_BROWSER_CHANNEL'] = 'chromium'
