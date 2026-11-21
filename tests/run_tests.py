@@ -59,7 +59,10 @@ def main():
         env.pop('KKS_TEST_BROWSER_CHANNEL', None)
     reports = []
     for module in modules:
-        runtime = tempfile.TemporaryDirectory(prefix=module + '-', dir=args.output.resolve())
+        # Chromium puts its Unix-domain socket under TMPDIR. Deep checkout paths
+        # exceed sockaddr_un limits even when ordinary files fit there.
+        runtime_parent = '/tmp' if os.name == 'posix' else args.output.resolve()
+        runtime = tempfile.TemporaryDirectory(prefix='kks-', dir=runtime_parent)
         env.update(TMP=runtime.name, TEMP=runtime.name, TMPDIR=runtime.name)
         result_path = args.output.resolve() / (module + '.json')
         cmd = [sys.executable, '-X', 'utf8', '-B', str(Path(__file__).resolve()),
