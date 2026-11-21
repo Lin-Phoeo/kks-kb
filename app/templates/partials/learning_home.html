@@ -1,35 +1,42 @@
 <section class="learn-intro" aria-labelledby="learn-title">
-  <div class="learn-eyebrow">KKS.ARCANE <span>/</span> STUDIO FIELD NOTES</div>
-  <p class="learn-edition">材质 · 光照 · 动画 · 制作流程</p>
   <h1 id="learn-title">KKS Studio 创作手册</h1>
   <p class="learn-lead">从材质、灯光到镜头与导出。按目标找做法，按版本查证，保留原文与原图。</p>
   <form action="/search" method="get" class="learn-search" role="search">
     <label class="sr-only" for="learn-query">搜索教程或参数</label>
-    <input id="learn-query" name="q" placeholder="搜索目标、参数或问题，例如：皮肤高光、Timeline、DrawnMap" required>
-    <button type="submit">查找做法 <span aria-hidden="true">↗</span></button>
+    <input id="learn-query" name="q" placeholder="搜索教程、参数名或遇到的问题" required>
+    <button type="submit">搜索资料</button>
   </form>
-  <div class="learn-shortcuts"><a href="/manual">完整手册</a><a href="/gallery">教程原图</a><a href="/params">参数索引</a><a href="#ask-entry" data-open-assistant>问 AI 助教</a></div>
+  <nav class="learn-topics" aria-label="常用搜索"><span>试试</span><a href="/search?q=皮肤高光">皮肤高光</a><a href="/search?q=灯光阴影">灯光阴影</a><a href="/search?q=Timeline">Timeline</a><a href="/search?q=资源缺失">资源缺失</a></nav>
+  <nav class="learn-shortcuts" aria-label="学习入口">
+    <a href="/manual"><strong>按章节学习</strong><span>从手册开始，按创作步骤阅读</span></a>
+    <a href="/browse"><strong>浏览资料库</strong><span>按分类找教程、源码与参考</span></a>
+    <a href="#ask-entry" data-open-assistant><strong>问 AI 助教</strong><span>带上版本与问题，结合原文理解</span></a>
+  </nav>
 </section>
-<section class="learn-resume" id="learn-resume" hidden aria-label="继续上次阅读"><div><span class="learn-eyebrow">CONTINUE / 继续</span><a id="learn-resume-link"></a><small>续读位置保存在当前浏览器，不记录操作完成状态</small></div><span aria-hidden="true">→</span></section>
+<section class="learn-resume" id="learn-resume" hidden aria-label="继续上次阅读"><div><strong>继续上次阅读</strong><a id="learn-resume-link"></a><small>当前位置保存在此浏览器</small></div></section>
+{% set home_chapters = manual_tree() %}
+{% set task_chapters = home_chapters|selectattr('id', 'in', ['03','04','05','07'])|list %}
+{% if not task_chapters %}{% set task_chapters = home_chapters[:4] %}{% endif %}
 <section class="learn-section" aria-labelledby="learn-path-title">
-  <div class="learn-section-head"><div><span class="learn-eyebrow">01 / 按创作任务</span><h2 id="learn-path-title">你正在处理哪一环？</h2></div><a href="/manual">全部章节 →</a></div>
-  <div class="learn-tracks">
-    {% for ch in manual_tree() if ch.id in ['03','04','05','07'] %}
-    <a class="learn-track" href="/manual/{{ ch.id }}"><span class="learn-track-no">{{ ch.id }}</span><div><h3>{{ ch.title }}</h3><p>{% if ch.id == '03' %}贴图通道、皮肤与布料、Shader 参数{% elif ch.id == '04' %}光照层、阴影、PPE 与后处理{% elif ch.id == '05' %}关键帧、相机、动作与视频导出{% else %}资源缺失、版本不兼容与异常定位{% endif %}</p></div><span class="learn-track-arrow" aria-hidden="true">↗</span></a>
+  <div class="learn-section-head"><div><h2 id="learn-path-title">按创作目标查找</h2><p>从当前的问题进入对应章节。</p></div><a href="/manual">全部章节</a></div>
+  {% if task_chapters %}<div class="learn-tracks">
+    {% for ch in task_chapters %}
+    <a class="learn-track" href="/manual/{{ ch.id }}"><div><h3>{{ ch.title }}</h3><p>{% if ch.id == '03' %}贴图通道、皮肤与布料、Shader 参数{% elif ch.id == '04' %}光照层、阴影、PPE 与后处理{% elif ch.id == '05' %}关键帧、相机、动作与视频导出{% elif ch.id == '07' %}资源缺失、版本不兼容与异常定位{% else %}{{ ch.intro }}{% endif %}</p></div><span class="learn-track-count">{{ ch.count }} 篇</span></a>
     {% endfor %}
-  </div>
+  </div>{% else %}<p class="learn-empty">手册章节尚未整理。可以先<a href="/browse">浏览已收录文档</a>，或在上方搜索关键词。</p>{% endif %}
 </section>
+{% if learning_guides %}
 <section class="learn-section" aria-labelledby="learn-guides-title">
-  <div class="learn-section-head"><div><span class="learn-eyebrow">02 / 近期整理专题</span><h2 id="learn-guides-title">少走弯路的几篇参考</h2></div><span class="learn-note">整理资料 · 实测状态以文中说明为准</span></div>
-  <div class="learn-guides">
-    {% for guide in learning_guides %}
-    <a class="learn-guide" href="/doc?path={{ guide.path|urlencode }}"><span class="learn-guide-topic">{{ guide.topic }}</span><h3>{{ guide.title }}</h3><p>{{ guide.description }}</p><span class="learn-guide-open">阅读专题 <span aria-hidden="true">→</span></span></a>
-    {% endfor %}
-  </div>
+  <div class="learn-section-head"><div><h2 id="learn-guides-title">已整理的专题</h2><p>材质、灯光与动画的专题参考，适用版本与实测状态见正文。</p></div><a href="/browse">全部资料</a></div>
+  <div class="learn-guides">{% for guide in learning_guides %}
+    <a class="learn-guide" href="/doc?path={{ guide.path|urlencode }}"><div class="learn-guide-heading"><h3>{{ guide.title }}</h3><span class="learn-guide-topic">{{ guide.topic }}</span></div><p>{{ guide.description }}</p><span class="learn-guide-open">阅读专题</span></a>
+  {% endfor %}</div>
 </section>
-<section class="learn-section learn-reference"><span class="learn-eyebrow">03 / 查阅与实验</span><div><h2>需要查证，直接回到资料。</h2><p>源码、参数与作者原文继续完整保留；学习整理与原始证据分开阅读。</p></div><nav aria-label="参考工具"><a href="/browse">全部文档</a><a href="/source">原件归档</a><a href="/shader-lab">Shader 展厅</a></nav></section>
+{% endif %}
+<section class="learn-section learn-reference" aria-labelledby="learn-reference-title"><div><h2 id="learn-reference-title">查原件，也看原图</h2><p>核对参数、图片与出处；展示实验和教程资料分开查阅。</p></div><nav aria-label="参考工具"><a href="/gallery">教程原图</a><a href="/params">参数索引</a><a href="/source">原件归档</a><a href="/shader-lab">Shader 展厅</a></nav></section>
 <details class="learn-assistant" id="ask-entry">
-  <summary><span><span class="learn-eyebrow">AI / 辅助理解</span><strong>卡在一个参数或步骤？</strong><small>问题由你确认后发送；回答需要结合适用版本与原文判断。</small></span><span aria-hidden="true">＋</span></summary>
+  <summary><strong>问 AI 助教</strong><span>辅助理解参数与步骤，问题确认后才发送。</span></summary>
+  <p class="learn-assistant-note">说明当前游戏、Shader 或插件版本。回答需结合原文核对，不替代实际测试。</p>
   <div class="ask"><label class="sr-only" for="q">向知识库提问</label><div class="qwrap"><textarea id="q" placeholder="描述你当前的 Shader、插件版本和遇到的现象…"></textarea></div><div class="actions"><button class="btn" id="send">提问</button><label class="toggle"><input type="checkbox" id="useweb"> 同时联网搜索</label><label class="toggle"><input type="checkbox" id="recipe"> 改法模式</label></div></div>
 </details>
 <div id="thread"></div>

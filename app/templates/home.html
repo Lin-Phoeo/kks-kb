@@ -3,7 +3,7 @@
 {% block description %}问点什么关于 Koikatsu Sunshine 渲染、着色器、Mod 工程的问题 · 关键词 + 向量混合检索 · 可联网{% endblock %}
 {% block bar %}{{ title or 'KKS.ARCANE / 创作知识库' }}{% endblock %}
 {% block body_class %}{% if not msgs %}learning-home{% endif %}{% endblock %}
-{% block head_extra %}<link rel="stylesheet" href="/static/onboard.css">{% endblock %}
+{% block head_extra %}<link rel="stylesheet" href="/static/onboard.css">{% if not msgs %}<link rel="stylesheet" href="/static/home-discovery.css?v=20261121-1">{% endif %}{% endblock %}
 {% block body %}
 <button id="ob-help" type="button" aria-label="打开使用引导" title="打开使用引导">?</button>
 {% if not msgs %}

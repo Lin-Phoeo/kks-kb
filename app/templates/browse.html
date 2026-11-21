@@ -1,46 +1,42 @@
 {% extends "base.html" %}
 {% block title %}文档库 · KKS 知识库{% endblock %}
 {% block bar %}文档库{% endblock %}
+{% block description %}按分类浏览 KKS 创作资料，按标题或路径筛选并打开原文。{% endblock %}
+{% block body_class %}discovery-page catalog-discovery{% endblock %}
+{% block head_extra %}<link rel="stylesheet" href="/static/catalog.css?v=20261121-1">{% endblock %}
 {% block body %}
-<div style="display:flex;align-items:baseline;gap:12px;margin:26px 0 6px">
-  <h1 style="font-size:22px;margin:0">文档库</h1>
-  <span style="color:var(--dim);font-size:13px">{{ docs|length }} 篇 · {{ tree|length }} 个分类</span>
-  <span style="flex:1"></span>
-  <a class="btn ghost mini" href="/export/all{% if col %}?col={{ col }}{% endif %}">导出{% if col %}本库{% else %}全库{% endif %}</a>
+<div data-catalog data-total="{{ docs|length }}">
+<header class="discovery-header">
+  <div><h1>文档库</h1><p>按分类找资料，打开原文继续阅读。</p></div>
+  <a class="discovery-secondary" href="/export/all{% if col %}?col={{ col|urlencode }}{% endif %}">导出{% if col %}本库{% else %}全库{% endif %}</a>
+</header>
+<div class="catalog-filter">
+  <label for="filter">筛选文档</label>
+  <div class="discovery-field">
+    <input id="filter" type="text" placeholder="输入标题或路径中的关键词" autocomplete="off" aria-controls="catalog-results" aria-describedby="catalog-count">
+    <button type="button" id="catalog-clear" hidden>清空筛选</button>
+  </div>
 </div>
-
-<div style="position:relative;margin:12px 0 20px">
-  <input id="filter" placeholder="按标题或路径过滤…" autocomplete="off"
-         style="width:100%;padding:10px 14px;font-size:14px;font-family:inherit;color:var(--text);
-                background:var(--bg2);border:1px solid var(--line);border-radius:9px;outline:none">
-</div>
-
+<div class="discovery-results-meta"><p id="catalog-count" role="status" aria-live="polite" aria-atomic="true">显示 {{ docs|length }} / {{ docs|length }} 篇</p><span><span data-catalog-group-count>{{ tree|length }}</span> 个分类{% if col %} · 当前分区{% endif %}</span></div>
+<div id="catalog-results">
 {% for gname, items in tree %}
-<section class="grp" data-g="{{ gname }}">
-  <h2 class="gh">{{ gname }}<span>{{ items|length }}</span></h2>
-  <ul class="docs">
+<section class="catalog-group" data-catalog-group>
+  <h2>{{ gname }}<span data-group-count>{{ items|length }} 篇</span></h2>
+  <ul class="catalog-documents">
   {% for d in items %}
-    <li data-k="{{ d.title }} {{ d.path }}">
-      <a href="/doc?path={{ d.path|urlencode }}">{{ d.title }}<span class="m">{{ d.path }} · {{ d.chars }} 字符</span></a>
+    <li data-catalog-item data-k="{{ d.title }} {{ d.path }}">
+      <a href="/doc?path={{ d.path|urlencode }}"><span class="catalog-title">{{ d.title|reader_title }}</span><span class="catalog-path">{{ d.path }}</span><span class="catalog-length">{{ d.chars }} 字符</span></a>
     </li>
   {% endfor %}
   </ul>
 </section>
 {% endfor %}
-
-<script>
-const f = document.getElementById('filter');
-f.addEventListener('input', ()=>{
-  const q = f.value.trim().toLowerCase();
-  document.querySelectorAll('.grp').forEach(g=>{
-    let shown = 0;
-    g.querySelectorAll('li').forEach(li=>{
-      const hit = !q || li.dataset.k.toLowerCase().includes(q);
-      li.style.display = hit ? '' : 'none';
-      if(hit) shown++;
-    });
-    g.style.display = shown ? '' : 'none';
-  });
-});
-</script>
+</div>
+<section class="discovery-empty" id="catalog-empty"{% if docs %} hidden{% endif %}>
+  <h2>{% if docs %}没有匹配的文档{% else %}这个分区还没有文档{% endif %}</h2>
+  <p>{% if docs %}试试更短的关键词，或清空筛选查看全部资料。{% else %}可以返回文档库，查看其他分类的资料。{% endif %}</p>
+  {% if not docs %}<a href="/browse">查看全部文档</a>{% endif %}
+</section>
+</div>
 {% endblock %}
+{% block script %}<script src="/static/catalog.js?v=20261121-1" defer></script>{% endblock %}
