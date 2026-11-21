@@ -1,0 +1,23 @@
+name: 功能任务
+description: 定义适合人或 AI 接手的功能
+title: "[功能] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 要解决什么问题
+      placeholder: 描述具体操作和目前的不便。
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: 预期结果与验收
+      placeholder: 完成哪些操作、看到什么结果，才算做好？
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: 范围与限制
+      placeholder: 兼容性、资料来源、性能或需要保留的行为。

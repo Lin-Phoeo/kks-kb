@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>重置密码 · KKS.ARCANE</title>
+<meta name="description" content="用邮箱验证码重置 KKS 渲染档案馆的登录密码">
+<meta property="og:title" content="重置密码 · KKS.ARCANE">
+<meta property="og:description" content="用邮箱验证码重置 KKS 渲染档案馆的登录密码">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KKS.ARCANE">
+<link rel="stylesheet" href="/static/base.css">
+{% if cf_turnstile_sitekey %}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+{% endif %}
+</head>
+<body>
+<div class="auth-shell">
+  <button class="auth-theme-toggle" onclick="(function(){var o=['system','light','dark'];var c=localStorage.getItem('theme')||'system';localStorage.setItem('theme',o[(o.indexOf(c)+1)%3]);alert('下次登录后生效');})()">主题偏好</button>
+
+  <aside class="auth-brand">
+    <svg class="auth-brand__beam" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="auth-beam-g3" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#3f5bff" stop-opacity="0"/>
+          <stop offset="30%" stop-color="#5a4bff" stop-opacity=".9"/>
+          <stop offset="55%" stop-color="#b64bff" stop-opacity=".95"/>
+          <stop offset="80%" stop-color="#4bb6ff" stop-opacity=".85"/>
+          <stop offset="100%" stop-color="#3fbfff" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="auth-beam-f3" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="1.5"/>
+        </filter>
+      </defs>
+      <path d="M -80 720 C 180 580, 240 420, 540 400 S 980 320, 1280 60"
+            stroke="url(#auth-beam-g3)" stroke-width="3" fill="none"
+            filter="url(#auth-beam-f3)" stroke-linecap="round"/>
+      <path d="M -80 740 C 220 600, 300 440, 580 420 S 1020 340, 1300 80"
+            stroke="url(#auth-beam-g3)" stroke-width="1" fill="none"
+            opacity=".55" stroke-linecap="round"/>
+    </svg>
+
+    <div class="auth-brand__topline auth-mono">KKS.ARCANE // ON-LINE</div>
+
+    <div class="auth-brand__mid">
+      <h1 class="auth-brand__headline">重连
+你的身份令牌</h1>
+      <div class="auth-brand__subline auth-mono">IDENTITY GATEWAY // SECURE CHANNEL</div>
+    </div>
+
+    <div class="auth-brand__cursor auth-mono"><b>_PASSWORD_RECOVERY_</b><span class="blink"></span></div>
+  </aside>
+
+  <main class="auth-side">
+    <div class="auth-card">
+      <div class="auth-card__badge auth-mono">KKS.ARCANE / IDENTITY</div>
+      <h2 class="auth-card__title">重置密码</h2>
+      <p class="auth-card__sub">用邮箱验证码重设密码，忘记旧密码也没关系。</p>
+
+      <form id="form" novalidate>
+        <div class="auth-field">
+          <label class="auth-field__label" for="email">注册邮箱</label>
+          <input type="email" id="email" placeholder="you@example.com"
+                 autocomplete="username" required>
+        </div>
+
+        <div class="auth-field has-suffix">
+          <label class="auth-field__label" for="code">邮箱验证码</label>
+          <input type="text" id="code" placeholder="6 位数字"
+                 inputmode="numeric" maxlength="6" autocomplete="one-time-code">
+          <button type="button" class="auth-field__suffix" id="sendBtn">获取验证码</button>
+        </div>
+
+        <div class="auth-field has-pw">
+          <label class="auth-field__label" for="password">新密码</label>
+          <input type="password" id="password" placeholder="至少 10 位"
+                 autocomplete="new-password">
+          <button type="button" class="auth-field__pw" aria-label="显示密码"
+                  aria-pressed="false" data-for="password">👁</button>
+        </div>
+
+        <div class="auth-hint">重置成功后会自动登录；其他设备需重新登录。</div>
+
+        {% if cf_turnstile_sitekey %}
+        <div class="auth-turnstile">
+          <div class="cf-turnstile" data-sitekey="{{ cf_turnstile_sitekey }}" data-theme="dark"></div>
+        </div>
+        {% endif %}
+
+        <button type="submit" class="auth-submit" id="btn">
+          <span>确认重置</span>
+          <span class="auth-submit__arrow">→</span>
+        </button>
+      </form>
+
+      <div class="auth-msg" id="msg"></div>
+
+      <div class="auth-divider">或</div>
+
+      <button type="button" class="btn-oauth" disabled>
+        第三方登录 <span class="btn-oauth__tag">// 待接入</span>
+      </button>
+
+      <div class="auth-foot-links">
+        <a href="/login" class="cta">← 返回登录</a>
+        <a href="/register">还没注册？</a>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+document.querySelectorAll('.auth-field__pw').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const inp=document.getElementById(btn.dataset.for);
+    if(!inp)return;
+    const show=inp.type==='password';
+    inp.type=show?'text':'password';
+    btn.textContent=show?'🙈':'👁';
+    btn.setAttribute('aria-pressed',show?'true':'false');
+    btn.setAttribute('aria-label',show?'隐藏密码':'显示密码');
+  });
+});
+const $=id=>document.getElementById(id);
+let cd=0,timer=null;
+function show(t,ok){const m=$('msg');m.textContent=t;m.className='auth-msg show '+(ok?'ok':'err')}
+
+$('sendBtn').onclick=async()=>{
+  const email=$('email').value.trim();
+  if(!email.includes('@'))return show('请先填邮箱',false);
+  const b=$('sendBtn'); b.disabled=true; b.textContent='发送中…';
+  try{
+    const r=await fetch('/send_code',{method:'POST',
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:'email='+encodeURIComponent(email)});
+    const j=await r.json();
+    if(j.ok){show('验证码已发送',true);cd=60;timer=setInterval(()=>{
+      cd--; if(cd<=0){clearInterval(timer);b.disabled=false;b.textContent='获取验证码'}
+      else b.textContent=cd+' 秒后重发';},1000); b.textContent=cd+' 秒后重发';}
+    else{b.disabled=false;b.textContent='获取验证码';show(j.msg||'发送失败',false)}
+  }catch(e){b.disabled=false;b.textContent='获取验证码';show('网络错误',false)}
+};
+
+$('form').onsubmit=async(e)=>{
+  e.preventDefault();
+  const b=$('btn'); b.disabled=true;
+  try{
+    const r=await fetch('/reset_password',{method:'POST',
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:`email=${encodeURIComponent($('email').value.trim())}&code=${encodeURIComponent($('code').value.trim())}&password=${encodeURIComponent($('password').value)}`,
+      redirect:'manual'});
+    if(r.type==='opaqueredirect'||r.status===303||r.status===302||r.status===0){location.href='/';return}
+    const j=await r.json().catch(()=>({}));
+    if(j.ok){location.href='/'}else{b.disabled=false;show(j.msg||'重置失败',false)}
+  }catch(err){b.disabled=false;show('网络错误：'+err,false)}
+};
+</script>
+</body>
+</html>

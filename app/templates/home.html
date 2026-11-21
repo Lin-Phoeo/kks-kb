@@ -1,0 +1,456 @@
+{% extends "base.html" %}
+{% block title %}{{ title or 'KKS.ARCANE · 创作知识库' }}{% endblock %}
+{% block description %}问点什么关于 Koikatsu Sunshine 渲染、着色器、Mod 工程的问题 · 关键词 + 向量混合检索 · 可联网{% endblock %}
+{% block bar %}{{ title or 'KKS.ARCANE / 创作知识库' }}{% endblock %}
+{% block body_class %}{% if not msgs %}learning-home{% endif %}{% endblock %}
+{% block head_extra %}<link rel="stylesheet" href="/static/onboard.css">{% endblock %}
+{% block body %}
+<button id="ob-help" type="button" aria-label="打开使用引导" title="打开使用引导">?</button>
+{% if not msgs %}
+{% include "partials/learning_home.html" %}
+
+{% else %}
+{% if cid %}
+<div class="convtools">
+  <a class="btn ghost mini" href="/c/{{ cid }}/export">导出 Markdown</a>
+  <button class="btn ghost mini" onclick="renameConv()">重命名</button>
+  <a class="btn ghost mini" href="/">新对话</a>
+  <form method="post" action="/c/{{ cid }}/delete" style="display:inline"
+        onsubmit="return confirm('删除这个对话？不可恢复。')">
+    <button class="btn ghost mini" type="submit" style="color:var(--bad)">删除</button>
+  </form>
+</div>
+{% endif %}
+<div id="thread">
+  {% for m in msgs %}
+    {% if m.role == 'user' %}
+    <div class="msg user">
+      <div class="av">你</div>
+      <div class="txt">{{ m.content }}</div>
+    </div>
+    {% else %}
+    <div class="msg">
+      <div class="meta">
+        {% if m.meta.get('model') %}<span class="chip">{{ m.meta.model }}</span>{% endif %}
+        {% if m.meta.get('ms') %}<span class="chip">{{ m.meta.ms }} ms</span>{% endif %}
+        {% if m.meta.get('stats') %}<span class="chip">{{ m.meta.stats.fts }} 关键词 / {{ m.meta.stats.vec }} 向量</span>{% endif %}
+        {% if m.meta.get('web') %}<span class="chip">联网 {{ m.meta.web|length }} 条</span>{% endif %}
+      </div>
+      {# 经 app/sanitize.clean_html 净化后输出 #}
+      <div class="answer">{{ m.answer_html|safe }}</div>
+      <div class="tools">
+        <button class="btn ghost mini" onclick="copyFrom(this)">复制</button>
+        {% if m.meta.get('msg_id') or m.id %}
+        <button class="btn ghost mini vote" data-mid="{{ m.meta.msg_id or m.id }}" data-v="1" data-path="">有用</button>
+        <button class="btn ghost mini vote" data-mid="{{ m.meta.msg_id or m.id }}" data-v="-1" data-path="">没用</button>
+        {% endif %}
+      </div>
+      {% if m.followups %}
+      <div class="follow">
+        <div class="lbl">继续追问</div>
+        {% for f in m.followups %}<span class="ex" data-q="{{ f }}">{{ f }}</span>{% endfor %}
+      </div>
+      {% endif %}
+      {% if m.meta.get('chunks') %}
+      <div class="sec-h">本地来源（{{ m.meta.chunks|length }}）</div>
+      {% for c in m.meta.chunks %}
+      <details class="src" id="l{{ loop.index }}">
+        <summary><span class="idx">L{{ loop.index }}</span>
+          <span class="ttl">{{ c.section or c.heading }}
+            <span class="pth"><a href="/doc?path={{ c.path|urlencode }}{% if c.anchor %}&sec={{ c.anchor }}{% endif %}"
+                 target="_blank" rel="noreferrer">{{ c.path }}</a> · RRF {{ c.rrf }}</span></span></summary>
+        <div class="body">{{ c.preview }}</div>
+        {% if c.imgs %}
+        <div class="imstrip">
+          {% for m in c.imgs %}
+          <a href="/orig/{{ m.thumb }}" target="_blank" rel="noopener" title="{{ m.name }}">
+            <img src="/thumb/{{ m.thumb }}" loading="lazy" alt="{{ m.name }}"
+                 {% if m.hit %}class="hit"{% endif %}></a>
+          {% endfor %}
+          <a class="immore" href="/doc?path={{ c.path|urlencode }}">看全部配图</a>
+        </div>
+        {% endif %}
+        <div class="fbx" style="display:flex;gap:6px;margin-top:8px">
+          <button class="btn ghost mini fbv" data-mid="{{ m.meta.msg_id or m.id }}" data-v="1" data-path="{{ c.path|e }}">有用</button>
+          <button class="btn ghost mini fbv" data-mid="{{ m.meta.msg_id or m.id }}" data-v="-1" data-path="{{ c.path|e }}">不对</button>
+        </div>
+      </details>
+      {% endfor %}
+      {% endif %}
+      {% if m.meta.get('web') %}
+      <div class="sec-h">联网结果（{{ m.meta.web|length }}）</div>
+      {% for w in m.meta.web %}
+      <div class="wsrc" id="w{{ loop.index }}">
+        <div><b>W{{ loop.index }}</b> <a href="{{ w.url }}" target="_blank" rel="noreferrer">{{ w.title }}</a></div>
+        <div class="u">{{ w.engine }} · {{ w.url }}</div>
+        {% if w.snippet %}<div class="sn">{{ w.snippet }}</div>{% endif %}
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<div class="ask" style="padding:22px 0 0;text-align:left">
+  <div class="qwrap">
+    <textarea id="q" rows="2" placeholder="继续追问…"></textarea>
+  </div>
+  <div class="actions">
+    <button class="btn" id="send">提问</button>
+    <label class="toggle"><input type="checkbox" id="useweb"> 同时联网搜索</label>
+    <label class="toggle" title="给出文件路径、参数原值和建议值、可直接粘贴的改动"><input type="checkbox" class="recipe-toggle"> 改法模式</label>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block script %}
+
+<script src="/static/onboard.js" defer></script>
+
+<script>
+const CID = {{ cid or 0 }};
+const thread = document.getElementById('thread');
+const qEl = document.getElementById('q');
+const sendBtn = document.getElementById('send');
+const webEl = document.getElementById('useweb');
+
+// 改法模式：两个开关（首页 + 追问区）联动
+const recipeToggles = [document.getElementById('recipe'),
+                       ...document.querySelectorAll('.recipe-toggle')].filter(Boolean);
+function recipeOn(){ return recipeToggles.some(e=>e.checked); }
+recipeToggles.forEach(el => el.addEventListener('change', () => {
+  recipeToggles.forEach(o => { if(o !== el) o.checked = el.checked; });
+}));
+let busy = false;
+let currentCtrl = null; // 当前流式请求的 AbortController：点「停止」用
+
+document.querySelectorAll('.ex-recipe').forEach(el=>{
+  el.addEventListener('click', () => { recipeToggles.forEach(o=>o.checked = true); });
+});
+document.querySelectorAll('.ex').forEach(el=>{
+  el.onclick = ()=>{ if(qEl){ qEl.value = el.dataset.q; submit(); } };
+});
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+function addUser(text){
+  const d = document.createElement('div');
+  d.className = 'msg user';
+  d.innerHTML = '<div class="av">你</div><div class="txt">'+esc(text)+'</div>';
+  thread.appendChild(d);
+}
+
+function addAssistant(){
+  const d = document.createElement('div');
+  d.className = 'msg';
+  d.innerHTML = '<div class="meta" id="metaLine"></div>'+
+    '<div class="stage-line" id="stage"><span class="spinner"></span><span>正在检索知识库…</span></div>'+
+    '<div class="answer" id="ans" aria-live="polite" role="status" style="white-space:pre-wrap"></div>'+
+    '<div class="tools" id="tools" style="display:none"><button class="btn ghost mini" onclick="copyFrom(this)">复制</button></div>'+
+    '<div id="extra"></div>';
+  thread.appendChild(d);
+  d.scrollIntoView({behavior:'smooth', block:'start'});
+  return d;
+}
+
+async function submit(){
+  // 流式中第二次点就是「停止」
+  if(busy){
+    if(currentCtrl){ try{ currentCtrl.abort(); }catch(e){} }
+    return;
+  }
+  const q = (qEl.value||'').trim();
+  if(!q) return;
+  busy = true;
+  sendBtn.disabled = false;              // 停止期间按钮仍可点
+  sendBtn.textContent = '停止';
+  sendBtn.classList.add('stop');
+  if(qEl.tagName==='TEXTAREA') qEl.value = '';
+
+  addUser(q);
+  const box = addAssistant();
+  const ansEl = box.querySelector('#ans');
+  const stageEl = box.querySelector('#stage');
+  const metaEl = box.querySelector('#metaLine');
+  const extraEl = box.querySelector('#extra');
+  const toolsEl = box.querySelector('#tools');
+
+  const fd = new FormData();
+  fd.append('q', q);
+  if(webEl && webEl.checked) fd.append('useweb','on');
+  if(recipeOn()) fd.append('mode','recipe');
+  fd.append('cid', String(CID || ''));
+  fd.append('col', '{{ col or "" }}');
+
+  // luna 这类免费模型较慢，12 秒还没出字就提示用户
+  setTimeout(function(){
+    var st = document.querySelector('.status, #status, .stage');
+    if (st && !st.textContent.trim()) return;
+    if (st && /连接|思考|检索|准备/.test(st.textContent)) {
+      st.textContent = '模型响应较慢（免费模型约需 30-60 秒），请稍候…';
+    }
+  }, 12000);
+
+  let text = '', raf = null;
+  const paint = ()=>{ raf=null; ansEl.textContent = text; };
+
+  let lastEv = Date.now();
+  const ctrl = new AbortController();
+  currentCtrl = ctrl;
+  const watchdog = setInterval(()=>{
+    // 60 秒没任何事件就当连接丢了（后端心跳是后续工作，这里只管前端计时）
+    if(Date.now() - lastEv > 60000){
+      clearInterval(watchdog);
+      if(stageEl && stageEl.parentNode){
+        stageEl.innerHTML = '<span>连接超时（60 秒无响应），请重试</span>';
+      }
+      try{ ctrl.abort(); }catch(e){}
+    }
+  }, 5000);
+
+  try{
+    const resp = await fetch('/ask_stream', {method:'POST', body:fd, signal: ctrl.signal});
+    if(!resp.ok || !resp.body) throw new Error('HTTP '+resp.status);
+    const reader = resp.body.getReader();
+    const dec = new TextDecoder();
+    let buf = '';
+    let curEvent = 'message';
+
+    while(true){
+      const {done, value} = await reader.read();
+      if(done) break;
+      lastEv = Date.now();
+      buf += dec.decode(value, {stream:true});
+      const parts = buf.split('\n\n');
+      buf = parts.pop();
+      for(const chunk of parts){
+        let ev = 'message', data = '';
+        chunk.split('\n').forEach(line=>{
+          if(line.startsWith('event: ')) ev = line.slice(7).trim();
+          else if(line.startsWith('data: ')) data += line.slice(6);
+        });
+        if(!data) continue;
+        let j; try{ j = JSON.parse(data); }catch(e){ continue; }
+
+        if(ev === 'meta'){
+          const st = j.stats || {};
+          metaEl.innerHTML =
+            (st.fts!=null ? '<span class="chip">'+st.fts+' 关键词 / '+(st.vec||0)+' 向量</span>' : '') +
+            ((j.web&&j.web.length) ? '<span class="chip">联网 '+j.web.length+' 条</span>' : '') +
+            ((j.winfo&&j.winfo.fail&&j.winfo.fail.length) ? '<span class="chip bad">'+j.winfo.fail.join(',')+' 失败</span>' : '');
+          stageEl.innerHTML = '<span class="spinner"></span><span>正在阅读相关章节…</span>';
+          if(j.chunks && j.chunks.length){
+            let h = '<div class="sec-h">本地来源（'+j.chunks.length+'）</div>';
+            j.chunks.forEach((c,i)=>{
+              const link = '/doc?path='+encodeURIComponent(c.path)+(c.anchor?('&sec='+c.anchor):'');
+              h += '<details class="src" id="l'+(i+1)+'"><summary><span class="idx">L'+(i+1)+'</span>'+
+                   '<span class="ttl">'+esc(c.section||c.heading)+'<span class="pth">'+
+                   '<a href="'+link+'" target="_blank" rel="noreferrer">'+esc(c.path)+'</a> · RRF '+c.rrf+
+                   '</span></span></summary>'+
+                   '<div class="body">'+esc(c.preview)+'</div>'+
+                   (c.imgs && c.imgs.length ? '<div class="imstrip">'+c.imgs.map(function(m){
+                     return '<a href="/orig/'+m.thumb+'" target="_blank" rel="noopener" title="'+esc(m.name)+'">'+
+                            '<img src="/thumb/'+m.thumb+'" loading="lazy" alt="'+esc(m.name)+'"'+
+                            (m.hit?' class="hit"':'')+'></a>';
+                   }).join('')+'<a class="immore" href="/doc?path='+encodeURIComponent(c.path)+'">看全部配图</a></div>' : '')+
+                   '<div class="fbx" style="display:flex;gap:6px;margin-top:8px">'+
+                   '<button class="btn ghost mini fbv" data-mid="" data-v="1" data-path="'+esc(c.path)+'">有用</button>'+
+                   '<button class="btn ghost mini fbv" data-mid="" data-v="-1" data-path="'+esc(c.path)+'">不对</button></div>'+
+                   '</details>';
+            });
+            if(j.web && j.web.length){
+              h += '<div class="sec-h">联网结果（'+j.web.length+'）</div>';
+              j.web.forEach((w,i)=>{
+                h += '<div class="wsrc" id="w'+(i+1)+'"><div><b>W'+(i+1)+'</b> '+
+                     '<a href="'+esc(w.url)+'" target="_blank" rel="noreferrer">'+esc(w.title)+'</a></div>'+
+                     '<div class="u">'+esc(w.engine||'')+' · '+esc(w.url)+'</div>'+
+                     (w.snippet?'<div class="sn">'+esc(w.snippet)+'</div>':'')+'</div>';
+              });
+            }
+            extraEl.innerHTML = h;
+            bindFeedback();
+          }
+        }
+        else if(ev === 'stage'){
+          stageEl.innerHTML = '<span class="spinner"></span><span>'+esc(j.text||'')+'</span>';
+        }
+        else if(ev === 'delta'){
+          if(stageEl) stageEl.style.display = 'none';
+          text += j.text || '';
+          if(!raf) raf = requestAnimationFrame(paint);
+        }
+        else if(ev === 'done'){
+          if(raf) cancelAnimationFrame(raf);
+          if(j.html) { ansEl.innerHTML = j.html; ansEl.style.whiteSpace='normal'; bindCites(); }
+          else { ansEl.textContent = text; }
+          if(stageEl) stageEl.remove();
+          toolsEl.style.display = 'flex';
+          if(j.msg_id){
+            box.querySelectorAll('.fbv').forEach(b=>{ b.dataset.mid = j.msg_id; });
+            toolsEl.insertAdjacentHTML('beforeend',
+              '<button class="btn ghost mini vote" data-mid="'+j.msg_id+'" data-v="1" data-path="">有用</button>'+
+              '<button class="btn ghost mini vote" data-mid="'+j.msg_id+'" data-v="-1" data-path="">没用</button>');
+            bindFeedback();
+          }
+          if(j.cached) metaEl.innerHTML += '<span class="chip">联网缓存命中</span>';
+          if(j.quota)  metaEl.innerHTML += '<span class="chip bad">'+esc(j.quota)+'</span>';
+          if(j.model) metaEl.innerHTML += '<span class="chip">'+esc(j.model)+'</span>';
+          if(j.ms) metaEl.innerHTML += '<span class="chip">'+j.ms+' ms</span>';
+          if(j.followups && j.followups.length){
+            let f = '<div class="follow"><div class="lbl">继续追问</div>';
+            j.followups.forEach(q2=>{ f += '<span class="ex" data-q="'+esc(q2)+'">'+esc(q2)+'</span>'; });
+            f += '</div>';
+            extraEl.insertAdjacentHTML('beforeend', f);
+            extraEl.querySelectorAll('.ex').forEach(el=>{
+              el.onclick = ()=>{ const t=document.getElementById('q'); if(t){t.value=el.dataset.q; submit();} };
+            });
+          }
+          if(j.conv_id && !CID){ history.replaceState(null,'','/c/'+j.conv_id); }
+        }
+      }
+    }
+  }catch(err){
+    if(stageEl) stageEl.remove();
+    ansEl.style.whiteSpace='normal';
+    // 用户点「停止」或看门狗 abort → AbortError，别显示成「请求失败」
+    const aborted = (err && (err.name === 'AbortError' || /abort/i.test(String(err))));
+    if(aborted){
+      ansEl.insertAdjacentHTML('beforeend', '<div class="stage-line" style="margin-top:8px">已停止</div>');
+    }else{
+      ansEl.innerHTML = '<div class="err">请求失败：'+esc(String(err))+'</div>';
+    }
+  }finally{
+    clearInterval(watchdog);
+    currentCtrl = null;
+    busy = false;
+    sendBtn.disabled = false;
+    sendBtn.textContent = '提问';
+    sendBtn.classList.remove('stop');
+  }
+}
+
+function bindCites(){
+  // 顺带把历史渲染里的 <span class="cite"> 升级成 <button>，拿到键盘可达性
+  document.querySelectorAll('span.cite').forEach(span=>{
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = span.className;
+    for(const a of span.attributes){
+      if(a.name !== 'class') b.setAttribute(a.name, a.value);
+    }
+    b.innerHTML = span.innerHTML;
+    span.replaceWith(b);
+  });
+  document.querySelectorAll('.cite').forEach(el=>{
+    if(el.dataset.citeBound) return;
+    el.dataset.citeBound = '1';
+    el.onclick = ()=>{
+      const n = el.dataset.n, t = el.dataset.t;
+      const card = document.getElementById((t==='w'?'w':'l') + n);
+      if(!card) return;
+      if(card.tagName === 'DETAILS') card.open = true;
+      card.classList.add('hl');
+      card.scrollIntoView({behavior:'smooth', block:'center'});
+      setTimeout(()=>card.classList.remove('hl'), 2000);
+    };
+  });
+}
+bindCites();
+
+// 把一组投票按钮恢复成未投票的外观
+function resetVoteGroup(group){
+  group.forEach(x=>{
+    x.disabled = false;
+    x.style.opacity = '';
+    x.style.color = '';
+    x.style.borderColor = '';
+    const good = x.dataset.v === '1';
+    const isFbv = x.classList.contains('fbv');
+    x.textContent = good ? '有用' : (isFbv ? '不对' : '没用');
+    delete x.dataset.active;
+  });
+}
+async function sendFeedback(mid, vote, path, btn){
+  // 组内的其他按钮
+  const group = Array.from(btn.parentNode.querySelectorAll('.vote, .fbv'))
+                     .filter(x => (x.dataset.path||'') === (path||''));
+  // 再次点击当前「已选中」按钮 → 撤回（vote=0）
+  const retract = btn.dataset.active === '1';
+  const sendVote = retract ? 0 : Number(vote);
+  try{
+    const r = await fetch('/api/feedback', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({msg_id: Number(mid), vote: sendVote, path: path || ''})
+    });
+    const j = await r.json();
+    if(!j.ok) return;
+    if(retract){
+      resetVoteGroup(group);
+      return;
+    }
+    const good = btn.dataset.v === '1';
+    group.forEach(x=>{
+      if(x !== btn){ x.disabled = true; x.style.opacity = .45; delete x.dataset.active; }
+    });
+    btn.disabled = false;
+    btn.dataset.active = '1';
+    btn.style.opacity = 1;
+    btn.textContent = good ? '已标记有用（再点撤回）'
+                           : (btn.classList.contains('fbv') ? '已标记不对（再点撤回）' : '已标记没用（再点撤回）');
+    btn.style.color = good ? 'var(--ok)' : 'var(--bad)';
+    btn.style.borderColor = good ? 'var(--ok-line)' : 'var(--bad-line)';
+  }catch(e){}
+}
+
+function bindFeedback(){
+  document.querySelectorAll('.vote, .fbv').forEach(b=>{
+    if(b.dataset.bound) return;
+    b.dataset.bound = '1';
+    b.onclick = ()=> sendFeedback(b.dataset.mid, b.dataset.v, b.dataset.path, b);
+  });
+}
+bindFeedback();
+function renameConv(){
+  const t = prompt('新标题：', document.querySelector('.qhead, .msg.user .txt') ? (document.querySelector('.msg.user .txt')||{}).textContent || '' : '');
+  if(!t || !t.trim()) return;
+  const f = document.createElement('form');
+  f.method = 'post'; f.action = '/c/' + CID + '/rename';
+  const i = document.createElement('input'); i.name='title'; i.value=t.trim();
+  f.appendChild(i); document.body.appendChild(f); f.submit();
+}
+function copyFrom(btn){
+  const box = btn.closest('.msg');
+  const ans = box.querySelector('.answer');
+  const text = ans.innerText;
+  const old = btn.textContent;
+  const done = ok => { btn.textContent = ok ? '已复制' : '复制失败';
+                       setTimeout(()=>{ btn.textContent = old; }, 1500); };
+  function fallback(){
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.cssText = 'position:fixed;left:-9999px;top:0';
+    document.body.appendChild(ta); ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch(e){ ok = false; }
+    ta.remove(); done(ok);
+  }
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(()=>done(true)).catch(fallback);
+  } else { fallback(); }
+}
+
+if(sendBtn) sendBtn.onclick = submit;
+if(qEl) qEl.addEventListener('keydown', e=>{
+  if((e.ctrlKey||e.metaKey) && e.key==='Enter'){ e.preventDefault(); submit(); }
+});
+/* 历史对话里的追问也接上 */
+document.querySelectorAll('#thread .follow .ex').forEach(el=>{
+  el.onclick = ()=>{ const t=document.getElementById('q'); if(t){t.value=el.dataset.q; submit();} };
+});
+/* 自动滚到底（历史页） */
+if(CID){ window.scrollTo({top: document.body.scrollHeight, behavior:'instant'}); }
+</script>
+{% endblock %}

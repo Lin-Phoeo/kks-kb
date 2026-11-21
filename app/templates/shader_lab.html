@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Shader 展厅 · KKS.ARCANE{% endblock %}
+{% block description %}在实时光影中观察材质、动态与反射。KKS.ARCANE 的独立 WebGL 实验展厅。{% endblock %}
+{% block bar %}KKS.ARCANE / Shader 展厅{% endblock %}
+{% block body_class %}arcane-page lab-page{% endblock %}
+{% block head_extra %}<link rel="stylesheet" href="/static/arcane.css">{% endblock %}
+{% block body %}
+<header class="lab-heading">
+  <div><p class="arcane-kicker">THE MATERIAL OBSERVATORY / 01</p><h1>Shader 展厅<span>Light, made tangible.</span></h1></div>
+  <a class="arcane-back" href="/">返回知识库 <span aria-hidden="true">↗</span></a>
+</header>
+<section class="lab-workspace" aria-label="实时材质实验">
+  <div class="lab-viewport">
+    {% set stage_mode = 'lab' %}{% include "partials/arcane_stage.html" %}
+    <div class="stage-caption"><span class="live-dot"></span><span>REAL-TIME / WEBGL</span><span data-render-status aria-live="polite">准备展台</span></div>
+    <div class="stage-object-label" aria-hidden="true"><span>ARCANE OBJECT № 01</span><span>PROCEDURAL STUDY</span></div>
+  </div>
+  <aside class="lab-controls" aria-label="展厅控制">
+    <div class="lab-control-head"><span>01 / MATERIAL</span><span class="lab-serial">A—001</span></div>
+    <h2 id="material-title">流光织物</h2>
+    <p class="material-description" data-material-description>光沿着细密的褶皱流动。观察曲面与明暗之间的关系。</p>
+    <label class="control-label" for="lab-preset">材质预设</label>
+    <select id="lab-preset" data-stage-preset aria-label="材质预设">
+      <option value="silk">流光织物 / Silk</option>
+      <option value="mineral">矿物切面 / Mineral</option>
+      <option value="contour">等高光场 / Contour</option>
+      <option value="pearl">珍珠薄膜 / Pearl</option>
+    </select>
+    <div class="lab-divider"></div>
+    <div class="range-heading"><label for="lab-speed">动态速度</label><output for="lab-speed" data-value="speed">0.60</output></div>
+    <input id="lab-speed" data-stage-speed type="range" min="0" max="1.5" step="0.05" value="0.6" aria-label="动态速度">
+    <div class="range-heading"><label for="lab-exposure">光照强度</label><output for="lab-exposure" data-value="exposure">1.10</output></div>
+    <input id="lab-exposure" data-stage-exposure type="range" min="0.5" max="1.8" step="0.05" value="1.1" aria-label="光照强度">
+    <div class="range-heading"><label for="lab-reflection">地面反射</label><output for="lab-reflection" data-value="reflection">0.45</output></div>
+    <input id="lab-reflection" data-stage-reflection type="range" min="0" max="0.8" step="0.05" value="0.45" aria-label="地面反射">
+    <label class="control-label" for="lab-quality">渲染质量</label>
+    <select id="lab-quality" data-stage-quality aria-label="渲染质量"><option value="auto">自动</option><option value="low">节能</option><option value="high">精细</option><option value="static">静态</option></select>
+    <div class="lab-buttons"><button type="button" data-stage-pause aria-pressed="false">暂停动效</button><button type="button" data-stage-reset>重置场景</button></div>
+    <p class="lab-hint">移动鼠标，换一个观察角度。低性能设备可切换节能或静态模式。</p>
+  </aside>
+</section>
+<section class="lab-notes" aria-label="关于这组实验">
+  <div><span class="arcane-kicker">A STUDY, NOT A PRESET</span><h2>看见原理，再回到创作。</h2></div>
+  <p>这是使用 Three.js 与原创程序化 Shader 制作的网页材质实验，不是 Az、KKUTS 或游戏渲染器的复现。展厅中的数值仅影响网页展示，不作为游戏参数配方。</p>
+  <a href="/params">查阅真实 Shader 参数 <span aria-hidden="true">↗</span></a>
+</section>
+{% endblock %}
+{% block script %}<script type="module" src="/static/arcane-stage.js"></script>{% endblock %}

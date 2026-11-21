@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>{% block title %}KKS 渲染知识库{% endblock %}</title>
+<meta name="description" content="{% block description %}Koikatsu Sunshine 渲染、着色器、Mod 工程知识库{% endblock %}">
+<meta property="og:title" content="{{ self.title() }}">
+<meta property="og:description" content="{{ self.description() }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KKS 渲染知识库">
+<link rel="icon" href="/static/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/static/apple-touch-icon.png">
+<link rel="manifest" href="/static/site.webmanifest">
+<script>
+/* 无闪烁主题初始化：必须在 CSS 之前 */
+(function(){
+  try{
+    var t = localStorage.getItem('theme') || 'system';
+    var dark = t === 'dark' || (t === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    document.documentElement.dataset.pref = t;
+  }catch(e){ document.documentElement.dataset.theme = 'light'; }
+})();
+</script>
+<link rel="stylesheet" href="/static/base.css">
+<link rel="stylesheet" href="/static/learning.css?v=20261120-1">
+{% block head_extra %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}" data-reader-scope="{{ reader_scope|default('local') }}">
+<a href="#main" class="skip">跳到主内容</a>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="side-top">
+      <a href="/" class="brand"><span class="dot"></span>KKS 知识库</a>
+      <a class="newbtn" href="/">创作任务与教程</a>
+      <a class="slink" href="/?ask=1#ask-entry">AI 助教</a>
+    </div>
+    <div class="mnav">
+      <div class="h">手册</div>
+      {% for ch in manual_tree() %}
+      <a class="mlink {% if request.url.path == "/manual/" + ch.id %}on{% endif %}" href="/manual/{{ ch.id }}">
+        <span class="mi">{{ ch.id }}</span><span class="mt">{{ ch.title }}</span>
+        <span class="mn">{{ ch.count }}</span></a>
+      {% endfor %}
+      <div class="h" style="margin-top:8px">参考层</div>
+      {% for r in manual_ref() %}
+      <a class="mlink {% if request.url.path == "/manual/" + r.id %}on{% endif %}" href="/manual/{{ r.id }}">
+        <span class="mt">{{ r.title }}</span><span class="mn">{{ r.count }}</span></a>
+      {% endfor %}
+    </div>
+    <details class="colwrap">
+      <summary>知识库分区（按来源，用于限定检索范围）</summary>
+      <div class="cols">
+        {% for c in COLLECTIONS %}
+          {% set st = (col_stats | selectattr('id','equalto', c.id) | list | first) %}
+          <a class="colitem {% if (col or '') == (c.id if c.id != 'all' else '') %}on{% endif %}"
+             href="/browse{% if c.id != 'all' %}?col={{ c.id }}{% endif %}">
+            <span class="cn">{{ c.name }}</span>
+            {% if c.id == 'all' %}
+              <span class="cc">{{ n_chunks }}</span>
+            {% elif st %}
+              <span class="cc">{{ st.chunks }}</span>
+            {% endif %}
+          </a>
+        {% endfor %}
+      </div>
+    </details>
+    <div class="hist">
+      {% if convs %}
+      <div class="h">最近对话</div>
+      {% for c in convs %}
+        <a class="hitem {% if cid and c[0]==cid %}on{% endif %}" href="/c/{{ c[0] }}">{{ c[1] }}</a>
+      {% endfor %}
+      {% else %}
+      <div class="h" style="padding:14px 8px;line-height:1.6">还没有对话记录<br>问第一个问题吧</div>
+      {% endif %}
+    </div>
+    <div class="side-bot">
+      <a class="slink" href="/search{% if col %}?col={{ col }}{% endif %}">全文搜索</a>
+      <a class="slink" href="/browse{% if col %}?col={{ col }}{% endif %}">文档库</a>
+      <a class="slink sub" href="/gallery">教程配图</a>
+      <a class="slink sub" href="/shader-lab">Shader 展厅 <span aria-hidden="true">↗</span></a>
+      <a class="slink sub" href="/params">参数索引</a>
+      <a class="slink sub" href="/source">源文件归档</a>
+      <a class="slink sub" href="/status">系统状态</a>
+      <a class="slink sub" href="/feedback">反馈与学习信号</a>
+      <a class="slink sub" href="/about">关于</a>
+      <a class="slink sub" href="/download/manual">离线手册</a>
+      {% if auth_on %}<a class="slink sub" href="/logout">退出登录</a>{% endif %}
+      <button class="slink themebtn" style="width:100%;justify-content:flex-start;border:0;background:none;cursor:pointer"
+              onclick="cycleTheme()" id="themeBtn">跟随系统</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <button class="themebtn menubtn" onclick="document.getElementById('side').classList.toggle('open')">☰</button>
+      <span class="ttl">{% block bar %}{% endblock %}</span>
+      {% if n_chunks %}<span class="stat">{{ n_chunks }} 知识块</span>{% endif %}
+    </div>
+    <main id="main" tabindex="-1" class="content">
+      {% block body %}{% endblock %}
+      <div class="foot">
+        <span>收录 {{ foot_docs }} 篇文档 · {{ foot_chunks }} 个知识片段</span>
+        <span class="sep">·</span>
+        <span>向量 {{ foot_dim }} 维</span>
+        <span class="sep">·</span>
+        <span>构建 {{ foot_build }}</span>
+      </div>
+    </main>
+  </div>
+</div>
+<script>
+function applyTheme(pref){
+  const dark = pref === 'dark' || (pref === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  document.documentElement.dataset.pref = pref;
+  const b = document.getElementById('themeBtn');
+  if(b) b.textContent = pref === 'system' ? '跟随系统' : (pref === 'dark' ? '深色模式' : '浅色模式');
+}
+function cycleTheme(){
+  const order = ['system','light','dark'];
+  const cur = localStorage.getItem('theme') || 'system';
+  const next = order[(order.indexOf(cur)+1) % 3];
+  localStorage.setItem('theme', next);
+  applyTheme(next);
+}
+applyTheme(localStorage.getItem('theme') || 'system');
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ()=>{
+  if((localStorage.getItem('theme')||'system')==='system') applyTheme('system');
+});
+document.addEventListener('click', e=>{
+  const s = document.getElementById('side');
+  if(s && s.classList.contains('open') && !s.contains(e.target) && !e.target.closest('.menubtn'))
+    s.classList.remove('open');
+});
+</script>
+
+<div class="cmdk" id="cmdk">
+  <div class="cmdk-box">
+    <input class="cmdk-in" id="cmdkIn" placeholder="搜索文档、跳转页面…" autocomplete="off">
+    <div class="cmdk-list" id="cmdkList"></div>
+    <div class="cmdk-foot">
+      <span><kbd>↑</kbd><kbd>↓</kbd> 选择</span>
+      <span><kbd>Enter</kbd> 打开</span>
+      <span><kbd>Esc</kbd> 关闭</span>
+      <span style="margin-left:auto"><kbd>Ctrl</kbd>+<kbd>K</kbd> 唤起</span>
+    </div>
+  </div>
+</div>
+<script>
+/* ---------- 命令面板 ---------- */
+(function(){
+  const box = document.getElementById('cmdk');
+  if(!box) return;
+  const inp = document.getElementById('cmdkIn');
+  const list = document.getElementById('cmdkList');
+  const ACTIONS = [
+    {t:'学习首页', s:'/', k:'action'},
+    {t:'AI 助教', s:'/?ask=1#ask-entry', k:'action'},
+    {t:'全文搜索', s:'/search', k:'action'},
+    {t:'文档库', s:'/browse', k:'action'},
+    {t:'系统状态', s:'/status', k:'action'},
+    {t:'关于', s:'/about', k:'action'},
+  ];
+  let items = [], sel = 0, timer = null;
+
+  function render(){
+    let h = '';
+    if(items.length){
+      h += '<div class="cmdk-sec">文档</div>';
+      items.forEach((it,i)=>{
+        h += '<div class="cmdk-item'+(i===sel?' sel':'')+'" data-url="/doc?path='+encodeURIComponent(it.path)+'">'
+           + '<span>'+esc(it.title)+'</span><span class="sub">'+esc(it.path)+'</span></div>';
+      });
+    }
+    const acts = ACTIONS.filter(a=>!inp.value.trim() || a.t.includes(inp.value.trim()));
+    if(acts.length){
+      h += '<div class="cmdk-sec">操作</div>';
+      acts.forEach(a=>{
+        const i = items.length + acts.indexOf(a);
+        h += '<div class="cmdk-item'+(i===sel?' sel':'')+'" data-url="'+a.s+'">'
+           + '<span>'+esc(a.t)+'</span><span class="sub">'+esc(a.s)+'</span></div>';
+      });
+    }
+    if(!h) h = '<div class="cmdk-sec">没有匹配项</div>';
+    list.innerHTML = h;
+    list.querySelectorAll('.cmdk-item').forEach(el=>{
+      el.onclick = ()=>location.href = el.dataset.url;
+    });
+  }
+  function esc(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+
+  async function search(q){
+    try{
+      const r = await fetch('/api/docs?q='+encodeURIComponent(q)+'&limit=8');
+      const j = await r.json();
+      items = j.items || [];
+    }catch(e){ items = []; }
+    sel = 0; render();
+  }
+  function open(){
+    box.classList.add('on'); inp.value=''; search(''); inp.focus();
+  }
+  function close(){ box.classList.remove('on'); }
+
+  document.addEventListener('keydown', e=>{
+    if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); open(); return; }
+    if(!box.classList.contains('on')) return;
+    if(e.key==='Escape'){ close(); }
+    else if(e.key==='ArrowDown'){ e.preventDefault(); sel=Math.min(sel+1, list.querySelectorAll('.cmdk-item').length-1); render(); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); sel=Math.max(sel-1, 0); render(); }
+    else if(e.key==='Enter'){
+      const el = list.querySelectorAll('.cmdk-item')[sel];
+      if(el) location.href = el.dataset.url;
+    }
+  });
+  inp.addEventListener('input', ()=>{
+    clearTimeout(timer);
+    timer = setTimeout(()=>search(inp.value.trim()), 120);
+  });
+  box.addEventListener('click', e=>{ if(e.target === box) close(); });
+})();
+</script>
+<script src="/static/learning.js?v=20261120-1" defer></script>
+{% block script %}{% endblock %}
+</body>
+</html>

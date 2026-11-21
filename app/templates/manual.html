@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}恋活创作手册 · KKS 渲染知识库{% endblock %}
+{% block description %}Koikatsu Sunshine 创作手册 · {{ manual_total }} 篇正文、{{ ref_total }} 篇参考，按「你要干什么」组织{% endblock %}
+{% block bar %}手册{% endblock %}
+{% block body_class %}catalog-page{% endblock %}
+{% block body %}
+
+<div style="margin:26px 0 4px">
+  <h1 style="font-size:26px;margin:0 0 6px;letter-spacing:-.01em">恋活创作手册</h1>
+  <p style="color:var(--dim);font-size:13.5px;margin:0">
+    按「你要干什么」组织 · 正文 {{ manual_total }} 篇 · 参考 {{ ref_total }} 篇
+    ｜ 按创作目标进入章节，源码与参数独立查阅
+    {% if built %} · 构建 {{ built }}{% endif %}
+  </p>
+</div>
+
+<div class="catalog-recent"><strong>进阶工作台</strong><span>先选目标，再核对插件与 Shader 版本。</span><a href="/">打开近期整理专题 →</a></div>
+{% set ns = namespace(tight=0, loose=0) %}
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px;margin:22px 0 30px">
+{% for c in chapters %}
+  {% set nt = c.docs|rejectattr('loose')|list|length %}
+  {% set nl = c.docs|selectattr('loose')|list|length %}
+  <a href="/manual/{{ c.id }}" class="mcard">
+    <div class="mc-h">
+      <span class="mc-n">{{ c.id }}</span>
+      <span class="mc-t">{{ c.title }}</span>
+    </div>
+    <div class="mc-i">{{ c.intro }}</div>
+    <div class="mc-f">
+      <span>{{ nt }} 篇</span>
+      {% if nl %}<span style="opacity:.7">＋{{ nl }} 篇经验笔记</span>{% endif %}
+      <span style="margin-left:auto;opacity:.65">{{ (c.chars/10000)|round(1) }} 万字</span>
+    </div>
+  </a>
+{% endfor %}
+</div>
+
+<h2 style="font-size:17px;margin:0 0 4px">参考层</h2>
+<p style="color:var(--dim);font-size:13px;margin:0 0 14px">
+  这些是「查」不是「读」：源码、逐属性文档、参数表、Mod 清单、问答存档。
+</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:32px">
+{% for r in reference %}
+  <a href="/manual/{{ r.id }}" class="mcard ref">
+    <div class="mc-h"><span class="mc-t">{{ r.title }}</span></div>
+    <div class="mc-i" style="font-size:12.5px">{{ r.intro }}</div>
+    <div class="mc-f"><span>{{ r.count }} 篇</span>
+      <span style="margin-left:auto;opacity:.65">{{ (r.chars/10000)|round(1) }} 万字</span></div>
+  </a>
+{% endfor %}
+</div>
+
+<div style="border-top:1px solid var(--line);padding:18px 0 40px;color:var(--dim);font-size:13px">
+  找不到？直接
+  <a href="/">问一句</a>（关键词+向量混合检索，会引用上面的篇目），
+  或者去 <a href="/gallery">教程配图与原图</a>、
+  <a href="/browse">文档库</a>（全库平铺）、
+  <a href="/source">源文件归档</a>。
+</div>
+
+<style>
+.mcard{display:block;background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px 16px;transition:.16s;color:var(--text)}
+.mcard:hover{border-color:var(--accent-line);background:var(--bg);text-decoration:none;
+  box-shadow:var(--shadow);transform:translateY(-1px)}
+.mc-h{display:flex;align-items:baseline;gap:9px;margin-bottom:6px}
+.mc-n{font-size:12px;color:var(--accent);font-variant-numeric:tabular-nums;
+  border:1px solid var(--accent-line);background:var(--accent-bg);border-radius:5px;padding:1px 6px}
+.mc-t{font-weight:600;font-size:15.5px}
+.mc-i{color:var(--dim);font-size:12.8px;line-height:1.6;margin-bottom:9px}
+.mc-f{display:flex;gap:10px;font-size:12px;color:var(--dim);border-top:1px solid var(--line);padding-top:7px}
+</style>
+{% endblock %}

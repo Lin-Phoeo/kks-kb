@@ -1,0 +1,7 @@
+<div class="reader-meta">
+  <span class="reader-kind">{{ doc_meta.type_label }}</span><span>{{ doc_meta.game_label }}</span><span>{{ doc_meta.verification_label }}</span>
+  {% if nav %}<span>本章 {{ nav.pos }} / {{ nav.total }}</span>{% endif %}
+</div>
+<div class="reader-scope-note" role="note"><strong>适用范围与证据</strong><p>{{ doc_meta.scope_note or '本篇的游戏、插件及 Shader 版本尚未逐项核定，操作前请对照原文说明。' }}</p><span>{{ doc_meta.source_label }}{% if doc_meta.reviewed_at %} · 元数据核对于 {{ doc_meta.reviewed_at }}{% endif %} · 不自动等同于游戏实测</span></div>
+{% if doc_meta.image_warning %}<div class="reader-image-warning" role="note"><strong>{{ doc_meta.image_label }}</strong><p>{{ doc_meta.image_note }}</p><a href="#doc-images">查看现有原图与页码 ↓</a></div>{% endif %}
+<details class="reader-source"><summary>原文出处、配图状态与归档路径</summary><p>{{ doc_meta.image_label }}{% if doc_meta.image_note %} · {{ doc_meta.image_note }}{% endif %}</p><p class="reader-source-path">{{ path }}</p>{% if doc_meta.sources %}<ul>{% for source in doc_meta.sources %}<li><a href="{{ source.url }}" target="_blank" rel="noopener noreferrer">{{ source.label }}</a></li>{% endfor %}</ul>{% else %}<p>在线原文链接未核定，请以正文来源行和原件归档为准。</p>{% endif %}</details>

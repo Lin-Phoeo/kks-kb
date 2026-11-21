@@ -1,0 +1,31 @@
+{
+  "_note": "自造演示检索题集，仅用于验证程序行为，不代表真实教程覆盖或游戏实测。配合 scripts/create_demo.py 创建的三篇资料使用。",
+  "version": 1,
+  "date": "2026-11-21",
+  "items": [
+    {
+      "id": "demo-01",
+      "q": "演示资料如何说明未进行真实游戏验证",
+      "expect": [
+        "01-welcome.md"
+      ],
+      "col": "kks"
+    },
+    {
+      "id": "demo-02",
+      "q": "灯光观察记录",
+      "expect": [
+        "02-lighting-notes.md"
+      ],
+      "col": "kks"
+    },
+    {
+      "id": "demo-03",
+      "q": "文档搜索练习与目录导航",
+      "expect": [
+        "03-search-workflow.md"
+      ],
+      "col": "kks"
+    }
+  ]
+}

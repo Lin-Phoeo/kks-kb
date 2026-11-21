@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}管理后台 · KKS 知识库{% endblock %}
+{% block bar %}管理后台{% endblock %}
+{% block body %}
+<h1 style="font-size:22px;margin:28px 0 4px">管理后台</h1>
+<p style="color:var(--dim);font-size:13px;margin:0 0 22px">
+  实时统计查询（本次 {{ query_ms }} ms）</p>
+
+<div class="card" style="margin-bottom:18px">
+  <b style="font-size:14px">用户</b>
+  <table class="kv" style="margin-top:10px">
+    <tr><td style="color:var(--dim)">总数</td><td><b>{{ u_total }}</b></td></tr>
+    <tr><td style="color:var(--dim)">近 7 天活跃</td><td>{{ u_active7 }}</td></tr>
+    <tr><td style="color:var(--dim)">近 24h 新注册</td><td>{{ u_new24 }}</td></tr>
+  </table>
+</div>
+
+<div class="card" style="margin-bottom:18px">
+  <b style="font-size:14px">问答</b>
+  <table class="kv" style="margin-top:10px">
+    <tr><td style="color:var(--dim)">近 7 天用户提问</td><td><b>{{ q_7d }}</b> 条</td></tr>
+    <tr><td style="color:var(--dim)">近 24h 用户提问</td><td>{{ q_24h }} 条</td></tr>
+    <tr><td style="color:var(--dim)">近 7 天 0-召回答复</td><td>{{ zero_recall }} 条</td></tr>
+  </table>
+</div>
+
+<div class="card" style="margin-bottom:18px">
+  <b style="font-size:14px">反馈</b>
+  <table class="kv" style="margin-top:10px">
+    <tr><td style="color:var(--dim)">有反馈的文档数</td><td><b>{{ f_docs }}</b></td></tr>
+    <tr><td style="color:var(--dim)">近 7 天 👍</td><td>{{ f_up7 }}</td></tr>
+    <tr><td style="color:var(--dim)">近 7 天 👎</td><td>{{ f_down7 }}</td></tr>
+  </table>
+</div>
+
+<div class="card" style="margin-bottom:18px">
+  <b style="font-size:14px">Turnstile 拦截</b>
+  <p style="margin:8px 0 0;color:var(--dim);font-size:12.5px">
+    TODO: 日志解析（服务器未落埋点，直接统计太脆，先占位）。</p>
+</div>
+
+<div class="card" style="margin-bottom:18px">
+  <b style="font-size:14px">doc_votes · 净值前 5</b>
+  {% if top_docs %}
+  <table class="kv" style="margin-top:10px">
+    <tr><td style="color:var(--dim)">路径</td><td style="color:var(--dim)">有用</td>
+        <td style="color:var(--dim)">不对</td><td style="color:var(--dim)">净值</td></tr>
+    {% for d in top_docs %}
+    <tr><td style="font-size:12.5px;word-break:break-all">{{ d.path }}</td>
+      <td>{{ d.up }}</td><td>{{ d.down }}</td><td><b>{{ d.net }}</b></td></tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p style="margin:8px 0 0;color:var(--dim);font-size:12.5px">还没有正向反馈。</p>
+  {% endif %}
+</div>
+
+<div class="card">
+  <b style="font-size:14px">doc_votes · 净值倒数 5</b>
+  {% if bot_docs %}
+  <table class="kv" style="margin-top:10px">
+    <tr><td style="color:var(--dim)">路径</td><td style="color:var(--dim)">有用</td>
+        <td style="color:var(--dim)">不对</td><td style="color:var(--dim)">净值</td></tr>
+    {% for d in bot_docs %}
+    <tr><td style="font-size:12.5px;word-break:break-all">{{ d.path }}</td>
+      <td>{{ d.up }}</td><td>{{ d.down }}</td><td><b>{{ d.net }}</b></td></tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p style="margin:8px 0 0;color:var(--dim);font-size:12.5px">还没有负向反馈。</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+name: 故障报告
+description: 提供可复现的故障信息
+title: "[故障] "
+body:
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤
+      placeholder: 从打开页面开始，列出具体操作。不要提供密码或私人资料。
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: 实际结果与预期结果
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 版本和环境
+      placeholder: 提交版本、Python/浏览器版本、经过脱敏的错误信息。

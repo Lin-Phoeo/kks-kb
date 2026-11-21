@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}{% if q %}搜「{{ q }}」 · {% endif %}全文搜索 · KKS 渲染知识库{% endblock %}
+{% block description %}在 KKS 渲染知识库中按关键词 + jieba 中文分词全文搜索 Koikatsu Sunshine 渲染与着色器文档{% endblock %}
+{% block bar %}全文搜索{% endblock %}
+{% block body %}
+<h1 style="font-size:22px;margin:26px 0 4px">全文搜索</h1>
+<p style="color:var(--dim);font-size:13px;margin:0 0 18px">关键词 + jieba 中文分词，命中处高亮</p>
+
+<form method="get" action="/search" style="display:flex;gap:9px;margin-bottom:8px">
+  <input type="hidden" name="col" value="{{ col or '' }}">
+  <input name="q" value="{{ q }}" placeholder="搜参数名、shader 名、现象描述…" autofocus
+         style="flex:1;padding:11px 14px;font-size:15px;font-family:inherit;color:var(--text);
+                background:var(--bg);border:1.5px solid var(--line-strong);border-radius:9px;outline:none">
+  <button class="btn" type="submit">搜索</button>
+</form>
+
+{% if q %}
+  {% if hits %}
+  <p style="color:var(--dim);font-size:13px;margin:14px 0 4px">
+    找到 <b style="color:var(--text)">{{ hits|length }}</b> 处，分布在 {{ groups|length }} 个分类
+  </p>
+  {% for gname, items in groups %}
+  <div class="sec-h">{{ gname }}（{{ items|length }}）</div>
+  {% for h in items %}
+  <a class="hit" href="/doc?path={{ h.path|urlencode }}">
+    <div class="hp">{{ h.path }}<span class="hs">{{ h.heading }}</span></div>
+    {# 经 app/sanitize.highlight_snippet 转义后仅还原 <mark> 输出 #}
+    <div class="hx">{{ h.snippet|safe }}</div>
+  </a>
+  {% endfor %}
+  {% endfor %}
+  {% else %}
+  <div class="card" style="margin-top:18px">
+    <p style="margin:0">没有匹配「{{ q }}」的内容。换个说法试试，或<a href="/">直接提问</a>让模型组织答案。</p>
+  </div>
+  {% endif %}
+{% else %}
+  <div class="card" style="margin-top:18px">
+    <p style="margin:0 0 8px;color:var(--text2)">试试这些：</p>
+    <div class="examples" style="justify-content:flex-start;margin:0">
+      <a class="ex" href="/search?q=Cutoff">Cutoff</a>
+      <a class="ex" href="/search?q=TessBias">TessBias</a>
+      <a class="ex" href="/search?q=lightmap">lightmap</a>
+      <a class="ex" href="/search?q=MatCap">MatCap</a>
+      <a class="ex" href="/search?q=反射探针">反射探针</a>
+      <a class="ex" href="/search?q=manifest">manifest</a>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}

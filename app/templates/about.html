@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}关于 · KKS 知识库{% endblock %}
+{% block bar %}关于{% endblock %}
+{% block body %}
+<h1 style="font-size:22px;margin:28px 0 4px">关于这个知识库</h1>
+<p style="color:var(--dim);font-size:13px;margin:0 0 22px">恋活（Koikatsu Sunshine）渲染与制作技术库</p>
+
+<div class="card">
+  <h2 class="h3s">它是什么</h2>
+  <p>把恋活的 shader 参数、材质配方、制作管线、社区教程沉淀成可检索的知识，再用大模型组织成答案。
+  每条结论尽量带出处，能追到具体文档与小节。</p>
+
+  <h2 class="h3s">收录规模</h2>
+  <p>{{ st.docs }} 篇文档、{{ st.chunks }} 个知识片段，由部署者导入和维护；来源及实测状态以各条目的标注为准。</p>
+
+  <h2 class="h3s">怎么工作</h2>
+  <ul>
+    <li><b>检索</b>：SQLite FTS5 + jieba 中文分词（关键词）与可配置向量（语义）双路召回，RRF 融合</li>
+    <li><b>联网</b>：可选开启，使用部署者配置的搜索服务</li>
+    <li><b>生成</b>：多模型 fallback 链，流式输出</li>
+    <li><b>引用</b>：答案里的 <span class="cite" data-n="1" data-t="l">L1</span> 可点击，跳到对应文档片段</li>
+  </ul>
+
+  <h2 class="h3s">已知边界</h2>
+  <ul>
+    <li>长表格命中时只展示相应窗口，需要完整表请直接看原文</li>
+    <li>本地库没有的内容会明说「未覆盖」，不编数字</li>
+    <li>联网结果质量取决于所配置的搜索服务</li>
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}{{ title or path }} · KKS 创作手册{% endblock %}
+{% block description %}{{ (summary or ('KKS Studio 技术资料：' ~ (title or path))) | truncate(150) }}{% endblock %}
+{% block bar %}{{ title or path.split('/')[-1] }}{% endblock %}
+{% block body_class %}reader-page{% if semantic_reader %} semantic-reader{% endif %}{% endblock %}
+{% block body %}
+<div data-reader data-path="{{ path }}" data-title="{{ title or path }}" data-revision="{{ reader_revision }}" data-semantic-reader="{{ 'true' if semantic_reader else 'false' }}"{% if semantic_reader %} data-anchor-map="{{ reader_anchor_map|default({})|tojson|forceescape }}"{% endif %}>
+<header class="reader-header">
+  <nav class="reader-breadcrumb" aria-label="当前位置"><a href="/">学习首页</a> <span aria-hidden="true">/</span> {% if nav %}<a href="{{ nav.href }}">{{ nav.title }}</a>{% else %}<a href="/browse">文档库</a>{% endif %}</nav>
+  {% if semantic_reader %}<p class="reader-edition">WORD / 原文阅读版 <span>原件保留 · 结构恢复 · 未增加实测结论</span></p>{% endif %}
+  <h1>{{ title or path.split('/')[-1] }}</h1>
+  {% include "partials/doc_meta.html" %}
+  {% if reader_source %}<div class="reader-original-entry">
+    <a href="{{ reader_source.href }}" class="reader-tool">{% if reader_source.role == 'original_docx' %}下载原 Word{% elif reader_source.role == 'original_pdf' %}查看原 PDF{% else %}下载原件{% endif %} ↗</a>
+    <span>{{ reader_source.filename }} · {{ (reader_source.size_bytes/1024)|round|int }} KB</span>
+    {% if reader_source.source_version_status == 'candidate_unverified' %}<span>候选原件：与本文的版本对应关系尚未核实。</span>{% endif %}
+    <details><summary>校验原件</summary><code>SHA-256 {{ reader_source.sha256 }}</code></details>
+  </div>{% endif %}
+  {% if doc_view_note %}<p class="reader-flow-note">{{ doc_view_note }}</p>{% endif %}
+</header>
+<div class="reader-toolbar" role="toolbar" aria-label="阅读工具">
+  <button type="button" class="reader-tool" id="reader-focus" aria-pressed="false">专注阅读</button>
+  <button type="button" class="reader-tool" id="reader-size">字号 16</button>
+  {% if semantic_reader and toc %}<a class="reader-tool reader-toc-toggle" href="#reader-outline">本篇目录 ↓</a>{% endif %}
+  <a class="reader-tool" href="/?ask=1#ask-entry" id="reader-ai" target="_blank" rel="noopener">让 AI 解释此处 ↗</a>
+</div>
+<div class="reader-layout">
+  <article class="reader-article">
+  {% if imgs and not is_album and not semantic_reader %}
+    <div class="reader-thumb-preview" aria-label="配图预览">{% for m in imgs[:8] %}<a href="/orig/{{ m.orig if m.thumb.startswith('recover/') else m.thumb }}" target="_blank" rel="noopener"><img src="/thumb/{{ m.thumb }}" alt="{{ m.name }}" loading="lazy"></a>{% endfor %}</div>
+    <p class="reader-thumb-caption">图片保留在原文位置；其余原图与 PDF 页码见下方阅读区。点图可放大、用方向键切换。</p>
+  {% endif %}
+  {% if is_album and imgs %}
+    <div class="albumgrid">{% for m in imgs %}<a href="/orig/{{ m.orig if m.thumb.startswith('recover/') else m.thumb }}" target="_blank" rel="noopener"><img src="/thumb/{{ m.thumb }}" alt="{{ m.name }}" loading="lazy"></a>{% endfor %}</div>
+  {% endif %}
+  <div class="md" id="doc">{{ body_html|safe }}</div>
+  {% if reading_imgs and not is_album %}
+    <section id="doc-images" class="doc-image-reader"><h2>原文配图与页面</h2><p>按原件顺序排列。PDF 图页保留完整页面与页码；尚未恢复的位置不会用无关图片填补。</p>
+    {% for m in reading_imgs %}<figure><a href="/orig/{{ m.orig if m.thumb.startswith('recover/') else m.thumb }}" target="_blank" rel="noopener"><img src="/thumb/{{ m.thumb }}" data-original="/orig/{{ m.orig if m.thumb.startswith('recover/') else m.thumb }}" loading="lazy" decoding="async" width="{{ m.w }}" height="{{ m.h }}" alt="{{ m.name }}"></a><figcaption>{{ loop.index }} · {{ m.name }}{% if m.page %} · 原件第 {{ m.page }} 页{% endif %}{% if m.role == 'pdf_page' %}（PDF 原页）{% endif %}</figcaption></figure>{% endfor %}
+    </section>
+  {% endif %}
+  {% if nav and (nav.prev or nav.next) %}<nav class="pager" aria-label="相邻篇目">{% if nav.prev %}<a href="/doc?path={{ nav.prev.path|urlencode }}" class="pg"><span class="pg-l">← 上一篇</span><span class="pg-t">{{ nav.prev.title }}</span></a>{% else %}<span></span>{% endif %}{% if nav.next %}<a href="/doc?path={{ nav.next.path|urlencode }}" class="pg next"><span class="pg-l">下一篇 →</span><span class="pg-t">{{ nav.next.title }}</span></a>{% endif %}</nav>{% endif %}
+  <div class="reader-end"><a href="{{ nav.href if nav else '/manual' }}">回到{{ nav.title if nav else '创作手册' }}</a><a href="/search?q={{ (title or path)|urlencode }}">查相关资料</a></div>
+  {% if semantic_reader and reader_source %}<footer class="reader-source-footer"><strong>原件始终保留</strong><p>阅读版保留原文顺序；未知版本与未实测状态不变。</p><a href="{{ reader_source.href }}">下载 {{ reader_source.filename }}</a></footer>{% endif %}
+  </article>
+  {% if semantic_reader and toc %}<details class="reader-outline" id="reader-outline" open><summary>本篇目录 · {{ toc|length }} 节</summary><ol>{% for t in toc %}<li class="l{{ t.level }}"><a href="#{{ t.anchor }}">{{ t.title }}</a></li>{% endfor %}</ol></details>{% elif semantic_reader %}<aside class="reader-overview"><span class="reader-overview-kicker">DOCUMENT NOTE</span><strong>原件未设置章节标题</strong><p>阅读版按原始段落与配图顺序展示，不另编目录。</p><span>{{ imgs|length }} 处原文配图</span><a href="#doc">进入正文 ↓</a></aside>{% else %}<details class="reader-outline" open><summary>本篇目录</summary><ol>{% for t in toc %}<li class="l{{ t.level }}"><a href="#{{ t.anchor }}">{{ t.title }}</a></li>{% endfor %}{% if reading_imgs and not is_album %}<li><a href="#doc-images">原文配图与页面</a></li>{% endif %}{% if not toc %}<li>本篇没有分节标题</li>{% endif %}</ol></details>{% endif %}
+</div>
+</div>
+<dialog class="reader-image-dialog" id="reader-image-dialog" aria-label="教程原图查看器">
+  <div class="reader-image-stage" id="reader-image-stage"><img id="reader-full-image" alt=""></div>
+  <div class="reader-image-actions"><span id="reader-image-label" aria-live="polite"></span><button class="reader-tool" id="reader-image-prev" type="button" aria-label="上一张图片">←</button><button class="reader-tool" id="reader-image-next" type="button" aria-label="下一张图片">→</button><button class="reader-tool" id="reader-zoom-out" type="button" aria-label="缩小图片">−</button><span id="reader-zoom-label">100%</span><button class="reader-tool" id="reader-zoom-in" type="button" aria-label="放大图片">＋</button><button class="reader-tool" id="reader-zoom-fit" type="button">适合窗口</button><a id="reader-original-link" target="_blank" rel="noopener">打开原图 ↗</a><button class="reader-tool" id="reader-image-close" type="button">关闭</button></div>
+  <p class="reader-image-caption" id="reader-image-caption"></p>
+</dialog>
+<style>.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:34px 0 0}.pg{border-top:1px solid var(--line);padding:15px 0;color:var(--text)}.pg.next{text-align:right}.pg-l{display:block;font-size:11px;color:var(--dim)}.pg-t{display:block;font-size:13px;line-height:1.7;margin-top:5px;overflow-wrap:anywhere}.reader-end{display:flex;gap:22px;margin:30px 0;font-size:12px}.albumgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:14px}.albumgrid img{max-width:100%;height:auto}.reader-article:focus{outline:none}</style>
+{% endblock %}
+{% block script %}<script>const sectionAnchor={{ sec|tojson }};const readerRoot=document.querySelector('[data-reader]');let anchorMap={};try{anchorMap=JSON.parse(readerRoot?.dataset.anchorMap||'{}')||{};}catch{}const finalAnchor=anchorMap[sectionAnchor]||sectionAnchor;if(finalAnchor){const el=document.getElementById(finalAnchor);if(el)el.scrollIntoView({block:'start'});}</script>{% endblock %}

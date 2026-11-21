@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block title %}参数索引 · KKS 渲染知识库{% endblock %}
+{% block description %}Koikatsu Sunshine 全部着色器参数名、类型、默认值和所属 shader 家族索引（{{ total }} 个）{% endblock %}
+{% block bar %}参数索引{% endblock %}
+{% block body %}
+
+<div style="margin:26px 0 4px">
+  <h1 style="font-size:26px;margin:0 0 6px">参数索引</h1>
+  <p style="color:var(--dim);font-size:13.5px;margin:0">
+    共 {{ total }} 个参数{% if loaded_at %} · 索引构建 {{ loaded_at }}{% endif %}
+    {% if q %} · 命中 {{ items|length }}{% endif %}
+    · 默认值在不同 shader 家族间有分歧的参数打 <span class="badge">默认值分歧</span> 标
+  </p>
+</div>
+
+<form method="get" action="/params" style="display:flex;gap:8px;margin:16px 0">
+  <input name="q" value="{{ q }}" placeholder="按参数名过滤（如 _Cutoff、_EmissionColor）…" autocomplete="off"
+         style="flex:1;padding:10px 14px;font-size:14px;font-family:inherit;color:var(--text);
+                background:var(--bg2);border:1px solid var(--line);border-radius:9px;outline:none">
+  <button class="btn" type="submit">搜索</button>
+  {% if q %}<a class="btn ghost" href="/params" style="display:inline-flex;align-items:center">清空</a>{% endif %}
+</form>
+
+{% if items %}
+<div class="pfilters">
+  <label>家族：
+    <select id="famFilter">
+      <option value="">全部家族</option>
+    </select>
+  </label>
+  <label class="pfilt-check">
+    <input type="checkbox" id="divOnly"> 只看默认值分歧
+  </label>
+  <span class="pfilt-stat" id="pfiltStat"></span>
+</div>
+{% endif %}
+
+{% if not items %}
+<p style="color:var(--dim);margin:40px 0">没有匹配的参数。</p>
+{% else %}
+<table class="ptbl" id="ptbl">
+  <thead><tr><th>参数名</th><th>类型</th><th>默认值</th><th>家族</th><th></th></tr></thead>
+  <tbody>
+  {% for item in items %}
+  <tr data-name="{{ item.name }}"
+      data-fams="{{ item.v.f | join('|') }}"
+      data-div="{% if item.v.dv | length > 1 %}1{% else %}0{% endif %}">
+    <td><a class="pname" href="/param/{{ item.name|urlencode }}"><code>{{ item.name }}</code></a></td>
+    <td>{{ item.v.t | join(' · ') }}</td>
+    <td class="mono">{{ item.v.d }}</td>
+    <td class="fam">{{ item.v.f | join(' · ') }}</td>
+    <td class="pact">
+      {% if item.v.dv | length > 1 %}<span class="badge">默认值分歧</span>{% endif %}
+      <button type="button" class="btn ghost mini copyname" data-name="{{ item.name }}"
+              title="复制参数名到剪贴板">复制</button>
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+<style>
+.ptbl{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+.ptbl th{text-align:left;font-weight:600;color:var(--dim);border-bottom:1px solid var(--line);
+  padding:8px 10px;white-space:nowrap}
+.ptbl td{border-bottom:1px solid var(--line);padding:7px 10px;vertical-align:top}
+.ptbl tr:hover td{background:var(--bg2)}
+.pname code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;
+  color:var(--accent);background:none;border:0;padding:0}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:var(--text2)}
+.fam{color:var(--dim);font-size:12.5px;line-height:1.6}
+.badge{display:inline-block;font-size:11px;font-weight:600;color:var(--bad);background:var(--bad-bg);
+  border:1px solid var(--bad-line);border-radius:5px;padding:1px 7px;white-space:nowrap}
+.pfilters{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:4px 0 14px;
+  font-size:13.5px;color:var(--text2)}
+.pfilters select{padding:6px 10px;font-size:13.5px;font-family:inherit;color:var(--text);
+  background:var(--bg2);border:1px solid var(--line);border-radius:7px;outline:none}
+.pfilters select:focus{border-color:var(--accent)}
+.pfilt-check{display:inline-flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+.pfilt-check input{accent-color:var(--accent);cursor:pointer}
+.pfilt-stat{color:var(--dim);font-size:12.5px;margin-left:auto;font-variant-numeric:tabular-nums}
+.pact{white-space:nowrap;display:flex;gap:6px;align-items:center}
+.copyname{padding:3px 9px;font-size:11.5px}
+.copyname.ok{color:var(--ok);border-color:var(--ok-line)}
+</style>
+
+<script>
+(function(){
+  const tbl = document.getElementById('ptbl');
+  if(!tbl) return;
+  const rows = Array.from(tbl.querySelectorAll('tbody tr'));
+  const famSel = document.getElementById('famFilter');
+  const divOnly = document.getElementById('divOnly');
+  const stat = document.getElementById('pfiltStat');
+
+  // 收集全部家族
+  const fams = new Set();
+  rows.forEach(r=>{
+    (r.dataset.fams||'').split('|').forEach(f=>{ const t=f.trim(); if(t) fams.add(t); });
+  });
+  [...fams].sort().forEach(f=>{
+    const o = document.createElement('option'); o.value = f; o.textContent = f;
+    famSel.appendChild(o);
+  });
+
+  function apply(){
+    const f = famSel.value;
+    const d = divOnly.checked;
+    let shown = 0;
+    rows.forEach(r=>{
+      const famHit = !f || (r.dataset.fams||'').split('|').includes(f);
+      const divHit = !d || r.dataset.div === '1';
+      const show = famHit && divHit;
+      r.style.display = show ? '' : 'none';
+      if(show) shown++;
+    });
+    stat.textContent = (f || d) ? ('命中 ' + shown + ' / ' + rows.length) : '';
+  }
+  famSel.addEventListener('change', apply);
+  divOnly.addEventListener('change', apply);
+  apply();
+
+  // 复制参数名
+  document.querySelectorAll('.copyname').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const name = btn.dataset.name || '';
+      const old = btn.textContent;
+      const done = ok => {
+        btn.textContent = ok ? '已复制' : '复制失败';
+        btn.classList.toggle('ok', !!ok);
+        setTimeout(()=>{ btn.textContent = old; btn.classList.remove('ok'); }, 1200);
+      };
+      try{
+        if(navigator.clipboard && window.isSecureContext){
+          await navigator.clipboard.writeText(name); done(true); return;
+        }
+      }catch(e){ /* fallback 下面做 */ }
+      try{
+        const ta = document.createElement('textarea');
+        ta.value = name; ta.style.cssText='position:fixed;left:-9999px;top:0';
+        document.body.appendChild(ta); ta.select();
+        const ok = document.execCommand('copy'); ta.remove(); done(ok);
+      }catch(e){ done(false); }
+    });
+  });
+})();
+</script>
+{% endblock %}

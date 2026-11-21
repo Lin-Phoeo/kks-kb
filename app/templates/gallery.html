@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block title %}教程配图 · KKS 渲染知识库{% endblock %}
+{% block description %}Koikatsu Sunshine 渲染与着色器教程配图库 · 全站 {{ total }} 张，支持 OCR 全文检索{% endblock %}
+{% block bar %}教程配图{% endblock %}
+{% block body %}
+<div style="display:flex;align-items:baseline;gap:12px;margin:26px 0 6px;flex-wrap:wrap">
+  <h1 style="font-size:22px;margin:0">教程配图</h1>
+  <span style="color:var(--dim);font-size:13px">
+    {% if album %}{{ album }} · {% elif cat %}{{ cat }} · {% endif %}{{ shown }} 张{% if pages > 1 %} · 第 {{ page }}/{{ pages }} 页{% endif %}
+    <span style="opacity:.55">（全站 {{ total }} 张 · {{ albums|length }} 个教程分册 · {{ ocr_docs }} 篇有图文对照 · 点图看原图）</span>
+  </span>
+</div>
+
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0">
+  <a class="chip {% if not cat and not album %}on{% endif %}" href="/gallery">全部</a>
+  {% for name, n in cats %}
+    <a class="chip {% if cat == name %}on{% endif %}"
+       href="/gallery?cat={{ name|urlencode }}">{{ name }} <span style="opacity:.6">{{ n }}</span></a>
+  {% endfor %}
+</div>
+
+<details style="margin:2px 0 10px" {% if album %}open{% endif %}>
+  <summary style="cursor:pointer;font-size:13px;color:var(--dim);padding:4px 0">
+    按教程分册浏览（{{ albums|length }} 个）{% if album %} · 当前：{{ album }}{% endif %}
+  </summary>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0">
+    {% for a in albums %}
+      <a class="chip {% if album == a.name %}on{% endif %}"
+         href="/gallery?album={{ a.name|urlencode }}{% if cat %}&cat={{ cat|urlencode }}{% endif %}"
+         title="{{ a.cat }} · {{ a.n }} 张">{{ a.name }} <span style="opacity:.6">{{ a.n }}</span></a>
+    {% endfor %}
+  </div>
+</details>
+
+<div style="position:relative;margin:6px 0 16px">
+  <input id="filter" placeholder="在本页按文件名过滤…" autocomplete="off"
+         style="width:100%;padding:10px 14px;font-size:14px;font-family:inherit;color:var(--text);
+                background:var(--bg2);border:1px solid var(--line);border-radius:9px;outline:none">
+</div>
+
+<div id="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(146px,1fr));gap:10px">
+  {% for it in items %}
+  <figure class="pic" data-n="{{ it.name|lower }}"
+          style="margin:0;background:var(--bg2);border:1px solid var(--line);border-radius:9px;overflow:hidden">
+    <a class="pic-link" href="/orig/{{ it.orig if it.thumb.startswith('recover/') else it.thumb }}" target="_blank" rel="noopener"
+       data-full="/orig/{{ it.orig if it.thumb.startswith('recover/') else it.thumb }}" data-name="{{ it.name }}" data-wh="{{ it.w }}×{{ it.h }}"
+       style="display:block;line-height:0" title="{{ it.name }} · {{ it.w }}×{{ it.h }} · 点看大图（Ctrl+点开新标签）">
+      <img src="/thumb/{{ it.thumb }}" alt="{{ it.name }}" loading="lazy" decoding="async"
+           style="width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--bg3)">
+    </a>
+    <figcaption style="padding:6px 8px;font-size:11px;color:var(--dim);white-space:nowrap;
+                       overflow:hidden;text-overflow:ellipsis" title="{{ it.orig }}">{{ it.name }}
+      {% if ocr_of.get(it.thumb) %}
+      <a href="/doc?path={{ ocr_of[it.thumb]|urlencode }}" style="color:var(--acc);text-decoration:none"
+         title="看这张图的 OCR 全文">OCR</a>
+      {% endif %}
+    </figcaption>
+  </figure>
+  {% endfor %}
+</div>
+
+{% if not items %}
+<p style="color:var(--dim);margin:40px 0">这个分类下没有配图。</p>
+{% endif %}
+
+<dialog id="lightbox" class="lightbox" aria-label="图片预览">
+  <img id="lbImg" alt="">
+  <div class="lbbar">
+    <span class="lbname" id="lbName"></span>
+    <span id="lbSize" style="opacity:.7"></span>
+    <button type="button" class="lbclose" id="lbClose" aria-label="关闭预览">×</button>
+  </div>
+</dialog>
+
+{% if pages > 1 %}
+<div style="display:flex;gap:8px;justify-content:center;align-items:center;margin:26px 0 40px;flex-wrap:wrap">
+  {% set base = "/gallery?cat=" ~ (cat|urlencode) %}
+  {% if page > 1 %}
+    <a class="chip" href="{{ base }}&page=1">首页</a>
+    <a class="chip" href="{{ base }}&page={{ page - 1 }}">上一页</a>
+  {% endif %}
+  <span style="font-size:13px;color:var(--dim)">{{ page }} / {{ pages }}</span>
+  {% if page < pages %}
+    <a class="chip" href="{{ base }}&page={{ page + 1 }}">下一页</a>
+    <a class="chip" href="{{ base }}&page={{ pages }}">末页</a>
+  {% endif %}
+</div>
+{% endif %}
+
+<style>
+.chip{display:inline-block;padding:5px 11px;font-size:13px;border:1px solid var(--line);
+      border-radius:999px;color:var(--dim);text-decoration:none;background:var(--bg2)}
+.chip:hover{border-color:var(--acc);color:var(--text)}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.pic img{transition:transform .18s}
+.pic:hover img{transform:scale(1.04)}
+</style>
+{% endblock %}
+
+{% block script %}
+<script>
+const inp = document.getElementById('filter');
+const pics = [...document.querySelectorAll('.pic')];
+inp.addEventListener('input', () => {
+  const q = inp.value.trim().toLowerCase();
+  pics.forEach(f => { f.style.display = (!q || f.dataset.n.includes(q)) ? '' : 'none'; });
+});
+
+/* 原生 <dialog> 灯箱：点缩略图开大图，Ctrl/Cmd+点仍走新标签 */
+const dlg = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbName = document.getElementById('lbName');
+const lbSize = document.getElementById('lbSize');
+const lbClose = document.getElementById('lbClose');
+if (dlg && typeof dlg.showModal === 'function') {
+  document.querySelectorAll('.pic-link').forEach(a => {
+    a.addEventListener('click', e => {
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) return; // fallback: 新标签
+      e.preventDefault();
+      lbImg.src = a.dataset.full || a.href;
+      lbImg.alt = a.dataset.name || '';
+      lbName.textContent = a.dataset.name || '';
+      lbSize.textContent = a.dataset.wh || '';
+      dlg.showModal();
+    });
+  });
+  lbClose.addEventListener('click', () => dlg.close());
+  // 点背景（dialog 自身区域）关闭
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => { lbImg.src = ''; });
+}
+</script>
+{% endblock %}

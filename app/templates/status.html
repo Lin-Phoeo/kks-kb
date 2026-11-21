@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}状态 · KKS 知识库{% endblock %}
+{% block bar %}系统状态{% endblock %}
+{% block body %}
+<h1 style="font-size:22px;margin:28px 0 4px">系统状态</h1>
+<p style="color:var(--dim);font-size:13px;margin:0 0 22px">全部数据来自实时查询，刷新即最新</p>
+
+<div class="card">
+  <table class="kv">
+    <tr><td>文档</td><td><b>{{ st.docs }}</b> 篇</td></tr>
+    <tr><td>知识片段</td><td><b>{{ st.chunks }}</b> 个</td></tr>
+    <tr><td>向量</td><td><b>{{ st.dim }}</b> 维 · {{ st.vec_mb }} MB</td></tr>
+    <tr><td>索引库</td><td>{{ st.db_mb }} MB</td></tr>
+    <tr><td>对话</td><td>{{ st.convs }} 个会话 · {{ st.msgs }} 条消息</td></tr>
+    <tr><td>进程内存</td><td>{{ st.rss_mb }} MB</td></tr>
+    <tr><td>构建日期</td><td>{{ st.build }}</td></tr>
+  </table>
+</div>
+
+<h2 class="h2s">健康检查</h2>
+<div class="card">
+  <p style="margin:0;font-size:13.5px;color:var(--text2)">
+    机器可读接口：<a href="/healthz" target="_blank"><code>/healthz</code></a>
+    返回 <code>{"ok":true,"chunks":…,"docs":…,"vec":[…]}</code>，可用于外部监控。
+  </p>
+</div>
+{% endblock %}

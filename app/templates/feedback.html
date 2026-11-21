@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}反馈 · KKS 知识库{% endblock %}
+{% block bar %}反馈与学习信号{% endblock %}
+{% block body %}
+<h1 style="font-size:22px;margin:28px 0 4px">反馈与学习信号</h1>
+<p style="color:var(--dim);font-size:13px;margin:0 0 22px">
+  用户在答案下方点「有用 / 不对」会汇总到这里，并作为检索排序的学习信号。</p>
+
+<div class="card" style="margin-bottom:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <b style="font-size:14px">文档质量信号（按 有用−不对 排序）</b>
+    <button class="btn ghost mini" onclick="resetLearn()">清零学习信号</button>
+  </div>
+  {% if aggs %}
+  <table class="kv">
+    <tr><td style="color:var(--dim)">路径</td><td style="color:var(--dim)">有用</td><td style="color:var(--dim)">不对</td><td style="color:var(--dim)">净值</td></tr>
+    {% for a in aggs %}
+    <tr>
+      <td style="font-size:12.5px;word-break:break-all">{{ a.path }}</td>
+      <td>{{ a.up }}</td><td>{{ a.down }}</td><td><b>{{ a.net }}</b></td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p style="margin:0;color:var(--dim);font-size:13px">还没有任何引用反馈。</p>
+  {% endif %}
+</div>
+
+<div class="card">
+  <b style="font-size:14px">最近原始反馈</b>
+  {% if recent %}
+  <table class="kv" style="margin-top:10px">
+    <tr><td style="color:var(--dim)">时间</td><td style="color:var(--dim)">用户</td><td style="color:var(--dim)">投票</td><td style="color:var(--dim)">路径</td><td style="color:var(--dim)">备注</td></tr>
+    {% for r in recent %}
+    <tr>
+      <td style="font-size:12px">{{ r.created }}</td>
+      <td style="font-size:12px">{{ r.email }}</td>
+      <td>{{ '+' if r.vote > 0 else '−' }}</td>
+      <td style="font-size:12.5px;word-break:break-all">{{ r.path or '（整条答案）' }}</td>
+      <td style="font-size:12.5px;color:var(--dim)">{{ r.note }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p style="margin:10px 0 0;color:var(--dim);font-size:13px">还没有反馈记录。</p>
+  {% endif %}
+</div>
+
+<script>
+async function resetLearn(){
+  if(!confirm('清零全部学习信号？原始反馈记录会保留，只有汇总被清空。')) return;
+  try{
+    const r = await fetch('/api/feedback/reset', {method:'POST'});
+    const j = await r.json();
+    if(j.ok){ location.reload(); } else { alert(j.msg || '失败'); }
+  }catch(e){ alert('请求失败'); }
+}
+</script>
+{% endblock %}

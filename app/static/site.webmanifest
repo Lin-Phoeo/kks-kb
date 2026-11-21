@@ -1,0 +1,14 @@
+{
+  "name": "KKS.ARCANE",
+  "short_name": "KKS",
+  "description": "KKS 渲染档案馆",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#05060b",
+  "background_color": "#05060b",
+  "icons": [
+    {"src": "/static/favicon.svg", "sizes": "any", "type": "image/svg+xml"},
+    {"src": "/static/favicon-32x32.png", "sizes": "32x32", "type": "image/png"},
+    {"src": "/static/apple-touch-icon.png", "sizes": "180x180", "type": "image/png"}
+  ]
+}

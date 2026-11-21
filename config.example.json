@@ -1,0 +1,76 @@
+{
+  "_comment": "复制为 config.json 并填入真实值。config.json 权限必须是 600，且不要提交到 git。",
+
+  "site_url": "https://example.com",
+  "llm_url": "https://api.example.com/v1/chat/completions",
+  "llm_model": "example-chat-model",
+  "llm_key": "<本地代理或云厂商 key>",
+  "llm_fallbacks": [
+    {
+      "url": "https://api.example.com/v1/chat/completions",
+      "model": "example-model",
+      "key": "<备用 key>"
+    }
+  ],
+
+  "gitee_embed_url": "https://ai.gitee.com/v1/embeddings",
+  "embed_model": "Qwen3-Embedding-4B",
+  "gitee_key": "<gitee 免费 embedding key>",
+
+  "alert_email": "<自检告警收件人，缺省用 auth.admin_email>",
+
+  "retrieval": {
+    "_comment": "检索实验开关。默认值与代码内置值一致，可整块省略。",
+    "exact_topk": false,
+    "rerank_w": [0.30, 0.3224, 0.1488, 0.1488, 0.08, true],
+    "rrf_base": 0.033
+  },
+
+  "auth": {
+    "secret": "<32+ 位随机串，openssl rand -hex 32。缺失/过弱时程序会自动生成并写到 data/.session_secret，但建议显式配置>",
+    "admin_email": "<管理员邮箱>",
+    "admin_password": "<仅首次创建管理员时使用，建号后可删掉>",
+    "open_registration": false,
+    "rate_limit_fails": 8,
+    "rate_limit_window_min": 15
+  },
+
+  "security": {
+    "_comment": "allowed_origins 用于显式放行跨源写请求（如 CF 公网域名）。为空（或整块不写）时退回 same-host 校验，不放任何跨源。",
+    "allowed_origins": []
+  },
+
+  "cloudflare": {
+    "_comment": "turnstile_sitekey/turnstile_secret 为空字串时整个人机校验功能关闭（verify_turnstile 直接返回 True）。trusted_proxies 为 CF 公布的 IPv4 段，用于判断是否可以信任 CF-Connecting-IP / XFF 头。",
+    "turnstile_sitekey": "",
+    "turnstile_secret": "",
+    "trusted_proxies": [
+      "173.245.48.0/20", "103.21.244.0/22", "103.22.200.0/22",
+      "103.31.4.0/22", "141.101.64.0/18", "108.162.192.0/18",
+      "190.93.240.0/20", "188.114.96.0/20", "197.234.240.0/22",
+      "198.41.128.0/17", "162.158.0.0/15", "104.16.0.0/13",
+      "104.24.0.0/14", "172.64.0.0/13", "131.0.72.0/22"
+    ]
+  },
+
+  "oauth": {
+    "linuxdo": {
+      "_comment": "空 client_id/secret ⇒ /oauth/linuxdo/* 返回 404，登录按钮不渲染。回调 URL 固定 /oauth/linuxdo/callback。",
+      "client_id": "",
+      "client_secret": "",
+      "authorize_url": "https://connect.linux.do/oauth2/authorize",
+      "token_url": "https://connect.linux.do/oauth2/token",
+      "userinfo_url": "https://connect.linux.do/api/user",
+      "scope": "user"
+    }
+  },
+
+  "smtp": {
+    "host": "smtp.example.com",
+    "port": 465,
+    "user": "user@example.com",
+    "pass": "<SMTP 服务授权凭据>",
+    "from_name": "KKS 知识库",
+    "code_ttl_min": 10
+  }
+}

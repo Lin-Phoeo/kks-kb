@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}隐私政策 · KKS 知识库{% endblock %}
+{% block description %}KKS 渲染档案馆的隐私政策、数据收集范围与用户权利说明{% endblock %}
+{% block bar %}隐私政策{% endblock %}
+{% block body %}
+<h1 style="font-size:22px;margin:28px 0 4px">隐私政策</h1>
+<p style="color:var(--dim);font-size:13px;margin:0 0 22px">修订日期 2026-11-02</p>
+
+<div class="card">
+  <h2 class="h3s">我们收集什么</h2>
+  <ul>
+    <li><b>邮箱地址</b>：用于登录和账号恢复</li>
+    <li><b>Linux.do 用户 id</b>：使用 OAuth 第三方登录时才会拿到，不含真实姓名</li>
+    <li><b>问答记录</b>：你问过的问题与得到的回答，便于你之后回头检索</li>
+    <li><b>投票反馈</b>：你对答案和来源片段的「有用 / 没用」标记，用于改进检索排序</li>
+  </ul>
+
+  <h2 class="h3s">我们不收集</h2>
+  <ul>
+    <li>任何第三方分析脚本的跟踪数据（本站不接入 Google Analytics、百度统计等）</li>
+    <li>本站不以广告投放为目的收集广告标识符</li>
+    <li>网络访问日志及人机验证可能涉及 IP 地址、浏览器信息和请求时间，用于排障、限流与防滥用；不承诺这些信息完全不被记录</li>
+  </ul>
+
+  <h2 class="h3s">数据怎么存</h2>
+  <p>账号、会话与反馈主要存放在本站服务器的 SQLite 数据库中。使用 AI 问答时，问题、必要的近期对话及检索到的文档片段会发送给配置的模型服务；语义检索会向嵌入服务发送查询文本。开启联网搜索时，查询还会发送给搜索服务。</p>
+  <p>如部署者启用 Cloudflare 代理或人机验证，相关服务会处理网络请求及验证所需信息。使用 Linux.do 登录时，本站会与其身份服务交换授权信息。第三方处理位置取决于实际服务配置，可能涉及境外处理；请勿在提问中提交密码、密钥或其他不必要的敏感资料。</p>
+
+  <h2 class="h3s">我们怎么保护</h2>
+  <ul>
+    <li>密码使用 <b>PBKDF2</b>（迭代次数持续升级）加盐哈希存储，服务器也看不到你的明文密码</li>
+    <li>推荐使用本站 HTTPS 域名入口。使用反向代理时，浏览器与代理、代理与应用之间的加密取决于部署配置，HTTPS 图标不等于所有处理链路均已加密</li>
+    <li>维护者可配置定时备份，并下载至受控设备用于恢复；备份的启用状态和保留范围以实际部署说明为准</li>
+  </ul>
+
+  <h2 class="h3s">你的权利</h2>
+  <ul>
+    <li><b>删除账号</b>：可向站点维护者提出申请；处理前需核实账号归属，并说明在线数据和备份的处理范围。本站暂未提供自动删号入口</li>
+    <li><b>导出数据</b>：对话页右上角「导出 Markdown」可随时导出你的问答记录</li>
+    <li>请通过你取得本站访问入口的渠道联系维护者；当前页面尚未公布经验证的专用联系邮箱</li>
+  </ul>
+
+  <h2 class="h3s">Cookie 用途</h2>
+  <ul>
+    <li><code>kb_session</code>：登录会话凭证，HttpOnly + SameSite=Lax，关闭浏览器后依旧有效直到过期</li>
+    <li><code>cf_clearance</code> 等：Cloudflare Turnstile 发出的人机验证预清除令牌，由 Cloudflare 管理</li>
+  </ul>
+  <p>第三方登录流程还使用短期 OAuth 状态 Cookie 校验回调；新手引导和主题偏好可能存储在浏览器本地。具体第三方 Cookie 由相应服务管理。</p>
+
+  <h2 class="h3s">政策变更</h2>
+  <p>条款修改会更新本页修订日期；请定期查看本页，了解数据处理范围的变化。</p>
+</div>
+
+<p style="margin-top:22px;font-size:13px;color:var(--dim)">
+  相关：<a href="/tos">用户协议</a>
+</p>
+{% endblock %}

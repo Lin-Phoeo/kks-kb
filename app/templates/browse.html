@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}文档库 · KKS 知识库{% endblock %}
+{% block bar %}文档库{% endblock %}
+{% block body %}
+<div style="display:flex;align-items:baseline;gap:12px;margin:26px 0 6px">
+  <h1 style="font-size:22px;margin:0">文档库</h1>
+  <span style="color:var(--dim);font-size:13px">{{ docs|length }} 篇 · {{ tree|length }} 个分类</span>
+  <span style="flex:1"></span>
+  <a class="btn ghost mini" href="/export/all{% if col %}?col={{ col }}{% endif %}">导出{% if col %}本库{% else %}全库{% endif %}</a>
+</div>
+
+<div style="position:relative;margin:12px 0 20px">
+  <input id="filter" placeholder="按标题或路径过滤…" autocomplete="off"
+         style="width:100%;padding:10px 14px;font-size:14px;font-family:inherit;color:var(--text);
+                background:var(--bg2);border:1px solid var(--line);border-radius:9px;outline:none">
+</div>
+
+{% for gname, items in tree %}
+<section class="grp" data-g="{{ gname }}">
+  <h2 class="gh">{{ gname }}<span>{{ items|length }}</span></h2>
+  <ul class="docs">
+  {% for d in items %}
+    <li data-k="{{ d.title }} {{ d.path }}">
+      <a href="/doc?path={{ d.path|urlencode }}">{{ d.title }}<span class="m">{{ d.path }} · {{ d.chars }} 字符</span></a>
+    </li>
+  {% endfor %}
+  </ul>
+</section>
+{% endfor %}
+
+<script>
+const f = document.getElementById('filter');
+f.addEventListener('input', ()=>{
+  const q = f.value.trim().toLowerCase();
+  document.querySelectorAll('.grp').forEach(g=>{
+    let shown = 0;
+    g.querySelectorAll('li').forEach(li=>{
+      const hit = !q || li.dataset.k.toLowerCase().includes(q);
+      li.style.display = hit ? '' : 'none';
+      if(hit) shown++;
+    });
+    g.style.display = shown ? '' : 'none';
+  });
+});
+</script>
+{% endblock %}

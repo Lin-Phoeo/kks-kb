@@ -1,0 +1,44 @@
+{
+  "package": "three",
+  "version": "0.187.0",
+  "license": "MIT",
+  "registry_url": "https://registry.npmjs.org/three/0.187.0",
+  "tarball": "https://registry.npmjs.org/three/-/three-0.187.0.tgz",
+  "tarball_integrity_verified": "sha512-Qiu7R+Cmh8CstZsY1uJOSWnVlfo7ZtNLV7mF8Jltk3LB3AtDu9cRZlcnRKkAk8Y4z6KKw35z7Y7Urd7jWY8etA==",
+  "observed_at_utc": "2026-11-03T07:39:46.530367+00:00",
+  "files": [
+    {
+      "file": "three.module.js",
+      "package_path": "build/three.module.js",
+      "bytes": 658900,
+      "upstream_sha256": "104f56145899722094556490d787aae0617cc2fc3382f31df02d724ea1aee341",
+      "sha256": "104f56145899722094556490d787aae0617cc2fc3382f31df02d724ea1aee341",
+      "adaptation": null
+    },
+    {
+      "file": "three.core.js",
+      "package_path": "build/three.core.js",
+      "bytes": 1474799,
+      "upstream_sha256": "613e370f76638fdef83926642bf256dc9615684922de1ce1f63a8583e5d78578",
+      "sha256": "613e370f76638fdef83926642bf256dc9615684922de1ce1f63a8583e5d78578",
+      "adaptation": null
+    },
+    {
+      "file": "Reflector.js",
+      "package_path": "examples/jsm/objects/Reflector.js",
+      "bytes": 11168,
+      "upstream_sha256": "542861de2dea2e24729a1fa4962424214e1637368017bdd48d5f27eb64dda0fb",
+      "sha256": "9c9bd798c1a059e35e08f2ab004b9085fa6ed2a31a18b979e4a3700a3fd9007f",
+      "adaptation": "Local import path only"
+    },
+    {
+      "file": "LICENSE",
+      "package_path": "LICENSE",
+      "bytes": 1081,
+      "upstream_sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc",
+      "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc",
+      "adaptation": null
+    }
+  ],
+  "runtime_external_requests": false
+}

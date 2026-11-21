@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}{{ name }} · 参数详情{% endblock %}
+{% block bar %}参数详情{% endblock %}
+{% block body %}
+
+<div style="margin:26px 0 4px">
+  <h1 style="font-size:24px;margin:0 0 8px"><code class="pname">{{ name }}</code></h1>
+  <p style="color:var(--dim);font-size:13.5px;margin:0">
+    出现 {{ v.c }} 次 · 类型 {{ v.t | join(' · ') }}
+    · <a href="/params">← 返回参数索引</a>
+  </p>
+</div>
+
+{% if divergent %}
+<div class="callout">
+  <b>默认值分歧</b>：这个参数在不同 shader / 家族里默认值不同（{{ dv|length }} 种）。
+  抄改前必须核对目标 shader 的实际默认值，不能套用别家的。
+</div>
+{% endif %}
+
+<h2 style="font-size:16px;margin:20px 0 8px">默认值分布</h2>
+<table class="ptbl">
+  <thead><tr><th>默认值</th><th>出现次数</th></tr></thead>
+  <tbody>
+  {% for dval, cnt in dv %}
+    <tr><td class="mono">{{ dval }}</td><td>{{ cnt }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h2 style="font-size:16px;margin:20px 0 8px">定义的 shader 家族</h2>
+<p style="margin:6px 0 0">
+{% for fam in v.f %}
+  <a class="chip" href="/search?q={{ fam|urlencode }}">{{ fam }}</a>
+{% endfor %}
+</p>
+
+<style>
+.pname{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:20px;
+  color:var(--accent)}
+.callout{background:var(--bad-bg);border:1px solid var(--bad-line);color:var(--bad);
+  border-radius:10px;padding:13px 15px;font-size:13.5px;line-height:1.7;margin-top:16px}
+.ptbl{width:100%;max-width:560px;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+.ptbl th{text-align:left;font-weight:600;color:var(--dim);border-bottom:1px solid var(--line);padding:7px 10px}
+.ptbl td{border-bottom:1px solid var(--line);padding:7px 10px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;color:var(--text2)}
+.chip{display:inline-block;margin:0 6px 8px 0;padding:5px 12px;font-size:13px;border:1px solid var(--line);
+  border-radius:999px;color:var(--accent);background:var(--accent-bg);text-decoration:none}
+.chip:hover{border-color:var(--accent-line);text-decoration:none}
+</style>
+{% endblock %}
