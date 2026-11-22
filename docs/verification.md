@@ -26,6 +26,8 @@ Linux 首次安装浏览器时可使用 `python -m playwright install --with-dep
 
 ## 必需检查
 
+Word 表格的专项回归可用 `python -B tests/test_native_word.py -v` 运行。测试核对原件哈希和最终 HTML 单元格的纵横跨度。转换器遇到非零行首偏移，或纵向合并的续接格与上一行起始列或宽度不一致时，会报告表、行、列（从 1 开始），在替换已有阅读版之前停止。
+
 - **Verify**：全套合成测试、锁定依赖安装、依赖兼容性和漏洞审计、流水线CLI与Shell语法。
 - **Browser**：在临时应用数据上运行浏览器行为检查。
 - **Source safety**：公开文件范围检查和 Gitleaks 提交历史扫描。检测结果脱敏输出。

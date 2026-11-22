@@ -17,6 +17,51 @@ W='{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
 STYLE_MAP='\n'.join([f'p[style-name=\'heading {i}\'] => h{min(i+1,6)}:fresh' for i in range(1,7)] + [f'p.Heading{i} => h{min(i+1,6)}:fresh' for i in range(1,7)])
 
 
+def table_children(parent, tag):
+    # Mammoth unwraps content controls and tracked insertions before merging cells.
+    pending = list(reversed(parent))
+    while pending:
+        node = pending.pop()
+        if node.tag == W + tag:
+            yield node
+        elif node.tag in (W + 'sdt', W + 'sdtContent', W + 'ins', W + 'moveTo',
+                          W + 'smartTag', W + 'customXml'):
+            pending.extend(reversed(node))
+        elif node.tag == '{http://schemas.openxmlformats.org/markup-compatibility/2006}AlternateContent':
+            fallback = node.find('{http://schemas.openxmlformats.org/markup-compatibility/2006}Fallback')
+            if fallback is not None:
+                pending.extend(reversed(fallback))
+
+
+def validate_word_table_grid(document):
+    for table_no, table in enumerate(document.iter(W + 'tbl'), start=1):
+        previous = {}
+        for row_no, row in enumerate(table_children(table, 'tr'), start=1):
+            if row.find(f'{W}trPr/{W}del') is not None:
+                continue
+            location = f'Word table {table_no}, row {row_no}'
+            before = row.find(f'{W}trPr/{W}gridBefore')
+            if before is not None and int(before.get(W + 'val', '0')) != 0:
+                raise ValueError(f'{location}, column 1: unsupported gridBefore; keep the original reading view')
+            current = {}
+            column = 1
+            for cell in table_children(row, 'tc'):
+                width = cell.find(f'{W}tcPr/{W}gridSpan')
+                span = int(width.get(W + 'val', '1')) if width is not None else 1
+                if span < 1:
+                    raise ValueError(f'{location}, column {column}: invalid gridSpan')
+                merge = cell.find(f'{W}tcPr/{W}vMerge')
+                if merge is not None:
+                    kind = merge.get(W + 'val', 'continue')
+                    if kind == 'continue' and previous.get(column) != span:
+                        raise ValueError(f'{location}, column {column}: vMerge must continue the same grid span')
+                    if kind not in ('restart', 'continue'):
+                        raise ValueError(f'{location}, column {column}: invalid vMerge')
+                    current[column] = span
+                column += span
+            previous = current
+
+
 def build_word_view(source, images, col, path, indexed_text=None):
     import mammoth
     if importlib.metadata.version('mammoth')!='1.13.0':
@@ -26,6 +71,7 @@ def build_word_view(source, images, col, path, indexed_text=None):
         if len(archive.infolist())>10000 or sum(i.file_size for i in archive.infolist())>128*1024*1024:
             raise ValueError('DOCX archive exceeds conversion budget')
         xml=ET.fromstring(archive.read('word/document.xml'))
+        validate_word_table_grid(xml)
         text=''.join(t.text or '' for t in xml.findall('.//'+W+'t'))
     occurrences=[]
     def convert_image(image):
