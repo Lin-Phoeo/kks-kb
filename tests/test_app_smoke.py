@@ -15,6 +15,8 @@ import sqlite3
 import sys
 import tempfile
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC_APP = os.path.join(HERE, "..", "app")
@@ -238,6 +240,64 @@ class SmokeTests(unittest.TestCase):
         r = self.authed_client().get("/source/file?path=page.html")
         self.assertEqual(r.status_code, 200)
         self.assertEqual(r.headers["content-security-policy"], "sandbox")
+
+    def test_pdf_can_be_viewed_or_downloaded_from_reader(self):
+        import pymupdf
+        from bs4 import BeautifulSoup
+        from kb.web import routes
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / 'source-files'
+            root.mkdir()
+            source = root / 'lesson.pdf'
+            with pymupdf.open() as doc:
+                for text in ('First page', 'Second page'):
+                    doc.new_page().insert_text((30, 40), text)
+                doc.save(source)
+            raw = source.read_bytes()
+            item = {'doc_key': _mod.KBX.doc_col('a.md') + ':a.md', 'path': source.name,
+                    'role': 'original_pdf', 'sha256': hashlib.sha256(raw).hexdigest(),
+                    'size_bytes': len(raw), 'original_filename': '教程.pdf'}
+            (root / 'index.json').write_text(json.dumps([item]), encoding='utf8')
+            with patch.object(routes, 'DATA', temp):
+                c = self.authed_client()
+                page = BeautifulSoup(c.get('/doc', params={'path': 'a.md'}).text, 'html.parser')
+                for link, mode in (('查看原 PDF', 'inline'), ('下载原 PDF', 'attachment')):
+                    href = next(a['href'] for a in page.select('.reader-original-entry a') if link in a.get_text())
+                    response = c.get(href)
+                    self.assertEqual(response.content, raw)
+                    self.assertTrue(response.headers['Content-Disposition'].startswith(mode + ';'))
+                    self.assertEqual(response.headers['content-type'], 'application/pdf')
+
+    def test_forum_reader_falls_back_when_either_source_changes(self):
+        from kb.web import routes
+        from kb.content import doc_metadata
+
+        with tempfile.TemporaryDirectory() as temp, patch.object(routes, 'DATA', temp), \
+                patch.object(doc_metadata, '_VIEW_CACHE', {'mtime': None, 'data': {}}):
+            root = Path(temp) / 'source-files'
+            root.mkdir()
+            source = root / 'thread.html'
+            source.write_bytes(b'<article>archive</article>')
+            key = _mod.KBX.doc_col('a.md') + ':a.md'
+            original = hashlib.sha256(source.read_bytes()).hexdigest()
+            record = {'doc_key': key, 'path': source.name, 'role': 'original_file',
+                      'size_bytes': source.stat().st_size, 'sha256': original}
+            (root / 'index.json').write_text(json.dumps([record]), encoding='utf8')
+            content = '<h2>论坛样板正文</h2>'
+            view = {'kind': 'discuz_post_flow', 'enabled': True, 'html': content,
+                    'revision': hashlib.sha256(content.encode()).hexdigest(), 'source_sha256': original,
+                    'indexed_body_sha256': hashlib.sha256(_mod.KBX.doc_body('a.md').encode()).hexdigest()}
+            views_file = Path(temp) / 'doc_views.json'
+            views_file.write_text(json.dumps({'documents': {key: view}}), encoding='utf8')
+            c = self.authed_client()
+            def render():
+                return c.get('/doc', params={'path': 'a.md'}).text
+            self.assertIn('论坛样板正文', render())
+            with patch.object(_mod.KBX, 'doc_body', return_value='changed index'):
+                self.assertNotIn('论坛样板正文', render())
+            source.write_bytes(b'<article>changed</article>')
+            self.assertNotIn('论坛样板正文', render())
 
     def test_doc_semantic_view_requires_matching_original_and_exposes_anchor_map(self):
         from kb.content.reading_view import prepare_reading_html

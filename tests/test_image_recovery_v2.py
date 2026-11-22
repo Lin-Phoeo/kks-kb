@@ -78,6 +78,32 @@ class RecoveryTests(unittest.TestCase):
         self.assertEqual(result['images'][0]['role'], 'pdf_page')
         self.assertEqual(result['images'][0]['page'], 1)
 
+    def test_pdf_keeps_text_only_and_blank_pages_in_sequence(self):
+        p = self.root / 'manual.pdf'
+        with pymupdf.open() as doc:
+            doc.new_page().insert_text((40, 50), 'Instructions')
+            doc.new_page()
+            doc.new_page().draw_rect(pymupdf.Rect(50, 50, 100, 100))
+            doc.save(p)
+        result = recovery.extract_document(p, self.out)
+        self.assertEqual([item['page'] for item in result['images']], [1, 2, 3])
+        self.assertTrue(all(item['role'] == 'pdf_page' for item in result['images']))
+        self.assertEqual([item.get('blank_page', False) for item in result['images']], [False, True, False])
+
+    def test_discuz_decorations_and_real_attachments_with_repeated_images(self):
+        source = """
+        <div class="pcb"><div class="t_f"><h2>步骤</h2><img src="avatar-example.png"></div>
+        <div class="ratl"><img src="rating.png"></div>
+        <dl class="tattl"><dt><img src="zip-icon.png"></dt><dd>
+        <div class="tip"><img src="menu.png"></div>
+        <p class="mbn savephotop"><img data-src="attachment.png">
+        <img src="none.gif" file="avatar-example.png"></p></dd></dl></div>"""
+        self.assertEqual(recovery.html_images(source), [
+            ('avatar-example.png', '', '步骤'), ('attachment.png', '', '步骤'),
+            ('avatar-example.png', '', '步骤')])
+        self.assertEqual(recovery.html_images('<aside class="ratl"><img src="real.png"></aside>'),
+                         [('real.png', '', '')])
+
     def test_forum_avatars_outside_post_are_not_tutorial_images(self):
         self.image('avatar.png')
         self.image('setting.png', 'blue')

@@ -15,8 +15,10 @@ def rewrite_images(text, images):
         thumb = image.get('thumb', '')
         target = image.get('orig') if image.get('catdir') == 'recover' or thumb.startswith('recover/') else thumb
         target = target or thumb
-        if re.fullmatch(r'[A-Za-z0-9_-]+/[A-Za-z0-9_.-]+', target) and '..' not in target:
-            refs[_ref(image.get('reference', ''))] = (target, thumb, image.get('w'), image.get('h'))
+        reference = _ref(image.get('reference', ''))
+        if reference and all(re.fullmatch(r'[A-Za-z0-9_-]+/[A-Za-z0-9_.-]+', value) and '..' not in value
+                             for value in (target, thumb)):
+            refs[reference] = (target, thumb, image.get('w'), image.get('h'))
     if not refs:
         return text, set()
     class Rewriter(HTMLParser):

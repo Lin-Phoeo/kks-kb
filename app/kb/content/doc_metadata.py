@@ -66,6 +66,9 @@ def load_doc_view(data_dir,col,path):
     view=(_VIEW_CACHE['data'].get('documents') or {}).get(col+':'+path,{})
     if not isinstance(view,dict) or not isinstance(view.get('html'),str):return {}
     if view.get('kind')=='word_original_flow':return view
+    if view.get('kind') == 'discuz_post_flow' and view.get('enabled') is True:
+        if hashlib.sha256(view['html'].encode()).hexdigest() == view.get('revision'):
+            return view
     if view.get('kind')=='word_semantic_flow' and view.get('enabled') is True:
         digest=hashlib.sha256(view['html'].encode()).hexdigest()
         if digest==view.get('revision') and view.get('checks',{}).get('full_text_order_equal') and view.get('checks',{}).get('images_in_source_order'):

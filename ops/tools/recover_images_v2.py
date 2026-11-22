@@ -57,25 +57,44 @@ def store_image(raw, output, reference, label='', role='source_image', page=None
                 'kb': round(tp.stat().st_size / 1024, 1), 'okb': round(len(raw) / 1024, 1)}
 
 
+def image_reference(tag):
+    ref = next((tag.get(k) for k in ('data-original', 'data-src', 'data-lazy-src', 'data-lazy', 'src') if tag.get(k)), '')
+    if tag.find_parent(class_='pcb') and posixpath.basename(urlparse(ref).path).lower() == 'none.gif':
+        ref = tag.get('file') or tag.get('zoomfile') or ref
+    srcset = tag.get('data-srcset') or tag.get('srcset')
+    if srcset and not str(ref).startswith('data:'):
+        candidates = [x.strip().split() for x in srcset.split(',') if x.strip()]
+        def rank(x):
+            try: return float(x[-1][:-1]) if len(x) > 1 else 0
+            except ValueError: return 0
+        if candidates:
+            ref = max(candidates, key=rank)[0]
+    return ref
+
+
+def remove_discuz_controls(soup):
+    # Discuz puts the rating panel and attachment controls inside the post wrapper.
+    for decoration in soup.select('.pcb .ratl, .pcb .tattl > dt, .pcb .tattl .tip'):
+        if decoration.parent and not decoration.find_parent(class_='t_f'):
+            decoration.decompose()
+
+
 def html_images(text):
     soup = BeautifulSoup(text, 'html.parser')
     result = []
     section = ''
-    scopes = soup.select('.pcb') or soup.select('.t_f') or [soup]
-    tags = [tag for scope in scopes for tag in scope.find_all(['h1', 'h2', 'h3', 'img'])]
+    if soup.select_one('.pcb'):
+        remove_discuz_controls(soup)
+        tags = soup.select('.pcb :is(h1,h2,h3,img)')
+    elif soup.select_one('.t_f'):
+        tags = soup.select('.t_f :is(h1,h2,h3,img)')
+    else:
+        tags = soup.find_all(['h1', 'h2', 'h3', 'img'])
     for tag in tags:
         if tag.name != 'img':
             section = tag.get_text(' ', strip=True)
             continue
-        ref = next((tag.get(k) for k in ('data-original', 'data-src', 'data-lazy-src', 'data-lazy', 'src') if tag.get(k)), '')
-        srcset = tag.get('data-srcset') or tag.get('srcset')
-        if srcset and not str(ref).startswith('data:'):
-            candidates = [x.strip().split() for x in srcset.split(',') if x.strip()]
-            def rank(x):
-                try: return float(x[-1][:-1]) if len(x) > 1 else 0
-                except ValueError: return 0
-            if candidates:
-                ref = max(candidates, key=rank)[0]
+        ref = image_reference(tag)
         if ref:
             result.append((str(ref), tag.get('alt') or tag.get('title') or '', section))
     return result
@@ -85,7 +104,7 @@ def extract_document(source, output):
     source = Path(source)
     images, unresolved = [], []
     visual_count = 0
-    def add(raw, reference, label='', role='source_image', page=None, section=''):
+    def add(raw, reference, label='', role='source_image', page=None, section='', blank_page=False):
         nonlocal visual_count
         visual_count += 1
         try:
@@ -93,6 +112,8 @@ def extract_document(source, output):
             if entry:
                 entry['sequence'] = len(images) + 1
                 entry['section'] = section
+                if blank_page:
+                    entry['blank_page'] = True
                 images.append(entry)
         except Exception as e:
             unresolved.append({'reference': reference, 'reason': type(e).__name__ + ': ' + str(e)[:120]})
@@ -100,9 +121,9 @@ def extract_document(source, output):
     if suffix == '.pdf':
         with pymupdf.open(source) as doc:
             for num, page in enumerate(doc, 1):
-                if page.get_images(full=True) or page.get_drawings():
-                    pix = page.get_pixmap(dpi=144, alpha=False)
-                    add(pix.tobytes('png'), f'page:{num}', f'原 PDF 第 {num} 页', 'pdf_page', num)
+                pix = page.get_pixmap(dpi=144, alpha=False)
+                blank = pix.is_unicolor and pix.pixel(0, 0) == (255, 255, 255) and not page.get_text().strip()
+                add(pix.tobytes('png'), f'page:{num}', f'原 PDF 第 {num} 页', 'pdf_page', num, blank_page=blank)
     elif suffix == '.docx':
         with zipfile.ZipFile(source) as z:
             rels = ET.fromstring(z.read('word/_rels/document.xml.rels'))
