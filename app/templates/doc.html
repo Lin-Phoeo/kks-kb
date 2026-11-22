@@ -11,7 +11,8 @@
   {% set compact_reader_meta = semantic_reader|default(false) %}
   {% include "partials/doc_meta.html" %}
   {% if reader_source and not semantic_reader %}<div class="reader-original-entry">
-    <a href="{{ reader_source.href }}" class="reader-tool">{% if reader_source.role == 'original_docx' %}下载原 Word{% elif reader_source.role == 'original_pdf' %}查看原 PDF{% else %}下载原件{% endif %} ↗</a>
+    <a href="{{ reader_source.href }}{% if reader_source.role == 'original_file' %}&amp;download=1{% endif %}" class="reader-tool">{% if reader_source.role == 'original_docx' %}下载原 Word{% elif reader_source.role == 'original_pdf' %}查看原 PDF{% else %}下载原件{% endif %} ↗</a>
+    {% if reader_source.role == 'original_pdf' %}<a href="{{ reader_source.href }}&amp;download=1" class="reader-tool">下载原 PDF</a>{% endif %}
     <span>{{ reader_source.filename }} · {{ (reader_source.size_bytes/1024)|round|int }} KB</span>
     {% if reader_source.source_version_status == 'candidate_unverified' %}<span>候选原件：与本文的版本对应关系尚未核实。</span>{% endif %}
     <details><summary>校验原件</summary><code>SHA-256 {{ reader_source.sha256 }}</code></details>
@@ -26,9 +27,8 @@
 </div>
 <div class="reader-layout">
   <article class="reader-article">
-  {% if imgs and not is_album and not semantic_reader %}
-    <div class="reader-thumb-preview" aria-label="配图预览">{% for m in imgs[:8] %}<a href="/orig/{{ m.orig if m.thumb.startswith('recover/') else m.thumb }}" target="_blank" rel="noopener"><img src="/thumb/{{ m.thumb }}" alt="{{ m.name }}" loading="lazy"></a>{% endfor %}</div>
-    <p class="reader-thumb-caption">图片保留在原文位置；其余原图与 PDF 页码见下方阅读区。点图可放大、用方向键切换。</p>
+  {% if imgs and not is_album and not semantic_reader and not forum_reader %}
+    <div class="reader-thumb-preview" aria-label="配图预览">{% for m in (imgs|rejectattr('blank_page')|list)[:8] %}<a href="/orig/{{ m.orig if m.thumb.startswith('recover/') else m.thumb }}" target="_blank" rel="noopener"><img src="/thumb/{{ m.thumb }}" alt="{{ m.name }}" loading="lazy"></a>{% endfor %}</div>
   {% endif %}
   {% if is_album and imgs %}
     <div class="albumgrid">{% for m in imgs %}<a href="/orig/{{ m.orig if m.thumb.startswith('recover/') else m.thumb }}" target="_blank" rel="noopener"><img src="/thumb/{{ m.thumb }}" alt="{{ m.name }}" loading="lazy"></a>{% endfor %}</div>
@@ -36,7 +36,15 @@
   <div class="md" id="doc">{{ body_html|safe }}</div>
   {% if reading_imgs and not is_album %}
     <section id="doc-images" class="doc-image-reader"><h2>原文配图与页面</h2><p>按原件顺序排列。PDF 图页保留完整页面与页码；尚未恢复的位置不会用无关图片填补。</p>
-    {% for m in reading_imgs %}<figure><a href="/orig/{{ m.orig if m.thumb.startswith('recover/') else m.thumb }}" target="_blank" rel="noopener"><img src="/thumb/{{ m.thumb }}" data-original="/orig/{{ m.orig if m.thumb.startswith('recover/') else m.thumb }}" loading="lazy" decoding="async" width="{{ m.w }}" height="{{ m.h }}" alt="{{ m.name }}"></a><figcaption>{{ loop.index }} · {{ m.name }}{% if m.page %} · 原件第 {{ m.page }} 页{% endif %}{% if m.role == 'pdf_page' %}（PDF 原页）{% endif %}</figcaption></figure>{% endfor %}
+    {% for m in reading_imgs %}
+      {% if m.role == 'pdf_page' and m.page %}{% set caption = '原 PDF 第 ' ~ m.page ~ ' 页' %}
+      {% elif m.name and m.name != m.reference %}{% set caption = m.name %}
+      {% else %}{% set caption = '配图 ' ~ loop.index %}{% endif %}
+      {% set original = m.orig if m.thumb.startswith('recover/') else m.thumb %}
+      {% if m.role == 'pdf_page' and m.blank_page %}<details class="reader-blank-page"><summary>{{ caption }} · 原件空白页</summary>{% endif %}
+      <figure><a href="/orig/{{ original }}" target="_blank" rel="noopener"><img src="/thumb/{{ m.thumb }}" data-original="/orig/{{ original }}" loading="lazy" decoding="async" width="{{ m.w }}" height="{{ m.h }}" alt="{{ caption }}"></a><figcaption>{{ caption }}{% if m.page and m.role != 'pdf_page' %} · 原件第 {{ m.page }} 页{% endif %}</figcaption></figure>
+      {% if m.role == 'pdf_page' and m.blank_page %}</details>{% endif %}
+    {% endfor %}
     </section>
   {% endif %}
   {% if nav and (nav.prev or nav.next) %}<nav class="pager" aria-label="相邻篇目">{% if nav.prev %}<a href="/doc?path={{ nav.prev.path|urlencode }}" class="pg"><span class="pg-l">← 上一篇</span><span class="pg-t">{{ nav.prev.title }}</span></a>{% else %}<span></span>{% endif %}{% if nav.next %}<a href="/doc?path={{ nav.next.path|urlencode }}" class="pg next"><span class="pg-l">下一篇 →</span><span class="pg-t">{{ nav.next.title }}</span></a>{% endif %}</nav>{% endif %}

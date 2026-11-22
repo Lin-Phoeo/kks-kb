@@ -1128,7 +1128,7 @@ def source_list(request: Request):
 
 
 @app.get("/source/file")
-def source_file(path: str, request: Request):
+def source_file(path: str, request: Request, download: bool = False):
     """下载/预览源文件"""
     if ".." in path or path.startswith("/"):
         raise HTTPException(400)
@@ -1139,7 +1139,7 @@ def source_file(path: str, request: Request):
     mt = {".pdf": "application/pdf", ".png": "image/png",
           ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
           ".html": "text/html; charset=utf-8"}.get(ext, "application/octet-stream")
-    disp = "inline" if mt.startswith(("image/", "application/pdf", "text/html")) else "attachment"
+    disp = "inline" if not download and mt.startswith(("image/", "application/pdf", "text/html")) else "attachment"
     filename = os.path.basename(p)
     if path.startswith("originals/"):
         filename = next((r['original_filename'] for r in _load_source_index()
@@ -1450,10 +1450,12 @@ def doc(request: Request, path: str, section: str = ""):
     imgs = imgs_for_doc(path, None)
     MD.reset()
     doc_view = load_doc_view(DATA, KBX.doc_col(path), path)
-    if doc_view.get('kind') == 'word_semantic_flow' and doc_view.get('indexed_body_sha256') != hashlib.sha256(body.encode()).hexdigest():
+    if doc_view.get('kind') in ('word_semantic_flow', 'discuz_post_flow') and doc_view.get('indexed_body_sha256') != hashlib.sha256(body.encode()).hexdigest():
         doc_view = {}  # A changed indexed source must not receive a stale reading projection.
     semantic = doc_view.get('kind') == 'word_semantic_flow'
     reader_source = source_for_document(DATA, KBX.doc_col(path), path)
+    if doc_view.get('kind') == 'discuz_post_flow' and (not reader_source or reader_source.get('sha256') != doc_view.get('source_sha256')):
+        doc_view = {}
     if semantic and (not reader_source or reader_source.get('sha256') != doc_view.get('source_sha256')):
         doc_view = {}
         semantic = False
@@ -1470,6 +1472,11 @@ def doc(request: Request, path: str, section: str = ""):
             for alias, target in saved_aliases.items():
                 if isinstance(target, str) and target in surviving_ids:
                     reader_anchor_map.setdefault(alias, target)
+    elif doc_view.get('kind') == 'discuz_post_flow':
+        projection = prepare_reading_html(doc_view['html'], KBX.doc_col(path), path)
+        html, toc = projection['html'], projection['toc']
+        inline = {i['thumb'] for i in imgs}
+        reader_anchor_map = {}
     else:
         html, inline = rewrite_images(doc_view['html'] if doc_view else MD.convert(body), imgs)
         html = linkify(sanitize.clean_html(html))
@@ -1484,7 +1491,7 @@ def doc(request: Request, path: str, section: str = ""):
         "doc_view_note": doc_view.get('note', ''),
         "reader_revision": doc_view.get('revision', '')[:16] if semantic else hashlib.sha256(body.encode()).hexdigest()[:16],
         "semantic_reader": semantic, "reader_anchor_map": reader_anchor_map,
-        "reader_source": reader_source,
+        "reader_source": reader_source, "forum_reader": doc_view.get('kind') == 'discuz_post_flow',
         "reader_scope": hashlib.sha256(str(actor_id(request) or 'local').encode()).hexdigest()[:16],
         "chars": len(body), "sec": section or request.query_params.get('sec', ''), "n_chunks": n, "convs": KBX.convs(actor=actor_id(request)),
         "col": KBX.doc_col(path), "col_stats": KBX.col_stats(),

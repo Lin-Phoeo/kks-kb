@@ -97,6 +97,12 @@
     label.textContent=(index+1)+' / '+images.length+' · 正在加载原图';caption.textContent=img.closest('figure')?.querySelector('figcaption')?.textContent||img.alt||'原文配图';original.href=url.href;full.alt=img.alt||'教程原图';reset();full.src=url.href;
     if(!dialog.open){opener=img;dialog.showModal();}
   }
+  function stepImage(direction){
+    for(let step=1;step<=images.length;step++){
+      const next=(index+direction*step+images.length)%images.length;
+      if(!images[next].closest('.reader-blank-page:not([open])')){show(next);return;}
+    }
+  }
   full.addEventListener('load',()=>{label.textContent=(index+1)+' / '+images.length+' · '+full.naturalWidth+' × '+full.naturalHeight;});
   full.addEventListener('error',()=>{label.textContent='原图加载失败，可单独打开原图重试';});
   images.forEach((img,i)=>{
@@ -104,11 +110,11 @@
     img.addEventListener('click',e=>{e.preventDefault();show(i);});img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show(i);}});
     img.addEventListener('error',()=>{if(img.dataset.failed)return;img.dataset.failed='true';const note=document.createElement('p');note.className='reader-missing-image';note.textContent='此处配图暂时无法加载，请核对原件或来源。';img.hidden=true;img.after(note);});
   });
-  document.getElementById('reader-image-prev').onclick=()=>show(index-1);document.getElementById('reader-image-next').onclick=()=>show(index+1);document.getElementById('reader-image-close').onclick=()=>dialog.close();
+  document.getElementById('reader-image-prev').onclick=()=>stepImage(-1);document.getElementById('reader-image-next').onclick=()=>stepImage(1);document.getElementById('reader-image-close').onclick=()=>dialog.close();
   document.getElementById('reader-zoom-in').onclick=()=>changeZoom(zoom*1.3);document.getElementById('reader-zoom-out').onclick=()=>changeZoom(zoom/1.3);document.getElementById('reader-zoom-fit').onclick=reset;
   dialog.addEventListener('close',()=>{pointers.clear();pinch=null;opener?.focus({preventScroll:true});});
   dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
-  dialog.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();show(index-1);}if(e.key==='ArrowRight'){e.preventDefault();show(index+1);}if(e.key==='+'){e.preventDefault();changeZoom(zoom*1.3);}if(e.key==='-'){e.preventDefault();changeZoom(zoom/1.3);}});
+  dialog.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();stepImage(-1);}if(e.key==='ArrowRight'){e.preventDefault();stepImage(1);}if(e.key==='+'){e.preventDefault();changeZoom(zoom*1.3);}if(e.key==='-'){e.preventDefault();changeZoom(zoom/1.3);}});
   stage.addEventListener('wheel',e=>{e.preventDefault();changeZoom(zoom*(e.deltaY<0?1.12:1/1.12));},{passive:false});
   stage.addEventListener('dblclick',()=>changeZoom(zoom>1?1:2.5));full.draggable=false;
   stage.addEventListener('pointerdown',e=>{if(e.button>0)return;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});stage.setPointerCapture(e.pointerId);if(pointers.size===2){const[a,b]=[...pointers.values()];pinch={distance:Math.hypot(a.x-b.x,a.y-b.y),zoom};}});

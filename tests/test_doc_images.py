@@ -37,5 +37,22 @@ class DocImageTests(unittest.TestCase):
         self.assertEqual(used, set())
         self.assertNotIn('/orig/../', result)
 
+    def test_mapping_without_reference_does_not_replace_unrelated_image(self):
+        html = '<p>x</p><img src="unrelated.png" alt="u">'
+        mapping = [{'orig': 'recover/a.png', 'thumb': 'recover/a.jpg'}]
+        result, used = renderer.rewrite_images(html, mapping)
+        self.assertEqual(result, html)
+        self.assertEqual(used, set())
+        self.assertNotIn('/thumb/', result)
+        self.assertNotIn('/orig/', result)
+
+    def test_traversal_thumb_with_valid_orig_is_never_written_to_src(self):
+        html = '<img src="figure.png">'
+        mapping = [{'reference': 'figure.png', 'catdir': 'recover', 'orig': 'recover/a.png', 'thumb': '../secret.jpg'}]
+        result, used = renderer.rewrite_images(html, mapping)
+        self.assertEqual(result, html)
+        self.assertEqual(used, set())
+        self.assertNotIn('../secret.jpg', result)
+        self.assertNotIn('/thumb/', result)
 
 if __name__ == '__main__': unittest.main()
