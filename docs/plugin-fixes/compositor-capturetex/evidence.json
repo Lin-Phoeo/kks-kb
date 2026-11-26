@@ -1,0 +1,185 @@
+{
+  "scope": "Compositor CaptureTex return-type guard; local candidate tool validation and separately retained prior empty-Studio runtime evidence",
+  "attribution": {
+    "plugin": "Compositor",
+    "version": "1.2.0",
+    "author": "RinuNalo",
+    "distribution_pointer": "KK Discord",
+    "public_list_url": "https://raw.githubusercontent.com/ManlyMarco/KKS-HF_Patch/master/Plugin%20Readme.md",
+    "list_retrieved_at": "2026-11-26T01:51:27.307262+00:00",
+    "list_http_status": 200,
+    "list_sha256": "5de580dd4a6902ae180e5814ce35dfa2c66f6992a96ec8e83d7589f180f3ad56",
+    "complete_matching_source_verified": false,
+    "official_compatible_update_verified": false,
+    "source_search_limit": "Bounded prior GitHub repository and local-source search; absence of results does not prove absence of an upstream source or update."
+  },
+  "compatibility": {
+    "screenshot_manager_version": "21.1.4.1",
+    "screencap_sha256": "56c5f1b8c9bdee2bb85525be4730d3b0a9edc0bc516f32d01751369adc7c0468",
+    "capture_signature": "RenderTexture CaptureTex(int resolutionX, int resolutionY, int downscalingRate, AlphaMode mode)",
+    "postfix_signature": "void InterceptScreenshot(Texture2D __result)",
+    "filter": "typeof(Texture2D).IsAssignableFrom(methodInfo.ReturnType)",
+    "rendertexture_route_skipped": true,
+    "rendertexture_copy_cache_or_ownership_implemented": false,
+    "lighting_suite_guard_has_result_parameter": false
+  },
+  "static_candidate": {
+    "status": "passed_static_candidate_only",
+    "input_sha256": "5b7f7b5f9a8659d309f849307c535a25bb18175fcdaed156f2168cd0bb346d1f",
+    "output_sha256": "e6ad0a49ed2827aecb62284d101901d582e013aec91af3e8d763e4cfc74ac9a5",
+    "changed_methods": [
+      "System.Void DefaultNamespace.Entry::TryPatchScreencap()"
+    ],
+    "unchanged_method_count": 2600,
+    "assembly_references_unchanged": true,
+    "embedded_resources_unchanged": true,
+    "resource_count": 0,
+    "added_il_instructions": 6,
+    "original_signature_unchanged": true,
+    "postfix_body_unchanged": true,
+    "gui_and_render_functions_unchanged": true,
+    "installed": false,
+    "runtime_verified": false
+  },
+  "tool_validation": {
+    "platform": "Windows",
+    "sdk": "10.0.204",
+    "target_framework": "net10.0",
+    "mono_cecil_version": "0.10.4.0",
+    "mono_cecil_sha256": "7ae470288fff4a402899c254d0a76cefef55877f5c54f96e83c797cc5bb6e2f6",
+    "source_sha256": "f289f1eb4d8629703458912c8209f08a328e566a2e81b42e780f9af29a0dcc11",
+    "build_exit_code": 0,
+    "build_warnings": 0,
+    "build_errors": 0,
+    "network_dependency_sources": [],
+    "successful_candidate_sha_matches_prior_candidate": true,
+    "legacy_existing_report_overwritten": true,
+    "legacy_report_equals_input_or_output": "Windows sharing violation after candidate creation; no input or candidate overwrite observed in these two cases.",
+    "rejection_count": 15,
+    "rejections": [
+      {
+        "case": "report_equals_input",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      },
+      {
+        "case": "report_equals_output",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      },
+      {
+        "case": "existing_report",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      },
+      {
+        "case": "output_equals_input",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      },
+      {
+        "case": "existing_output",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      },
+      {
+        "case": "report_case_alias_input",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      },
+      {
+        "case": "report_normalized_alias_input",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      },
+      {
+        "case": "report_case_alias_output",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      },
+      {
+        "case": "output_normalized_alias_input",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      },
+      {
+        "case": "report_hardlink_input",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      },
+      {
+        "case": "report_is_directory",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      },
+      {
+        "case": "output_is_directory",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      },
+      {
+        "case": "wrong_input_hash",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      },
+      {
+        "case": "missing_reference_directory",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      },
+      {
+        "case": "missing_arguments",
+        "exit_code": 1,
+        "input_unchanged": true,
+        "preexisting_files_unchanged": true
+      }
+    ],
+    "create_new_used_for_output_and_report": true,
+    "late_io_failure_limit": "A newly created empty or partial output/report may remain; existing files are not replaced.",
+    "independent_read_only_source_review": "No additional concrete defect identified; not a second runtime test."
+  },
+  "prior_runtime": {
+    "checked_at": "2026-11-26T02:22:26.965607+00:00",
+    "sha256": "62ac840f2dc94586a8a4123460735530e3cee6a0046a03a4a924fc5761ac17c2",
+    "mode": "RGBA",
+    "size": [
+      1920,
+      1080
+    ],
+    "alpha_extrema": [
+      0,
+      0
+    ],
+    "scope": "Empty Studio scene transparency capture only; no user card/scene loaded or saved",
+    "compositor_initialized": true,
+    "compositor_UI_opened": true,
+    "return_type_errors": 0
+  },
+  "runtime_limits": [
+    "Prior empty-Studio transparency capture only.",
+    "No game launch was performed during this tool-hardening work.",
+    "Character alpha edges, all nodes, all capture routes and complex scenes remain unverified.",
+    "No user card or scene was loaded or saved."
+  ],
+  "distribution": {
+    "third_party_binaries_included": false,
+    "fonts_included": false,
+    "raw_logs_or_chat_included": false,
+    "official_release": false,
+    "automatic_installation": false
+  }
+}

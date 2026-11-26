@@ -1,0 +1,11 @@
+--- installed/DefaultNamespace.Entry.cs
++++ candidate/DefaultNamespace.Entry.cs
+@@ -188,7 +188,7 @@
+             MethodInfo[] methods = type.GetMethods(AccessTools.all);
+             foreach (MethodInfo methodInfo in methods)
+             {
+-                if (!(methodInfo.Name != "CaptureTex"))
++                if (!(methodInfo.Name != "CaptureTex") && typeof(Texture2D).IsAssignableFrom(methodInfo.ReturnType))
+                 {
+                     _harmony.Patch(methodInfo, null, new HarmonyMethod(typeof(Entry), "InterceptScreenshot"));
+                     num++;
