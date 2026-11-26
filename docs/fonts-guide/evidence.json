@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "topic": "Chinese missing-glyph diagnosis and minimal font configuration only",
+  "observed_date": "2026-11-26",
+  "sample": "材质编辑器读取场景设置插件配置轮廓法线导出对象碰撞保存恢复简体中文测试",
+  "font_checks": [
+    {
+      "family": "MS Gothic collection",
+      "file_basename": "msgothic.ttc",
+      "sha256": "4bde3e6392b96910fb59094c6c1a4dbfae18fee78d0bf13dc30616837c4f95db",
+      "unicode_cmap_count": 16127,
+      "missing_sample_characters": "场对导测简线编设试读质轮辑",
+      "missing_sample_count": 13
+    },
+    {
+      "family": "Microsoft YaHei collection",
+      "file_basename": "msyh.ttc",
+      "sha256": "d79c55e68b1131eea0cc1c47be4f572d964f28c682e143db2ad09c1e4cb07a3f",
+      "unicode_cmap_count": 29905,
+      "missing_sample_characters": "",
+      "missing_sample_count": 0,
+      "CJK_Unified_Ideographs": {
+        "covered": 20992,
+        "range_size": 20992
+      },
+      "CJK_Extension_A": {
+        "covered": 6592,
+        "range_size": 6592
+      }
+    }
+  ],
+  "TMP_asset": {
+    "name": "ARIALUNI SDF",
+    "family": "Arial Unicode MS",
+    "example_basename": "arialuni_sdf_u2019",
+    "sha256": "11b47cae3262648dd9c8b8a29dc25d04309a18790e4130e94fd230791e55c037",
+    "bytes": 30986431,
+    "bundle_Unity_build_versions": [
+      "2019.1.0f2"
+    ],
+    "font_asset_version": "1.1.0",
+    "observed_runtime_TMP_version": "1.4.0",
+    "observed_game_Unity_version": "2019.4.9.5308042",
+    "character_records": 33932,
+    "glyph_records": 33932,
+    "atlas_size": [
+      8192,
+      8192
+    ],
+    "sample_missing_characters": "",
+    "sample_glyph_indices_nonzero": true,
+    "CJK_Unified_Ideographs": {
+      "covered": 20902,
+      "range_size": 20992
+    },
+    "CJK_Extension_A": {
+      "covered": 0,
+      "range_size": 6592
+    },
+    "runtime_version_warning_observed": true,
+    "runtime_fallback_loaded": true,
+    "all_Chinese_supported": false,
+    "asset_binary_distributed": false
+  },
+  "configuration_scope": {
+    "UGUI": "OverrideFont only; verified system font family required",
+    "TMP": "Prefer FallbackFontTextMeshPro; existing compatible asset and target version verification required",
+    "IMGUI": "EnableIMGUI enables translation hooks, not a promise that OverrideFont controls GUIStyle fonts",
+    "font_only_changed_keys": [
+      "Behaviour.OverrideFont",
+      "Behaviour.FallbackFontTextMeshPro"
+    ],
+    "TMP_example_relative_to": "Actual game root, not this repository or a fixed user path",
+    "logging_model_proxy_or_game_data_changes_required": false
+  },
+  "runtime_observations": {
+    "checked_labels": [
+      "配置",
+      "选项",
+      "角色灯光",
+      "画面效果",
+      "保存",
+      "读取",
+      "初始化",
+      "结束",
+      "声音设置",
+      "主音量",
+      "背景色",
+      "工作面板",
+      "搜索"
+    ],
+    "all_third_party_dynamic_panels_checked": false,
+    "restart_and_actual_UI_observed": true,
+    "proof_scope": "A single local Windows game setup, not compatibility guarantee for other bundles/versions.",
+    "checked_UI_labels_visible_after_change": true,
+    "full_sample_sentence_UI_tested": false,
+    "sample_sentence_verification": "Static system cmap and TMP character-table coverage only; actual UI check covers checked_labels."
+  },
+  "official_sources": {
+    "repository": "bbepis/XUnity.AutoTranslator",
+    "commit": "692e044503f591d58c875e06bea1872b5d2dcc56",
+    "readme_sha256": "165ea5c45354e182e3e2b55b3988d2b14be9ccc95070f951ff15e9f252a03f74",
+    "readme_url": "https://raw.githubusercontent.com/bbepis/XUnity.AutoTranslator/692e044503f591d58c875e06bea1872b5d2dcc56/README.md",
+    "retrieved_at": "2026-11-26T03:18:22.012112+00:00",
+    "key_lines": [
+      {
+        "start": 336,
+        "end": 338,
+        "scope": "UGUI only OverrideFont; TMP fallback recommended"
+      },
+      {
+        "start": 480,
+        "end": 490,
+        "scope": "Font framework and resource-loading distinctions"
+      },
+      {
+        "start": 494,
+        "end": 499,
+        "scope": "Prebuilt assets limited testing and target Unity asset guidance"
+      }
+    ]
+  },
+  "private_receipt_content_hashes": [
+    {
+      "label": "font-cmap-coverage",
+      "sha256": "361116d5314960a7d5573071d5a822dd06a1c735cc10457d356d1eafacd6c7de"
+    },
+    {
+      "label": "font-runtime-summary",
+      "sha256": "76acc1181407a82c64cff113a5b663465efe69bc39b04c5883f5e35c94564f30"
+    }
+  ],
+  "excluded": [
+    "No complete configuration files or raw logs",
+    "No API credentials, account data or private chat",
+    "No user-specific installation paths or character/scene filenames",
+    "No font bundle, third-party DLL or game asset"
+  ],
+  "limits": [
+    "Cmap/character-table coverage is a static check; actual UI must be verified separately.",
+    "This TMP example lacks ExtensionA and90 basic-CJK block codepoints.",
+    "Successful load after a version warning does not guarantee other versions work.",
+    "Example path must not be copied unless the target environment has a suitable existing asset."
+  ]
+}
