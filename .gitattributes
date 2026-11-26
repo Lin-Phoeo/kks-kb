@@ -8,3 +8,6 @@ Caddyfile*  text eol=lf
 
 # Preserve upstream vendored bytes; their formatting is not maintained here.
 app/static/vendor/** -whitespace
+
+# Unified diffs require single-space context lines, including empty lines.
+ops/studio-runtime-repairs/**/*.patch text eol=lf whitespace=-blank-at-eol,-blank-at-eof

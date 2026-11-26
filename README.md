@@ -34,6 +34,7 @@ Issue 写明目标 → 功能分支 → AI 修改与本地验证 → PR → Acti
 - [AI 协作约定](AGENTS.md)：不同编码助手共用的工作规则。
 - [项目结构](docs/architecture.md)：源码、数据和运行时的关系。
 - [验证说明](docs/verification.md)：本地与 CI 的相同入口及覆盖边界。
+- [Studio 运行时修复](ops/studio-runtime-repairs/README.md)：独立的源码补丁、合成测试、上游依据和实际运行边界。
 
 ## 源码范围与许可
 

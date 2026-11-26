@@ -1,0 +1,41 @@
+--- a/PoseEditor.Core/AMModules/BlendShapesEditor.cs
++++ b/PoseEditor.Core/AMModules/BlendShapesEditor.cs
+@@ -1746,7 +1746,7 @@
+ #elif PLAYHOME
+             _instanceByFaceBlendShape.Add(this._target.ociChar.charInfo.human, this);
+ #elif KOIKATSU
+-            _instanceByFaceBlendShape.Add(_target.ociChar.charInfo.fbsCtrl, this);
++            _instanceByFaceBlendShape[_target.ociChar.charInfo.fbsCtrl] = this;
+ #elif AISHOUJO || HONEYSELECT2
+             _instanceByFaceBlendShape.Add(this._target.ociChar.charInfo.fbsCtrl, this);
+ #endif
+@@ -2185,8 +2185,13 @@
+                                 BlendRenderer renderer = p.blendRenderer;
+                                 float[] left = (float[])leftValue;
+                                 float[] right = (float[])rightValue;
+-                                for (int i = 0; i < left.Length; i++)
++                                int count = Math.Min(left.Length, right.Length);
++                                if (renderer._oriBlendIndex.Count == 0)
++                                    count = Math.Min(count, renderer._renderer.sharedMesh.blendShapeCount);
++                                for (int i = 0; i < count; i++)
+                                 {
++                                    if (renderer._oriBlendIndex.Count > 0 && renderer.GetBlendShapeName(i) == null)
++                                        continue;
+                                     float weight = Mathf.LerpUnclamped(left[i], right[i], factor);
+                                     renderer.SetBlendShapeWeight(i, weight);
+ 
+@@ -2228,8 +2233,13 @@
+                                 float[] left = (float[])leftValue;
+                                 float[] right = (float[])rightValue;
+                                 int targetLinkMaxCount = p.editor._target.isFemale ? _femaleEyesComponentsCount : _maleEyesComponentsCount;
+-                                for (int index = 0; index < left.Length; ++index)
++                                int count = Math.Min(left.Length, right.Length);
++                                if (renderer._oriBlendIndex.Count == 0)
++                                    count = Math.Min(count, renderer._renderer.sharedMesh.blendShapeCount);
++                                for (int index = 0; index < count; ++index)
+                                 {
++                                    if (renderer._oriBlendIndex.Count > 0 && renderer.GetBlendShapeName(index) == null)
++                                        continue;
+                                     float weight = Mathf.LerpUnclamped(left[index], right[index], factor);
+                                     renderer.SetBlendShapeWeight(index, weight);
+ 

@@ -43,6 +43,7 @@ __pycache__/
 htmlcov/
 test-results/
 node_modules/
+.memorax-code/
 .vscode/
 .idea/
 Thumbs.db
