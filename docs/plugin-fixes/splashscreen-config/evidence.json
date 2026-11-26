@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-26",
+  "upstream": "https://github.com/BepInEx/BepInEx.SplashScreen",
+  "release": "v3.0",
+  "source_commit": "2a248a54dc049e278c0a4b37c23ecaa155bc73dd",
+  "original_exe_sha256": "c144df109c310ecadd7af76d37087a39d04d81d2a8781a84ee6d71a29a71021f",
+  "original_and_copied_config_sha256": "28495ba91c814e240bc2b790d13841c231c94c98ddde18e1ef2f0ad565eaaf70",
+  "configuration_bytes": 263,
+  "supported_runtime_order": ["v4.0", "v2.0.50727"],
+  "exe_modified": false,
+  "system_runtime_or_network_modified": false,
+  "fix": "copy existing official configuration to actual renamed executable name plus .config",
+  "user_confirmed_original_dialog_absent": true,
+  "user_confirmed_Studio_opens": true,
+  "repeat_start_after_plugin_additions_confirmed": true,
+  "actual_CLR_module_observed": false,
+  "remaining_splash_pipe_warning": "IOException / Win32 232",
+  "all_splash_animation_or_shutdown_behaviors_verified": false,
+  "original_exe_or_private_log_distributed": false
+}
