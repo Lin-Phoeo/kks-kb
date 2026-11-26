@@ -11,7 +11,7 @@
 | MaterialEditor 色彩辅助插件二次解码与 GPU 缓存生命周期 | [GPU 复制与 Token 释放修复](materialeditor-colorspace/README.md) | 清理修正版实际 PNG 往返误差 0、3 轮 4096 释放通过，原四条 active RT 警告未再出现；完整原故障操作覆盖待确认 |
 | Harvex shader 元数据节点不适用 KKS | [原件只读的注册包生成器](harvex-registration/README.md) | 已安装元数据兼容包；四个 shader 在 Unity 注册字典中加载且显卡支持 |
 | AutoKeyframe 空回调签名错误、CharaAnime 全局端帽名冲突 | [精确输入的启动补丁](startup-compatibility/README.zh-CN.md) | 已备份安装；11 项合成测试通过；新启动未再记录两错误，编辑与三轴画面尚待确认 |
-| Unity.Console 退出时释放借用的控制台 | [控制台所有权补丁](console-ownership/README.md) | 已备份安装；5 组真实 Win32 对照与 5 组拒绝保护通过；Studio 正常退出验收进行中 |
+| Unity.Console 退出时释放借用的控制台 | [控制台所有权研究候选](console-ownership/README.md) | 隔离 5+5 项通过，但实际退出暂停后原生崩溃，验收失败；已回退原件，继续做对照，暂不建议安装 |
 
 合成测试只验证隔离逻辑。正常启动、插件加载或 GPU 自测不能单独证明原场景已修复。检查应从精确原件哈希和备份开始，保留原游戏启动器与原生控制台，然后逐项运行真实功能。回滚仅还原 DLL / 移出新增兼容包，不改变卡片或场景。
 

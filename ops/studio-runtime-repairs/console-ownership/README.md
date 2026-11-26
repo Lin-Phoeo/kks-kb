@@ -1,5 +1,7 @@
 # Unity.Console borrowed-console ownership patch
 
+**Runtime acceptance failed; candidate rolled back.** The isolated ownership tests below pass, but the real game exit paused and ended in a native UnityPlayer crash. The previously observed invalid console handles were absent. That difference does not establish the crash cause. Keep this candidate out of normal installations until the shutdown interaction has been reproduced and resolved; source is retained for investigation.
+
 This source-only tool prevents `Unity.Console.Program.Close` from releasing a native console that was already present when `Program.Run` started. A BepInEx console must remain available for other plugins' exit logging. The tool keeps the console and VNGE enabled.
 
 The original `Run` allocates a console only when no console exists, but `Close` releases any existing console. If BepInEx created it first, that release invalidates the separately cached `CONOUT$` handles used by BepInEx's console listener and Unity.Console. Restoring `Console.Out` alone cannot repair an independent console listener writer.
@@ -50,7 +52,7 @@ The test code is original synthetic tooling. At execution time, `ProbeExtractor`
 
 Extracted allocation-result consumer instructions are tested with success/failure bool stubs. This verifies the changed store instead of the original pop; it does not execute full `Run` or actual AllocConsole inside the game. Rejection tests cover unknown input, already patched input, existing output, existing receipt and input/output identity, with byte preservation assertions.
 
-Isolated results are in [evidence.md](evidence.md). Real acceptance still needs normal startup, VNGE/REPL operation, native console presence and normal game exit, with exit logs checked for invalid handles, stream failures, recursion and hangs. Startup success alone is insufficient. This patch does not repair old stdout self-reference, hidden-start failures, cached IronPython writers after an intentionally owned console release, console reopen/toggle behavior or every exit race.
+Isolated results are in [evidence.md](evidence.md). Real startup and VNGE initialization were observed, but game exit failed acceptance as described above. Further acceptance requires normal VNGE/REPL operation and game exit, with exit logs checked for invalid handles, stream failures, recursion, crashes and hangs. Startup success alone is insufficient. This patch does not repair old stdout self-reference, hidden-start failures, cached IronPython writers after an intentionally owned console release, console reopen/toggle behavior or every exit race.
 
 ## Sources and rights
 
