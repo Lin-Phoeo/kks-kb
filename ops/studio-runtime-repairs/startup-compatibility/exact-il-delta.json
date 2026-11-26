@@ -1,0 +1,47 @@
+[
+  {
+    "File": "AutoKeyframe.KKS.dll",
+    "InputToken": "[Method:0x000e]",
+    "OutputToken": "[Method:0x000e]",
+    "Before": "System.Void AutoKeyframe.Entry::OnPostRender(UnityEngine.Camera)",
+    "After": "System.Void AutoKeyframe.Entry::UnusedPostRenderCallback(UnityEngine.Camera)",
+    "BeforeIL": [
+      "IL_0000: ret"
+    ],
+    "AfterIL": [
+      "IL_0000: ret"
+    ]
+  },
+  {
+    "File": "CharaAnime.dll",
+    "InputToken": "[Method:0x0050]",
+    "OutputToken": "[Method:0x0066]",
+    "Method": "System.Void CharaAnime.GizmosManager::Start()",
+    "BeforeIL": "IL_0040: ldstr \"vector\"",
+    "AfterIL": "IL_0040: ldstr \"Countd360.CharaAnime.KKS.vector\""
+  },
+  {
+    "File": "CharaAnime.dll",
+    "InputToken": "[Method:0x0060]",
+    "OutputToken": "[Method:0x0076]",
+    "Method": "System.Void CharaAnime.CubeGizmos::.ctor(UnityEngine.Transform,System.Single)",
+    "BeforeIL": "IL_03ca: ldstr \"vector\"",
+    "AfterIL": "IL_03ca: ldstr \"Countd360.CharaAnime.KKS.vector\""
+  },
+  {
+    "File": "CharaAnime.dll",
+    "InputToken": "[Method:0x0060]",
+    "OutputToken": "[Method:0x0076]",
+    "Method": "System.Void CharaAnime.CubeGizmos::.ctor(UnityEngine.Transform,System.Single)",
+    "BeforeIL": "IL_0424: ldstr \"vector\"",
+    "AfterIL": "IL_0424: ldstr \"Countd360.CharaAnime.KKS.vector\""
+  },
+  {
+    "File": "CharaAnime.dll",
+    "InputToken": "[Method:0x0060]",
+    "OutputToken": "[Method:0x0076]",
+    "Method": "System.Void CharaAnime.CubeGizmos::.ctor(UnityEngine.Transform,System.Single)",
+    "BeforeIL": "IL_047e: ldstr \"vector\"",
+    "AfterIL": "IL_047e: ldstr \"Countd360.CharaAnime.KKS.vector\""
+  }
+]

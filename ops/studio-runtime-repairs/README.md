@@ -8,8 +8,10 @@
 | Shallty 旧场景缺可选分组字段 | [精确输入哈希的补丁工具](compatibility-guards/README.zh-CN.md) | 候选已安装；合成与 CIL 范围核对通过；旧/新场景切换待完成 |
 | SexFaces 非 OnGUI 静态样式初始化失败 | 官方 1.4.0 加最小 GUI 生命周期修复 | 候选已安装；真实 Unity 的非 GUI 类型初始化与 OnGUI 样式初始化通过，滑块操作待完成 |
 | KLS 空地图诊断读取异常 | 保护无 sunLightInfo 的合法切图状态 | 候选已安装；不关闭环境功能或隐藏错误；切图回归待完成 |
-| MaterialEditor 色彩辅助插件二次解码与 GPU 缓存生命周期 | [GPU 复制与 Token 释放修复](materialeditor-colorspace/README.md) | 前一候选实际 PNG 往返误差 0、3 轮 4096 释放通过；自测清理修正版已装，复验和原故障场景待完成 |
+| MaterialEditor 色彩辅助插件二次解码与 GPU 缓存生命周期 | [GPU 复制与 Token 释放修复](materialeditor-colorspace/README.md) | 清理修正版实际 PNG 往返误差 0、3 轮 4096 释放通过，原四条 active RT 警告未再出现；完整原故障操作覆盖待确认 |
 | Harvex shader 元数据节点不适用 KKS | [原件只读的注册包生成器](harvex-registration/README.md) | 已安装元数据兼容包；四个 shader 在 Unity 注册字典中加载且显卡支持 |
+| AutoKeyframe 空回调签名错误、CharaAnime 全局端帽名冲突 | [精确输入的启动补丁](startup-compatibility/README.zh-CN.md) | 已备份安装；11 项合成测试通过；新启动未再记录两错误，编辑与三轴画面尚待确认 |
+| Unity.Console 退出时释放借用的控制台 | [控制台所有权补丁](console-ownership/README.md) | 已备份安装；5 组真实 Win32 对照与 5 组拒绝保护通过；Studio 正常退出验收进行中 |
 
 合成测试只验证隔离逻辑。正常启动、插件加载或 GPU 自测不能单独证明原场景已修复。检查应从精确原件哈希和备份开始，保留原游戏启动器与原生控制台，然后逐项运行真实功能。回滚仅还原 DLL / 移出新增兼容包，不改变卡片或场景。
 
@@ -17,4 +19,4 @@
 
 上游核对与详细测试见各子目录。真实运行验收结果在确认后更新，未完成项保留为待验收。
 
-初次启动还记录到 AutoKeyframe 的空 `OnPostRender(Camera)` 签名错误、CharaAnime 与 KKPE 的全局端帽名冲突、两个依赖的类型扫描警告，以及退出控制台句柄失效。这些在旧日志已有证据，尚未找到并验证适用的上游修复；不因已有而认定无影响，也不通过关闭功能或压低日志级别隐藏它们。
+仍在追查 ExpressionStudio 对非 Unity 对象的查询、ShalltyUtils 的 WorldSpace 画布调用及两个依赖的类型扫描警告。不因旧日志已有而认定无影响，也不通过关闭功能或压低日志级别隐藏它们。启动自测完成后已关闭其自动开关，临时验收器移出插件扫描目录，原生控制台和磁盘日志继续保留。

@@ -1,0 +1,137 @@
+{
+  "patch": {
+    "InputSHA256": "1be20737d73ae8d23db5c08d3a86e992bc7b12b171401686ecb264e05b439cf6",
+    "OutputSHA256": "91874b52329d4fa4bb0b69a21e073d69ed423eacdb3485ee03ba985b0a7cefd0",
+    "Runtime": "v2.0.50727",
+    "ChangedMethods": [
+      "System.Void Unity.Console.Program::Close()",
+      "System.Void Unity.Console.Program::Run(System.Boolean,System.Boolean,System.TimeSpan)"
+    ],
+    "AddedField": "System.Boolean Unity.Console.Program::_ownsNativeConsoleForOwnershipFix",
+    "NewAssemblyReferences": [],
+    "ResourceCount": 0,
+    "ResourceHashesMatch": true,
+    "Boundary": "Borrowed native console ownership only. No writer recovery, hidden startup, or actual game validation claimed."
+  },
+  "nativeCases": [
+    {
+      "mode": "borrowed-null",
+      "passed": true,
+      "initialWindowPresent": true,
+      "bepOk": true,
+      "bepError": 0,
+      "ucOk": true,
+      "ucError": 0,
+      "streamWriterException": null,
+      "freeCalls": 0,
+      "aborts": 0,
+      "ownsAfter": false,
+      "windowPresentAfter": true,
+      "originalDiscards": true,
+      "capturesSuccess": true,
+      "capturesFailure": true,
+      "source": "Close CIL extracted from exact original/candidate; Abort substituted with counting stub; Win32 console APIs real. Allocation result-consumer CIL extracted with bool-return stub."
+    },
+    {
+      "mode": "borrowed",
+      "passed": true,
+      "initialWindowPresent": true,
+      "bepOk": true,
+      "bepError": 0,
+      "ucOk": true,
+      "ucError": 0,
+      "streamWriterException": null,
+      "freeCalls": 0,
+      "aborts": 2,
+      "ownsAfter": false,
+      "windowPresentAfter": true,
+      "originalDiscards": true,
+      "capturesSuccess": true,
+      "capturesFailure": true,
+      "source": "Close CIL extracted from exact original/candidate; Abort substituted with counting stub; Win32 console APIs real. Allocation result-consumer CIL extracted with bool-return stub."
+    },
+    {
+      "mode": "control",
+      "passed": true,
+      "initialWindowPresent": true,
+      "bepOk": false,
+      "bepError": 6,
+      "ucOk": false,
+      "ucError": 6,
+      "streamWriterException": "IOException",
+      "freeCalls": 1,
+      "aborts": 1,
+      "ownsAfter": false,
+      "windowPresentAfter": false,
+      "originalDiscards": true,
+      "capturesSuccess": true,
+      "capturesFailure": true,
+      "source": "Close CIL extracted from exact original/candidate; Abort substituted with counting stub; Win32 console APIs real. Allocation result-consumer CIL extracted with bool-return stub."
+    },
+    {
+      "mode": "owned-null",
+      "passed": true,
+      "initialWindowPresent": true,
+      "bepOk": false,
+      "bepError": 6,
+      "ucOk": false,
+      "ucError": 6,
+      "streamWriterException": "IOException",
+      "freeCalls": 1,
+      "aborts": 0,
+      "ownsAfter": false,
+      "windowPresentAfter": false,
+      "originalDiscards": true,
+      "capturesSuccess": true,
+      "capturesFailure": true,
+      "source": "Close CIL extracted from exact original/candidate; Abort substituted with counting stub; Win32 console APIs real. Allocation result-consumer CIL extracted with bool-return stub."
+    },
+    {
+      "mode": "owned",
+      "passed": true,
+      "initialWindowPresent": true,
+      "bepOk": false,
+      "bepError": 6,
+      "ucOk": false,
+      "ucError": 6,
+      "streamWriterException": "IOException",
+      "freeCalls": 1,
+      "aborts": 2,
+      "ownsAfter": false,
+      "windowPresentAfter": false,
+      "originalDiscards": true,
+      "capturesSuccess": true,
+      "capturesFailure": true,
+      "source": "Close CIL extracted from exact original/candidate; Abort substituted with counting stub; Win32 console APIs real. Allocation result-consumer CIL extracted with bool-return stub."
+    }
+  ],
+  "rejectionCases": [
+    {
+      "case": "unknown-input",
+      "passed": true,
+      "outputPreserved": true
+    },
+    {
+      "case": "already-patched-input",
+      "passed": true,
+      "outputPreserved": true
+    },
+    {
+      "case": "existing-output",
+      "passed": true,
+      "outputPreserved": true
+    },
+    {
+      "case": "existing-receipt",
+      "passed": true,
+      "outputPreserved": true
+    },
+    {
+      "case": "input-equals-output",
+      "passed": true,
+      "outputPreserved": true
+    }
+  ],
+  "originalPreserved": true,
+  "scope": "Isolated Win32 and extracted CIL only; no game/Mono/IronPython acceptance implied."
+}
