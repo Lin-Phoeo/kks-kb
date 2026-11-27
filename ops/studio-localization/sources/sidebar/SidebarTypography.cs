@@ -16,6 +16,8 @@ namespace Codex.StudioPanelTypography
         private readonly ManualLogSource _logger;
         private readonly Dictionary<Text, TextState> _texts = new Dictionary<Text, TextState>();
         private readonly Dictionary<TMP_Text, TmpState> _tmp = new Dictionary<TMP_Text, TmpState>();
+        private readonly List<Text> _scanTexts = new List<Text>();
+        private readonly List<TMP_Text> _scanTmp = new List<TMP_Text>();
         private Font _font;
         private TMP_FontAsset _tmpFont;
         private Transform _root;
@@ -57,8 +59,7 @@ namespace Codex.StudioPanelTypography
             _sharedActive = SharedFontAccess.Read(out _externalFont, out _externalTmp);
             if (!_sharedActive) EnsureFont();
             PruneDestroyed();
-            foreach (Text text in _root.GetComponentsInChildren<Text>(true)) Apply(text);
-            foreach (TMP_Text text in _root.GetComponentsInChildren<TMP_Text>(true)) Apply(text);
+            ApplyCreatedText();
             _scans++;
             bool hasActiveText = false;
             foreach (Text text in _texts.Keys) if (text && text.isActiveAndEnabled) { hasActiveText = true; break; }
@@ -103,6 +104,16 @@ namespace Codex.StudioPanelTypography
                 _logger.LogWarning("STUDIO_SIDEBAR_TMP_YAHEI_UNAVAILABLE " + error.GetType().Name);
                 AcquireCjkFallback();
             }
+        }
+
+        private void ApplyCreatedText()
+        {
+            _root.GetComponentsInChildren(true, _scanTexts);
+            _root.GetComponentsInChildren(true, _scanTmp);
+            foreach (Text text in _scanTexts) Apply(text);
+            foreach (TMP_Text text in _scanTmp) Apply(text);
+            _scanTexts.Clear();
+            _scanTmp.Clear();
         }
 
         private void AcquireCjkFallback()
@@ -202,8 +213,7 @@ namespace Codex.StudioPanelTypography
                 try
                 {
                     PruneDestroyed();
-                    foreach (Text text in _root.GetComponentsInChildren<Text>(true)) Apply(text);
-                    foreach (TMP_Text text in _root.GetComponentsInChildren<TMP_Text>(true)) Apply(text);
+                    ApplyCreatedText();
                 }
                 catch (Exception error) { _logger.LogWarning("STUDIO_SIDEBAR_FINAL_SCAN_PARTIAL " + error.GetType().Name); }
             }
@@ -215,12 +225,14 @@ namespace Codex.StudioPanelTypography
 
         private void PruneDestroyed()
         {
-            var oldTexts = new List<Text>();
-            foreach (Text text in _texts.Keys) if (!text) oldTexts.Add(text);
-            foreach (Text text in oldTexts) _texts.Remove(text);
-            var oldTmp = new List<TMP_Text>();
-            foreach (TMP_Text text in _tmp.Keys) if (!text) oldTmp.Add(text);
-            foreach (TMP_Text text in oldTmp) _tmp.Remove(text);
+            _scanTexts.Clear();
+            foreach (Text text in _texts.Keys) if (!text) _scanTexts.Add(text);
+            foreach (Text text in _scanTexts) _texts.Remove(text);
+            _scanTexts.Clear();
+            _scanTmp.Clear();
+            foreach (TMP_Text text in _tmp.Keys) if (!text) _scanTmp.Add(text);
+            foreach (TMP_Text text in _scanTmp) _tmp.Remove(text);
+            _scanTmp.Clear();
         }
 
         private void RestoreTracked()
@@ -229,6 +241,8 @@ namespace Codex.StudioPanelTypography
             foreach (var pair in _tmp) if (pair.Key) pair.Value.Restore(pair.Key);
             _texts.Clear();
             _tmp.Clear();
+            _scanTexts.Clear();
+            _scanTmp.Clear();
         }
 
         [Serializable]

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <RuleMatcherSource Condition="'$(RuleMatcherSource)' == ''">../../sources/imgui-dynamic/RuleMatcher.cs</RuleMatcherSource>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="$(RuleMatcherSource)" Link="RuleMatcher.cs" />
+  </ItemGroup>
+</Project>

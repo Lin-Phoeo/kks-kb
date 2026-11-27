@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Codex.StudioImGuiDynamicBridge
 {
-    [BepInPlugin(Guid, "工作室动态文本 / Studio IMGUI Dynamic Text", "1.0.0")]
+    [BepInPlugin(Guid, "工作室动态文本 / Studio IMGUI Dynamic Text", "1.0.1")]
     [BepInProcess("CharaStudio")]
     [BepInDependency("gravydevsupreme.xunity.autotranslator", BepInDependency.DependencyFlags.HardDependency)]
     public sealed class Plugin : BaseUnityPlugin

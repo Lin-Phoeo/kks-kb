@@ -1,0 +1,159 @@
+{
+  "candidate_version": "0.3.0-rc.2",
+  "baseline_release": "0.3.0-rc.1",
+  "published": false,
+  "runtime_acceptance": "pending_user_window_check",
+  "components": {
+    "Codex.StudioFontController.dll": "2c84c96e4ab71339f0afd2cc271b792726bf74e42ff3b38f8a529e5d07799e68",
+    "Codex.StudioPanelTypography.dll": "214708dbe2f8ace230cc1ec047df2ea904203b85b4e9273f7b30ac4673fef1b3",
+    "Codex.StudioImGuiDynamicBridge.dll": "896efe60c0095c4592d219f1d7bd64041c8f9c469bb4c5a5b4ef7e4851a671a2",
+    "Codex.StudioConfigLocalization.dll": "268e235b245506b011a0532ea8addc04a26550978daa09a4cfc2d4c7b1c02ca1",
+    "Codex.StudioCoordinateNative.dll": "760a46a52e527754717ec3efb14734ef74fc9758cd6948d433bdac97b24f39d5"
+  },
+  "configuration": {
+    "regressions": 33,
+    "public_catalog_rows": 1525,
+    "reference_installation_rows": 4023,
+    "benchmarks": [
+      {
+        "name": "plain_hits",
+        "callsPerRound": 200000,
+        "rounds": 7,
+        "baselineMedianMs": 47.5213,
+        "optimizedMedianMs": 18.3987,
+        "timeReductionPercent": 61.283256139878326,
+        "baselineBytesPerCall": 609.56032,
+        "optimizedBytesPerCall": 0
+      },
+      {
+        "name": "mixed_hits_and_misses",
+        "callsPerRound": 200000,
+        "rounds": 7,
+        "baselineMedianMs": 48.1192,
+        "optimizedMedianMs": 18.3164,
+        "timeReductionPercent": 61.93536052137192,
+        "baselineBytesPerCall": 614.09152,
+        "optimizedBytesPerCall": 0
+      },
+      {
+        "name": "CRLF_description_hits",
+        "callsPerRound": 200000,
+        "rounds": 7,
+        "baselineMedianMs": 54.8793,
+        "optimizedMedianMs": 47.4967,
+        "timeReductionPercent": 13.452431062349568,
+        "baselineBytesPerCall": 807.84064,
+        "optimizedBytesPerCall": 150.28032
+      },
+      {
+        "name": "observe_without_diagnostics",
+        "callsPerRound": 200000,
+        "rounds": 7,
+        "baselineMedianMs": 28.1285,
+        "optimizedMedianMs": 5.2335,
+        "timeReductionPercent": 81.39431537408677,
+        "baselineBytesPerCall": 312,
+        "optimizedBytesPerCall": 0
+      },
+      {
+        "name": "observe_with_diagnostics_repeated_identity",
+        "callsPerRound": 200000,
+        "rounds": 7,
+        "baselineMedianMs": 29.1182,
+        "optimizedMedianMs": 28.1971,
+        "timeReductionPercent": 3.1633136663667516,
+        "baselineBytesPerCall": 312,
+        "optimizedBytesPerCall": 312
+      }
+    ],
+    "enabled_diagnostics_unchanged": true
+  },
+  "dynamic": {
+    "checks": 5246,
+    "public_exact_rows": 5204,
+    "benchmarks": [
+      {
+        "name": "exact-hit",
+        "operations": 200000,
+        "repetitions": 5,
+        "medianBytesPerOperation": 0,
+        "medianNanosecondsPerOperation": 31.362
+      },
+      {
+        "name": "regex-cache-hit",
+        "operations": 200000,
+        "repetitions": 5,
+        "medianBytesPerOperation": 0,
+        "medianNanosecondsPerOperation": 57.005
+      },
+      {
+        "name": "negative-cache-hit",
+        "operations": 200000,
+        "repetitions": 5,
+        "medianBytesPerOperation": 0,
+        "medianNanosecondsPerOperation": 58.7515
+      },
+      {
+        "name": "global-fallback-cache-hit",
+        "operations": 200000,
+        "repetitions": 5,
+        "medianBytesPerOperation": 0,
+        "medianNanosecondsPerOperation": 57.3255
+      },
+      {
+        "name": "cold-negative-eviction",
+        "operations": 8192,
+        "repetitions": 5,
+        "medianBytesPerOperation": 145.3134765625,
+        "medianNanosecondsPerOperation": 175.439453125
+      }
+    ]
+  },
+  "font": {
+    "passed": true,
+    "checks": 10015,
+    "iterationsPerRun": 200000,
+    "runs": 5,
+    "runtime": "10.0.8",
+    "tieredCompilation": "0",
+    "baselineMedianMs": 67.8151,
+    "optimizedMedianMs": 7.6893,
+    "ratio": 8.819411389853432,
+    "optimizedAllocatedBytes": 0,
+    "limitation": "Synthetic repeated labels on .NET 10, not Unity Mono or complete font drawing; first-seen or changing text still requires glyph checks."
+  },
+  "coordinate_native": {
+    "checks": 43,
+    "resource_keys": 24,
+    "scope": "Authorized read-only installed DLL/resource/IL checks and isolated managed prefix calls. Not 24 Studio controls rendered. Explicit language and unknown keys retain original behavior."
+  },
+  "sidebar": {
+    "change": "Reuse native GetComponentsInChildren list overload and pruning buffers; preserve polling cadence and layout policy.",
+    "unity_2019_overload_metadata_reviewed": true,
+    "runtime_allocation_measurement": false
+  },
+  "installer_synthetic_tests": 18,
+  "limitations": [
+    "Measurements use .NET 10, not the Unity Mono runtime or whole-game frame rate.",
+    "CRLF source normalization and explicitly enabled audit capture still allocate.",
+    "Unopened plugin windows and hardcoded non-resource labels are not fully verified.",
+    "Previous ConsoleLogListener Invalid handle issue remains separate."
+  ],
+  "package_fixture": {
+    "manifest_files": 700,
+    "installed_files": 693,
+    "optional_skipped": 7,
+    "repeat_install_no_changes": true,
+    "rollback_restored": true,
+    "real_game_modified": false
+  },
+  "runtime_startup": {
+    "font": "SimSun",
+    "visible_tmp_missing": 0,
+    "configuration_entries_loaded": 4023,
+    "dynamic_rules_loaded": 239,
+    "dynamic_exact_entries_loaded": 6386,
+    "coordinate_adapter_ready": true,
+    "user_acceptance": "pending"
+  }
+}

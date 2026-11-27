@@ -14,7 +14,7 @@ using UnityEngine.UI;
 
 namespace Codex.StudioPanelTypography
 {
-    [BepInPlugin("codex.studio.paneltypography", "Studio Sidebar Chinese Typography", "1.2.0")]
+    [BepInPlugin("codex.studio.paneltypography", "Studio Sidebar Chinese Typography", "1.2.1")]
     [BepInDependency("codex.studio.fontcontroller", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("starstorm.lightsettings")]
     [BepInProcess("CharaStudio")]

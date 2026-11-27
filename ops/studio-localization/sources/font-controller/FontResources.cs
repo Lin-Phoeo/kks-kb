@@ -20,7 +20,7 @@ namespace Codex.StudioFontController
         internal readonly string LegacyFamily;
         internal readonly float LegacyPreferredHeight;
         internal bool ImGuiValidated;
-        private readonly Dictionary<char, bool> _characters = new Dictionary<char, bool>();
+        private readonly GlyphCoverage _coverage;
         internal FontResources(string path, FontSourceResolver resolver, string requestedFamily)
         {
             Path = path;
@@ -36,6 +36,7 @@ namespace Codex.StudioFontController
                 LegacyFamily = resolver.RegisteredFamily(path, Family, requestedFamily, Font.GetOSInstalledFontNames());
                 Font = Font.CreateDynamicFontFromOSFont(LegacyFamily, 14);
                 if (!Font || !Font.dynamic || Font.fontSize <= 0) throw new InvalidOperationException("系统字体未提供可用的界面字形。");
+                _coverage = new GlyphCoverage(Font.HasCharacter);
                 Font.RequestCharactersInTexture("x中文", 14, FontStyle.Normal);
                 using (var generator = new TextGenerator())
                     LegacyPreferredHeight = generator.GetPreferredHeight("x", new TextGenerationSettings {
@@ -61,15 +62,7 @@ namespace Codex.StudioFontController
         }
         internal bool Contains(string text)
         {
-            if (string.IsNullOrEmpty(text)) return true;
-            foreach (char c in text)
-            {
-                if (char.IsWhiteSpace(c) || char.IsControl(c)) continue;
-                bool found;
-                if (!_characters.TryGetValue(c, out found)) { found = Font.HasCharacter(c); _characters[c] = found; }
-                if (!found) return false;
-            }
-            return true;
+            return _coverage.Contains(text);
         }
         internal void KeepFallback(TMP_FontAsset font)
         {

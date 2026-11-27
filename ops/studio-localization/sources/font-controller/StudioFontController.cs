@@ -15,7 +15,7 @@ using UnityEngine.UI;
 
 namespace Codex.StudioFontController
 {
-    [BepInPlugin(PluginGuid, "自定义字体 / Studio Font Controller", "1.0.4")]
+    [BepInPlugin(PluginGuid, "自定义字体 / Studio Font Controller", "1.0.5")]
     [BepInProcess("CharaStudio")]
     public sealed class Plugin : BaseUnityPlugin
     {

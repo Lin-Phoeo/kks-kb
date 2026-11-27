@@ -16,7 +16,7 @@ using UnityEngine.SceneManagement;
 
 namespace Codex.StudioConfigLocalization
 {
-    [BepInPlugin(Guid, "Studio Configuration Chinese Display", "1.0.0")]
+    [BepInPlugin(Guid, "Studio Configuration Chinese Display", "1.0.1")]
     [BepInProcess("CharaStudio")]
     [BepInDependency("com.bepis.bepinex.configurationmanager", BepInDependency.DependencyFlags.HardDependency)]
     public sealed class Plugin : BaseUnityPlugin
@@ -34,6 +34,8 @@ namespace Codex.StudioConfigLocalization
         private readonly HashSet<string> _observed = new HashSet<string>(StringComparer.Ordinal);
         private readonly Dictionary<string, string> _sourceHashes = new Dictionary<string, string>(StringComparer.Ordinal);
         private Harmony _harmony;
+        private string _auditOutput;
+        private bool _auditEnabled;
         private float _auditAt;
         private bool _audited;
         private bool _managerAudited;
@@ -47,6 +49,8 @@ namespace Codex.StudioConfigLocalization
         {
             try
             {
+                _auditOutput = Environment.GetEnvironmentVariable("KKS_CONFIG_LOCALIZATION_VERIFY_OUTPUT");
+                _auditEnabled = !string.IsNullOrEmpty(_auditOutput);
                 Assembly manager = typeof(SettingEntryBase).Assembly;
                 using (SHA256 hash = SHA256.Create())
                 using (FileStream stream = File.OpenRead(manager.Location))
@@ -74,7 +78,7 @@ namespace Codex.StudioConfigLocalization
                 if (flagsMethod == null) throw new MissingMethodException("DrawFlagsField");
                 _harmony.Patch(flagsMethod, transpiler: new HarmonyMethod(typeof(Plugin).GetMethod("FlagsTranspiler", All)));
                 _patched.Add(flagsMethod);
-                _auditAt = Time.unscaledTime + 5f;
+                if (_auditEnabled) _auditAt = Time.unscaledTime + 5f;
                 Logger.LogInfo("STUDIO_CONFIG_LOCALIZATION_READY entries=" + _catalog.Count + " identity=plugin-guid+section+key");
             }
             catch (Exception error)
@@ -98,7 +102,7 @@ namespace Codex.StudioConfigLocalization
 
         private static void ManagerListPostfix()
         {
-            if (_instance == null || _instance._managerAudited) return;
+            if (_instance == null || !_instance._auditEnabled || _instance._managerAudited) return;
             _instance._managerAudited = true;
             _instance.WriteAudit(false, true);
         }
@@ -204,7 +208,7 @@ namespace Codex.StudioConfigLocalization
 
         private static void Observe(string guid, string section, string key, string kind, string source)
         {
-            if (_instance == null) return;
+            if (_instance == null || !_instance._auditEnabled) return;
             string sourceHash;
             if (!_instance._sourceHashes.TryGetValue(source, out sourceHash))
             {
@@ -217,15 +221,15 @@ namespace Codex.StudioConfigLocalization
 
         private void Update()
         {
-            if (_audited || _catalog == null || Time.unscaledTime < _auditAt || SceneManager.GetActiveScene().name != "Studio") return;
+            if (!_auditEnabled || _audited || _catalog == null || Time.unscaledTime < _auditAt || SceneManager.GetActiveScene().name != "Studio") return;
             _audited = true;
             WriteAudit(false);
         }
 
         private void WriteAudit(bool final, bool managerReady = false)
         {
-            string requested = Environment.GetEnvironmentVariable("KKS_CONFIG_LOCALIZATION_VERIFY_OUTPUT");
-            if (string.IsNullOrEmpty(requested)) return;
+            if (!_auditEnabled) return;
+            string requested = _auditOutput;
             try
             {
                 string allowed = Path.GetFullPath(Path.Combine(Paths.GameRootPath, ".scratch", "studio-translation-20261126", "full-pass-20261127")) + Path.DirectorySeparatorChar;
