@@ -1,0 +1,58 @@
+{
+  "original_sha256": "be9a83e1619a7bf332f7c0a54c3f88a5b920135b3c0096ebd2326c3d33238736",
+  "candidate_sha256": "530dc95e00cfb34486687a3de85cb995d4f6ae1cacc7169d58c07b97dacd15d7",
+  "public_source_rebuild_matches_candidate": true,
+  "original_cases": {
+    "passed": true,
+    "checks": 62,
+    "meaning": "Expected original behavior and defects reproduced"
+  },
+  "candidate_cases": {
+    "passed": true,
+    "checks": 107
+  },
+  "rejection_checks": {
+    "passed": true,
+    "checks": 3,
+    "cases": [
+      "unknown input",
+      "already patched input",
+      "existing output unchanged"
+    ]
+  },
+  "total_observed_checks": 172,
+  "changed_original_methods": [
+    "TextureExporter.WriteAllBytes",
+    "TextureExporter.SaveTexture",
+    "TextureExporter.ConvertToRGBNormalMap",
+    "Grey.Export",
+    "Fbx.ExportSkinnedMeshOrCloth",
+    "Fbx.ExportMesh"
+  ],
+  "unchanged_original_methods": 341,
+  "helper_methods": 6,
+  "new_assembly_references": 0,
+  "runtime": "v4.0.30319",
+  "build_warnings": 0,
+  "build_errors": 0,
+  "independent_il_checks": 7,
+  "original_preserved": true,
+  "game_started": false,
+  "candidate_installed": false,
+  "validation_boundary": "Actual original/candidate CIL and imported helper; synthetic Unity rendering/native FBX; real System.IO only in isolated temporary directories. No real GPU color roundtrip or FBX export acceptance.",
+  "preserved_existing_limits": [
+    "Export remains synchronous on the main thread.",
+    "Original assignment of an empty shared mesh name remains.",
+    "BuildTextureExporter failure before its surrounding try is not covered.",
+    "Creating the Textures subdirectory can still leave the original UI busy flag set on failure."
+  ],
+  "reference_installation": {
+    "installed": true,
+    "files": [
+      "managed reviewed plugin",
+      "unchanged x64 native dependency"
+    ],
+    "original_outputs_overwritten": false,
+    "runtime_verified": false
+  }
+}

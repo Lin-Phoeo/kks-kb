@@ -1,0 +1,1 @@
+<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><TargetFramework>net10.0</TargetFramework><AssemblyName>Assembly-CSharp</AssemblyName><ImplicitUsings>enable</ImplicitUsings><Nullable>disable</Nullable><AssemblyVersion>0.0.0.0</AssemblyVersion></PropertyGroup><ItemGroup><ProjectReference Include="../unity-stub/UnityStub.csproj"/></ItemGroup></Project>
