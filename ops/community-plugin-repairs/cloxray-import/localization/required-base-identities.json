@@ -1,0 +1,114 @@
+[
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "General",
+    "value": "常规"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "AutoBodyReveal",
+    "value": "自动身体透视"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "WombExpand",
+    "value": "子宫扩张"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "General",
+    "settingKey": "Enabled",
+    "source": "Enabled",
+    "value": "启用"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "General",
+    "settingKey": "Enabled",
+    "source": "Master switch for the whole mod (ON by default). OFF = the plugin stops driving and stops reaching into the scene: wombs freeze (canal/liquid stop updating), no x-ray auto-apply on character load, and BetterPenetration + the penis FK are left exactly as you posed them. Takes effect live — no scene reload needed.",
+    "value": "整个模组的总开关，默认开启。关闭后停止驱动和访问场景，子宫模型的通道及液体停止更新，加载角色时不再自动应用透视，BetterPenetration 和生殖器 FK 保持当前姿势。实时生效，无需重新加载场景。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "AutoBodyReveal",
+    "settingKey": "Enable",
+    "source": "Enable",
+    "value": "启用"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "AutoBodyReveal",
+    "settingKey": "Enable",
+    "source": "Auto-apply the CloXray BodyReveal (x-ray body stencil) via MaterialEditor when a character loads/swaps, IF a CloXray womb is near its vagina. The womb's organ stencil is matched automatically. Per-body: only characters with a womb nearby are touched.",
+    "value": "加载或替换角色时，若角色阴道附近有 CloXray 子宫模型，通过材质编辑器自动应用 CloXray BodyReveal 身体透视模板。自动匹配子宫的器官模板值，仅处理附近确有子宫模型的角色。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "AutoBodyReveal",
+    "settingKey": "Apply Now Hotkey",
+    "source": "Apply Now Hotkey",
+    "value": "立即应用快捷键"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "AutoBodyReveal",
+    "settingKey": "Apply Now Hotkey",
+    "source": "Manually (re)apply BodyReveal to every character near a CloXray womb. Use after first placing a womb, or after dragging one onto a different character. (Shift+Alt+X. Rebind here if it ever collides with another plugin.)",
+    "value": "手动对 CloXray 子宫模型附近的各角色重新应用 BodyReveal。首次放置模型或将其拖到其他角色上后可使用。默认 Shift+Alt+X，如与其他插件冲突可在此重新绑定。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "WombExpand",
+    "settingKey": "React to colliders",
+    "source": "React to colliders",
+    "value": "响应碰撞体"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "WombExpand",
+    "settingKey": "React to colliders",
+    "source": "When NO BP penis is engaged, also react to the nearest DynamicBoneCollider (e.g. a BP collider you place and size with KKPE on a bottle/toy). The womb opens and displaces from the collider's deeper capsule end (treated as the tip) and its radius (girth), exactly like a penis. READ-ONLY: the collider itself is never modified. A real BP penis always takes priority.",
+    "value": "未匹配 BP 生殖器模型时，响应最近的 DynamicBoneCollider，例如通过 KKPE 放置并调整大小的道具碰撞器。将胶囊较深的一端视为尖端、半径视为粗细，据此计算张开和位移。仅读取碰撞器数据，不修改碰撞器本身。实际 BP 生殖器模型始终优先。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "AutoBodyReveal",
+    "settingKey": "Also stamp worn clothes (x-ray through clothes)",
+    "source": "Also stamp worn clothes (x-ray through clothes)",
+    "value": "同时处理已穿衣物（隔衣透视）"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "AutoBodyReveal",
+    "settingKey": "Also stamp worn clothes (x-ray through clothes)",
+    "source": "When applying BodyReveal (hotkey or character-change), ALSO stamp every WORN torso garment (top/bot/bra/shorts/panst; only clothes that are ON) with a BodyReveal material copy at the matching pair stencil — the womb x-rays through the clothes and the out-of-body bleed disappears at stamped pixels. ME persists the copies per scene/card. A freshly equipped garment needs another hotkey press. OFF = body only (clothes hide the shell; interior/cum may bleed unless the womb's OutBodySceneConfine is on).",
+    "value": "应用 BodyReveal 时，额外为当前穿着的躯干部位服装（上装、下装、胸罩、内裤、连裤袜）建立 BodyReveal 材质副本，写入匹配的成对模板值，使子宫透视能穿过服装，并在已写入的像素处消除体外溢出。材质编辑器会将副本保存到场景或人物卡。换上新服装后需再次按快捷键。关闭时只处理身体，服装会遮住外壳，内部和体液可能溢出，除非开启子宫材质的 OutBodySceneConfine。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "AutoBodyReveal",
+    "settingKey": "Also apply skin veil (BodyRevealExtra)",
+    "source": "Also apply skin veil (BodyRevealExtra)",
+    "value": "同时应用皮肤遮罩（BodyRevealExtra）"
+  }
+]

@@ -1,0 +1,202 @@
+[
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "header",
+    "section": null,
+    "settingKey": null,
+    "source": "LiquidWobbleMPB 1.1.6",
+    "value": "液体与形变 / LiquidWobbleMPB 1.1.6"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "Free-H",
+    "value": "自由 H 模式"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "General",
+    "settingKey": "Diagnostic log (for bug reports)",
+    "source": "Diagnostic log (for bug reports)",
+    "value": "诊断日志（问题反馈）"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "General",
+    "settingKey": "Diagnostic log (for bug reports)",
+    "source": "Writes what the plugin is doing to BepInEx/LogOutput.log: which penis it paired with which womb, the entry anchor and stencil pair it chose, the materials it stamped, and any warning that is otherwise silent. Event-driven, so it stays quiet until something happens — a scene load plus one hotkey press is a few hundred lines. OFF by default: a shipped build logs nothing at all. Turn it on, reproduce the problem, then send the log. Takes effect live.",
+    "value": "将插件的配对对象、入口锚点、模板值组合、写入模板的材质及原本不显示的警告记录到 BepInEx/LogOutput.log。仅在事件发生时记录；加载场景并按一次快捷键可能产生数百行。发行版默认关闭插件诊断输出。排查时开启并复现问题，再提供日志。实时生效。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "AutoBodyReveal",
+    "settingKey": "Studio: womb + pair hotkey",
+    "source": "Studio: womb + pair hotkey",
+    "value": "工作室：添加模型并配对快捷键"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "AutoBodyReveal",
+    "settingKey": "Studio: womb + pair hotkey",
+    "source": "STUDIO only. Select a girl and press: if she has no VAGINAL womb one is added for her, parented to her and placed, then the whole x-ray is applied - no need to find the item and drop it in. Press again to move her to the next stencil pair, which is how a second or third girl in one scene gets her own (two girls sharing a pair see each other's organs). After the last pair it removes her x-ray and womb, and the next press starts over. Select a WOMB instead of a girl and it sets up that womb alone, taking the penis aimed nearest it - that is how a womb anywhere else, or one worn by nobody, gets wired. (Ctrl+Shift+W.)",
+    "value": "仅工作室生效。选中女性角色后按下：若尚无阴道位置的子宫模型，则自动添加、设置父子关系并定位，然后应用透视。再次按下切换到下一组模板值，便于同一场景的多个角色各用一组；共用一组时会互相显示对方的器官。最后一组之后会移除该角色的透视和模型，再按从头开始。也可直接选中子宫模型，只配置所选模型并匹配朝向最接近它的生殖器模型，适用于其他位置或未附着角色的模型。默认 Ctrl+Shift+W。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "AutoBodyReveal",
+    "settingKey": "Studio: anal womb hotkey",
+    "source": "Studio: anal womb hotkey",
+    "value": "工作室：添加肛门通道快捷键"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "AutoBodyReveal",
+    "settingKey": "Studio: anal womb hotkey",
+    "source": "STUDIO only. The same thing for her ANUS: select a girl and press to add Xray Womb 2 at her anus point with its uterus collapsed (a plain canal), on her current stencil pair, then apply the x-ray and take the penis. It manages the womb hanging in that anus point and no other - a womb she wears anywhere else is set up by selecting that womb and pressing the pair key. It never walks the stencil cycle either; the pair hotkey owns that. (Ctrl+Shift+A. Vanilla Studio also resets the camera on a bare A; rebind here if that gets in the way.)",
+    "value": "仅工作室生效。选中女性角色后按下，在肛门位置添加第二种透视模型，并收起子宫部分，仅保留通道；使用角色当前的模板值组合，再应用透视并配对生殖器模型。此快捷键只管理挂在该肛门位置的模型。其他位置的模型应直接选中后使用配对快捷键。本操作不切换模板值组合，循环切换仍由配对快捷键负责。默认 Ctrl+Shift+A；原版工作室也用 A 重置相机，若发生干扰可重新绑定。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "Free-H",
+    "settingKey": "Liquid fill amount",
+    "source": "Liquid fill amount",
+    "value": "液体填充量"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "Free-H",
+    "settingKey": "Liquid fill amount",
+    "source": "MAIN GAME only: the womb's liquid fill level (Material Editor has no H-scene UI, so the fill is set here instead). 0 = empty (default) — raise it when you want cum. Live: drag mid-scene and the liquid follows. In Studio this does nothing (use Material Editor there).",
+    "value": "仅游戏本体生效。设置子宫模型中的液体量；H 场景没有材质编辑器界面，因此在此调整。0 表示空，默认值为 0；增大数值可增加液体。可在场景中实时拖动调整。工作室中此项无效，请使用材质编辑器。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "Free-H",
+    "settingKey": "Toggle womb hotkey",
+    "source": "Toggle womb hotkey",
+    "value": "切换模型快捷键"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "Free-H",
+    "settingKey": "Toggle womb hotkey",
+    "source": "MAIN GAME only: toggles the womb on the H female (spawn/remove + x-ray). Same combo as the Studio one-key setup, so there is one key to remember for both. NOT Shift+Alt+X: another plugin's raw Alt+X check also fires on that combo and hides the penis.",
+    "value": "仅游戏本体生效。为 H 场景的女性角色切换子宫模型和透视：添加或移除。默认与工作室的一键设置共用 Ctrl+Shift+W。不要改用 Shift+Alt+X：其他插件可能仅检测 Alt+X，使该组合也触发隐藏生殖器模型。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "Free-H",
+    "settingKey": "Auto penis length (fit animation)",
+    "source": "Auto penis length (fit animation)",
+    "value": "自动调整长度（适配动画）"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "Free-H",
+    "settingKey": "Auto penis length (fit animation)",
+    "source": "MAIN GAME only: slowly fits the penis's natural length to the current animation (constant during play — the size NEVER pulses with the stroke). Too long for the animation (tip parked at the womb, only compressing) -> shortened until its own motion shows as a real stroke; too short (never reaches the womb) -> lengthened until the deepest push just reaches it. Adapts over a few seconds per animation/position change; restored on womb toggle-off. OFF = the legacy squish-sweep stroke.",
+    "value": "仅游戏本体生效。缓慢调整生殖器模型的基础长度以适配当前动画；适配后长度保持稳定，不随每次往复运动反复变化。过长而只产生压缩时缩短，过短而无法达到目标时延长，使最大行程恰好到达目标。切换动画或位置后会用数秒重新适配；关闭子宫模型时恢复原值。关闭此项则使用旧版的压缩阈值往复方式。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "Free-H",
+    "settingKey": "Womb offset to back (mm)",
+    "source": "Womb offset to back (mm)",
+    "value": "模型前后偏移（毫米）"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "Free-H",
+    "settingKey": "Womb offset to back (mm)",
+    "source": "MAIN GAME only: shifts the whole womb along her front/back axis (pelvis frame — follows the pose). LOWER = toward her BACK, higher = toward her belly (the kokan bone's forward axis points into her body, so the shift runs the opposite way to what the name suggests — verified on screen 2026-08-07). Live.",
+    "value": "仅游戏本体生效。沿角色骨盆的前后轴移动整个子宫模型，方向随姿势变化。数值减小向背部移动，增大向腹部移动。由于胯部骨骼的正向轴指向身体内部，实际方向与英文键名中的“向后”相反。实时生效。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "Free-H",
+    "settingKey": "Auto penis length: size bias (%)",
+    "source": "Auto penis length: size bias (%)",
+    "value": "自动长度：目标比例（百分比）"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "Free-H",
+    "settingKey": "Auto penis length: size bias (%)",
+    "source": "MAIN GAME only, with 'Auto penis length' ON: where the auto fit aims the deepest push, relative to the womb's cervix. 100 = at the cervix (the tuned default). Above 100 = a slightly LONGER penis (the deepest push lands past the cervix, more dome push); below 100 = slightly shorter (stops just before it). The fit still measures every animation, so the stroke stays visible at any setting. Takes effect on the next pose/animation change.",
+    "value": "仅游戏本体生效，且需启用自动长度。以宫颈位置为基准调整最大行程的适配目标：100 表示到达宫颈，为默认值；大于 100 会略微加长，使目标超出宫颈并增加顶部形变；小于 100 会略微缩短，停在宫颈之前。每个动画仍会重新测量，以保留往复运动。在下一次切换姿势或动画时生效。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "Free-H",
+    "settingKey": "Cum flows out on pull-out",
+    "source": "Cum flows out on pull-out",
+    "value": "退出时液体流出"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "Free-H",
+    "settingKey": "Cum flows out on pull-out",
+    "source": "MAIN GAME only: when the penis withdraws with cum in the womb, the cum flows womb -> canal -> out the entrance over a few seconds (instead of just vanishing). The canal returns to empty afterward.",
+    "value": "仅游戏本体生效。生殖器模型退出且子宫模型中有液体时，液体会在数秒内依次经过子宫、通道和入口流出，而非立即消失；之后通道恢复为空。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "Free-H",
+    "settingKey": "BP dan options override",
+    "source": "BP dan options override",
+    "value": "覆盖生殖器模型的穿透参数"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "Free-H",
+    "settingKey": "BP dan options override",
+    "source": "MAIN GAME only: semicolon list of name=value pairs applied to the H male's BetterPenetration DanOptions when the womb is applied (BP has no per-male UI in Free-H). squishThreshold here is only the STARTING value — while the womb pin is active the plugin sweeps it per-frame between the 'Stroke shallow/deep point (mm)' settings (those are the depth control); danLengthSquish = how tightly the tip obeys the stroke points (0.8 = 80%, 1 = exact); danGirthSquish = how much the shaft thickens while compressed. To harvest values from a Studio male: press the apply hotkey in Studio and copy the BP-DANOPT log line. Empty = leave BP's defaults. simplifyVaginal is forced true afterwards while the pin is enabled.",
+    "value": "仅游戏本体生效。应用子宫模型时，将以分号分隔的 name=value 参数写入男性角色的 BetterPenetration DanOptions；自由 H 模式没有逐角色的对应界面。squishThreshold 只是初始压缩阈值，目标固定生效期间会按内部浅、深运动端点逐帧调整。danLengthSquish 控制尖端对端点的跟随程度，0.8 为 80%，1 为完全跟随；danGirthSquish 控制压缩时的增粗程度。若需从工作室获取参数，可在工作室按应用快捷键并复制日志中的 BP-DANOPT 行。留空不覆盖 BP 默认参数；但目标固定生效期间，后续仍会强制启用 simplifyVaginal。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "AutoBodyReveal",
+    "settingKey": "Also apply skin veil (BodyRevealExtra)",
+    "source": "When applying BodyReveal (hotkey or character-change), ALSO create the second body material copy with CloXray/BodyRevealExtra — the translucent-skin layer over the x-ray window with the 'XrayAlpha' strength slider (0=skin opaque, 1=raw x-ray). Two copies are required because one material has one render queue - the stamp draws before the organ, the veil after it; this just saves doing the second copy by hand. OFF = stamp only (the pre-veil look).",
+    "value": "应用身体透视时，通过快捷键或角色变更额外创建第二个身体材质副本，使用 CloXray/BodyRevealExtra 在透视区域上叠加半透明皮肤层。XrayAlpha 为 0 时皮肤不透明，为 1 时完整透视。一个材质只能属于一个渲染队列，因此需要分别在器官前绘制模板、在器官后绘制皮肤层；此选项会自动创建第二份副本。关闭时只建立模板副本，保留添加皮肤层前的外观。"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "setting",
+    "section": "AutoBodyReveal",
+    "settingKey": "Hands and limbs block the x-ray",
+    "source": "Hands and limbs block the x-ray",
+    "value": "手与四肢遮挡透视"
+  },
+  {
+    "pluginGuid": "Clo.LiquidWobbleMPB",
+    "kind": "description",
+    "section": "AutoBodyReveal",
+    "settingKey": "Hands and limbs block the x-ray",
+    "source": "ON (default): the torso mask stops the x-ray window at hands and limbs. OFF: the womb shows through everything, the old behavior. Free-H has no MaterialEditor access, so this is the switch there; it re-applies live to the spawned womb's wearer.",
+    "value": "默认开启。使用躯干遮罩，使手与四肢遮住透视窗口。关闭时恢复旧版行为，子宫模型可透过这些部位显示。自由 H 模式没有材质编辑器入口，可用此项切换；会实时重新应用到当前使用子宫模型的角色。"
+  }
+]
