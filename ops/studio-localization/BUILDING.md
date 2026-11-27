@@ -28,13 +28,13 @@ dotnet "E:/StudioZhBuild/core-tool/TypeFix.dll" patch "E:/OfficialXUnity/XUnity.
 
 ~~~powershell
 py -B -m unittest discover -s tests -p "test_*.py" -v
-py -B build_release.py --artifacts "E:/StudioZhBuild/artifacts" --output "E:/StudioZhRelease" --version "0.3.0-rc.1"
 ~~~
 
 LocalTools 使用 .NET 10，引用用户已有 Mono.Cecil，运行时从游戏目录解析该依赖。正式 ZIP 附本项目工具 DLL、deps 和 runtimeconfig，用户只需 .NET 10 Runtime。
 
 ~~~powershell
 dotnet build tools/LocalTools/LocalTools.csproj -c Release -p:GameRoot="E:/Games/Koikatsu Sunshine" -o "E:/StudioZhBuild/artifacts/tools"
+py -B build_release.py --artifacts "E:/StudioZhBuild/artifacts" --output "E:/StudioZhRelease" --version "0.3.0-rc.2"
 ~~~
 
 LocalTools 的 import/encode/rules 入口调用实际 XUnity parser，native 入口仅修改受检插件常量。公开动态桥目录只从清洁包中的词表重建。导入本地复用值后，local_import.py 自动重新生成桥接目录，避免读取私人缓存。

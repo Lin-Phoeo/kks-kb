@@ -1,8 +1,8 @@
 {
   "candidate_version": "0.3.0-rc.2",
   "baseline_release": "0.3.0-rc.1",
-  "published": false,
-  "runtime_acceptance": "original_chinese_font_final_check_pending; further addition support paused by user",
+  "published": true,
+  "runtime_acceptance": "See font-controls-validation.json for accepted 1.1.0 and font-panel-validation.json for final 1.1.1 offline-only scope.",
   "components": {
     "Codex.StudioFontController.dll": "fb771b9f867aba06bc7eed2435bbafbae7a57f40f159b15ac96bd0995061178c",
     "Codex.StudioPanelTypography.dll": "214708dbe2f8ace230cc1ec047df2ea904203b85b4e9273f7b30ac4673fef1b3",
@@ -179,5 +179,6 @@
     "font_switch_failures": 0,
     "observed_tmp_missing_max": 0,
     "later_regression": "DBDE and AssetImport interpreted Chinese replacement/empty labels as business state. First native candidate failed clothing transfer compatibility."
-  }
+  },
+  "release_tag": "studio-zh-cn-v0.3.0-rc.2"
 }
