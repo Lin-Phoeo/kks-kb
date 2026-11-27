@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "catalogSourceIdentities": 48,
+  "greySourceIdentities": 18,
+  "actualCatalogAndRuleMatcherChecks": 72,
+  "coreTextEncoderParserRoundTrips": 17,
+  "parsedScopedOwner": "KKSMeshExporter",
+  "scopedExactEntries": 17,
+  "dynamicRegexEntries": 1,
+  "textAndJsonExactPairsIdentical": true,
+  "notGlobal": true,
+  "liveWritten": false,
+  "realGuiDrawingVerified": false,
+  "scopeRegistrationVerifiedAtRuntime": false,
+  "scopeRegistrationContract": "XUnity creates per-plugin cache from each Text/Plugins child DirectoryInfo.Name; explicit nonempty KKSMeshExporter scoped text will be installed by the main data installer. Actual Grey.OnGUI hook log remains required."
+}

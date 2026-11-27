@@ -1,0 +1,17 @@
+Hide Grey.MeshExporter=隐藏网格导出器
+Show Grey.MeshExporter=显示网格导出器
+Close this window=关闭窗口
+No current errors.=当前没有错误。
+Options:=选项：
+Hide UI show button. (Make sure your keybinding works first!)=隐藏窗口入口按钮（请先确认快捷键可用）
+You need to put the UnityFbxExporter DLL(s) with the executables.=请将 UnityFbxExporter DLL 放在游戏可执行文件所在目录。
+Export in progress. Please wait.\nYour game will almost certainly freeze during this process.\nJust wait for it. It's not crashed, just working hard.=正在导出，请稍候。\n导出过程中游戏可能暂时无响应。\n请等待处理完成。
+Embed textures into fbx (will make fbx MUCH larger, but you no longer need the pngs)=将贴图嵌入 FBX（文件会明显变大，但无需另附 PNG）
+Attempt to convert Grayscale bump/normal maps to RGB=尝试转换凹凸／法线贴图通道为 RGB
+Save both original and converted bump/normal maps. (requires attempting conversion)=同时保存原图与转换图（须启用贴图转换）
+EXPERIMENTAL [config not saved!] Attempt exports on items marked 'cloth' (This will break. You've been warned.)=实验功能（不保存设置）：尝试导出布料对象，可能导出失败
+Create generic shader/materials as part of export process. (almost certainly not worth it)=生成通用着色器／材质（作者不推荐）
+Apply albedo/diffuse texture to fbx material. (required enabled shader/materials)=为 FBX 材质应用基础色／漫反射贴图（须启用材质生成）
+Find Characters To Export=查找可导出的角色
+No characters found.=未找到角色。
+Export All Found Characters.=导出找到的全部角色

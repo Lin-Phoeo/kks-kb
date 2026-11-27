@@ -14,6 +14,8 @@
 
 参考环境已完成三插件的自动空Studio启动检查：ManageableSkirts、修复后的DragDoll与Grey均加载；DragDoll原合同错误没有再出现，正常关闭后进程退出。没有激活裙链、操作姿势或执行真实导出，旧控制台退出句柄错误仍单独保留。详情见[启动验证](startup-verification.json)。
 
+后续有限真实验证包括 Grey 自有立方体的FBX/PNG导出、AssetImport完整类型加载和Vanity空启动，各自范围见对应目录。新增插件的自有中文显示增量见[localization](localization/README.md)：F1中英标题与中文设置说明，以及Grey窗口的独立作用域词条；不改变配置身份或覆盖既有完整词表。
+
 已有运行故障修复在独立 PR 的 `ops/studio-runtime-repairs/`；汉化与字体发行在 `ops/studio-localization/`。各分支的公开源码与真实安装分别记录，不因 GitHub 合并推定游戏已部署。
 
 ## 本轮来源核查结论
