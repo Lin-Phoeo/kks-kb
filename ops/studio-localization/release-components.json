@@ -89,11 +89,13 @@
     },
     {
       "artifact": "Codex.StudioImGuiRouteAdapter.dll",
-      "sha256": "3a6eb0b45d951bacf890d570d2a528135e3f531ab8b58a405d3a9616bf50d30c",
+      "sha256": "eb8094350c463e706809bc6ff8d5a5fc69df0345e79efb3dd9b4b2d1b7cb389d",
       "destination": "BepInEx/plugins/Codex.StudioImGuiRouteAdapter.dll",
       "kind": "helper",
       "source": "components/Codex.StudioImGuiRouteAdapter.dll",
-      "replace_sha256": [],
+      "replace_sha256": [
+        "3a6eb0b45d951bacf890d570d2a528135e3f531ab8b58a405d3a9616bf50d30c"
+      ],
       "requires": [
         "hidpi",
         "patched_core"
@@ -101,13 +103,14 @@
     },
     {
       "artifact": "Codex.StudioConfigLocalization.dll",
-      "sha256": "268e235b245506b011a0532ea8addc04a26550978daa09a4cfc2d4c7b1c02ca1",
+      "sha256": "9e936202e6671f85572e4f9667fa21de2ab2831a1d285efa5066b2db3284acb6",
       "destination": "BepInEx/plugins/Codex.StudioConfigLocalization.dll",
       "kind": "helper",
       "source": "components/Codex.StudioConfigLocalization.dll",
       "replace_sha256": [
         "c8e70625cdd8a1ac4c2b927260540dcdacc3b0a75f743aaf71f1a9822f119cd9",
-        "5e2b72cccd0cb5e6f23c7fadacf8a372eafe5ceab1c1202e1710c8bd60c3b837"
+        "5e2b72cccd0cb5e6f23c7fadacf8a372eafe5ceab1c1202e1710c8bd60c3b837",
+        "268e235b245506b011a0532ea8addc04a26550978daa09a4cfc2d4c7b1c02ca1"
       ],
       "requires": [
         "configuration_manager"
@@ -115,7 +118,7 @@
     },
     {
       "artifact": "Codex.StudioPanelTypography.dll",
-      "sha256": "282410eec0fb6cf0d0e2dc933e733724a90216222247410b387130983731db6e",
+      "sha256": "edb59d1ae193ee2dfc7fab66d4ff053cdcf3333f6e710396d307f808a26d437c",
       "destination": "BepInEx/plugins/Codex.StudioPanelTypography.dll",
       "kind": "helper",
       "source": "components/Codex.StudioPanelTypography.dll",
@@ -124,7 +127,8 @@
         "e7a9f7ffc8a6d1767811ef6305dbb10831359d3539888752999940f444814318",
         "8d920d54796d54130e9ffe3f62154decaf91c51e28486bc3db4569bf48a7a85d",
         "b9891fe3620ad429df8c4e279676ff47a7b498f0347f25177cd7a72bcd48866d",
-        "214708dbe2f8ace230cc1ec047df2ea904203b85b4e9273f7b30ac4673fef1b3"
+        "214708dbe2f8ace230cc1ec047df2ea904203b85b4e9273f7b30ac4673fef1b3",
+        "282410eec0fb6cf0d0e2dc933e733724a90216222247410b387130983731db6e"
       ],
       "requires": [
         "light_settings"
@@ -132,11 +136,13 @@
     },
     {
       "artifact": "Codex.StudioNativePluginText.dll",
-      "sha256": "015563a181c680a000d593a1292118561d3debffb94f792a67a5bfd9b66ecc53",
+      "sha256": "edbb4a89d0f436013d46e8101d9f4827ffcd36bc440503b7c0957a2bef9c614c",
       "destination": "BepInEx/plugins/Codex.StudioNativePluginText.dll",
       "kind": "helper",
       "source": "components/Codex.StudioNativePluginText.dll",
-      "replace_sha256": [],
+      "replace_sha256": [
+        "015563a181c680a000d593a1292118561d3debffb94f792a67a5bfd9b66ecc53"
+      ],
       "requires": [
         "video_export"
       ]
@@ -145,7 +151,7 @@
       "artifact": "Codex.StudioFontController.dll",
       "source": "components/Codex.StudioFontController.dll",
       "destination": "BepInEx/plugins/Codex.StudioFontController.dll",
-      "sha256": "f754bce9776b8ca8a4dfc2ae296b59a0e4bc610b8eb907ee3a5a3400be033fb4",
+      "sha256": "7d5c9711ba58fd1156381656eaa0d963a0bb2e6c142faa3710b804ebfad8d26d",
       "kind": "helper",
       "requires": [],
       "replace_sha256": [
@@ -159,42 +165,47 @@
         "2c84c96e4ab71339f0afd2cc271b792726bf74e42ff3b38f8a529e5d07799e68",
         "32087a707ecf9c45edb29e97296441db22940757af8ea26d94dc6a193ac5ea65",
         "fb771b9f867aba06bc7eed2435bbafbae7a57f40f159b15ac96bd0995061178c",
-        "f7d1f61c4975e1ae634852bfedf8b2ac3792f71f77bce92416d4682e79a23cdf"
+        "f7d1f61c4975e1ae634852bfedf8b2ac3792f71f77bce92416d4682e79a23cdf",
+        "f754bce9776b8ca8a4dfc2ae296b59a0e4bc610b8eb907ee3a5a3400be033fb4"
       ]
     },
     {
       "artifact": "Codex.StudioImGuiDynamicBridge.dll",
       "source": "components/Codex.StudioImGuiDynamicBridge.dll",
       "destination": "BepInEx/plugins/Codex.StudioImGuiDynamicBridge.dll",
-      "sha256": "896efe60c0095c4592d219f1d7bd64041c8f9c469bb4c5a5b4ef7e4851a671a2",
+      "sha256": "3f258c6329f5ab33ece17f8e072baa60cf06b780b7e720e48be2b9a545b533ad",
       "kind": "helper",
       "requires": [
         "patched_core"
       ],
       "replace_sha256": [
-        "f76f99fc74fa04029a6a45947536a448ed15d24851768002a8121d22f4b194ea"
+        "f76f99fc74fa04029a6a45947536a448ed15d24851768002a8121d22f4b194ea",
+        "896efe60c0095c4592d219f1d7bd64041c8f9c469bb4c5a5b4ef7e4851a671a2"
       ]
     },
     {
       "artifact": "Codex.StudioAniMorphLayoutCompat.dll",
       "source": "components/Codex.StudioAniMorphLayoutCompat.dll",
       "destination": "BepInEx/plugins/Codex.StudioAniMorphLayoutCompat.dll",
-      "sha256": "5aab51321ca167fa3172d0bf0958ecb9a9b5b9a44eb0da9979382f2e3d595f1e",
+      "sha256": "f639b818afe3cffc3998df36575ab646df5383ea72a4f545787d1c3dbc914ac9",
       "kind": "helper",
       "requires": [
         "animorph",
         "configuration_manager"
       ],
-      "replace_sha256": []
+      "replace_sha256": [
+        "5aab51321ca167fa3172d0bf0958ecb9a9b5b9a44eb0da9979382f2e3d595f1e"
+      ]
     },
     {
       "artifact": "Codex.StudioCoordinateNative.dll",
-      "sha256": "6d62829da61fe00687ab1399a163754f31e253334705b1ae51632a40c4cf7c7c",
+      "sha256": "b86032d0f39ea3db650dd8336d826709d3446c2a0a5e40fb6df83012faed94b5",
       "destination": "BepInEx/plugins/Codex.StudioCoordinateNative.dll",
       "source": "components/Codex.StudioCoordinateNative.dll",
       "kind": "helper",
       "replace_sha256": [
-        "760a46a52e527754717ec3efb14734ef74fc9758cd6948d433bdac97b24f39d5"
+        "760a46a52e527754717ec3efb14734ef74fc9758cd6948d433bdac97b24f39d5",
+        "6d62829da61fe00687ab1399a163754f31e253334705b1ae51632a40c4cf7c7c"
       ],
       "requires": [
         "coordinate_load_option"

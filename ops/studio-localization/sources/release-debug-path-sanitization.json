@@ -1,0 +1,177 @@
+{
+  "passed": true,
+  "assemblies": [
+    {
+      "assembly": "Codex.StudioAniMorphLayoutCompat.dll",
+      "before_sha256": "5aab51321ca167fa3172d0bf0958ecb9a9b5b9a44eb0da9979382f2e3d595f1e",
+      "after_sha256": "f639b818afe3cffc3998df36575ab646df5383ea72a4f545787d1c3dbc914ac9",
+      "bytes": 9728,
+      "changed_bytes": 183,
+      "path_regions": [
+        {
+          "start": 7044,
+          "end": 7229,
+          "basename": "Codex.StudioAniMorphLayoutCompat.pdb",
+          "guid_age_sha256": "cdb5b9b19cadda0e6a83bfe54ab509e01d51abb50d612c11f0bd7108dbeb317b"
+        }
+      ],
+      "all_other_bytes_identical": true,
+      "unsigned_il_only": true,
+      "original_paths_recorded": false
+    },
+    {
+      "assembly": "Codex.StudioConfigLocalization.dll",
+      "before_sha256": "268e235b245506b011a0532ea8addc04a26550978daa09a4cfc2d4c7b1c02ca1",
+      "after_sha256": "9e936202e6671f85572e4f9667fa21de2ab2831a1d285efa5066b2db3284acb6",
+      "bytes": 27136,
+      "changed_bytes": 153,
+      "path_regions": [
+        {
+          "start": 24880,
+          "end": 25037,
+          "basename": "Codex.StudioConfigLocalization.pdb",
+          "guid_age_sha256": "806f513290cd1e17b90b3f849e3ca56e77513384315fe3dc2b053e185194efdc"
+        }
+      ],
+      "all_other_bytes_identical": true,
+      "unsigned_il_only": true,
+      "original_paths_recorded": false
+    },
+    {
+      "assembly": "Codex.StudioCoordinateNative.dll",
+      "before_sha256": "6d62829da61fe00687ab1399a163754f31e253334705b1ae51632a40c4cf7c7c",
+      "after_sha256": "b86032d0f39ea3db650dd8336d826709d3446c2a0a5e40fb6df83012faed94b5",
+      "bytes": 17920,
+      "changed_bytes": 183,
+      "path_regions": [
+        {
+          "start": 15500,
+          "end": 15686,
+          "basename": "Codex.StudioCoordinateNative.pdb",
+          "guid_age_sha256": "e849ebc04390f5113024b044ade1381f3823cea77ada7d2b4ee1af2d73b9c5a2"
+        }
+      ],
+      "all_other_bytes_identical": true,
+      "unsigned_il_only": true,
+      "original_paths_recorded": false
+    },
+    {
+      "assembly": "Codex.StudioFontController.dll",
+      "before_sha256": "f754bce9776b8ca8a4dfc2ae296b59a0e4bc610b8eb907ee3a5a3400be033fb4",
+      "after_sha256": "7d5c9711ba58fd1156381656eaa0d963a0bb2e6c142faa3710b804ebfad8d26d",
+      "bytes": 83968,
+      "changed_bytes": 171,
+      "path_regions": [
+        {
+          "start": 81212,
+          "end": 81386,
+          "basename": "Codex.StudioFontController.pdb",
+          "guid_age_sha256": "3bdf6a1ec38e4ae2cf7d62d7abdd0bc921d62acbf97fb65d7f3d5b6e05d2a35c"
+        }
+      ],
+      "all_other_bytes_identical": true,
+      "unsigned_il_only": true,
+      "original_paths_recorded": false
+    },
+    {
+      "assembly": "Codex.StudioImGuiDynamicBridge.dll",
+      "before_sha256": "896efe60c0095c4592d219f1d7bd64041c8f9c469bb4c5a5b4ef7e4851a671a2",
+      "after_sha256": "3f258c6329f5ab33ece17f8e072baa60cf06b780b7e720e48be2b9a545b533ad",
+      "bytes": 26624,
+      "changed_bytes": 139,
+      "path_regions": [
+        {
+          "start": 24240,
+          "end": 24381,
+          "basename": "Codex.StudioImGuiDynamicBridge.pdb",
+          "guid_age_sha256": "2ee7765bceb3f499300721011ec5746ed3fad07d25ca5b2ffaba4decb783e470"
+        }
+      ],
+      "all_other_bytes_identical": true,
+      "unsigned_il_only": true,
+      "original_paths_recorded": false
+    },
+    {
+      "assembly": "Codex.StudioImGuiRouteAdapter.dll",
+      "before_sha256": "3a6eb0b45d951bacf890d570d2a528135e3f531ab8b58a405d3a9616bf50d30c",
+      "after_sha256": "eb8094350c463e706809bc6ff8d5a5fc69df0345e79efb3dd9b4b2d1b7cb389d",
+      "bytes": 21504,
+      "changed_bytes": 149,
+      "path_regions": [
+        {
+          "start": 19672,
+          "end": 19823,
+          "basename": "Codex.StudioImGuiRouteAdapter.pdb",
+          "guid_age_sha256": "10f74719d148b0b2d6d7f177c1c1c831d17b19c9353e2e652d3dfea4ca58efef"
+        }
+      ],
+      "all_other_bytes_identical": true,
+      "unsigned_il_only": true,
+      "original_paths_recorded": false
+    },
+    {
+      "assembly": "Codex.StudioNativePluginText.dll",
+      "before_sha256": "015563a181c680a000d593a1292118561d3debffb94f792a67a5bfd9b66ecc53",
+      "after_sha256": "edbb4a89d0f436013d46e8101d9f4827ffcd36bc440503b7c0957a2bef9c614c",
+      "bytes": 11264,
+      "changed_bytes": 140,
+      "path_regions": [
+        {
+          "start": 9000,
+          "end": 9141,
+          "basename": "Codex.StudioNativePluginText.pdb",
+          "guid_age_sha256": "981660c030b7f9554a92b07b34773653c6614a8692d0c1a381fb5f3b361afb4c"
+        }
+      ],
+      "all_other_bytes_identical": true,
+      "unsigned_il_only": true,
+      "original_paths_recorded": false
+    },
+    {
+      "assembly": "Codex.StudioPanelTypography.dll",
+      "before_sha256": "282410eec0fb6cf0d0e2dc933e733724a90216222247410b387130983731db6e",
+      "after_sha256": "edb59d1ae193ee2dfc7fab66d4ff053cdcf3333f6e710396d307f808a26d437c",
+      "bytes": 31744,
+      "changed_bytes": 159,
+      "path_regions": [
+        {
+          "start": 29008,
+          "end": 29169,
+          "basename": "Codex.StudioPanelTypography.pdb",
+          "guid_age_sha256": "846395baa33fb849f8ec39cf68cde08cc27864ba8a2a43ad9dcc6030dc751f5f"
+        }
+      ],
+      "all_other_bytes_identical": true,
+      "unsigned_il_only": true,
+      "original_paths_recorded": false
+    },
+    {
+      "assembly": "StudioLocalization.LocalTools.dll",
+      "before_sha256": "73054bec864698aac5129a8b83e67b75c8dd75ec5d2e2e80dddba0ecf9c47471",
+      "after_sha256": "bfc9bbe8dae8c8672eac75189d45bf24e638ea114fedf54dbd73ff9210f9a6ea",
+      "bytes": 22016,
+      "changed_bytes": 169,
+      "path_regions": [
+        {
+          "start": 18984,
+          "end": 19156,
+          "basename": "StudioLocalization.LocalTools.pdb",
+          "guid_age_sha256": "6e52eee30166e47802443fc3bccf70250d91e58d10d44c4b3d7e29577edc21cf"
+        }
+      ],
+      "all_other_bytes_identical": true,
+      "unsigned_il_only": true,
+      "original_paths_recorded": false
+    }
+  ],
+  "modified_assemblies": 9,
+  "same_length_and_all_nonpath_bytes_identical": true,
+  "upstream_core_unchanged_sha256": "9700854b20f25b7a81cff2c46da08c12bd5f27cc2544efdfe62dc4cb548bd002",
+  "runtime_descriptors_unchanged": true,
+  "original_files_untouched": true,
+  "pdb_paths_recorded": false,
+  "installed_files_modified": false,
+  "test_cases": 6,
+  "no_machine_absolute_path_matches": true,
+  "limitation": "Only own unsigned IL-only PE copies. Runtime code, metadata, resources, section layout and all bytes outside original RSDS path ranges are byte-identical. This does not execute the assemblies."
+}

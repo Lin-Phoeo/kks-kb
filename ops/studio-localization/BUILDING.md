@@ -15,6 +15,8 @@ dotnet build sources/coordinate-native/StudioCoordinateNative.csproj -c Release 
 
 将审核过的输出 DLL 放到一个游戏目录外的 artifacts 目录。release-components.json 记录预期哈希，重新编译后必须先验收并更新该清单。
 
+发布副本不得携带本机绝对PDB路径。可在构建时避免绝对调试路径；对本项目已验收的无签名IL程序集，也可用 `tools/sanitize_debug_paths.py 原DLL 新副本DLL --report 新报告.json` 仅将RSDS路径改为文件名，保持长度及其余字节完全一致。工具只接受明确列出的自有程序集，拒绝签名/原生/未知调试格式；上游Core不处理。以新副本哈希更新清单，并将原哈希保留在replace_sha256中。LocalTools的DLL同样使用发布副本，deps/runtimeconfig原样复制到artifacts/tools。
+
 ## 官方 Core 修订
 
 从 XUnity 官方 v5.6.3.1 BepInEx 发布包提取 Core，再运行精确补丁工具。工具验证官方输入 SHA，仅将错误的 System.Type.GetType 调用替换为 Nop，保持官方 GUILayout.Window 解包。官方包来源和许可在 SOURCES.md。
@@ -34,6 +36,11 @@ LocalTools 使用 .NET 10，引用用户已有 Mono.Cecil，运行时从游戏�
 
 ~~~powershell
 dotnet build tools/LocalTools/LocalTools.csproj -c Release -p:GameRoot="E:/Games/Koikatsu Sunshine" -o "E:/StudioZhBuild/artifacts/tools"
+~~~
+
+完成发布副本与哈希清单准备后：
+
+~~~powershell
 py -B build_release.py --artifacts "E:/StudioZhBuild/artifacts" --output "E:/StudioZhRelease" --version "0.3.0-rc.2"
 ~~~
 
