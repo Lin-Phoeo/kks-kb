@@ -1,0 +1,21 @@
+{
+  "scope": "Offline plugin catalog generator and selection UI",
+  "python_unit_tests": 6,
+  "node_behavior_tests": 5,
+  "browser_main_path_checks": 22,
+  "browser_additional_checks": [
+    "selection survives page reload",
+    "390px responsive layout inspected",
+    "script closing text remains literal and unsafe URL has no link",
+    "168 records render and filter without horizontal overflow or external resource requests",
+    "file protocol scripts, filters and selection work under the embedded CSP",
+    "real export button downloads JSON locally and selected synthetic IDs read back correctly"
+  ],
+  "third_party_runtime_dependencies": 0,
+  "installation_actions": 0,
+  "network_connections_from_page": 0,
+  "browser_scope": "Dedicated local preview tab; no account pages or user tabs operated",
+  "export_verification": "Export button Blob content inspected on localhost; actual file-protocol click produced a downloaded JSON whose two selected synthetic records and separate review intentions were read back",
+  "game_plugin_compatibility_verified": false,
+  "public_fixture_scope": "Synthetic records only; private catalog records and screenshots excluded"
+}
