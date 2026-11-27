@@ -144,7 +144,7 @@
       "artifact": "Codex.StudioFontController.dll",
       "source": "components/Codex.StudioFontController.dll",
       "destination": "BepInEx/plugins/Codex.StudioFontController.dll",
-      "sha256": "32087a707ecf9c45edb29e97296441db22940757af8ea26d94dc6a193ac5ea65",
+      "sha256": "fb771b9f867aba06bc7eed2435bbafbae7a57f40f159b15ac96bd0995061178c",
       "kind": "helper",
       "requires": [],
       "replace_sha256": [
@@ -155,7 +155,8 @@
         "4a6a6fd9e2e7ae973233290d877b0ad49ca1fa1a3dfcbe66099eeb88886384b8",
         "4878de491c973ade583e6b4685737f2dd8525a26e88d823bbace76d45dd02e11",
         "57da132e6db2115fd3b0bc8942ea6332cdebcbafc9b4995b7d0560bae303dcda",
-        "2c84c96e4ab71339f0afd2cc271b792726bf74e42ff3b38f8a529e5d07799e68"
+        "2c84c96e4ab71339f0afd2cc271b792726bf74e42ff3b38f8a529e5d07799e68",
+        "32087a707ecf9c45edb29e97296441db22940757af8ea26d94dc6a193ac5ea65"
       ]
     },
     {

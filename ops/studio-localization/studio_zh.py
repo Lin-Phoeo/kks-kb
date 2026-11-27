@@ -63,7 +63,7 @@ def font_preflight(game: Path):
     sdf_files = [path.name for path in translator_fonts.glob('*arialuni*')] if translator_fonts.is_dir() else []
     return {'system_yahei_file_present': yahei, 'existing_cjk_sdf_files': sdf_files,
             'runtime_face_and_glyph_validation': 'required_in_Studio',
-            'guidance': '字体控制器首次使用默认启用华文细黑，已有配置保留；可选本机已安装字体。基础侧栏 TMP 依赖现有中文 SDF 或原字体回退。'}
+            'guidance': '默认保留原中文字体，统一字体为可选功能，已有配置保留。可选择等线、楷体等本机字体；恢复默认中文会关闭统一覆盖。'}
 
 
 def config_update(path: Path, offline: bool):

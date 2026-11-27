@@ -15,7 +15,7 @@ using UnityEngine.UI;
 
 namespace Codex.StudioFontController
 {
-    [BepInPlugin(PluginGuid, "自定义字体 / Studio Font Controller", "1.0.6")]
+    [BepInPlugin(PluginGuid, "自定义字体 / Studio Font Controller", "1.0.7")]
     [BepInProcess("CharaStudio")]
     public sealed class Plugin : BaseUnityPlugin
     {
@@ -59,10 +59,10 @@ namespace Codex.StudioFontController
         {
             _instance = this;
             _resolver = new FontSourceResolver(Paths.GameRootPath);
-            _enabled = Config.Bind("字体", "统一界面字体", FontDefaults.Enabled, "默认启用华文细黑，统一工作室界面与插件窗口文字。可切换字体；关闭后使用当前会话的游戏原字体。");
+            _enabled = Config.Bind("字体", "统一界面字体", FontDefaults.Enabled, "默认保留原中文字体。选择快捷字体时启用统一，也可手动开启；关闭或点击恢复默认中文后，使用当前会话的原中文字体。");
             string[] families = _resolver.Families();
             string defaultFamily = FontDefaults.Family(families);
-            _family = Config.Bind("字体", "系统字体", defaultFamily, new ConfigDescription("优先使用轻秀的华文细黑，未安装时优先选等线。也可选择楷体或其他本机字体；部分字体可能超出原面板宽度。字体集合 TTC 使用文件中的首个字体。",
+            _family = Config.Bind("字体", "系统字体", defaultFamily, new ConfigDescription("仅在统一界面字体开启时生效。备用选择优先等线，也可选楷体或其他本机字体；部分字体可能超出原面板宽度。字体集合 TTC 使用文件中的首个字体。",
                 families.Length > 0 ? new AcceptableValueList<string>(families) : null));
             _file = Config.Bind("字体", "字体文件", "", "可填写本地 TTF、OTF 或 TTC 路径；字体须已安装到系统，才能用于全部界面。填写后优先使用该文件；相对路径从 UserData/StudioFonts 查找。");
             Config.Bind("字体", "预览与状态", 0, new ConfigDescription("", null, new ConfigurationManagerAttributes { CustomDrawer = DrawStatus }));
@@ -459,11 +459,10 @@ namespace Codex.StudioFontController
             GUILayout.Label(_status);
             GUILayout.Label("字体预览　工作室 Studio 0123");
             GUILayout.BeginHorizontal();
-            QuickChoice("华文细黑");
             QuickChoice("等线");
             QuickChoice("楷体");
             GUILayout.EndHorizontal();
-            if (GUILayout.Button("恢复推荐字体")) SelectFamily(FontDefaults.Family(_resolver.Families()));
+            if (GUILayout.Button("恢复默认中文")) RestoreDefaultChinese();
             if (GUILayout.Button("重新应用字体")) _changeAt = Time.unscaledTime;
             GUILayout.EndVertical();
         }
@@ -472,6 +471,11 @@ namespace Codex.StudioFontController
             if (!_resolver.HasFamily(family)) return;
             if (!GUILayout.Button(family)) return;
             SelectFamily(family);
+        }
+        private void RestoreDefaultChinese()
+        {
+            _enabled.Value = false;
+            _changeAt = Time.unscaledTime;
         }
         private void SelectFamily(string family)
         {
