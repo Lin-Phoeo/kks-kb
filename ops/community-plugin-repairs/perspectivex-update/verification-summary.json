@@ -1,0 +1,19 @@
+{
+  "scope": "PerspectiveX 1.4.1 translation delta and static compatibility",
+  "plugin_sha256": "bfca7b2371b598a6908b3ded8d6cb8c02fc8b6e65b68465b40239798657f9e7c",
+  "baseline_sha256": "2caac417509dfc0799f76afe959db4b171597d5b5cf8483191c9fe91d6b6ba0d",
+  "direct_game_api_references": {"resolved": 212, "total": 212},
+  "old_configuration_keys_retained": 36,
+  "new_configuration_keys": 20,
+  "configuration_translation_rows": 46,
+  "dynamic_translation_rows": 4,
+  "enum_translation_rows": 0,
+  "existing_ui_rule_checks": {"passed": 39, "total": 39},
+  "candidate_setting_and_description_checks": {"passed": 110, "total": 110},
+  "candidate_dynamic_checks": {"passed": 4, "total": 4},
+  "synthetic_installation_tests": {"passed": 12, "total": 12},
+  "real_empty_studio_initialization_verified": true,
+  "real_game_verified": false,
+  "vr_hardware_verified": false,
+  "runtime_scope": "Real empty Studio initialization and configuration retention observed. Actual character POV, preset clicks and VR remain unverified; exit needed a normal WM_CLOSE after Application.Quit and retained legacy shutdown warnings."
+}

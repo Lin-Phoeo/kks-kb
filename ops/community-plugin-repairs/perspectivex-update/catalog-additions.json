@@ -1,0 +1,370 @@
+[
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "header",
+    "section": null,
+    "settingKey": null,
+    "source": "PerspectiveX 1.4.1",
+    "value": "第一人称视角 / PerspectiveX 1.4.1"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "VR",
+    "value": "虚拟现实（VR）"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "VR controller mapping",
+    "value": "VR 控制器映射"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "Keyboard shortcuts",
+    "settingKey": "Reset camera roll",
+    "source": "Reset the manual camera tilt back to level. In VR it puts you back on the eyes facing where the character faces, and turns rotation follow off.",
+    "value": "将手动设置的镜头侧倾恢复水平。在 VR 中，还会将视点放回眼睛位置、朝向角色面向，并关闭旋转跟随。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "Comfort",
+    "settingKey": "Pitch limit",
+    "source": "How far up/down you can look, in degrees. 90 is straight up/down. Above 90 you can keep going past vertical, e.g. to look back over the head while lying down; the view turns upside down there.",
+    "value": "向上或向下观察的角度上限，单位为度。90 度表示正上方或正下方；超过 90 度可以继续越过竖直方向，例如躺下时向头后方看，此时画面会翻转。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "General",
+    "settingKey": "Hide character head",
+    "source": "Hide the POV character's head (incl. hair and head accessories) so nothing clips into the view. Flat screen only, VR has its own switches under VR.",
+    "value": "隐藏第一人称角色的头部、头发和头部饰品，避免遮挡视野。仅用于普通屏幕；VR 有单独的隐藏开关。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "Comfort",
+    "settingKey": "Look relative to body",
+    "source": "Look relative to body",
+    "value": "相对身体观察"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "Comfort",
+    "settingKey": "Look relative to body",
+    "source": "OFF by default. Measure looking around, and the pitch limit, from the character's upper body instead of the world. Up/down then follows the torso when they're lying down, bent over or leaning, and the view turns and tilts with it. Off = the horizon stays level like before. Flat screen only, in VR your head does the looking.",
+    "value": "默认关闭。以角色上半身为基准计算观察方向和俯仰限制。角色躺下、弯腰或倾身时，上下观察方向会随躯干改变，视角也会随之转动和倾斜。关闭时仍以世界为基准，保持水平。仅用于普通屏幕；VR 中由头显控制观察方向。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "Comfort",
+    "settingKey": "Right-drag moves the camera",
+    "source": "Right-drag moves the camera",
+    "value": "右键拖动平移镜头"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "Comfort",
+    "settingKey": "Right-drag moves the camera",
+    "source": "Hold the right mouse button and drag to slide the camera left/right and forward/back (never up or down), e.g. to center it over the body when the character's head is turned to the side. Left drag still looks around. In FPS mouse look, hold right click to slide instead of look. Resets when you leave POV or switch character.",
+    "value": "按住鼠标右键拖动，可左右或前后平移镜头（不会上下移动），例如在角色转头时将视角移回身体中央。左键拖动仍用于转动视角。自由鼠标观察模式下，按住右键会改为平移。退出第一人称或切换角色后重置。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "Keyboard shortcuts",
+    "settingKey": "Reset camera shift",
+    "source": "Reset camera shift",
+    "value": "重置镜头平移"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "Keyboard shortcuts",
+    "settingKey": "Reset camera shift",
+    "source": "Put the camera back on the eyes after moving it with right-drag.",
+    "value": "使用右键拖动平移后，将镜头重置到眼睛位置。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR",
+    "settingKey": "Use POV in VR (main game)",
+    "source": "Use POV in VR (main game)",
+    "value": "主游戏 VR 中启用第一人称"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR",
+    "settingKey": "Use POV in VR (main game)",
+    "source": "In VR, POV puts your head at the character's eyes and you look around with the headset. Works with KK_MainGameVR, KKCharaStudioVR, KKS_VR and the official VR games. Off = POV works like older versions, flat screen only.",
+    "value": "在 VR 中将头显视点放到角色眼睛位置，并通过头显环顾。支持 KK_MainGameVR、KKCharaStudioVR、KKS_VR 及官方 VR 程序。关闭后只使用原有的普通屏幕第一人称模式。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR",
+    "settingKey": "Use POV in VR (Studio)",
+    "source": "Use POV in VR (Studio)",
+    "value": "工作室 VR 中启用第一人称"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR",
+    "settingKey": "Use POV in VR (Studio)",
+    "source": "In VR, POV puts your head at the character's eyes and you look around with the headset. Works with KK_MainGameVR, KKCharaStudioVR, KKS_VR and the official VR games. Off = POV works like older versions, flat screen only.",
+    "value": "在 VR 中将头显视点放到角色眼睛位置，并通过头显环顾。支持 KK_MainGameVR、KKCharaStudioVR、KKS_VR 及官方 VR 程序。关闭后只使用原有的普通屏幕第一人称模式。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR",
+    "settingKey": "Enter POV by moving into a head",
+    "source": "Enter POV by moving into a head",
+    "value": "头显移入角色头部时进入第一人称"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR",
+    "settingKey": "Enter POV by moving into a head",
+    "source": "Put your head inside a character's head for a moment to become them, lean or step out to leave. No keyboard needed. The POV toggle key still works too.",
+    "value": "将头显移入角色头部并停留片刻，即可进入该角色的第一人称；探身或走出头部即可退出，无需键盘。第一人称切换快捷键仍可使用。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR",
+    "settingKey": "Forward offset",
+    "source": "Forward offset",
+    "value": "前后偏移"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR",
+    "settingKey": "Forward offset",
+    "source": "VR only. Headset distance in front of the eyes, in meters. Negative moves you back into the head. The flat-screen offset is under Camera.",
+    "value": "仅用于 VR。头显视点相对眼睛的前后距离，单位为米。负值向头部内侧移动。普通屏幕的偏移请在“摄像机”中设置。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR",
+    "settingKey": "Up offset",
+    "source": "Up offset",
+    "value": "上下偏移"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR",
+    "settingKey": "Up offset",
+    "source": "VR only. Headset height above the eye line, in meters. The flat-screen offset is under Camera.",
+    "value": "仅用于 VR。头显视点相对眼睛水平线的上下偏移，单位为米。普通屏幕的偏移请在“摄像机”中设置。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR",
+    "settingKey": "Near clip plane",
+    "source": "Near clip plane",
+    "value": "近裁剪面"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR",
+    "settingKey": "Near clip plane",
+    "source": "VR only. Lower values let very close geometry render without being cut off. 0 = leave the VR mod's own setting alone.",
+    "value": "仅用于 VR。数值越低，离视点很近的模型越不容易被裁掉。0 表示保留 VR 插件自己的设置。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR",
+    "settingKey": "Hide character head (main game)",
+    "source": "Hide character head (main game)",
+    "value": "隐藏角色头部（主游戏）"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR",
+    "settingKey": "Hide character head (main game)",
+    "source": "Main game VR only. On by default because the main game VR mod doesn't hide the head itself.",
+    "value": "仅用于主游戏 VR。默认开启，因为主游戏 VR 插件本身不会隐藏角色头部。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR",
+    "settingKey": "Hide character head (Studio)",
+    "source": "Hide character head (Studio)",
+    "value": "隐藏角色头部（工作室）"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR",
+    "settingKey": "Hide character head (Studio)",
+    "source": "Studio VR only. Off by default because KKCharaStudioVR hides the head itself, and both doing it can clash.",
+    "value": "仅用于工作室 VR。默认关闭，因为 KKCharaStudioVR 本身会隐藏头部，两者同时处理可能产生冲突。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "Keyboard shortcuts",
+    "settingKey": "VR rotation follow",
+    "source": "VR rotation follow",
+    "value": "循环切换 VR 旋转跟随"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "Keyboard shortcuts",
+    "settingKey": "VR rotation follow",
+    "source": "VR only. Cycles what the headset follows besides the eyes' position: position only > + yaw > + pitch > + yaw and pitch > + yaw, pitch and roll > position only. Can also be put on a controller button under VR controller mapping.",
+    "value": "仅用于 VR。依次切换头显的跟随方式：仅跟随眼睛位置 → 加左右转动 → 加上下转动 → 加左右和上下转动 → 加左右、上下和侧倾 → 回到仅跟随位置。也可在“VR 控制器映射”中绑定控制器按钮。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR controller mapping",
+    "settingKey": "Rotation follow button",
+    "source": "Rotation follow button",
+    "value": "旋转跟随切换按钮"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR controller mapping",
+    "settingKey": "Rotation follow button",
+    "source": "VR only. Optional controller button that cycles rotation follow, same as its key under Keyboard shortcuts. Works on either hand.",
+    "value": "仅用于 VR。可选的控制器按钮，用于循环切换旋转跟随方式，作用与快捷键中的对应设置相同。左右手均可触发。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR controller mapping",
+    "settingKey": "Trigger",
+    "source": "Trigger",
+    "value": "扳机"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR controller mapping",
+    "settingKey": "Trigger",
+    "source": "Press this key or mouse button while the trigger is held. Works on either hand. The VR mod still sees the trigger too.",
+    "value": "按住扳机时，触发所选键盘键或鼠标操作。左右手均可使用，VR 插件仍会收到原扳机输入。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR controller mapping",
+    "settingKey": "Grip",
+    "source": "Grip",
+    "value": "握持按钮"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR controller mapping",
+    "settingKey": "Grip",
+    "source": "Press this key or mouse button while the grip is held. Works on either hand. The VR mod still sees the grip too.",
+    "value": "按住握持按钮时，触发所选键盘键或鼠标操作。左右手均可使用，VR 插件仍会收到原握持输入。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR controller mapping",
+    "settingKey": "Up",
+    "source": "Up",
+    "value": "触控板／摇杆向上按下"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR controller mapping",
+    "settingKey": "Up",
+    "source": "Press this key or mouse button while the touchpad / thumbstick is pressed down in the up direction.",
+    "value": "在触控板／摇杆的向上位置按下时，触发所选键盘键或鼠标操作。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR controller mapping",
+    "settingKey": "Down",
+    "source": "Down",
+    "value": "触控板／摇杆向下按下"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR controller mapping",
+    "settingKey": "Down",
+    "source": "Press this key or mouse button while the touchpad / thumbstick is pressed down in the down direction.",
+    "value": "在触控板／摇杆的向下位置按下时，触发所选键盘键或鼠标操作。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR controller mapping",
+    "settingKey": "Left",
+    "source": "Left",
+    "value": "触控板／摇杆向左按下"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR controller mapping",
+    "settingKey": "Left",
+    "source": "Press this key or mouse button while the touchpad / thumbstick is pressed down in the left direction.",
+    "value": "在触控板／摇杆的向左位置按下时，触发所选键盘键或鼠标操作。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR controller mapping",
+    "settingKey": "Right",
+    "source": "Right",
+    "value": "触控板／摇杆向右按下"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR controller mapping",
+    "settingKey": "Right",
+    "source": "Press this key or mouse button while the touchpad / thumbstick is pressed down in the right direction.",
+    "value": "在触控板／摇杆的向右位置按下时，触发所选键盘键或鼠标操作。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "setting",
+    "section": "VR controller mapping",
+    "settingKey": "Center",
+    "source": "Center",
+    "value": "触控板／摇杆中央按下"
+  },
+  {
+    "pluginGuid": "bucky.kk.perspectivex",
+    "kind": "description",
+    "section": "VR controller mapping",
+    "settingKey": "Center",
+    "source": "Press this key or mouse button while the touchpad / thumbstick is pressed down in the middle.",
+    "value": "在触控板／摇杆的中央位置按下时，触发所选键盘键或鼠标操作。"
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "observed_date": "2026-11-28",
+  "scope": "Actual empty Studio plugin initialization; no cards or scenes loaded or saved",
+  "plugin_guid": "bucky.kk.perspectivex",
+  "plugin_version": "1.4.1",
+  "plugin_sha256": "bfca7b2371b598a6908b3ded8d6cb8c02fc8b6e65b68465b40239798657f9e7c",
+  "loaded": true,
+  "workspace_objects": 0,
+  "configuration": {
+    "original_keys_preserved_during_install": 36,
+    "new_absent_defaults_added": 2,
+    "before_startup_keys": 38,
+    "after_startup_keys": 56,
+    "existing_values_preserved": true,
+    "right_drag_and_studio_vr_remained_disabled": true,
+    "user_configuration_values_exported": false
+  },
+  "error_or_fatal_before_quit": 0,
+  "shutdown": {
+    "application_quit_requested": true,
+    "additional_normal_window_close_required": true,
+    "exact_process_and_window_class_validated": true,
+    "force_terminated": false,
+    "process_exited": true,
+    "legacy_invalid_handle_mentions": 9,
+    "job_temp_alloc_warnings": 33,
+    "legacy_shutdown_issues_fixed": false
+  },
+  "temporary_observer_archived": true,
+  "character_pov_verified": false,
+  "preset_clicks_verified": false,
+  "vr_hardware_verified": false,
+  "raw_logs_or_machine_paths_included": false
+}
