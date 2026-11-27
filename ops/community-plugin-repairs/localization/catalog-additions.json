@@ -1,0 +1,386 @@
+[
+  {
+    "pluginGuid": "com.ziglo.ManageableSkirts",
+    "kind": "header",
+    "section": null,
+    "settingKey": null,
+    "source": "ManageableSkirts 1.1.0.1",
+    "value": "裙摆节点管理 / ManageableSkirts 1.1.0.1"
+  },
+  {
+    "pluginGuid": "com.ziglo.ManageableSkirts",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "Features",
+    "value": "功能"
+  },
+  {
+    "pluginGuid": "com.ziglo.ManageableSkirts",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "General",
+    "value": "常规"
+  },
+  {
+    "pluginGuid": "com.ziglo.ManageableSkirts",
+    "kind": "setting",
+    "section": "Features",
+    "settingKey": "Color Nodes by Chain",
+    "source": "Color Nodes by Chain",
+    "value": "按骨骼链着色"
+  },
+  {
+    "pluginGuid": "com.ziglo.ManageableSkirts",
+    "kind": "description",
+    "section": "Features",
+    "settingKey": "Color Nodes by Chain",
+    "source": "Color each skirt bone chain a different color",
+    "value": "为每条裙摆骨骼链使用不同颜色，便于辨认。"
+  },
+  {
+    "pluginGuid": "com.ziglo.ManageableSkirts",
+    "kind": "setting",
+    "section": "Features",
+    "settingKey": "Hide Far-Side Chains",
+    "source": "Hide Far-Side Chains",
+    "value": "隐藏远侧骨骼链"
+  },
+  {
+    "pluginGuid": "com.ziglo.ManageableSkirts",
+    "kind": "description",
+    "section": "Features",
+    "settingKey": "Hide Far-Side Chains",
+    "source": "Automatically hide the 3 chains farthest from the camera",
+    "value": "自动隐藏距离相机最远的 3 条裙摆骨骼链的操作节点。"
+  },
+  {
+    "pluginGuid": "com.ziglo.ManageableSkirts",
+    "kind": "setting",
+    "section": "General",
+    "settingKey": "Toggle Hotkey",
+    "source": "Toggle Hotkey",
+    "value": "切换快捷键"
+  },
+  {
+    "pluginGuid": "com.ziglo.ManageableSkirts",
+    "kind": "description",
+    "section": "General",
+    "settingKey": "Toggle Hotkey",
+    "source": "Hotkey to toggle skirt node enhancements on the selected character",
+    "value": "切换所选角色的裙摆节点增强功能。"
+  },
+  {
+    "pluginGuid": "com.freelancer604.dragdoll.standard",
+    "kind": "header",
+    "section": null,
+    "settingKey": null,
+    "source": "DragDoll 1.0.37",
+    "value": "混合 IK/FK 摆姿 / DragDoll 1.0.37"
+  },
+  {
+    "pluginGuid": "com.freelancer604.dragdoll.standard",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "Controls",
+    "value": "操作"
+  },
+  {
+    "pluginGuid": "com.freelancer604.dragdoll.standard",
+    "kind": "setting",
+    "section": "Controls",
+    "settingKey": "Toggle",
+    "source": "Toggle",
+    "value": "切换摆姿模式"
+  },
+  {
+    "pluginGuid": "com.freelancer604.dragdoll.standard",
+    "kind": "description",
+    "section": "Controls",
+    "settingKey": "Toggle",
+    "source": "Toggle DragDoll on the selected character.",
+    "value": "为所选角色开启或关闭 DragDoll 混合摆姿。"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "header",
+    "section": null,
+    "settingKey": null,
+    "source": "Grey.MeshExporter.KKS 0.1.5.6",
+    "value": "网格导出 / Grey.MeshExporter.KKS 0.1.5.6"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "Grey.MeshExporter.KKS",
+    "value": "网格导出"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "setting",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "ExportShortcut",
+    "source": "ExportShortcut",
+    "value": "导出快捷键"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "description",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "ExportShortcut",
+    "source": "Shortcut used to trigger the mesh export process.",
+    "value": "触发网格导出的快捷键。"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "setting",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "ExportBasePath",
+    "source": "ExportBasePath",
+    "value": "导出目录"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "description",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "ExportBasePath",
+    "source": "Folder in which to put your exports, relative to the game root directory.",
+    "value": "导出文件的存放目录，相对于游戏根目录。"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "setting",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "HideUIButton",
+    "source": "HideUIButton",
+    "value": "隐藏窗口入口按钮"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "description",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "HideUIButton",
+    "source": "Hide the 'Show MeshExporter' button.",
+    "value": "隐藏“显示网格导出器”按钮。"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "setting",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "AttemptBumpConversion",
+    "source": "AttemptBumpConversion",
+    "value": "转换凹凸／法线贴图"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "description",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "AttemptBumpConversion",
+    "source": "Attempt to convert grayscale bumpmaps to RGB normal maps.",
+    "value": "尝试将凹凸／法线贴图转换为 RGB 格式。当前转换将源贴图的 A、G 通道写入 R、G，并将 B、A 设为 1；不根据高度灰度重算法线。"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "setting",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "SaveBothConvertedAndOriginalBumpTextures",
+    "source": "SaveBothConvertedAndOriginalBumpTextures",
+    "value": "同时保存原图与转换图"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "description",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "SaveBothConvertedAndOriginalBumpTextures",
+    "source": "If conversion is enabled, save both textures. Otherwise only keep the converted version.",
+    "value": "启用转换时，同时保存原贴图与转换后的贴图；关闭此项时仅保存转换后的版本。"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "setting",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "EmbedTextures",
+    "source": "EmbedTextures",
+    "value": "将贴图嵌入 FBX"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "description",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "EmbedTextures",
+    "source": "This will cause the texture files to be embedded into the FBX, I recommend leaving this disabled.",
+    "value": "将贴图文件嵌入 FBX。作者建议保持关闭。"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "setting",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "GenerateFBXMaterials",
+    "source": "GenerateFBXMaterials",
+    "value": "生成 FBX 材质"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "description",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "GenerateFBXMaterials",
+    "source": "This will generate fbx materials, one per mesh.",
+    "value": "导出时生成 FBX 材质。"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "setting",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "ApplyTexturesToFBXMaterials",
+    "source": "ApplyTexturesToFBXMaterials",
+    "value": "为 FBX 材质应用贴图"
+  },
+  {
+    "pluginGuid": "Grey.MeshExporter.KKS",
+    "kind": "description",
+    "section": "Grey.MeshExporter.KKS",
+    "settingKey": "ApplyTexturesToFBXMaterials",
+    "source": "If generating fbx materials, this will attempt to apply the albedo/diffuse texture to that material.",
+    "value": "启用 FBX 材质生成后，尝试将基础色／漫反射贴图应用到材质。"
+  },
+  {
+    "pluginGuid": "com.freelancer604.wardrobe",
+    "kind": "header",
+    "section": null,
+    "settingKey": null,
+    "source": "Freelancer604 Vanity Studio 1.11.7.1",
+    "value": "造型编辑·服装 / Freelancer604 Vanity Studio 1.11.7.1"
+  },
+  {
+    "pluginGuid": "com.freelancer604.wardrobe",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "General",
+    "value": "常规"
+  },
+  {
+    "pluginGuid": "com.freelancer604.wardrobe",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "State",
+    "value": "最近使用"
+  },
+  {
+    "pluginGuid": "com.freelancer604.wardrobe",
+    "kind": "setting",
+    "section": "General",
+    "settingKey": "Toggle window",
+    "source": "Toggle window",
+    "value": "切换窗口"
+  },
+  {
+    "pluginGuid": "com.freelancer604.wardrobe",
+    "kind": "description",
+    "section": "General",
+    "settingKey": "Toggle window",
+    "source": "Show/hide the Vanity Studio window (Studio only).",
+    "value": "显示或隐藏 Vanity Studio 窗口，仅用于工作室。"
+  },
+  {
+    "pluginGuid": "com.freelancer604.wardrobe",
+    "kind": "setting",
+    "section": "General",
+    "settingKey": "Language",
+    "source": "Language",
+    "value": "界面语言"
+  },
+  {
+    "pluginGuid": "com.freelancer604.wardrobe",
+    "kind": "description",
+    "section": "General",
+    "settingKey": "Language",
+    "source": "UI language: English, 中文 (Simplified Chinese) or 日本語 (Japanese).",
+    "value": "界面语言：English（英语）、中文（简体中文）或日本語（日语）。"
+  },
+  {
+    "pluginGuid": "com.freelancer604.wardrobe",
+    "kind": "setting",
+    "section": "General",
+    "settingKey": "UI scale",
+    "source": "UI scale",
+    "value": "界面缩放"
+  },
+  {
+    "pluginGuid": "com.freelancer604.wardrobe",
+    "kind": "description",
+    "section": "General",
+    "settingKey": "UI scale",
+    "source": "Uniform suite scale. Drag the bottom-right window handle to change it.",
+    "value": "统一调整整套界面的缩放比例，也可拖动窗口右下角的手柄调整。"
+  },
+  {
+    "pluginGuid": "com.freelancer604.wardrobe",
+    "kind": "setting",
+    "section": "State",
+    "settingKey": "Last T1 card",
+    "source": "Last T1 card",
+    "value": "最近的参考服装卡 T1"
+  },
+  {
+    "pluginGuid": "com.freelancer604.wardrobe",
+    "kind": "description",
+    "section": "State",
+    "settingKey": "Last T1 card",
+    "source": "Path of the last Target-1 coordinate card — auto-loaded when a session starts.",
+    "value": "上次使用的参考服装卡 T1 路径；开始编辑会话时自动载入为参考。"
+  },
+  {
+    "pluginGuid": "com.freelancer604.wardrobe",
+    "kind": "setting",
+    "section": "State",
+    "settingKey": "Last T2 card",
+    "source": "Last T2 card",
+    "value": "最近的参考服装卡 T2"
+  },
+  {
+    "pluginGuid": "com.freelancer604.wardrobe",
+    "kind": "description",
+    "section": "State",
+    "settingKey": "Last T2 card",
+    "source": "Path of the last Target-2 coordinate card — auto-loaded when a session starts.",
+    "value": "上次使用的参考服装卡 T2 路径；开始编辑会话时自动载入为参考。"
+  },
+  {
+    "pluginGuid": "com.freelancer604.makeup",
+    "kind": "header",
+    "section": null,
+    "settingKey": null,
+    "source": "Freelancer604 Vanity Studio (Make-Up) 1.0.3.1",
+    "value": "造型编辑·外观 / Freelancer604 Vanity Studio (Make-Up) 1.0.3.1"
+  },
+  {
+    "pluginGuid": "com.freelancer604.makeup",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "State",
+    "value": "最近使用"
+  },
+  {
+    "pluginGuid": "com.freelancer604.makeup",
+    "kind": "setting",
+    "section": "State",
+    "settingKey": "Last reference card",
+    "source": "Last reference card",
+    "value": "最近的参考角色卡"
+  },
+  {
+    "pluginGuid": "com.freelancer604.makeup",
+    "kind": "description",
+    "section": "State",
+    "settingKey": "Last reference card",
+    "source": "Path of the last Make-Up reference character card, restored on startup.",
+    "value": "上次用于外观编辑的参考角色卡路径，启动时恢复。"
+  }
+]

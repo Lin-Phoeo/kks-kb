@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "pluginGuid": "Clo.LiquidWobbleMPB",
+  "pluginVersion": "1.1.6",
+  "pluginSha256": "74612e01c4d2278aca4b4d993dc4d944c223496afca63b87f6a23c1c1f68014d",
+  "sourceBindCount": 17,
+  "reviewedDisplayIdentities": 39,
+  "reusedIdentities": 14,
+  "newIdentities": 25,
+  "newEntryKinds": {
+    "header": 1,
+    "category": 1,
+    "setting": 11,
+    "description": 12
+  },
+  "actualTranslationCatalogChecks": 45,
+  "adapterSha256": "268e235b245506b011a0532ea8addc04a26550978daa09a4cfc2d4c7b1c02ca1",
+  "catalogAdditionsSha256": "0dca375129e20e6a102b264dd92a0b8321aac77e65790e1bc7aa1fb85cee39e9",
+  "configurationValuesChanged": false,
+  "liveCatalogChanged": false,
+  "unityUIVerified": false,
+  "scope": "Actual installed ConfigFile.Bind metadata and literal arguments plus TranslationCatalog.TryGet; in-memory candidate merge only.",
+  "adapterSyntheticTests": 7,
+  "adapterSyntheticTestsPassed": true,
+  "adapterDoctor": {
+    "status": "doctor_passed",
+    "plannedFiles": 1,
+    "configurationChanges": [],
+    "applyExecuted": false
+  },
+  "requiredBaseIdentitiesSha256": "1d3e04e304c1132ceb8278f58158864980684b6c2b6e69933ce884e7be88667a",
+  "installerAdapterSha256": "2c2af7310444e8fca287d5f84440c2083f7e2070a2bac81324847bdf8bea9c95"
+}

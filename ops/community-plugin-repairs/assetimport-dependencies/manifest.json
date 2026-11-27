@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "assetimport-dependencies-4.0.2",
+  "files": [
+    {
+      "target": "BepInEx/plugins/AssetImport/System.ValueTuple.dll",
+      "assemblyIdentity": "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+      "member": "lib/net47/System.ValueTuple.dll",
+      "sha256": "e905d102585b22c6df04f219af5cbdbfa7bc165979e9788b62df6dcc165e10f4",
+      "bytes": 25232,
+      "package": "system.valuetuple.4.5.0.nupkg",
+      "url": "https://api.nuget.org/v3-flatcontainer/system.valuetuple/4.5.0/system.valuetuple.4.5.0.nupkg",
+      "packageSha256": "9e21fa9767d4e76bc0cee065c1d40cc34384a114bfec4d70e6c981168a926802",
+      "packageSha512": "+gDrtQRdEsUSdPZEEcVRmBvs6xJmqGBqRzEGMQm5XqHxWTkZe/PSuomdth5ZPcOb/Oh2kIu6NChoI1JQk649jg==",
+      "licenseMembers": [
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://licenses.nuget.org/MIT"
+    },
+    {
+      "target": "BepInEx/plugins/AssetImport/Microsoft.Bcl.Memory.dll",
+      "assemblyIdentity": "Microsoft.Bcl.Memory, Version=9.0.0.14, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+      "member": "lib/net462/Microsoft.Bcl.Memory.dll",
+      "sha256": "410b2030fd6be853d35b9a20742e9fcfb78a67239881c9d65d6e1bbe34ec5f76",
+      "bytes": 51472,
+      "package": "microsoft.bcl.memory.9.0.14.nupkg",
+      "url": "https://api.nuget.org/v3-flatcontainer/microsoft.bcl.memory/9.0.14/microsoft.bcl.memory.9.0.14.nupkg",
+      "packageSha256": "ff561593e96bc1fabb869af54f95118b3cd4f6478c10ee585627dabc48bd73c3",
+      "packageSha512": "riVlQ/ZKS7NT5fpT8oXgg10LRk9CVALRxz6bdXmvHBVOyYBzuo54cxlsoqZJgx7fbUWYAFOEufrEZZDF63r2tg==",
+      "licenseMembers": [
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://licenses.nuget.org/MIT"
+    }
+  ],
+  "identityGates": [
+    {
+      "path": "BepInEx/plugins/AssetImport/AssimpNetter.dll",
+      "sha256": "3f5b31b8304772dac0acfd016d3d4f50f27e564029e29c8b15633543923a0295"
+    },
+    {
+      "path": "BepInEx/plugins/AssetImport/KKS_AssetImport.dll",
+      "sha256": "2a8ecb9df5a919c68c91322d01f4979d3dec08ada30deaf3e940312aeaeea441"
+    },
+    {
+      "path": "BepInEx/plugins/AssetImport/IndexRange.dll",
+      "sha256": "95921a156d135fb62665c1ca6054b2693baef6f1c7d3384c56fc5a4d534280b0"
+    }
+  ]
+}

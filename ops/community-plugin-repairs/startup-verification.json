@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-28",
+  "scene_objects": 0,
+  "loaded": {
+    "ManageableSkirts": "1.1.0.1 patched",
+    "DragDoll": "1.0.37 patched known-base-axis classification",
+    "Grey.MeshExporter.KKS": "0.1.5.6 patched export cleanup"
+  },
+  "dragdoll_before": "Original plugin logged Extra Move Axis FK preparation stopped because a basic same-name type lacks the enhanced contract.",
+  "dragdoll_after": {
+    "known_base_informational_decisions": 1,
+    "previous_contract_errors": 0
+  },
+  "normal_window_close_exited_process": true,
+  "temporary_observers_removed_after_exit": true,
+  "cards_or_scenes_loaded_by_test": false,
+  "user_scene_or_card_saved": false,
+  "scope": "Automatic empty Studio startup and normal window close. No skirt activation, IK/FK manipulation, Timeline session or real GPU/FBX export exercised.",
+  "known_limits": [
+    "Application.Quit request alone left the process open; normal main-window close completed exit.",
+    "Ten old ConsoleLogListener Invalid handle log entries remain; this batch did not repair console ownership.",
+    "Az Debug was installed as an independent zipmod; Shader.Find did not find its lazy shader in the empty scene, so its rendering effect is unverified."
+  ]
+}

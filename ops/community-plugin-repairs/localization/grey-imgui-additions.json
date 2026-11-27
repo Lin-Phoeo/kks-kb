@@ -1,0 +1,128 @@
+[
+  {
+    "id": "COMMUNITY-GREY-001",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "隐藏网格导出器",
+    "source": "Hide Grey.MeshExporter"
+  },
+  {
+    "id": "COMMUNITY-GREY-002",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "显示网格导出器",
+    "source": "Show Grey.MeshExporter"
+  },
+  {
+    "id": "COMMUNITY-GREY-003",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "关闭窗口",
+    "source": "Close this window"
+  },
+  {
+    "id": "COMMUNITY-GREY-004",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "当前没有错误。",
+    "source": "No current errors."
+  },
+  {
+    "id": "COMMUNITY-GREY-005",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "选项：",
+    "source": "Options:"
+  },
+  {
+    "id": "COMMUNITY-GREY-006",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "隐藏窗口入口按钮（请先确认快捷键可用）",
+    "source": "Hide UI show button. (Make sure your keybinding works first!)"
+  },
+  {
+    "id": "COMMUNITY-GREY-007",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "请将 UnityFbxExporter DLL 放在游戏可执行文件所在目录。",
+    "source": "You need to put the UnityFbxExporter DLL(s) with the executables."
+  },
+  {
+    "id": "COMMUNITY-GREY-008",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "正在导出，请稍候。\n导出过程中游戏可能暂时无响应。\n请等待处理完成。",
+    "source": "Export in progress. Please wait.\nYour game will almost certainly freeze during this process.\nJust wait for it. It's not crashed, just working hard."
+  },
+  {
+    "id": "COMMUNITY-GREY-009",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "将贴图嵌入 FBX（文件会明显变大，但无需另附 PNG）",
+    "source": "Embed textures into fbx (will make fbx MUCH larger, but you no longer need the pngs)"
+  },
+  {
+    "id": "COMMUNITY-GREY-010",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "尝试转换凹凸／法线贴图通道为 RGB",
+    "source": "Attempt to convert Grayscale bump/normal maps to RGB"
+  },
+  {
+    "id": "COMMUNITY-GREY-011",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "同时保存原图与转换图（须启用贴图转换）",
+    "source": "Save both original and converted bump/normal maps. (requires attempting conversion)"
+  },
+  {
+    "id": "COMMUNITY-GREY-012",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "实验功能（不保存设置）：尝试导出布料对象，可能导出失败",
+    "source": "EXPERIMENTAL [config not saved!] Attempt exports on items marked 'cloth' (This will break. You've been warned.)"
+  },
+  {
+    "id": "COMMUNITY-GREY-013",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "生成通用着色器／材质（作者不推荐）",
+    "source": "Create generic shader/materials as part of export process. (almost certainly not worth it)"
+  },
+  {
+    "id": "COMMUNITY-GREY-014",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "为 FBX 材质应用基础色／漫反射贴图（须启用材质生成）",
+    "source": "Apply albedo/diffuse texture to fbx material. (required enabled shader/materials)"
+  },
+  {
+    "id": "COMMUNITY-GREY-015",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "查找可导出的角色",
+    "source": "Find Characters To Export"
+  },
+  {
+    "id": "COMMUNITY-GREY-016",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "未找到角色。",
+    "source": "No characters found."
+  },
+  {
+    "id": "COMMUNITY-GREY-017",
+    "owner": "KKSMeshExporter",
+    "pattern": null,
+    "replacement": "导出找到的全部角色",
+    "source": "Export All Found Characters."
+  },
+  {
+    "id": "COMMUNITY-GREY-018",
+    "owner": "KKSMeshExporter",
+    "pattern": "\\AExport (?<name>[^\\r\\n]+)\\z",
+    "replacement": "导出 ${name}",
+    "source": null
+  }
+]

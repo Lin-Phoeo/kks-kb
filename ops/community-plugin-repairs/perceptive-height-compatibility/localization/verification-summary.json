@@ -1,0 +1,28 @@
+{
+  "catalog_entries": 19,
+  "settings": 7,
+  "dynamic_rules": 2,
+  "exact_name_rules": 1,
+  "scope_files": 1,
+  "actual_catalog_matcher_checks": 63,
+  "actual_catalog_matcher_passed": true,
+  "synthetic_install_tests": 8,
+  "synthetic_install_tests_passed": true,
+  "scope_parser_roundtrip_passed": true,
+  "plugin_sha256": "d2016fa189a6ec3108282a47ca184ca4bcef4f6992345298b310d91237b16931",
+  "runtime_gui_verified": false,
+  "live_applied_by_this_task": false,
+  "identity": "PerceptiveHeightX.KKS owner; full F1 identity; numeric/name/unit payload preserved",
+  "sources": {
+    "catalog-additions.json": "2de460e8daf637f36bbc64e73f27d2156a5efb2d0e4b4314522a9fc7adb5ad9d",
+    "imgui-additions.json": "8d51ef4cf663f19d96a06fb55ff0e77dc0594f653d37009aa110b5b576dcc067",
+    "Text/Plugins/PerceptiveHeightX.KKS/0000_PerceptiveHeight.zh-CN.txt": "2ad588f479b857f235178a08587fd2ef9ac835f52db1cb0b406938dfc98fd6e0"
+  },
+  "independent_review": {
+    "passed": true,
+    "actual_catalog_matcher_checks": 32,
+    "synthetic_install_tests": 8,
+    "live_dll_source_and_enum_display_verified": true,
+    "runtime_gui_verified": false
+  }
+}

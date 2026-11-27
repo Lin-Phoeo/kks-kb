@@ -1,0 +1,23 @@
+[
+  {
+    "id": "PERCEPTIVE-TITLE",
+    "owner": "PerceptiveHeightX.KKS",
+    "source": "PerceptiveHeightX",
+    "pattern": null,
+    "replacement": "感知身高 / PerceptiveHeightX"
+  },
+  {
+    "id": "PERCEPTIVE-REFERENCE",
+    "owner": "PerceptiveHeightX.KKS",
+    "source": null,
+    "pattern": "\\APOV: (?<length>(?:[0-9]+(?:[.,][0-9]+)? cm|[0-9]+'[0-9]+(?:[.,][0-9]+)?\"))\\z",
+    "replacement": "基准: ${length}"
+  },
+  {
+    "id": "PERCEPTIVE-OTHER",
+    "owner": "PerceptiveHeightX.KKS",
+    "source": null,
+    "pattern": "\\A(?<name>[^\\r\\n]+) to POV: (?<length>(?:[0-9]+(?:[.,][0-9]+)? cm|[0-9]+'[0-9]+(?:[.,][0-9]+)?\"))\\z",
+    "replacement": "${name} 看似: ${length}"
+  }
+]

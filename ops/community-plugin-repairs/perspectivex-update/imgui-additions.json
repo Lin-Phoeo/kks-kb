@@ -1,0 +1,30 @@
+[
+  {
+    "id": "PX141-1",
+    "owner": "KK_PerspectiveX",
+    "source": "Enabled",
+    "pattern": null,
+    "replacement": "已启用"
+  },
+  {
+    "id": "PX141-2",
+    "owner": "KK_PerspectiveX",
+    "source": "Disabled",
+    "pattern": null,
+    "replacement": "已停用"
+  },
+  {
+    "id": "PX141-3",
+    "owner": "KK_PerspectiveX",
+    "source": "! Needs KKS_VR",
+    "pattern": null,
+    "replacement": "需要 KKS_VR"
+  },
+  {
+    "id": "PX141-4",
+    "owner": "KK_PerspectiveX",
+    "source": "No VR mod found. Install KKS_VR to use POV in VR.",
+    "pattern": null,
+    "replacement": "未检测到 VR 插件。安装 KKS_VR 后才能在 VR 中使用第一人称。"
+  }
+]

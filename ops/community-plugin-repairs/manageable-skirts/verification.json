@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "patchRevision": 2,
+  "passed": true,
+  "installed": true,
+  "originalSha256": "81f517809512b1d5a0971befa40a4c4124ea5fb3e7f0e80339944b56f96f652f",
+  "candidateSha256": "d1397ef05cee122abd6bfb27b8eea7900e119d5e90bc9c730f3794f451fa6d41",
+  "helperSha256": "52152be38fc8c1d319e2d4a3c2a65b1f373ddc3cd43587b40526ce32bf390347",
+  "baseline": {
+    "checks": 26,
+    "passed": 6,
+    "exitCode": 1
+  },
+  "candidate": {
+    "checks": 26,
+    "passed": 26,
+    "exitCode": 0
+  },
+  "guards": {
+    "unknownShaRejected": true,
+    "sourceOverwriteRejected": true
+  },
+  "limitation": "Managed synthetic dependency fixtures and installed metadata only; no Unity native/game execution or configuration writes.",
+  "verifiedDate": "2026-11-28",
+  "runtime": "managed .NET 10 synthetic dependency fixtures",
+  "helperTarget": "net472",
+  "runtimeVerified": false,
+  "unrelatedOriginalMethodsUnchanged": 15,
+  "changedOriginalMethods": 6,
+  "helperMethodIlComparison": {
+    "passed": true,
+    "methods": 37,
+    "changedMethods": [],
+    "priorSha256": "6be5eed1d4d6cf11c587205500c8018cef94b4c40ee9c791998b574347603306",
+    "currentSha256": "52152be38fc8c1d319e2d4a3c2a65b1f373ddc3cd43587b40526ce32bf390347"
+  },
+  "assemblyReferenceContract": {
+    "added": [
+      "Codex.ManageableSkirtsState, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+    ],
+    "removed": []
+  },
+  "resolvedHelperGameMembers": 42,
+  "outputDirectoryRebuildIdentical": true,
+  "earlyDualCorlibCandidateExcluded": true,
+  "referenceInstallation": {
+    "installed": true,
+    "installedFileHashesMatched": true,
+    "priorTargetState": "both absent",
+    "configurationChanged": false,
+    "sceneOrCardChanged": false,
+    "runtimeStatus": "awaiting natural Unity use; installation is not functional acceptance"
+  },
+  "startup": {
+    "loaded": true,
+    "version": "1.1.0.1",
+    "scene_object_count": 0,
+    "activation_tested": false,
+    "shutdown_process_exited": true,
+    "limitations": "Empty Studio only; guide hiding/color/garment changes not exercised."
+  }
+}

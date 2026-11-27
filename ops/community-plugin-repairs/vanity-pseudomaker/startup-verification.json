@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-28",
+  "installed": true,
+  "dressup_version": "1.11.7.1",
+  "makeup_version": "1.0.3.1",
+  "native_language": "中文",
+  "both_loaded": true,
+  "studio_objects": 0,
+  "normal_window_close_exited": true,
+  "pseudoMaker_unchanged": true,
+  "no_character_edit_or_save_invoked": true,
+  "scope": "Empty Studio startup only; no GUI edits, skin operations, wardrobe copy or saved-card roundtrip."
+}

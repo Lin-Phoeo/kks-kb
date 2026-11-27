@@ -1,0 +1,34 @@
+# 社区插件的可复跑兼容修复
+
+这里保存针对明确 KKS 插件版本的自有修复工具、合成验证和来源说明。用户从作者取得原件后，在独立目录生成候选；仓库不携带原插件、游戏程序集、社区聊天或用户作品。每项都有精确输入哈希和范围，不能套用到未知版本。
+
+从[使用步骤](QUICKSTART.zh-CN.md)选择入口；其他AI可用[接续说明](AI-HANDOFF.md)复现。已核的新创作插件用途和作者来源见[候选说明](reviewed-candidates/README.md)。
+
+| 修复 | 具体问题 | 结果边界 |
+| --- | --- | --- |
+| [ManageableSkirts 状态所有权](manageable-skirts/README.md) | 原版为隐藏裙链重建共享骨骼列表，恢复时覆盖其他节点的可见性和颜色 | 候选只管理当前裙链的自身属性，不写共享列表；26项真实方法配合成依赖通过，参考试装待自然使用观察 |
+| [Grey Mesh Exporter 导出保护](grey-mesh-exporter/README.md) | PNG截断、异常清理、普通renderer根导出和命名材质贴图引用不正确 | 九方法精确补丁；真实自造立方体FBX/PNG导出通过，复杂角色及长路径仍有限制 |
+| [DragDoll 基础轴兼容](dragdoll-compatibility/README.md) | 将同类型名的基础Extra Move Axis误当作Plus，启动时要求不存在的输入合同 | 仅已知基础版本跳过Plus专用桥，保留原生Guide钩子；10场景运行34项检查与拒绝保护通过 |
+| [Vanity 与 PseudoMaker 保护注册](vanity-pseudomaker/README.md) | 已有防止被动刷新改值及保留槽位的保护仅认旧版，参考安装新版被跳过 | 只额外接受精确SHA的1.5.2.0，两个组件各改一个门控；178项观察和4项拒绝通过，空启动已加载 |
+| [AssetImport 局部依赖补齐](assetimport-dependencies/README.md) | 随包自定义AssimpNetter缺两个程序集，类型扫描仅390/394 | 官方精确包局部新增，不替换全局依赖；真实Unity中GetTypes已394/394，模型导入另验 |
+| [CloXray 导入对象映射](cloxray-import/README.md) | 导入源ID与当前场景ID重叠时恢复错对象 | Import仅用本次对象快照；原25项中13红、候选25绿，普通Load与保存格式保持 |
+| [PerceptiveHeightX截图隐藏](perceptive-height-compatibility/README.md) | 按旧程序集名找截图管理器失败，事件缺少成对取消 | 真实GUID优先查找并保留旧名回退，48项候选检查与拒绝保护通过 |
+| [Bust原生中文](bust-native-localization/README.md) | 原生控件不经过IMGUI owner，直接翻构造值又会改节点身份 | 两个创建回调只改13处可见文字，68项合成检查，原插件与数据身份保持 |
+
+运行入口必须显式提供本地原 DLL 与依赖路径，输出到新的隔离目录。生成候选不等于安装，安装应先核同 GUID、备份、核对目标前后哈希并保留回执。不要将测试夹具或工具 DLL 当游戏插件安装。
+
+参考环境已完成三插件的自动空Studio启动检查：ManageableSkirts、修复后的DragDoll与Grey均加载；DragDoll原合同错误没有再出现，正常关闭后进程退出。没有激活裙链、操作姿势或执行真实导出，旧控制台退出句柄错误仍单独保留。详情见[启动验证](startup-verification.json)。
+
+后续有限真实验证包括 Grey 自有立方体的FBX/PNG导出、AssetImport完整类型加载和Vanity空启动，各自范围见对应目录。新增插件的自有中文显示增量见[localization](localization/README.md)：F1中英标题与中文设置说明，以及Grey窗口的独立作用域词条；不改变配置身份或覆盖既有完整词表。
+
+[PerspectiveX 1.4.1](perspectivex-update/README.md)提供版本差异、保留旧配置的升级步骤及46条F1/4条动态提示的事务式补译。CloXray另有25条F1增量，复用已有14条准确基础译文。两项更新的真实空Studio初始化与配置保持已经记录；角色视角、VR、场景导入及shader画面仍分别保留未验范围。
+
+已有运行故障修复在独立 PR 的 `ops/studio-runtime-repairs/`；汉化与字体发行在 `ops/studio-localization/`。各分支的公开源码与真实安装分别记录，不因 GitHub 合并推定游戏已部署。
+
+## 本轮来源核查结论
+
+2026-11-28重新核对15个明确的官方 GitHub 发布来源，标签与前次记录一致；这不覆盖作者迁站后的发行或全部社区附件。社区发布帖中的 Hermes 5.7.1 热修复需单独核包，不能安装已知音频保存/载入回归的5.7来代替。
+
+DragDoll、Vanity Studio、Touch Camera 等候选按其实际KKS资产、依赖和默认行为分别审查，不把KK同名版本或发行包版本与内部插件版本混为一谈。作者免费提供下载也不自动授权本仓库重新分发其二进制。
+
+只保存能公开的来源链接和结论；私有来源正文、个人安装清单和回执由使用者自行保管。任何功能的合成测试、静态API核对与真实Unity运行各有范围，文档保留未验证项。

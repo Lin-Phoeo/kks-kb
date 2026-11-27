@@ -1,0 +1,33 @@
+{
+  "observed_date": "2026-11-28",
+  "scope": "Actual empty Studio plugin initialization; no cards or scenes loaded or saved",
+  "plugin_guid": "Clo.LiquidWobbleMPB",
+  "plugin_version": "1.1.6",
+  "plugin_sha256": "74612e01c4d2278aca4b4d993dc4d944c223496afca63b87f6a23c1c1f68014d",
+  "loaded": true,
+  "workspace_objects": 0,
+  "configuration": {
+    "before_startup_keys": 37,
+    "after_startup_keys": 48,
+    "existing_values_preserved": true,
+    "user_configuration_values_exported": false
+  },
+  "error_or_fatal_before_quit": 0,
+  "shutdown": {
+    "application_quit_requested": true,
+    "additional_normal_window_close_required": true,
+    "exact_process_and_window_class_validated": true,
+    "force_terminated": false,
+    "process_exited": true,
+    "legacy_invalid_handle_mentions": 9,
+    "job_temp_alloc_warnings": 33,
+    "legacy_shutdown_issues_fixed": false
+  },
+  "temporary_observer_archived": true,
+  "raw_logs_or_machine_paths_included": false,
+  "shader_find_count": 7,
+  "shader_find_found": 0,
+  "shader_visual_verified": false,
+  "scene_import_roundtrip_verified": false,
+  "character_operations_verified": false
+}
