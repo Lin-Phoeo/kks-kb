@@ -1,0 +1,31 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Action (110)=动感（110）
+Cozy (60)=舒适（60）
+Custom presets=自定义预设
+Natural (90)=自然（90）
+PerspectiveX=PerspectiveX 视角
+Save current=保存当前
+Saved views=已保存视角
+Scene repair=场景修复
+Type a name and save the current FOV, smoothing and camera offsets as your own preset.=输入名称，将当前视场角、平滑和相机偏移保存为自定义预设。
+Versions up to 1.3.2 could save a hidden head into the scene file if you saved while in POV. This puts it back - save the scene afterwards.=1.3.2 及更早版本在第一人称下保存场景时，可能保存了隐藏头部的状态。此按钮可恢复头部，操作后请保存场景。
+View presets=视角预设
+r:"\\AAll (?<v>(?:[+-]?[0-9]+(?:[.,][0-9]+)?|\\{\\{[^{}\\r\\n]+\\}\\})) custom slots are used - delete one \\(X\\) to add another\\.\\z"=r:"全部 ${v} 个自定义槽位均已占用，请先点 X 删除一个再添加。"
+r:"\\ABring back hidden heads \\((?<v>(?:[+-]?[0-9]+(?:[.,][0-9]+)?|\\{\\{[^{}\\r\\n]+\\}\\}))\\)\\z"=r:"恢复隐藏的头部（${v}）"
+r:"\\AViews store the exact look direction and zoom - enter POV \\((?<v>[^\\r\\n]+)\\) to use them\\.\\z"=r:"视角保存精确的朝向和缩放，进入第一人称（${v}）即可使用。"
+Apply=应用
+Update=更新
+Save=保存
+Load=载入
+r:"\\ACozy \\((?<v>(?:[0-9]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\)\\z"=r:"舒适（${v}）"
+r:"\\ANatural \\((?<v>(?:[0-9]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\)\\z"=r:"自然（${v}）"
+r:"\\AAction \\((?<v>(?:[0-9]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\)\\z"=r:"动感（${v}）"
+r:"\\ASlot (?<slot>(?:[1-3]|\\{\\{[^{}\\r\\n]+\\}\\}))  \\(empty\\)\\z"=r:"槽位 ${slot}（空）"
+r:"\\ASlot (?<slot>(?:[1-3]|\\{\\{[^{}\\r\\n]+\\}\\}))  \\(FOV (?<fov>(?:[+-]?[0-9]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\)\\z"=r:"槽位 ${slot}（视场角 ${fov}）"
+r:"\\ASlot (?<slot>(?:[1-3]|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"槽位 ${slot}"
+r:"\\AAll (?<v>(?:[0-9]+|\\{\\{[^{}\\r\\n]+\\}\\})) custom slots are used - delete one \\(X\\) to add another\\.\\z"=r:"${v} 个自定义槽位已满，请点 X 删除一个再添加。"
+r:"\\AViews store the exact look direction and zoom - enter POV \\((?<key>[^\\r\\n]+)\\) to use them\\.\\z"=r:"视角会保存朝向和缩放，请按 ${key} 进入第一人称后使用。"
+r:"\\ABring back hidden heads \\((?<v>(?:[0-9]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\)\\z"=r:"恢复隐藏的头部（${v}）"
+r:"\\AVersions up to (?<version>(?:[0-9]+\\.[0-9]+\\.[0-9]+|\\{\\{[^{}\\r\\n]+\\}\\}(?:\\.\\{\\{[^{}\\r\\n]+\\}\\})*)) could save a hidden head into the scene file if you saved while in POV\\. This puts it back - save the scene afterwards\\.\\z"=r:"${version} 及更早版本在第一人称下保存场景时，可能保存了隐藏头部的状态。此按钮可恢复头部，操作后请保存场景。"

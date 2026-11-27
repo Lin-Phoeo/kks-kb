@@ -1,0 +1,6 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+If you have an studioItem selected, it will be replaced.\nYou can change the scale of the object with the scaling-factor.\nMulti-Object Mode gives you the ability to apply different material per object.\nIf you get weird lighting and/or textures, try the mirror feature in [advanced].=选中了工作室物件时，会替换该物件。\n可以用缩放系数调整物件尺寸。\n多物件模式允许为不同物件使用不同材质。\n如果光照或纹理异常，请尝试“高级”中的镜像功能。
+On Import, the currently selected accessory will be replaced.\nYou can change the scale of the object with the scaling-factor.\nMulti-Object Mode gives you the ability to apply different material per object.\nIf you get weird lighting and/or textures, try the mirror feature in [advanced].=导入时会替换当前选中的饰品。\n可以用缩放系数调整物件尺寸。\n多物件模式允许为不同物件使用不同材质。\n如果光照或纹理异常，请尝试“高级”中的镜像功能。
+r:"\\AScaling-factor: (?<v>(?:[+-]?[0-9]+(?:[.,][0-9]+)?|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"缩放系数：${v}"

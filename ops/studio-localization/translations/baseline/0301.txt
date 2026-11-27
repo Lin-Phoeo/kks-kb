@@ -1,0 +1,3 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+吹き出し=漫画对白框
+画面効果=画面效果

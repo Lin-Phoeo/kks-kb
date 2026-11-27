@@ -1,0 +1,7 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+サマー=夏季
+ベッド=床
+仕切り=隔断
+机=桌子
+棚=架子
+水周り=卫浴与用水设施

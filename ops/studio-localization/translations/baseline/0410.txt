@@ -1,0 +1,4 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+FKアナルビーズ1=FK肛珠1
+FKアナルビーズ2=FK肛珠2
+FKアナルビーズ3=FK肛珠3

@@ -1,0 +1,5 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ハロウィンゴースト=万圣节鬼魂
+ハロウィンブルーム=万圣节扫把
+ハロウィンリボン=万圣节蝴蝶结
+パンプキンクラウン=南瓜冠

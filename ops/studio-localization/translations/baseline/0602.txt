@@ -1,0 +1,7 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ジュエルバングル=宝石手镯
+バーベルピアス=杠铃形穿孔饰品
+ロバ尻尾=驴尾巴
+ロバ耳=驴耳
+付け毛18=附加毛发18
+付け毛19=附加毛发19

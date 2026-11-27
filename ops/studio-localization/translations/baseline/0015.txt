@@ -1,0 +1,7 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+シーン1=场景1
+シーン2=场景2
+シーン3=场景3
+シーン4=场景4
+シーン5=场景5
+フル=全部

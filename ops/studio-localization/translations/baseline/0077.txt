@@ -1,0 +1,15 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+アクション=动作
+ポーズ=姿势
+ライブ=演唱会
+リアクション=反应
+会話=对话
+基本=基本的
+寝=睡眠
+床=地板
+感情=情绪
+椅子・机=椅子・桌子
+歩く・走る=步行・奔跑
+男=男性
+立ち=站立
+食べる=吃东西

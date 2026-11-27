@@ -1,0 +1,16 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+デンマ音=电声
+バイブ音=震动声
+回転音=旋转声
+夏の夕暮れ=夏日黄昏
+換気扇=换气扇
+木々のざわめき=树的沙沙声
+水流=水流声
+水流(激)=水流声(激烈)
+焚火=篝火
+犬の鳴き声=狗叫声
+虫の声=虫声
+雨音=雨声
+電話のコール音=电话呼叫声
+風=风声
+鳥のさえずり=鸟鸣声

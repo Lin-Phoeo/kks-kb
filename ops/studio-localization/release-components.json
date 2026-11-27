@@ -1,0 +1,172 @@
+{
+  "requirements": {
+    "xunity_core": {
+      "required": true,
+      "paths": [
+        "BepInEx/plugins/XUnity.AutoTranslator/XUnity.AutoTranslator.Plugin.Core.dll"
+      ],
+      "sha256": [
+        "fddf51b6eb33ed5a680d3506eb94708f86d6368894e0d3681164fc820e2a6fbb",
+        "e5c95cb8f78bf208cbf5c552e437d4f51048d9bff6452394ad135e6ca75c8286",
+        "9700854b20f25b7a81cff2c46da08c12bd5f27cc2544efdfe62dc4cb548bd002"
+      ]
+    },
+    "configuration_manager": {
+      "sha256": [
+        "91b1c972d397df93681c197f77badcbfcd39f8957e200eaf7ee989cbbf74636c"
+      ],
+      "paths": [
+        "BepInEx/plugins/ConfigurationManager/ConfigurationManager.dll"
+      ]
+    },
+    "hidpi": {
+      "sha256": [
+        "aab0fd0ff3cda3a63170a0da4fac84f11234c05673a18ce8128e0699610760c0"
+      ],
+      "paths": [
+        "BepInEx/patchers/IMGUI.HiDPI.Patcher/IMGUI.HiDPI.Patcher.Mono.dll",
+        "BepInEx/patchers/IMGUI.HiDPI.Patcher.Mono.dll"
+      ]
+    },
+    "video_export": {
+      "sha256": [
+        "ed153538b453b5dc72dc4fddc51f4e68fbe770cf00669f4874ad3d509e6a72a7"
+      ],
+      "paths": [
+        "BepInEx/plugins/VideoExport.dll"
+      ]
+    },
+    "light_settings": {
+      "sha256": [
+        "c2274137afcbca2a849274784d316f99cb8a277f15ed9d4bd9da5372fb88a69f"
+      ],
+      "paths": [
+        "BepInEx/plugins/LightSettings.KoikatuSunshine.dll",
+        "BepInEx/plugins/LightSettings.KoikatsuSunshine.dll"
+      ]
+    },
+    "patched_core": {
+      "paths": [
+        "BepInEx/plugins/XUnity.AutoTranslator/XUnity.AutoTranslator.Plugin.Core.dll"
+      ],
+      "sha256": [
+        "9700854b20f25b7a81cff2c46da08c12bd5f27cc2544efdfe62dc4cb548bd002"
+      ],
+      "allow_planned_replacement": true
+    },
+    "animorph": {
+      "paths": [
+        "BepInEx/plugins/KKS_AnisotropicMorph.dll"
+      ],
+      "sha256": [
+        "b3af1a04664a9db48f476d939f69278ce2971647c97a5a721ebfc5c36dc3a6b0"
+      ]
+    }
+  },
+  "components": [
+    {
+      "artifact": "XUnity.AutoTranslator.Plugin.Core.dll",
+      "sha256": "9700854b20f25b7a81cff2c46da08c12bd5f27cc2544efdfe62dc4cb548bd002",
+      "destination": "BepInEx/plugins/XUnity.AutoTranslator/XUnity.AutoTranslator.Plugin.Core.dll",
+      "kind": "upstream_mit_core",
+      "source": "components/XUnity.AutoTranslator.Plugin.Core.dll",
+      "replace_sha256": [
+        "fddf51b6eb33ed5a680d3506eb94708f86d6368894e0d3681164fc820e2a6fbb",
+        "e5c95cb8f78bf208cbf5c552e437d4f51048d9bff6452394ad135e6ca75c8286"
+      ],
+      "requires": [
+        "xunity_core"
+      ]
+    },
+    {
+      "artifact": "Codex.StudioImGuiRouteAdapter.dll",
+      "sha256": "3a6eb0b45d951bacf890d570d2a528135e3f531ab8b58a405d3a9616bf50d30c",
+      "destination": "BepInEx/plugins/Codex.StudioImGuiRouteAdapter.dll",
+      "kind": "helper",
+      "source": "components/Codex.StudioImGuiRouteAdapter.dll",
+      "replace_sha256": [],
+      "requires": [
+        "hidpi",
+        "patched_core"
+      ]
+    },
+    {
+      "artifact": "Codex.StudioConfigLocalization.dll",
+      "sha256": "5e2b72cccd0cb5e6f23c7fadacf8a372eafe5ceab1c1202e1710c8bd60c3b837",
+      "destination": "BepInEx/plugins/Codex.StudioConfigLocalization.dll",
+      "kind": "helper",
+      "source": "components/Codex.StudioConfigLocalization.dll",
+      "replace_sha256": [
+        "c8e70625cdd8a1ac4c2b927260540dcdacc3b0a75f743aaf71f1a9822f119cd9"
+      ],
+      "requires": [
+        "configuration_manager"
+      ]
+    },
+    {
+      "artifact": "Codex.StudioPanelTypography.dll",
+      "sha256": "b9891fe3620ad429df8c4e279676ff47a7b498f0347f25177cd7a72bcd48866d",
+      "destination": "BepInEx/plugins/Codex.StudioPanelTypography.dll",
+      "kind": "helper",
+      "source": "components/Codex.StudioPanelTypography.dll",
+      "replace_sha256": [
+        "fce91461eed41b3d557bd366a55922c3df98e4f29d8a0477cb46195be34152fe",
+        "e7a9f7ffc8a6d1767811ef6305dbb10831359d3539888752999940f444814318",
+        "8d920d54796d54130e9ffe3f62154decaf91c51e28486bc3db4569bf48a7a85d"
+      ],
+      "requires": [
+        "light_settings"
+      ]
+    },
+    {
+      "artifact": "Codex.StudioNativePluginText.dll",
+      "sha256": "015563a181c680a000d593a1292118561d3debffb94f792a67a5bfd9b66ecc53",
+      "destination": "BepInEx/plugins/Codex.StudioNativePluginText.dll",
+      "kind": "helper",
+      "source": "components/Codex.StudioNativePluginText.dll",
+      "replace_sha256": [],
+      "requires": [
+        "video_export"
+      ]
+    },
+    {
+      "artifact": "Codex.StudioFontController.dll",
+      "source": "components/Codex.StudioFontController.dll",
+      "destination": "BepInEx/plugins/Codex.StudioFontController.dll",
+      "sha256": "57da132e6db2115fd3b0bc8942ea6332cdebcbafc9b4995b7d0560bae303dcda",
+      "kind": "helper",
+      "requires": [],
+      "replace_sha256": [
+        "255158234c040ec4d431a1bd54c847ce8049c9b19f6b12178a37101740a0449e",
+        "0c7ee8194b70c252d859fe3a7c0ab81afdadb8dfc4b5e97806c311ead5c386d8",
+        "3a0239db3c8d1130db82e7c5169886cfe5cc9200bc587e9bf8e16f9507bbc356",
+        "ef02f7e510325dcf502e7d73ec51f192003c0a8208c2da362cbf74a690ec0c9f",
+        "4a6a6fd9e2e7ae973233290d877b0ad49ca1fa1a3dfcbe66099eeb88886384b8",
+        "4878de491c973ade583e6b4685737f2dd8525a26e88d823bbace76d45dd02e11"
+      ]
+    },
+    {
+      "artifact": "Codex.StudioImGuiDynamicBridge.dll",
+      "source": "components/Codex.StudioImGuiDynamicBridge.dll",
+      "destination": "BepInEx/plugins/Codex.StudioImGuiDynamicBridge.dll",
+      "sha256": "f76f99fc74fa04029a6a45947536a448ed15d24851768002a8121d22f4b194ea",
+      "kind": "helper",
+      "requires": [
+        "patched_core"
+      ],
+      "replace_sha256": []
+    },
+    {
+      "artifact": "Codex.StudioAniMorphLayoutCompat.dll",
+      "source": "components/Codex.StudioAniMorphLayoutCompat.dll",
+      "destination": "BepInEx/plugins/Codex.StudioAniMorphLayoutCompat.dll",
+      "sha256": "5aab51321ca167fa3172d0bf0958ecb9a9b5b9a44eb0da9979382f2e3d595f1e",
+      "kind": "helper",
+      "requires": [
+        "animorph",
+        "configuration_manager"
+      ],
+      "replace_sha256": []
+    }
+  ]
+}

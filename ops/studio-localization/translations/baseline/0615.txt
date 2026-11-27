@@ -1,0 +1,243 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Export Baked Mesh=导出烘焙网格
+Export Baked World Position=导出烘焙的世界空间位置
+Paste any copied edits for all selected items and their child items in Studio=将已复制的修改粘贴到 Studio 中所有选中物件及其子物件。
+Watch last loaded texture file for changes=监视最后加载的贴图文件变化
+Mods=模组
+AlphaClip:=Alpha 裁剪:
+CutoutClip:=透明裁剪
+DstBlend:=目标混合因子:
+HeightUVScrollDistort:=高度 UV 滚动扭曲（HeightUVScrollDistort）:
+linetexon:=线条纹理开关（linetexon）:
+Specular:=镜面反射:
+SpecularColor:=镜面反射颜色:
+SpecularHighlights:=镜面高光:
+SrcBlend:=源混合因子:
+Translucency:=透光性（Translucency）:
+TransmissionStrength:=透射强度（TransmissionStrength）:
+UPanner:=U 平移（UPanner）:
+UseAlphaCliping:=启用 Alpha 裁剪（UseAlphaCliping）:
+UseMainTex:=使用主纹理（UseMainTex）:
+UVPannerSpeedx:=UV 平移速度 X（UVPannerSpeedx）:
+UVPannerSpeedy:=UV 平移速度 Y（UVPannerSpeedy）:
+UVPannerTime:=UV 平移时间（UVPannerTime）:
+UVScroll:=UV 滚动（UVScroll）:
+UVScrollRotator:=UV 滚动旋转（UVScrollRotator）:
+VPanner:=V 平移（VPanner）:
+RoundedCubeBias:=圆角立方体偏移（RoundedCubeBias）:
+EmissionPulseAmp:=自发光脉冲振幅（EmissionPulseAmp）:
+WorldScale:=世界空间缩放:
+TransmissionColor:=透射颜色（TransmissionColor）:
+Transmission:=透射（Transmission）:
+AlphaClip:*=<color\=#6600ff>Alpha 裁剪:*</color>
+CutoutClip:*=<color\=#6600ff>透明裁剪*</color>
+DstBlend:*=<color\=#6600ff>目标混合因子:*</color>
+HeightUVScrollDistort:*=<color\=#6600ff>高度 UV 滚动扭曲（HeightUVScrollDistort）:*</color>
+linetexon:*=<color\=#6600ff>线条纹理开关（linetexon）:*</color>
+Specular:*=<color\=#6600ff>镜面反射:*</color>
+SpecularColor:*=<color\=#6600ff>镜面反射颜色:*</color>
+SpecularHighlights:*=<color\=#6600ff>镜面高光:*</color>
+SrcBlend:*=<color\=#6600ff>源混合因子:*</color>
+Translucency:*=<color\=#6600ff>透光性（Translucency）:*</color>
+TransmissionStrength:*=<color\=#6600ff>透射强度（TransmissionStrength）:*</color>
+UPanner:*=<color\=#6600ff>U 平移（UPanner）:*</color>
+UseAlphaCliping:*=<color\=#6600ff>启用 Alpha 裁剪（UseAlphaCliping）:*</color>
+UseMainTex:*=<color\=#6600ff>使用主纹理（UseMainTex）:*</color>
+UVPannerSpeedx:*=<color\=#6600ff>UV 平移速度 X（UVPannerSpeedx）:*</color>
+UVPannerSpeedy:*=<color\=#6600ff>UV 平移速度 Y（UVPannerSpeedy）:*</color>
+UVPannerTime:*=<color\=#6600ff>UV 平移时间（UVPannerTime）:*</color>
+UVScroll:*=<color\=#6600ff>UV 滚动（UVScroll）:*</color>
+UVScrollRotator:*=<color\=#6600ff>UV 滚动旋转（UVScrollRotator）:*</color>
+VPanner:*=<color\=#6600ff>V 平移（VPanner）:*</color>
+RoundedCubeBias:*=<color\=#6600ff>圆角立方体偏移（RoundedCubeBias）:*</color>
+EmissionPulseAmp:*=<color\=#6600ff>自发光脉冲振幅（EmissionPulseAmp）:*</color>
+WorldScale:*=<color\=#6600ff>世界空间缩放:*</color>
+TransmissionColor:*=<color\=#6600ff>透射颜色（TransmissionColor）:*</color>
+TextureDistanse:*=<color\=#6600ff>纹理距离（TextureDistanse）:*</color>
+Transmission:*=<color\=#6600ff>透射（Transmission）:*</color>
+NailSpecularColor:=指甲镜面反射颜色（NailSpecularColor）:
+NailSpecularColor:*=<color\=#6600ff>指甲镜面反射颜色（NailSpecularColor）:*</color>
+Material Editor ExtData=Material Editor 扩展数据
+Remove Failed Setting Export Texture=移除失败设置时导出贴图
+Export the texture assigned to the removing failed applying setting=导出将被移除的应用失败设置所引用的贴图
+Skip Change Custom Events=跳过自定义变更事件
+Persist search=保留搜索条件
+AnotherRamp:=附加渐变贴图（AnotherRamp）:
+GlossMapScale:=平滑度缩放（GlossMapScale）:
+notusetexspecular:=不使用贴图镜面反射（notusetexspecular）:
+overcolor1:=叠加层颜色1（overcolor1）:
+overcolor2:=叠加层颜色2（overcolor2）:
+overcolor3:=叠加层颜色3（overcolor3）:
+OverColor3:=叠加层颜色3（overcolor3）:
+overtex1:=叠加纹理1（overtex1）:
+overtex2:=叠加纹理2（overtex2）:
+overtex3:=叠加纹理3（overtex3）:
+patternclamp1:=图案1平铺钳制（patternclamp1）:
+patternclamp2:=图案2平铺钳制（patternclamp2）:
+patternclamp3:=图案3平铺钳制（patternclamp3）:
+rimV:=边缘光强度（rimV）:
+SmoothnessTextureChannel:=平滑度纹理通道（SmoothnessTextureChannel）:
+SpecularPower:=镜面反射强度（SpecularPower）:
+SpecularPowerNail:=指甲镜面反射强度（SpecularPowerNail）:
+TopColor:=顶部颜色（TopColor）:
+TopGradation:=顶部渐变（TopGradation）:
+UnderGradation:=底部渐变（UnderGradation）:
+LimbusScale:=角膜缘缩放（LimbusScale）:
+limbus:=角膜缘（limbus）:
+LimbalEdge_Adjustment:=角膜缘边界调整（LimbalEdge_Adjustment）:
+LimbalRingGloss:=角膜缘环光泽（LimbalRingGloss）:
+LimbalRingMetalness:=角膜缘环金属度（LimbalRingMetalness）:
+LimbalRingOpacity:=角膜缘环不透明度（LimbalRingOpacity）:
+SpecColor:=镜面反射颜色（SpecColor）:
+GlitchTime:=故障效果时间（GlitchTime）:
+WetAlbedoOffset:=湿润反照率偏移（WetAlbedoOffset）:
+WetSplatsAlbedoOffset:=湿润斑点反照率偏移（WetSplatsAlbedoOffset）:
+SubsurfaceAlbedo:=次表面反照率（SubsurfaceAlbedo）:
+SubsurfaceAlbedoOpacity:=次表面反照率不透明度（SubsurfaceAlbedoOpacity）:
+SubsurfaceAlbedoSaturation:=次表面反照率饱和度（SubsurfaceAlbedoSaturation）:
+GlitchDirection:=故障效果方向（GlitchDirection）:
+GlitchRun:=故障效果运行（GlitchRun）:
+AnotherRamp:*=<color\=#6600ff>附加渐变贴图（AnotherRamp）:*</color>
+GlossMapScale:*=<color\=#6600ff>平滑度缩放（GlossMapScale）:*</color>
+notusetexspecular:*=<color\=#6600ff>不使用贴图镜面反射（notusetexspecular）:*</color>
+overcolor1:*=<color\=#6600ff>叠加层颜色1（overcolor1）:*</color>
+overcolor2:*=<color\=#6600ff>叠加层颜色2（overcolor2）:*</color>
+overcolor3:*=<color\=#6600ff>叠加层颜色3（overcolor3）:*</color>
+OverColor3:*=<color\=#6600ff>叠加层颜色3（overcolor3）:*</color>
+overtex1:*=<color\=#6600ff>叠加纹理1（overtex1）:*</color>
+overtex2:*=<color\=#6600ff>叠加纹理2（overtex2）:*</color>
+overtex3:*=<color\=#6600ff>叠加纹理3（overtex3）:*</color>
+patternclamp1:*=<color\=#6600ff>图案1平铺钳制（patternclamp1）:*</color>
+patternclamp2:*=<color\=#6600ff>图案2平铺钳制（patternclamp2）:*</color>
+patternclamp3:*=<color\=#6600ff>图案3平铺钳制（patternclamp3）:*</color>
+rimV:*=<color\=#6600ff>边缘光强度（rimV）:*</color>
+SmoothnessTextureChannel:*=<color\=#6600ff>平滑度纹理通道（SmoothnessTextureChannel）:*</color>
+SpecularPower:*=<color\=#6600ff>镜面反射强度（SpecularPower）:*</color>
+SpecularPowerNail:*=<color\=#6600ff>指甲镜面反射强度（SpecularPowerNail）:*</color>
+TopColor:*=<color\=#6600ff>顶部颜色（TopColor）:*</color>
+TopGradation:*=<color\=#6600ff>顶部渐变（TopGradation）:*</color>
+UnderGradation:*=<color\=#6600ff>底部渐变（UnderGradation）:*</color>
+LimbusScale:*=<color\=#6600ff>角膜缘缩放（LimbusScale）:*</color>
+limbus:*=<color\=#6600ff>角膜缘（limbus）:*</color>
+LimbalEdge_Adjustment:*=<color\=#6600ff>角膜缘边界调整（LimbalEdge_Adjustment）:*</color>
+LimbalRingGloss:*=<color\=#6600ff>角膜缘环光泽（LimbalRingGloss）:*</color>
+LimbalRingMetalness:*=<color\=#6600ff>角膜缘环金属度（LimbalRingMetalness）:*</color>
+LimbalRingOpacity:*=<color\=#6600ff>角膜缘环不透明度（LimbalRingOpacity）:*</color>
+SpecColor:*=<color\=#6600ff>镜面反射颜色（SpecColor）:*</color>
+Cutoff:*=<color\=#6600ff>Alpha 裁剪阈值（Cutoff）:*</color>
+GlitchTime:*=<color\=#6600ff>故障效果时间（GlitchTime）:*</color>
+WetAlbedoOffset:*=<color\=#6600ff>湿润反照率偏移（WetAlbedoOffset）:*</color>
+WetSplatsAlbedoOffset:*=<color\=#6600ff>湿润斑点反照率偏移（WetSplatsAlbedoOffset）:*</color>
+SubsurfaceAlbedo:*=<color\=#6600ff>次表面反照率（SubsurfaceAlbedo）:*</color>
+SubsurfaceAlbedoOpacity:*=<color\=#6600ff>次表面反照率不透明度（SubsurfaceAlbedoOpacity）:*</color>
+SubsurfaceAlbedoSaturation:*=<color\=#6600ff>次表面反照率饱和度（SubsurfaceAlbedoSaturation）:*</color>
+GlitchDirection:*=<color\=#ff0000>故障效果方向（GlitchDirection）:*</color>
+GlitchRun:*=<color\=#ff0000>故障效果运行（GlitchRun）:*</color>
+_dirty:=_dirty:
+AlphaEx:=AlphaEx:
+BitangentRim:=BitangentRim:
+bitangentrim:=bitangentrim:
+CarvatureStrength:=CarvatureStrength:
+ExGloss:=ExGloss:
+exppower:=exppower:
+expression:=expression:
+InvFade:=InvFade:
+NamidaScale:=NamidaScale:
+refcolor:=refcolor:
+Riality:=Riality:
+Ring_onwoffb:=Ring_onwoffb:
+Ringcontrolr_onoff:=Ringcontrolr_onoff:
+Ringoff:=Ringoff:
+Spec:=Spec:
+TransAmbient:=TransAmbient:
+TransDirect:=TransDirect:
+TransNormalDistortion:=TransNormalDistortion:
+TransScattering:=TransScattering:
+TransShadows:=TransShadows:
+TransShadow:=TransShadow:
+WeatheringAll:=WeatheringAll:
+WeatheringMap:=WeatheringMap:
+WeatheringMask:=WeatheringMask:
+WeatheringRange1:=WeatheringRange1:
+WeatheringRange2:=WeatheringRange2:
+WeatheringRange3:=WeatheringRange3:
+WeatheringRange4:=WeatheringRange4:
+WeatheringRange5:=WeatheringRange5:
+WeatheringRange6:=WeatheringRange6:
+WeatheringUV:=WeatheringUV:
+Power:=Power:
+RoundedCubePower:=RoundedCubePower:
+FlatWrinkle:=FlatWrinkle:
+specsize:=specsize:
+EyeShadingPower:=EyeShadingPower:
+LensPush:=LensPush:
+HairThinness:=HairThinness:
+WeatheringAlbedo:=WeatheringAlbedo:
+ProfileTex:=ProfileTex:
+ProfileColor:=ProfileColor:
+ExAlpha:=ExAlpha:
+TransBase:=TransBase:
+TransDynamic:=TransDynamic:
+TransOcclusion:=TransOcclusion:
+TransRange:=TransRange:
+WeatheringSpecular:=WeatheringSpecular:
+WeatheringBumpPower:=WeatheringBumpPower:
+WeatheringGloss:=WeatheringGloss:
+UndoEffectTexture:=UndoEffectTexture:
+ThiccColor:=ThiccColor:
+SpecLight:=SpecLight:
+SpecOcc:=SpecOcc:
+_dirty:*=_dirty:*
+AlphaEx:*=AlphaEx:*
+BitangentRim:*=BitangentRim:*
+bitangentrim:*=bitangentrim:*
+CarvatureStrength:*=CarvatureStrength:*
+ExGloss:*=ExGloss:*
+exppower:*=exppower:*
+expression:*=expression:*
+InvFade:*=InvFade:*
+NamidaScale:*=NamidaScale:*
+refcolor:*=refcolor:*
+Riality:*=Riality:*
+Ring_onwoffb:*=Ring_onwoffb:*
+Ringcontrolr_onoff:*=Ringcontrolr_onoff:*
+Ringoff:*=Ringoff:*
+Spec:*=Spec:*
+TransAmbient:*=TransAmbient:*
+TransDirect:*=TransDirect:*
+TransNormalDistortion:*=TransNormalDistortion:*
+TransScattering:*=TransScattering:*
+TransShadows:*=TransShadows:*
+TransShadow:*=TransShadow:*
+WeatheringAll:*=WeatheringAll:*
+WeatheringMap:*=WeatheringMap:*
+WeatheringMask:*=WeatheringMask:*
+WeatheringRange1:*=WeatheringRange1:*
+WeatheringRange2:*=WeatheringRange2:*
+WeatheringRange3:*=WeatheringRange3:*
+WeatheringRange4:*=WeatheringRange4:*
+WeatheringRange5:*=WeatheringRange5:*
+WeatheringRange6:*=WeatheringRange6:*
+WeatheringUV:*=WeatheringUV:*
+Power:*=Power:*
+RoundedCubePower:*=RoundedCubePower:*
+specsize:*=specsize:*
+EyeShadingPower:*=EyeShadingPower:*
+LensPush:*=LensPush:*
+HairThinness:*=HairThinness:*
+WeatheringAlbedo:*=WeatheringAlbedo:*
+ProfileTex:*=ProfileTex:*
+ProfileColor:*=ProfileColor:*
+ExAlpha:*=ExAlpha:*
+TransBase:*=TransBase:*
+TransDynamic:*=TransDynamic:*
+TransOcclusion:*=TransOcclusion:*
+TransRange:*=TransRange:*
+WeatheringSpecular:*=WeatheringSpecular:*
+WeatheringBumpPower:*=WeatheringBumpPower:*
+UndoEffectTexture:*=UndoEffectTexture:*
+ThiccColor:*=ThiccColor:*
+SpecLight:*=SpecLight:*
+SpecOcc:*=SpecOcc:*

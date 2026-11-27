@@ -1,0 +1,30 @@
+#set exe CharaStudio
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Allows you to hide unnecessary buttons from the left toolbar.=允许隐藏左侧工具栏中不需要的按钮。
+Audit Local Files=检查本地文件
+Delete unused files=删除未使用的文件
+Discard current button positions and line them up along the edge of the screen.=清除当前按钮位置，并沿屏幕边缘重新排列。
+Edit Mode=编辑模式
+Missing textures=缺失的纹理
+No missing textures found!=未发现缺失的纹理！
+No unused textures found!=未发现未使用的纹理！
+Processing cards and scenes...=正在检查角色卡和场景文件…
+Rearrange buttons=重新排列按钮
+Reset state of all buttons to be visible.=将所有按钮恢复为显示状态。
+Show all buttons=显示全部按钮
+Unused textures=未使用的纹理
+r:"\\AMissing\\ texture\\ hash:\\ (?<v0>[^\\r\\n]+?)\\z"=r:"缺失纹理哈希：${v0}"
+r:"\\AMove\\ unused\\ files\\ to\\ '(?<v0>[^\\r\\n]+?)'\\ folder\\z"=r:"将未使用的文件移至“${v0}”文件夹"
+ 右手=右手
+ 左手=左手
+ Enter text...=输入文字…
+肌艶=皮肤光泽
+色=颜色
+胸操作=胸部控制
+カラー１=颜色 1
+カラー２=颜色 2
+カラー３=颜色 3
+カラー４=颜色 4
+キャラの顔の陰影=面部明暗
+キャラの顔のライト影=面部灯光阴影
+フィルター=滤镜

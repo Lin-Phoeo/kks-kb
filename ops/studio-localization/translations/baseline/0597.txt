@@ -1,0 +1,7 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+かんざし=发簪
+ねじり鉢巻き=扭绳头带
+キツネ面=狐狸面具
+水風船=水气球
+祭りうちわ=祭典团扇
+綿あめ=棉花糖

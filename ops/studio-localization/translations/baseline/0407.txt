@@ -1,0 +1,12 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+シンプルコア1=核心1
+シンプルコア2=核心2
+ペンライト=荧光棒
+リング=环
+リング(細)=环(细)
+円柱=圆柱
+円柱(溝あり)=圆柱(沟)
+円柱(細)=圆柱(细)
+輪=轮
+電球=灯泡
+電球(細)=灯泡(细)

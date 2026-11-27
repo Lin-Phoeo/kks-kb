@@ -1,0 +1,6 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ねこかばん=猫咪包
+カップケーキイヤリング=纸杯蛋糕耳环
+キャンディクリップA=糖果夹A
+キャンディクリップB=糖果夹B
+ファンシーリボン=花式蝴蝶结

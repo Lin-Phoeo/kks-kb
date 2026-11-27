@@ -1,0 +1,4 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+夕暮れの空=黄昏的天空
+昼の空=白天的天空
+晴れた空=晴朗的天空

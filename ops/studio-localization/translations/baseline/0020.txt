@@ -1,0 +1,8 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ダンス1=舞蹈1
+ダンス2=舞蹈2
+ダンス3=舞蹈3
+ダンス4=舞蹈4
+ダンス5=舞蹈5
+ダンス6=舞蹈6
+ダンス7=舞蹈7

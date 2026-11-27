@@ -1,0 +1,11 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ベンチで寝る1=长椅睡觉1
+ベンチで寝る2=长椅睡觉2
+寝=睡眠
+寝返り=翻身
+寝返り待機=翻身待机
+机で寝る=趴桌睡觉
+椅子で寝る=椅子睡觉
+添い寝1=陪睡1
+添い寝2=陪睡2
+添い寝3=陪睡3

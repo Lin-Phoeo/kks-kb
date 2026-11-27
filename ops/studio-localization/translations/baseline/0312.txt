@@ -1,0 +1,10 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ガラス入り障子=带玻璃的障子拉门
+シャワー室ドア=淋浴室门
+トイレドア1=卫生间门1
+トイレドア2=卫生间门2
+戸=门扇
+襖1=隔扇1
+襖2=隔扇2
+障子1=纸拉门1
+障子2=纸拉门2

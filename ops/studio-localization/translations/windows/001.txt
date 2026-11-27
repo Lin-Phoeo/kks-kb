@@ -1,0 +1,17 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Asset Import v4.0.2=资源导入 v4.0.2
+Finish=完成
+Switch to Armature=切换到骨架
+Switch to Textures=切换到纹理
+r:"\\AScaling\\-factor:\\ (?<v0>(?:[+-]?[0-9０-９]+(?:[.,][0-9０-９]+)?|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"缩放倍数：${v0}"
+with=替换为
+◀ Replace common or full Path: ▶=◀ 替换公共路径或完整路径：▶
+◀ Replace in all paths ▶=◀ 替换所有路径中的内容 ▶
+☐ Import Armature=☐ 导入骨架
+☐ Import Blendshapes=☐ 导入混合形状
+☐ Material per Renderer=☐ 每个渲染器独立材质
+☑ Import Armature=☑ 导入骨架
+☑ Import Blendshapes=☑ 导入混合形状
+☑ Material per Renderer=☑ 每个渲染器独立材质

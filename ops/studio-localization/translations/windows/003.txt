@@ -1,0 +1,5 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Hello=问候
+No charactor selected!=尚未选择角色！

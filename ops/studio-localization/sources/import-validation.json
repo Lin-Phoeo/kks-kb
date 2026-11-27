@@ -1,0 +1,20 @@
+{
+  "requested": 2420,
+  "community_only": {
+    "matched": 1775,
+    "missing": 645
+  },
+  "community_and_reviewed_txt": {
+    "matched": 2305,
+    "missing": 115
+  },
+  "with_explicit_reviewed_catalog": {
+    "matched": 2420,
+    "missing": 0
+  },
+  "private_auto_cache_read": false,
+  "source_values_uploaded": false,
+  "game_files_written": false,
+  "tool_runtime": ".NET10",
+  "tests": "Actual installed Core parser, fixed archive, explicit reviewed local inputs; local outputs only"
+}

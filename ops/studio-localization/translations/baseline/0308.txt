@@ -1,0 +1,12 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+2D効果=2D效果
+FKアイテム=FK物件
+エフェクト=特效
+オブジェ=对象
+キャラ=角色
+ギミック=机关
+グロー=辉光
+ベース=基础
+基本形=基本类型
+小物=配件
+Ｈアイテム=Ｈ道具

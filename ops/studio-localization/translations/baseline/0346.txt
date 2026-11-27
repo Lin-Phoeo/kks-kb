@@ -1,0 +1,12 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ウォレットチェーン=钱包链
+ウサギ尻尾=兔子尾巴
+エレガントリボン=优雅蝴蝶结
+エレキギター=电吉他
+キツネ尻尾=狐狸尾巴
+テールリボン=尾部蝴蝶结
+ベルト=腰带
+小悪魔尻尾=小恶魔的尾巴
+悪魔尻尾=恶魔的尾巴
+腰巻カーディガン=腰间系着的开衫
+鬼神の腰当右用=鬼神护腰(右)

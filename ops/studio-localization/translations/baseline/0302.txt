@@ -1,0 +1,3 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+obj有り=有对象
+obj無し=无对象

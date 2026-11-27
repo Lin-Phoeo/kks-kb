@@ -1,0 +1,3 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+夕空=傍晚天空
+青空=晴空

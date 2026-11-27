@@ -1,0 +1,15 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+AmazingNewBoneLogic v1.0.7=骨骼逻辑编辑器 v1.0.7
+Search:=搜索：
+Slot:=槽位：
+r:"\\A(?<v>[^\\r\\n]+): Off\\z"=r:"${v}：关"
+r:"\\A--- (?<v>[^\\r\\n]+): On ---\\z"=r:"--- ${v}：开 ---"
+r:"\\AAccs\\ for\\ state\\ (?<v0>(?:[0-9０-９]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"状态 ${v0} 的饰品"
+r:"\\ABone\\ Edit\\ (?<v0>(?:[0-9０-９]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"骨骼编辑 ${v0}"
+r:"\\ACreate new bone edit for\\n(?<v>[^\\r\\n]+)\\z"=r:"为以下骨骼新建编辑\n${v}"
+r:"\\ACreate new linked bone edit for\\n(?<a>[^\\r\\n]+) and (?<b>[^\\r\\n]+)\\z"=r:"为以下骨骼新建关联编辑\n${a} 与 ${b}"
+r:"\\AGroup\\ state:\\ (?<v0>(?:[0-9０-９]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"分组状态：${v0}"
+r:"\\AHelp\\ \\(\\ (?<v0>(?:[0-9０-９]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\ /\\ (?<v1>(?:[0-9０-９]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\ \\)\\z"=r:"帮助（${v0} / ${v1}）"
+r:"\\AOutfit\\ (?<v0>(?:[0-9０-９]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"套装 ${v0}"

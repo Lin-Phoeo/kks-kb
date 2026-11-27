@@ -1,0 +1,21 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Add Mode=添加模式
+Clear Acc.=清空饰品
+Lock Hair Acc.=锁定发型饰品
+Replace Mode=替换模式
+Show Selection=显示选择项
+Toggle Hair Acc.=反选发型饰品
+アクセを消す=清空饰品
+反選頭髮飾品=反选发型饰品
+取代模式=替换模式
+增加模式=添加模式
+清空飾品=清空饰品
+置き換えモード=替换模式
+追加モード=添加模式
+選択を表示=显示选择项
+鎖定頭髮飾品=锁定发型饰品
+顯示選擇項=显示选择项
+髪アクセトグル=反选发型饰品
+髪アクセロック=锁定发型饰品

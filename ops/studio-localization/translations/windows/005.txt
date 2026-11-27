@@ -1,0 +1,6 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+r:"\\A(?<v>[^\\r\\n]+) \\(muted\\)\\z"=r:"${v}（已旁路）"
+r:"\\AMean: (?<v>(?:[+-]?[0-9]+(?:[.,][0-9]+)?|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"均值：${v}"
+r:"\\AStd Dev: (?<v>(?:[+-]?[0-9]+(?:[.,][0-9]+)?|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"标准差：${v}"

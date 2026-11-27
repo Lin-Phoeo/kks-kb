@@ -1,0 +1,3 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+アクション=动作
+ポーズ=姿势

@@ -1,0 +1,5 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+webmDeadline=WEBM 编码耗时策略
+framesFolder=帧图像文件夹

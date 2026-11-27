@@ -1,0 +1,4 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+プール=泳池
+床=地板
+立ち=站立

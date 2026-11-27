@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "projects": [
+    {
+      "project": "animorph-layout",
+      "exit": 0
+    },
+    {
+      "project": "configuration",
+      "exit": 0
+    },
+    {
+      "project": "core-patch",
+      "exit": 0
+    },
+    {
+      "project": "font-controller",
+      "exit": 0
+    },
+    {
+      "project": "imgui-dynamic",
+      "exit": 0
+    },
+    {
+      "project": "imgui-route",
+      "exit": 0
+    },
+    {
+      "project": "native-text",
+      "exit": 0
+    },
+    {
+      "project": "sidebar",
+      "exit": 0
+    }
+  ],
+  "gamepath_parameter_used": true,
+  "intermediate_and_output_outside_repository": true,
+  "runtime_validation": "Separate release binaries retain their real-tested hashes; these source rebuilds verify portable project references."
+}

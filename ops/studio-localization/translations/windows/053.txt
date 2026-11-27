@@ -1,0 +1,42 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+0 dB \= maximum without clipping.\n-3 dB \= slight headroom.=0 dB 为不削波的最大电平。\n-3 dB 留有少量余量。
+Attack:=启动时间：
+Damping:=阻尼：
+Decay:=衰减：
+Delay: time between echoes.\nDecay: volume reduction per echo.=延迟：回声之间的时间间隔。\n衰减：每次回声的音量衰减程度。
+Depth:=深度：
+Drive:=驱动量：
+Drive: distortion amount. Tone: post-filter cutoff.\nUses soft clipping (tanh waveshaper).=驱动量：失真程度。音色：后置滤波器的截止频率。\n采用软削波（tanh 波形整形）。
+Freq:=频率：
+Gain:=增益：
+Makeup:=补偿增益：
+Master:=总音量：
+Order:=阶数：
+Positive \= louder, negative \= quieter.\n6 dB ≈ double perceived volume.=正值增大音量，负值减小音量。\n6 dB 约等于感知音量翻倍。
+Rate:=速率：
+Rate: LFO speed. Depth: modulation range.\nCreates a richer, wider sound.=速率：低频振荡器的速度。深度：调制范围。\n使声音更加饱满、宽广。
+Rate: pulsation speed (1-20 Hz typical).\nDepth: how much volume varies.=速率：音量脉动速度（通常为 1–20 Hz）。\n深度：音量变化幅度。
+Ratio:=压缩比：
+Release:=释放时间：
+Removes center content only in the vocal frequency range.\nLow/High define the vocal band. Requires stereo.=仅消除人声音域内的居中声音。\n低频／高频限定人声频段，需要立体声。
+Removes center-panned audio via stereo difference.\nPreserves bass below cutoff. Requires stereo.=通过立体声声道差值消除居中声音。\n保留截止频率以下的低音，需要立体声。
+Removes center-panned content in the frequency domain.\nHigher FFT size \= better quality but slower. Requires stereo.=在频域中消除居中声音。\nFFT 大小越高，质量越好但速度越慢，需要立体声。
+Removes high frequencies above cutoff.\nOrder 1-4 (higher \= steeper rolloff, 6dB per order).=滤除截止频率以上的高频。\n阶数为 1–4（越高衰减越陡，每阶 6 dB）。
+Removes low frequencies below cutoff.\nOrder 1-4 (higher \= steeper rolloff, 6dB per order).=滤除截止频率以下的低频。\n阶数为 1–4（越高衰减越陡，每阶 6 dB）。
+Semitones:=半音：
+Silences audio below the threshold.\nUseful for removing background noise between sounds.=将低于阈值的声音静音。\n用于清除声音间隙中的背景噪声。
+Stages:=级数：
+Stages: 2-12 (more \= deeper effect).\nRate: sweep speed. Depth: sweep range.=级数：2–12（越多，效果越深）。\n速率：扫频速度。深度：扫频范围。
+Strength:=强度：
+Threshold:=阈值：
+Threshold: level where compression starts.\nRatio: compression amount (4:1 \= moderate).=阈值：开始压缩的电平。\n压缩比：压缩程度（4:1 为中等）。
+Tone:=音色：
+r:"\\AApplying\\ to\\ (?<v0>(?:[0-9０-９]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\ tracks\\z"=r:"应用到 ${v0} 条音轨"
+r:"\\AFade\\ In:\\ (?<v0>(?:[+-]?[0-9]+(?:[.,][0-9]+)?|\\{\\{[^{}\\r\\n]+\\}\\}))s\\z"=r:"淡入：${v0} 秒"
+r:"\\AFade\\ Out:\\ (?<v0>(?:[+-]?[0-9]+(?:[.,][0-9]+)?|\\{\\{[^{}\\r\\n]+\\}\\}))s\\z"=r:"淡出：${v0} 秒"
+r:"\\ALane\\ (?<v0>(?:[0-9０-９]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"轨道 ${v0}"
+r:"\\ATrim\\ End\\ \\((?<k0>(?:0|\\{\\{[^{}\\r\\n]+\\}\\}))\\ \\-\\ (?<v0>(?:[+-]?[0-9]+(?:[.,][0-9]+)?|\\{\\{[^{}\\r\\n]+\\}\\}))s\\)\\z"=r:"裁切终点（${k0}–${v0} 秒）"
+r:"\\ATrim\\ Start\\ \\((?<k0>(?:0|\\{\\{[^{}\\r\\n]+\\}\\}))\\ \\-\\ (?<v0>(?:[+-]?[0-9]+(?:[.,][0-9]+)?|\\{\\{[^{}\\r\\n]+\\}\\}))s\\)\\z"=r:"裁切起点（${k0}–${v0} 秒）"
+r:"\\AZoom:\\ (?<v0>(?:[+-]?[0-9]+(?:[.,][0-9]+)?|\\{\\{[^{}\\r\\n]+\\}\\}))x\\z"=r:"缩放：${v0} 倍"

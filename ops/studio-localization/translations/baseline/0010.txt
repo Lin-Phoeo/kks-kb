@@ -1,0 +1,11 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+お姉さん座り=姐姐坐姿
+お茶をたてる=沏茶
+お茶をたてる待機=沏茶待机
+お茶を飲む=喝茶
+お茶を飲む待機=喝茶待机
+しゃがみ1=蹲1
+しゃがみ2=蹲2
+しゃがみ3=蹲3
+女の子座り=少女坐姿
+正座=正坐

@@ -1,0 +1,5 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+アニメ=动画
+ポーズ1=姿势1
+ポーズ2=姿势2
+ポーズ3=姿势3

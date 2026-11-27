@@ -1,0 +1,6 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+サマー=夏季
+ファンタジー=幻想
+医療=医疗
+雑貨=杂货
+電化製品=电子产品

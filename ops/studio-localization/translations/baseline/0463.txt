@@ -1,0 +1,8 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ツーショット=双人合影
+ツーショットキス=双人合影接吻
+参拝=参拜
+水やり=浇水
+自販機=自动售货机
+走る=跑
+鳥の巣観察=鸟巢观察

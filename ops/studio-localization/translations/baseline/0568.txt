@@ -1,0 +1,4 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+フレーム=边框
+マーク表現=标记表达
+擬音=象声词

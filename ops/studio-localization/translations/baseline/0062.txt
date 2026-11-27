@@ -1,0 +1,6 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+動き回る１=到处活动1
+動き回る２=到处活动2
+動き回る３=到处活动3
+動き回る４=到处活动4
+動き回る５=到处活动5

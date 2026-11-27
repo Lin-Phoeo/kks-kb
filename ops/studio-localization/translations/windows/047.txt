@@ -1,0 +1,6 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Link position=绑定位置
+Link rotation=绑定旋转
+Link scale=绑定缩放

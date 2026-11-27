@@ -1,0 +1,3 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ダンス=舞蹈
+和=和风

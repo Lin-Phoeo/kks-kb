@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "original_zip": {
+    "name": "工作室的图标汉化.zip",
+    "sha256": "98205207ab9a5baa57b1d8bcc3dda1a1a966e25ffca39ac930d83cc28f20d1a1",
+    "bytes": 1588168
+  },
+  "images": [
+    {
+      "index": 1,
+      "member": "SpriteAtlasTexture-studio (Group 0)-512x512-fmt3 [B06BAB3835-F1B328D918].png",
+      "bytes": 26202,
+      "sha256": "3e8db5531304a99d6c806cbdd747d035426449e974348ebe315870578116f730",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "has_alpha": false,
+      "decoded": true
+    },
+    {
+      "index": 2,
+      "member": "SpriteAtlasTexture-studio (Group 1)-2048x2048-fmt4 [F6F75A420C-83CCB9D0CD].png",
+      "bytes": 354938,
+      "sha256": "503ea91ea3fa7b0d55d398df50b3f83d92f12e8ed5fdb5fe5c55f2d14ebb1bc5",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGBA",
+      "has_alpha": true,
+      "decoded": true
+    },
+    {
+      "index": 3,
+      "member": "SpriteAtlasTexture-studio (Group 2)-512x1024-fmt12 [3A3CD7848C-8987767A5C].png",
+      "bytes": 178250,
+      "sha256": "37f2820c2efcf44b098c583a15f0f4f9cf76d991481344b0b5575aac17d021a5",
+      "size": [
+        512,
+        1024
+      ],
+      "mode": "RGBA",
+      "has_alpha": true,
+      "decoded": true
+    },
+    {
+      "index": 4,
+      "member": "SpriteAtlasTexture-studio (Group 3)-512x64-fmt10 [9DAA0D5F0F-0F14582674].png",
+      "bytes": 4532,
+      "sha256": "9dbeb9157efbf0f0f2b5f41af1a752e193d951c53cd35630aa5d62f064073aff",
+      "size": [
+        512,
+        64
+      ],
+      "mode": "RGBA",
+      "has_alpha": true,
+      "decoded": true
+    },
+    {
+      "index": 5,
+      "member": "sp_sn_10_00_07 [D6304AE7A5-089B348FAB].png",
+      "bytes": 1560,
+      "sha256": "515da449c3a119f01f6fb552554c32ddd0dff5de62240d00d202c428696a30ea",
+      "size": [
+        32,
+        32
+      ],
+      "mode": "RGBA",
+      "has_alpha": true,
+      "decoded": true
+    },
+    {
+      "index": 6,
+      "member": "sp_sn_50_00_01 [4FEBFCB8CF-A195C70B88].png",
+      "bytes": 750793,
+      "sha256": "375931ae0fb5e38132c1a333a095fa283a248bce2fd039ff4fe41c469b1a215c",
+      "size": [
+        1920,
+        1080
+      ],
+      "mode": "RGBA",
+      "has_alpha": true,
+      "decoded": true
+    },
+    {
+      "index": 7,
+      "member": "sp_sn_53_00_00 [D760E85F43-0000000000].png",
+      "bytes": 3737,
+      "sha256": "a9ca168868b26b212ee87e3c225610ea11f0846d80dadab0c12e54099ae252da",
+      "size": [
+        416,
+        160
+      ],
+      "mode": "P",
+      "has_alpha": false,
+      "decoded": true
+    },
+    {
+      "index": 8,
+      "member": "sp_sn_53_00_01 [F056F37AC9-0000000000].png",
+      "bytes": 4528,
+      "sha256": "8b02e82a8914b93defdc99d749ac3c1563dac75c84325a8ab9e5195b896d67da",
+      "size": [
+        416,
+        160
+      ],
+      "mode": "P",
+      "has_alpha": false,
+      "decoded": true
+    },
+    {
+      "index": 9,
+      "member": "sp_sn_60_00_00 [81C495C0EA-3371B7E42F].png",
+      "bytes": 1311,
+      "sha256": "a13a20a75521ac929e5c1d126ba009a79c72bd811c40b2af803f0c225ed4e74a",
+      "size": [
+        152,
+        72
+      ],
+      "mode": "RGBA",
+      "has_alpha": true,
+      "decoded": true
+    },
+    {
+      "index": 10,
+      "member": "sp_sn_61_00_00 [E9D1CFF286-37D8CC8714].png",
+      "bytes": 281010,
+      "sha256": "b67d67104a54fbace0fbbd8e6decf9f656d39782481bf4a942ed23107f48e82c",
+      "size": [
+        1920,
+        1080
+      ],
+      "mode": "RGB",
+      "has_alpha": false,
+      "decoded": true
+    },
+    {
+      "index": 11,
+      "member": "sp_sn_62_00_00 [C126DE04F5-65EC2AF9CE].png",
+      "bytes": 2663,
+      "sha256": "f633612396b0455074a4d0e8e61fafc6d58030bbe1d540ddcec2ddf5406c4ddc",
+      "size": [
+        152,
+        200
+      ],
+      "mode": "RGBA",
+      "has_alpha": true,
+      "decoded": true
+    },
+    {
+      "index": 12,
+      "member": "sp_sn_63_00_00 [A19EF24355-8C95F0BFE5].png",
+      "bytes": 5576,
+      "sha256": "4d8dfb03467fbb31f3d9f3bb3bc3d4f18ef36858ea00c963fb213f599c237e54",
+      "size": [
+        416,
+        48
+      ],
+      "mode": "RGBA",
+      "has_alpha": true,
+      "decoded": true
+    }
+  ],
+  "expected_generated_images": [
+    {
+      "name": "SpriteAtlasTexture-studio (Group 0)-512x512-fmt3 [B06BAB3835-F1B328D918].png",
+      "sha256": "bd928463bb74dc7f70e27c403a10eef63e9da49f7ec0718bc1979771cfb93cde",
+      "size": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "SpriteAtlasTexture-studio (Group 1)-2048x2048-fmt4 [F6F75A420C-83CCB9D0CD].png",
+      "sha256": "5f939e86bb9d5d6126e39b8d18d0adb80d2c2f16341ddc4929c32d5a0e3edbfe",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "name": "SpriteAtlasTexture-studio (Group 2)-512x1024-fmt12 [3A3CD7848C-8987767A5C].png",
+      "sha256": "56925c23d60644f29af7d11417f9d2f0f2dccd14489ebcefb40913f92f6b0c58",
+      "size": [
+        512,
+        1024
+      ]
+    },
+    {
+      "name": "SpriteAtlasTexture-studio (Group 3)-512x64-fmt10 [9DAA0D5F0F-0F14582674].png",
+      "sha256": "9db3482b217a4a73dce2715318254b859b75126288cce8b6d258b6d876cc8147",
+      "size": [
+        512,
+        64
+      ]
+    },
+    {
+      "name": "sp_sn_10_00_07 [D6304AE7A5-089B348FAB].png",
+      "sha256": "f13b80e24bc178656a06865f69e2641144c0aade40537b90bc3564653759fea2",
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "name": "sp_sn_50_00_01 [4FEBFCB8CF-A195C70B88].png",
+      "sha256": "76e937a4e1b97d1aa1a88eb0b043a31acc9a2988dd75ca7a38419fe3d99ec7f6",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "name": "sp_sn_53_00_00 [D760E85F43-0000000000].png",
+      "sha256": "e903c74c698bcdb4f579dd69b52b500246a38b930e7ad126632ba546b9693cf3",
+      "size": [
+        416,
+        160
+      ]
+    },
+    {
+      "name": "sp_sn_53_00_01 [F056F37AC9-0000000000].png",
+      "sha256": "fc010cc7d98caca7abfeab542acb2784ea81811c77f15ce19a0d39968b938853",
+      "size": [
+        416,
+        160
+      ]
+    },
+    {
+      "name": "sp_sn_60_00_00 [81C495C0EA-3371B7E42F].png",
+      "sha256": "4d8be1ed4d0350da03b700af83eaa09b6feaec4e8246f57459e76f343756d55f",
+      "size": [
+        152,
+        72
+      ]
+    },
+    {
+      "name": "sp_sn_61_00_00 [E9D1CFF286-37D8CC8714].png",
+      "sha256": "cf2e2911d164d31f6a0ce64b83b199a01e82a326473a7efb114cceaabf303f93",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "name": "sp_sn_62_00_00 [C126DE04F5-65EC2AF9CE].png",
+      "sha256": "fe51c85d33749e0f7f77483e10958980fe72a0fb5a46f6c70b9fbde90f9207a8",
+      "size": [
+        152,
+        200
+      ]
+    },
+    {
+      "name": "sp_sn_63_00_00 [A19EF24355-8C95F0BFE5].png",
+      "sha256": "7373ddd061b3733856e61ce6b58eea57995889f8b6b3ce8443a547d8ced4fbf4",
+      "size": [
+        416,
+        48
+      ]
+    }
+  ],
+  "font_reference": {
+    "name": "msyh.ttc",
+    "sha256": "d79c55e68b1131eea0cc1c47be4f572d964f28c682e143db2ad09c1e4cb07a3f",
+    "distributed": false
+  },
+  "source_references": [
+    "image-structure.json",
+    "patch-definitions.json",
+    "candidate-manifest.json"
+  ],
+  "publication_boundary": "NooriginalPNG,nooriginalZIP,nofontfiles; user supplies ownverifiedarchiveandChinese font."
+}

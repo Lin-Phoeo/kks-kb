@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "name": "build_textures.py",
+      "sha256": "1580f54bec971376e094b0bd6eb66865a3cd9ff7471709cf4295785b3f8b6fd0",
+      "bytes": 10258
+    },
+    {
+      "name": "manifest.json",
+      "sha256": "a3f52421501fd65288abe40a5abb00203258fa05159f2a4a34282be3cfb88f91",
+      "bytes": 7491
+    },
+    {
+      "name": "patch-definitions.json",
+      "sha256": "a6869cc2a443485700636eb5cb449a3cb049e487322e4818017656740b5636c3",
+      "bytes": 43623
+    },
+    {
+      "name": "README.md",
+      "sha256": "494bb3a718039b104e3c97ba44813f323420842f62c94b1efe8b8df97c651ed1",
+      "bytes": 1753
+    }
+  ],
+  "dependencies": [
+    "Python3",
+    "Pillow",
+    "numpy"
+  ],
+  "source_references": [
+    "make_candidate.py",
+    "image-structure.json",
+    "patch-definitions.json"
+  ],
+  "source_images_distributed": false,
+  "fonts_distributed": false,
+  "verified_runtime_versions": {
+    "Pillow": "13.0.0",
+    "numpy": "2.5.4"
+  }
+}

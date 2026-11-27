@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "package_files": 699,
+  "installed_files": 693,
+  "optional_skipped": 6,
+  "source_core": "official5.6.3.1",
+  "core_restored": true,
+  "config_restored": true,
+  "repeat_install_no_changes": true,
+  "new_plugin_cache_directories_removed": true,
+  "fixture_path_different_drive": true,
+  "real_game_modified": false
+}

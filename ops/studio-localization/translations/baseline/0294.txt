@@ -1,0 +1,8 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ドア=门
+壁=墙壁
+建造物=建筑物
+画像板=图像板
+空=天空
+設置物=设置物
+階段=阶梯

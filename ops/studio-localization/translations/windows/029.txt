@@ -1,0 +1,45 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+AAmode  =抗锯齿模式
+AmbientOcculusion =环境光遮蔽
+AntiAliasing =抗锯齿
+AutoFocus=自动对焦
+Bloom =泛光
+BlurDownsampling=模糊降采样
+BlurEnable=启用模糊
+BlurType  =模糊类型
+CamTarget=相机目标
+Center  =中心
+CharaNearestScreenCenter=最靠近画面中心的角色
+ChromaticAberration=色差
+Close on focus loss=失去焦点时关闭
+Color   =颜色
+ColorGrading =调色
+Colored=彩色
+Customizable Outline=自定义描边
+DepthOfField =景深
+Fog=雾
+Grain=颗粒
+HSV Transfer=HSV 转换
+Lens Distortion =镜头畸变
+Master Switch (Toggle PPE)=后期效果总开关
+MaxBlurSize  =最大模糊范围
+MaxDistance=最大距离
+Mode  =模式
+MotionBlur=运动模糊
+New AO Mode=新版环境光遮蔽模式
+OutlineColor   =描边颜色
+PasteTone=添加网点
+PostProcessingEffects=后期处理效果
+Posterize=色调分离
+Quality  =质量
+Rounded=圆形
+SampleCount  =采样数
+SelectedChara=所选角色
+SengaMode=线稿模式
+SobelColorOutline=Sobel 颜色描边
+Tone=网点
+Tone  =色调
+Tonemapping  =色调映射
+WhiteBalance  =白平衡

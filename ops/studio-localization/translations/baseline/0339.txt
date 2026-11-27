@@ -1,0 +1,6 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+メカアーマー=机械装甲
+メカシールドⅢ=机械盾牌Ⅲ
+メカトライニードル=机械三角探针
+メカホイール=机械轮
+メカライオン=机械狮子

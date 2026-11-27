@@ -1,0 +1,8 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Filename:=文件名：
+Folder:=文件夹：
+No Texture\nIncluded=未包含\n纹理
+Search:=搜索：
+r:"\\ANo\\ poses\\ found\\ matching\\ '(?<v0>[^\\r\\n]+)'\\.\\z"=r:"未找到匹配“${v0}”的姿势。"

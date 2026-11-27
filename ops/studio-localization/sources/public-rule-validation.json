@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": 5551,
+  "ruleCount": 231,
+  "exactCount": 5204,
+  "boundedLru": 2048,
+  "maxRegexInput": 400,
+  "maxExactInput": 12000,
+  "regexTimeoutMilliseconds": 10,
+  "scope": "Managed matcher uses raw GUIContent originals, no XUnity mutable caches or Unity native calls."
+}

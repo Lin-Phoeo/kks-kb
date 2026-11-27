@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-27",
+  "user_confirmed": "切换、恢复和搜索都正常，流畅，已退出",
+  "runtime_controller_version": "1.0.3",
+  "runtime_controller_sha256": "4878de491c973ade583e6b4685737f2dd8525a26e88d823bbace76d45dd02e11",
+  "release_controller_version": "1.0.4",
+  "release_controller_sha256": "57da132e6db2115fd3b0bc8942ea6332cdebcbafc9b4995b7d0560bae303dcda",
+  "release_delta": "Defaults and quick choices only. New configuration defaults to enabled SimSun; existing user configuration is preserved.",
+  "default_policy_checks": 24,
+  "observed_font_switches": 9,
+  "observed_families": [
+    "SimSun",
+    "KaiTi",
+    "Microsoft YaHei",
+    "STXihei"
+  ],
+  "active_tmp_missing_max": 0,
+  "dynamic_actual_draw_checks": 7,
+  "dynamic_core_original_preserved": true,
+  "local_matcher_checks": 6740,
+  "public_clean_matcher_checks": 5551,
+  "layout_errors": 0,
+  "new_runtime_failures": 0,
+  "native_crash_markers": 0,
+  "legacy_console_invalid_handle": 8,
+  "normal_exit_confirmed": true,
+  "steady_measurement_scope": "120 frames after settling. Controller Update average excludes Harmony hooks, font rendering, native GPU work and the rest of the game. Not a complete performance benchmark.",
+  "coverage_limit": "Only visited screen controls, F1 input and checked plugin windows. Other third-party fonts and unopened dynamic windows need their own visual checks."
+}

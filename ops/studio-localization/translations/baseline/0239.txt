@@ -1,0 +1,8 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+中ループ=进行中循环
+事後=事后
+弱ループ=弱循环
+強ループ=强循环
+絶頂=高潮
+絶頂事後=高潮事后
+絶頂前ループ=高潮前循环

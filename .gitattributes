@@ -8,3 +8,8 @@ Caddyfile*  text eol=lf
 
 # Preserve upstream vendored bytes; their formatting is not maintained here.
 app/static/vendor/** -whitespace
+
+# Translation payload hashes and intentional whitespace must survive checkouts.
+ops/studio-localization/translations/** -text -whitespace
+ops/studio-localization/*.json text eol=lf
+ops/studio-localization/sources/** text eol=lf

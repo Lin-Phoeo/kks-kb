@@ -1,0 +1,5 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Order by=排序依据
+Load Skirt FK=加载裙子 FK

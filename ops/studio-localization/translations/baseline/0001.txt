@@ -1,0 +1,10 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+股間=裆部
+胴=躯体
+脚=腿
+腕=手臂
+腰=腰部
+頭=头部
+顔=脸部
+首=颈部
+髪=头发

@@ -1,0 +1,10 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+アクション=动作
+ポーズ=姿势
+会話=对话
+寝=睡眠
+床=地板
+椅子・机=椅子・桌子
+男=男性
+立ち=站立
+食べる=吃东西

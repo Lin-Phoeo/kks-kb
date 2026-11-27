@@ -1,0 +1,13 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+  Enable Reflection Probe=  启用反射探针
+  Refresh on camera motion=  镜头移动时刷新
+  Time-slice cubemap faces=  分帧更新立方体贴图各面
+  Use Scene Origin (uncheck \= follow camera)=  使用场景原点（取消后跟随镜头）
+Active (rendering)=已启用（渲染中）
+Inactive=未启用
+Realtime Reflection Probe [Alt+R]=实时反射探针 [Alt+R]
+Reset to Defaults=恢复默认值
+Status: Active (rendering)=状态：已启用（渲染中）
+Status: Inactive=状态：未启用

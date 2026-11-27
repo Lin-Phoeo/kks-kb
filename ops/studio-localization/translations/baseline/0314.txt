@@ -1,0 +1,4 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+石階段1=石阶梯1
+石階段2=石阶梯2
+階段(木)=阶梯(木)

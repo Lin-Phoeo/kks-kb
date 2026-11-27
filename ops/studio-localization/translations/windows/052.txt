@@ -1,0 +1,8 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+<b>TOHYK Enabled</b>   •   Pivot: Box Center=<b>TOHYK 已启用</b>   •   轴心：包围盒中心
+<b>TOHYK Enabled</b>   •   Pivot: Center=<b>TOHYK 已启用</b>   •   轴心：中心
+<b>TOHYK Enabled</b>   •   Pivot: Each Own Origin=<b>TOHYK 已启用</b>   •   轴心：各自原点
+<b>TOHYK Enabled</b>   •   Pivot: Last Selected=<b>TOHYK 已启用</b>   •   轴心：最后选中项
+<b>TOHYK Enabled</b>   •   Pivot: Parent Bone=<b>TOHYK 已启用</b>   •   轴心：父骨骼

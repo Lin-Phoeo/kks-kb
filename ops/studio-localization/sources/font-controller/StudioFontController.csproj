@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework><LangVersion>7.3</LangVersion><AssemblyName>Codex.StudioFontController</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems><AutomaticallyUseReferenceAssemblyPackages>false</AutomaticallyUseReferenceAssemblyPackages>
+    <FrameworkPathOverride Condition="'$(FrameworkPathOverride)' == ''">$(MSBuildProgramFiles32)/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.7.2</FrameworkPathOverride>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="StudioFontController.cs"/><Compile Include="FontResources.cs"/><Compile Include="FontSelection.cs"/><Compile Include="FontSourceResolver.cs"/>
+    <Compile Include="ImGuiMetricObservation.cs"/>
+    <Compile Include="FontDefaults.cs"/>
+    <Reference Include="BepInEx" HintPath="$(GameRoot)/BepInEx/core/BepInEx.dll" Private="false"/>
+    <Reference Include="0Harmony" HintPath="$(GameRoot)/BepInEx/core/0Harmony.dll" Private="false"/>
+    <Reference Include="Newtonsoft.Json" HintPath="$(GameRoot)/BepInEx/plugins/Newtonsoft.Json.dll" Private="false"/>
+    <Reference Include="UnityEngine" HintPath="$(GameRoot)/CharaStudio_Data/Managed/UnityEngine.dll" Private="false"/>
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(GameRoot)/CharaStudio_Data/Managed/UnityEngine.CoreModule.dll" Private="false"/>
+    <Reference Include="UnityEngine.IMGUIModule" HintPath="$(GameRoot)/CharaStudio_Data/Managed/UnityEngine.IMGUIModule.dll" Private="false"/>
+    <Reference Include="UnityEngine.TextRenderingModule" HintPath="$(GameRoot)/CharaStudio_Data/Managed/UnityEngine.TextRenderingModule.dll" Private="false"/>
+    <Reference Include="UnityEngine.TextCoreModule" HintPath="$(GameRoot)/CharaStudio_Data/Managed/UnityEngine.TextCoreModule.dll" Private="false"/>
+    <Reference Include="UnityEngine.UI" HintPath="$(GameRoot)/CharaStudio_Data/Managed/UnityEngine.UI.dll" Private="false"/>
+    <Reference Include="UnityEngine.UIModule" HintPath="$(GameRoot)/CharaStudio_Data/Managed/UnityEngine.UIModule.dll" Private="false"/>
+    <Reference Include="Unity.TextMeshPro" HintPath="$(GameRoot)/CharaStudio_Data/Managed/Unity.TextMeshPro.dll" Private="false"/>
+  </ItemGroup>
+  <Target Name="HostReferences" AfterTargets="ResolveAssemblyReferences"><ItemGroup><ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)"/></ItemGroup></Target>
+</Project>

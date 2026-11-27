@@ -1,0 +1,4 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+お肉=肉
+大きなチーズ=大奶酪
+盛り付け肉=什锦肉

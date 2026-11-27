@@ -1,0 +1,6 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+体重計=体重秤
+座高計=坐高尺
+洗面器台=脸盆架
+視力検査機=视力检查器
+身長計=身高尺

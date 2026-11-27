@@ -1,0 +1,5 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ストレッチ１=拉伸1
+ストレッチ２=拉伸2
+ストレッチ３=拉伸3
+ストレッチ４=拉伸4

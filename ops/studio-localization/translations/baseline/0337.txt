@@ -1,0 +1,9 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+コイン=硬币
+バリスタ=弩台
+バリスタの槍=弩箭
+大砲=大炮
+大砲(台)=大炮(台)
+大砲(玉)=大炮(弹)
+大砲(筒)=大炮(筒)
+爆弾=炸弹
