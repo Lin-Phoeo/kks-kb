@@ -13,6 +13,7 @@
     <Compile Include="SidebarTypography.cs" />
     <Compile Include="SidebarTextPolicy.cs" />
     <Compile Include="SharedFontAccess.cs" />
+    <Compile Include="../font-controller/TypographyPolicy.cs" Link="TypographyPolicy.cs" />
     <Reference Include="BepInEx" HintPath="$(GameRoot)/BepInEx/core/BepInEx.dll" Private="false" />
     <Reference Include="0Harmony" HintPath="$(GameRoot)/BepInEx/core/0Harmony.dll" Private="false" />
     <Reference Include="UnityEngine" HintPath="$(GameRoot)/CharaStudio_Data/Managed/UnityEngine.dll" Private="false" />

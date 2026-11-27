@@ -20,7 +20,10 @@ namespace Codex.StudioFontController
         internal readonly string LegacyFamily;
         internal readonly float LegacyPreferredHeight;
         internal bool ImGuiValidated;
-        private readonly Dictionary<char, bool> _characters = new Dictionary<char, bool>();
+        internal bool Rejected;
+        private bool _disposed;
+        private int _disposeFailures;
+        private readonly GlyphCoverage _coverage;
         internal FontResources(string path, FontSourceResolver resolver, string requestedFamily)
         {
             Path = path;
@@ -36,6 +39,7 @@ namespace Codex.StudioFontController
                 LegacyFamily = resolver.RegisteredFamily(path, Family, requestedFamily, Font.GetOSInstalledFontNames());
                 Font = Font.CreateDynamicFontFromOSFont(LegacyFamily, 14);
                 if (!Font || !Font.dynamic || Font.fontSize <= 0) throw new InvalidOperationException("系统字体未提供可用的界面字形。");
+                _coverage = new GlyphCoverage(Font.HasCharacter);
                 Font.RequestCharactersInTexture("x中文", 14, FontStyle.Normal);
                 using (var generator = new TextGenerator())
                     LegacyPreferredHeight = generator.GetPreferredHeight("x", new TextGenerationSettings {
@@ -56,36 +60,39 @@ namespace Codex.StudioFontController
         }
         internal bool Matches(string path)
         {
+            if (Rejected || _disposed) return false;
             var info = new FileInfo(path);
             return string.Equals(Path, path, StringComparison.OrdinalIgnoreCase) && Length == info.Length && WriteTicks == info.LastWriteTimeUtc.Ticks;
         }
         internal bool Contains(string text)
         {
-            if (string.IsNullOrEmpty(text)) return true;
-            foreach (char c in text)
-            {
-                if (char.IsWhiteSpace(c) || char.IsControl(c)) continue;
-                bool found;
-                if (!_characters.TryGetValue(c, out found)) { found = Font.HasCharacter(c); _characters[c] = found; }
-                if (!found) return false;
-            }
-            return true;
+            return _coverage.Contains(text);
         }
         internal void KeepFallback(TMP_FontAsset font)
         {
             if (!font || font == Tmp || font.name.StartsWith("Studio selected ", StringComparison.Ordinal) || Tmp.fallbackFontAssetTable.Contains(font)) return;
             Tmp.fallbackFontAssetTable.Add(font);
         }
-        internal void Dispose()
+        internal int Dispose()
         {
-            if (Tmp)
+            if (_disposed) return _disposeFailures;
+            _disposed = true;
+            int failures = 0;
+            try
             {
-                foreach (Texture2D atlas in Tmp.atlasTextures) if (atlas) UnityEngine.Object.Destroy(atlas);
-                if (Tmp.material) UnityEngine.Object.Destroy(Tmp.material);
-                UnityEngine.Object.Destroy(Tmp);
+                if (Tmp)
+                {
+                    foreach (Texture2D atlas in Tmp.atlasTextures)
+                        try { if (atlas) UnityEngine.Object.Destroy(atlas); } catch (Exception) { failures++; }
+                    try { if (Tmp.material) UnityEngine.Object.Destroy(Tmp.material); } catch (Exception) { failures++; }
+                }
             }
-            if (Font) UnityEngine.Object.Destroy(Font);
-            if (PathFont) UnityEngine.Object.Destroy(PathFont);
+            catch (Exception) { failures++; }
+            try { if (Tmp) UnityEngine.Object.Destroy(Tmp); } catch (Exception) { failures++; }
+            try { if (Font) UnityEngine.Object.Destroy(Font); } catch (Exception) { failures++; }
+            try { if (PathFont) UnityEngine.Object.Destroy(PathFont); } catch (Exception) { failures++; }
+            _disposeFailures = failures;
+            return failures;
         }
     }
 }

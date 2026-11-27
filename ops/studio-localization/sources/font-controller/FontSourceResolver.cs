@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Diagnostics;
+using System.Threading;
 using Microsoft.Win32;
 
 namespace Codex.StudioFontController
@@ -9,6 +11,13 @@ namespace Codex.StudioFontController
     {
         private readonly Dictionary<string, string> _paths = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         private readonly string _customRoot;
+        private volatile ChineseFontCatalog _chineseCatalog;
+        private string[] _runtimeFamilies;
+        private HashSet<string> _runtimeNames;
+        private volatile string _catalogError;
+        private int _catalogStarted;
+        private double _catalogMilliseconds;
+        private static readonly string[] EmptyFamilies = new string[0];
         internal FontSourceResolver(string gameRoot)
         {
             _customRoot = Path.Combine(gameRoot, "UserData", "StudioFonts");
@@ -18,6 +27,10 @@ namespace Codex.StudioFontController
             AddAlias("宋体", "SimSun");
             AddAlias("楷体", "KaiTi");
             AddAlias("仿宋", "FangSong");
+            AddAlias("华文细黑", "STXihei");
+            AddAlias("STXihei", "华文细黑");
+            AddAlias("等线", "DengXian");
+            AddAlias("DengXian", "等线");
         }
         private void ReadRegistry(RegistryKey hive)
         {
@@ -61,28 +74,75 @@ namespace Codex.StudioFontController
             return result.ToArray();
         }
         internal bool HasFamily(string family) { return _paths.ContainsKey(family); }
+        internal void StartCatalogBuild()
+        {
+            if (Interlocked.CompareExchange(ref _catalogStarted, 1, 0) != 0) return;
+            var paths = new Dictionary<string, string>(_paths, StringComparer.OrdinalIgnoreCase);
+            ThreadPool.QueueUserWorkItem(delegate
+            {
+                var watch = Stopwatch.StartNew();
+                try
+                {
+                    var catalog = new ChineseFontCatalog(paths);
+                    _catalogMilliseconds = watch.Elapsed.TotalMilliseconds;
+                    _chineseCatalog = catalog;
+                }
+                catch (Exception error) { _catalogError = error.GetType().Name; }
+            });
+        }
+        internal bool CatalogReady { get { return _chineseCatalog != null; } }
+        internal string CatalogError { get { return _catalogError; } }
+        internal double CatalogMilliseconds { get { return CatalogReady ? _catalogMilliseconds : 0; } }
+        internal int CatalogFileReads { get { return CatalogReady ? _chineseCatalog.FileReads : 0; } }
+        internal int CatalogNativeProbes { get { return CatalogReady ? _chineseCatalog.NativeProbes : 0; } }
+        internal int CatalogSupportedAliases { get { return CatalogReady ? _chineseCatalog.SupportedAliases : 0; } }
+        internal Dictionary<string, int> CatalogRejections
+        { get { return CatalogReady ? new Dictionary<string, int>(_chineseCatalog.Rejections) : new Dictionary<string, int>(); } }
+        internal string[] ChineseFamilies() { return _runtimeFamilies ?? (CatalogReady ? _chineseCatalog.Families : EmptyFamilies); }
+        internal string[] FilterRuntimeFamilies(string[] unityFamilies)
+        {
+            if (!CatalogReady) return EmptyFamilies;
+            if (_runtimeFamilies == null)
+            {
+                _runtimeNames = new HashSet<string>(unityFamilies, StringComparer.OrdinalIgnoreCase);
+                _runtimeFamilies = _chineseCatalog.FilterRuntimeFamilies(unityFamilies);
+            }
+            return _runtimeFamilies;
+        }
+        internal bool IsChineseFamily(string family)
+        {
+            string path;
+            return CatalogReady && family != null && _paths.TryGetValue(family, out path) && _chineseCatalog.Supports(family, path) &&
+                (_runtimeNames == null || _chineseCatalog.RuntimeFamilyForPath(path, _runtimeNames) != null);
+        }
+        internal string CanonicalChineseFamily(string family)
+        {
+            if (_runtimeFamilies == null || !IsChineseFamily(family)) return null;
+            string path = _paths[family];
+            foreach (string candidate in _runtimeFamilies)
+            {
+                string candidatePath;
+                if (_paths.TryGetValue(candidate, out candidatePath) && IsChineseFamily(candidate) &&
+                    string.Equals(path, candidatePath, StringComparison.OrdinalIgnoreCase)) return candidate;
+            }
+            return null;
+        }
         internal string RegisteredFamily(string path, string actualFamily, string requestedFamily, string[] unityFamilies)
         {
             var available = new HashSet<string>(unityFamilies, StringComparer.OrdinalIgnoreCase);
             string mapped;
-            if (available.Contains(actualFamily) && _paths.TryGetValue(actualFamily, out mapped) &&
-                string.Equals(Path.GetFullPath(mapped), path, StringComparison.OrdinalIgnoreCase)) return actualFamily;
-            if (available.Contains(actualFamily))
-                foreach (var item in _paths)
-                    if (string.Equals(Path.GetFullPath(item.Value), path, StringComparison.OrdinalIgnoreCase)) return actualFamily;
-            if (available.Contains(requestedFamily ?? "") && _paths.TryGetValue(requestedFamily, out mapped) &&
-                string.Equals(Path.GetFullPath(mapped), path, StringComparison.OrdinalIgnoreCase)) return requestedFamily;
-            foreach (var item in _paths)
-                if (available.Contains(item.Key) && string.Equals(Path.GetFullPath(item.Value), path, StringComparison.OrdinalIgnoreCase)) return item.Key;
-            throw new ArgumentException("此字体文件尚未安装到系统。请先安装字体，再在列表中选择，以统一全部界面文字。");
+            if (!CatalogReady) throw new ArgumentException(CatalogError == null ? "正在筛选中文字体，请稍后重试。" : "中文字体列表未能完成检测，已保留原字体。");
+            string verifiedFamily = _chineseCatalog.RuntimeFamilyForPath(path, available);
+            if (verifiedFamily == null || !_chineseCatalog.HasFirstFaceName(actualFamily, path))
+                throw new ArgumentException("此字体的中文覆盖或系统字面与字体文件不一致，请从兼容中文字体列表选择。");
+            if (_paths.TryGetValue(requestedFamily ?? "", out mapped) &&
+                string.Equals(Path.GetFullPath(mapped), path, StringComparison.OrdinalIgnoreCase) && !_chineseCatalog.Supports(requestedFamily, path))
+                throw new ArgumentException("所选名称不对应字体文件首个字面，请从兼容中文字体列表选择。");
+            return verifiedFamily;
         }
         internal static string DisplayName(string actualFamily)
         {
-            if (actualFamily == "Microsoft YaHei") return "微软雅黑 / Microsoft YaHei";
-            if (actualFamily == "SimSun" || actualFamily == "NSimSun") return "宋体 / " + actualFamily;
-            if (actualFamily == "KaiTi") return "楷体 / KaiTi";
-            if (actualFamily == "FangSong") return "仿宋 / FangSong";
-            return actualFamily;
+            return ChineseFontCatalog.DisplayName(actualFamily);
         }
         internal static int EffectiveStyleSize(int requestedSize, int originalFontSize)
         {

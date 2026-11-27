@@ -1,0 +1,24 @@
+{
+  "font_version": "1.1.1",
+  "font_sha256": "f754bce9776b8ca8a4dfc2ae296b59a0e4bc610b8eb907ee3a5a3400be033fb4",
+  "runtime_status": "installed_final_manual_verification_not_performed",
+  "fault_checks": 11,
+  "baseline_failed_checks": 6,
+  "actual_switch_invoked": true,
+  "actual_restore_invoked": true,
+  "unity_native_invoked_by_fault_probe": false,
+  "font_picker_checks": 1013,
+  "font_catalog_checks": 51,
+  "legacy_alias_checks": 17,
+  "independent_registration": {
+    "configuration_entries": 6,
+    "custom_drawers": 4,
+    "layout_begin_end_pairs_protected_by_finally": 8,
+    "gui_enabled_restored_by_finally": true
+  },
+  "limitations": [
+    "Calls actual compiled controller methods with synthetic BepInEx config and managed Unity object sentinels. Verifies failure boundaries; no real font loading, pixels or GPU resource release is exercised.",
+    "Final 1.1.1 UI search/scroll/pixels and native invalid-file recovery were not manually verified. 1.1.0 feature acceptance and the exact 1.1.1 offline checks are separate evidence."
+  ],
+  "release_policy": "User requested completion and distribution without further manual testing; prerelease retains explicit unverified UI scope."
+}

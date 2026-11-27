@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings></PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../sources/font-controller/ChineseFontData.cs" Link="ChineseFontData.cs" />
+    <Compile Include="../../sources/font-controller/ChineseFontProbe.cs" Link="ChineseFontProbe.cs" />
+    <Compile Include="../../sources/font-controller/ChineseFontCatalog.cs" Link="ChineseFontCatalog.cs" />
+  </ItemGroup>
+</Project>

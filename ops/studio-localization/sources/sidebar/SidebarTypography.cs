@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.TextCore.LowLevel;
+using Codex.StudioFontController;
 
 namespace Codex.StudioPanelTypography
 {
@@ -16,6 +17,8 @@ namespace Codex.StudioPanelTypography
         private readonly ManualLogSource _logger;
         private readonly Dictionary<Text, TextState> _texts = new Dictionary<Text, TextState>();
         private readonly Dictionary<TMP_Text, TmpState> _tmp = new Dictionary<TMP_Text, TmpState>();
+        private readonly List<Text> _scanTexts = new List<Text>();
+        private readonly List<TMP_Text> _scanTmp = new List<TMP_Text>();
         private Font _font;
         private TMP_FontAsset _tmpFont;
         private Transform _root;
@@ -29,12 +32,22 @@ namespace Codex.StudioPanelTypography
         private Font _externalFont;
         private TMP_FontAsset _externalTmp;
         private bool _sharedActive;
+        private bool _bold;
+        private int _delta;
         private bool _usesSharedCjk;
         private string _effectiveTmpFamily = "original-fonts";
         private int _fontRetries;
         private int _activeScans;
 
         internal SidebarTypography(ManualLogSource logger) { _logger = logger; }
+
+        internal void ApplyCurrent(Text text)
+        {
+            if (!text) return;
+            _sharedActive = SharedFontAccess.Read(out _externalFont, out _externalTmp);
+            SharedFontAccess.ReadTypography(out _bold, out _delta);
+            Apply(text);
+        }
 
         internal void Tick()
         {
@@ -55,10 +68,10 @@ namespace Codex.StudioPanelTypography
                 _scans = 0;
             }
             _sharedActive = SharedFontAccess.Read(out _externalFont, out _externalTmp);
+            SharedFontAccess.ReadTypography(out _bold, out _delta);
             if (!_sharedActive) EnsureFont();
             PruneDestroyed();
-            foreach (Text text in _root.GetComponentsInChildren<Text>(true)) Apply(text);
-            foreach (TMP_Text text in _root.GetComponentsInChildren<TMP_Text>(true)) Apply(text);
+            ApplyCreatedText();
             _scans++;
             bool hasActiveText = false;
             foreach (Text text in _texts.Keys) if (text && text.isActiveAndEnabled) { hasActiveText = true; break; }
@@ -103,6 +116,16 @@ namespace Codex.StudioPanelTypography
                 _logger.LogWarning("STUDIO_SIDEBAR_TMP_YAHEI_UNAVAILABLE " + error.GetType().Name);
                 AcquireCjkFallback();
             }
+        }
+
+        private void ApplyCreatedText()
+        {
+            _root.GetComponentsInChildren(true, _scanTexts);
+            _root.GetComponentsInChildren(true, _scanTmp);
+            foreach (Text text in _scanTexts) Apply(text);
+            foreach (TMP_Text text in _scanTmp) Apply(text);
+            _scanTexts.Clear();
+            _scanTmp.Clear();
         }
 
         private void AcquireCjkFallback()
@@ -150,17 +173,24 @@ namespace Codex.StudioPanelTypography
 
         private void Apply(Text text)
         {
+            if (!text) return;
             string path = PathOf(text.transform);
             if (!SidebarTextPolicy.Includes(path)) return;
+            SharedFontAccess.OwnTypography(text, true);
             TextState saved;
             if (!_texts.TryGetValue(text, out saved)) { saved = new TextState(text); _texts.Add(text, saved); }
             SidebarTextStyle style = Style(text, path);
+            int baseStyle = saved.BaseStyle((int)text.fontStyle);
+            var adjusted = TypographyPolicy.Adjust(new TypographyValue { Size = style.Size, Minimum = style.Minimum, Maximum = style.Size, Style = baseStyle },
+                _bold, _delta, style.Role == "input" ? text.rectTransform.rect.height / 1.2f : float.PositiveInfinity);
             Font chosenFont = _sharedActive ? _externalFont : _font;
             if (chosenFont && text.font != chosenFont) text.font = chosenFont;
-            if (text.fontSize != style.Size) text.fontSize = style.Size;
+            if (text.fontStyle != (FontStyle)adjusted.Style) text.fontStyle = (FontStyle)adjusted.Style;
+            saved.LastStyle = adjusted.Style;
+            if (text.fontSize != (int)adjusted.Size) text.fontSize = (int)adjusted.Size;
             if (text.resizeTextForBestFit != (style.Minimum < style.Size)) text.resizeTextForBestFit = style.Minimum < style.Size;
-            if (text.resizeTextMinSize != style.Minimum) text.resizeTextMinSize = style.Minimum;
-            if (text.resizeTextMaxSize != style.Size) text.resizeTextMaxSize = style.Size;
+            if (text.resizeTextMinSize != (int)adjusted.Minimum) text.resizeTextMinSize = (int)adjusted.Minimum;
+            if (text.resizeTextMaxSize != (int)adjusted.Maximum) text.resizeTextMaxSize = (int)adjusted.Maximum;
             HorizontalWrapMode wrap = style.Role == "input" ? saved.Horizontal : style.Wrap ? HorizontalWrapMode.Wrap : HorizontalWrapMode.Overflow;
             if (text.horizontalOverflow != wrap) text.horizontalOverflow = wrap;
             VerticalWrapMode vertical = style.Role == "input" ? saved.Vertical : VerticalWrapMode.Truncate;
@@ -171,22 +201,28 @@ namespace Codex.StudioPanelTypography
 
         private void Apply(TMP_Text text)
         {
+            if (!text) return;
             string path = PathOf(text.transform);
             if (!SidebarTextPolicy.Includes(path)) return;
+            SharedFontAccess.OwnTypography(text, true);
             TmpState saved;
             if (!_tmp.TryGetValue(text, out saved)) { saved = new TmpState(text); _tmp.Add(text, saved); }
             SidebarTextStyle style = Style(text, path);
+            var adjusted = TypographyPolicy.Adjust(new TypographyValue { Size = style.Size, Minimum = style.Minimum, Maximum = style.Size, Style = saved.BaseStyle((int)text.fontStyle) },
+                _bold, _delta, style.Role == "input" ? text.rectTransform.rect.height / 1.2f : float.PositiveInfinity);
             KeepFallback(saved.OriginalFont);
             TMP_FontAsset chosenFont = _sharedActive ? _externalTmp : _tmpFont;
             if (chosenFont && text.font != chosenFont) text.font = chosenFont;
-            if (saved.LastRoleSize != style.Size)
+            if (text.fontStyle != (FontStyles)adjusted.Style) text.fontStyle = (FontStyles)adjusted.Style;
+            saved.LastStyle = adjusted.Style;
+            if (saved.LastRoleSize != adjusted.Size)
             {
-                text.fontSize = style.Size;
-                saved.LastRoleSize = style.Size;
+                text.fontSize = adjusted.Size;
+                saved.LastRoleSize = adjusted.Size;
             }
             if (text.enableAutoSizing != (style.Minimum < style.Size)) text.enableAutoSizing = style.Minimum < style.Size;
-            if (Math.Abs(text.fontSizeMin - style.Minimum) > 0.01f) text.fontSizeMin = style.Minimum;
-            if (Math.Abs(text.fontSizeMax - style.Size) > 0.01f) text.fontSizeMax = style.Size;
+            if (Math.Abs(text.fontSizeMin - adjusted.Minimum) > 0.01f) text.fontSizeMin = adjusted.Minimum;
+            if (Math.Abs(text.fontSizeMax - adjusted.Maximum) > 0.01f) text.fontSizeMax = adjusted.Maximum;
             bool wrap = style.Role == "input" ? saved.Wrap : style.Wrap;
             TextOverflowModes overflow = style.Role == "input" ? saved.Overflow : TextOverflowModes.Truncate;
             if (text.enableWordWrapping != wrap) text.enableWordWrapping = wrap;
@@ -202,8 +238,7 @@ namespace Codex.StudioPanelTypography
                 try
                 {
                     PruneDestroyed();
-                    foreach (Text text in _root.GetComponentsInChildren<Text>(true)) Apply(text);
-                    foreach (TMP_Text text in _root.GetComponentsInChildren<TMP_Text>(true)) Apply(text);
+                    ApplyCreatedText();
                 }
                 catch (Exception error) { _logger.LogWarning("STUDIO_SIDEBAR_FINAL_SCAN_PARTIAL " + error.GetType().Name); }
             }
@@ -215,20 +250,24 @@ namespace Codex.StudioPanelTypography
 
         private void PruneDestroyed()
         {
-            var oldTexts = new List<Text>();
-            foreach (Text text in _texts.Keys) if (!text) oldTexts.Add(text);
-            foreach (Text text in oldTexts) _texts.Remove(text);
-            var oldTmp = new List<TMP_Text>();
-            foreach (TMP_Text text in _tmp.Keys) if (!text) oldTmp.Add(text);
-            foreach (TMP_Text text in oldTmp) _tmp.Remove(text);
+            _scanTexts.Clear();
+            foreach (Text text in _texts.Keys) if (!text) _scanTexts.Add(text);
+            foreach (Text text in _scanTexts) _texts.Remove(text);
+            _scanTexts.Clear();
+            _scanTmp.Clear();
+            foreach (TMP_Text text in _tmp.Keys) if (!text) _scanTmp.Add(text);
+            foreach (TMP_Text text in _scanTmp) _tmp.Remove(text);
+            _scanTmp.Clear();
         }
 
         private void RestoreTracked()
         {
-            foreach (var pair in _texts) if (pair.Key) pair.Value.Restore(pair.Key);
-            foreach (var pair in _tmp) if (pair.Key) pair.Value.Restore(pair.Key);
+            foreach (var pair in _texts) if (pair.Key) { pair.Value.Restore(pair.Key); SharedFontAccess.OwnTypography(pair.Key, false); }
+            foreach (var pair in _tmp) if (pair.Key) { pair.Value.Restore(pair.Key); SharedFontAccess.OwnTypography(pair.Key, false); }
             _texts.Clear();
             _tmp.Clear();
+            _scanTexts.Clear();
+            _scanTmp.Clear();
         }
 
         [Serializable]
@@ -329,6 +368,9 @@ namespace Codex.StudioPanelTypography
             private readonly Font _font;
             private readonly int _size, _minimum, _maximum;
             private readonly bool _auto;
+            private int _style;
+            internal int LastStyle;
+            internal int BaseStyle(int current) { if (current != LastStyle) _style = current; return _style; }
             internal readonly HorizontalWrapMode Horizontal;
             internal readonly VerticalWrapMode Vertical;
             internal readonly TextAnchor Alignment;
@@ -336,11 +378,13 @@ namespace Codex.StudioPanelTypography
             {
                 _font = text.font; _size = text.fontSize; _minimum = text.resizeTextMinSize; _maximum = text.resizeTextMaxSize;
                 _auto = text.resizeTextForBestFit; Horizontal = text.horizontalOverflow; Vertical = text.verticalOverflow; Alignment = text.alignment;
+                _style = LastStyle = (int)text.fontStyle;
             }
             internal void Restore(Text text)
             {
                 text.font = _font; text.fontSize = _size; text.resizeTextMinSize = _minimum; text.resizeTextMaxSize = _maximum;
                 text.resizeTextForBestFit = _auto; text.horizontalOverflow = Horizontal; text.verticalOverflow = Vertical; text.alignment = Alignment;
+                text.fontStyle = (FontStyle)BaseStyle((int)text.fontStyle);
             }
         }
 
@@ -351,19 +395,24 @@ namespace Codex.StudioPanelTypography
             private readonly Material _material;
             private readonly float _size, _minimum, _maximum;
             private readonly bool _auto;
+            private int _style;
+            internal int LastStyle;
+            internal int BaseStyle(int current) { if (current != LastStyle) _style = current; return _style; }
             internal readonly bool Wrap;
             internal readonly TextOverflowModes Overflow;
             internal readonly TextAlignmentOptions Alignment;
-            internal int LastRoleSize;
+            internal float LastRoleSize;
             internal TmpState(TMP_Text text)
             {
                 _font = text.font; _material = text.fontSharedMaterial; _size = text.fontSize; _minimum = text.fontSizeMin; _maximum = text.fontSizeMax;
                 _auto = text.enableAutoSizing; Wrap = text.enableWordWrapping; Overflow = text.overflowMode; Alignment = text.alignment;
+                _style = LastStyle = (int)text.fontStyle;
             }
             internal void Restore(TMP_Text text)
             {
                 text.font = _font; text.fontSharedMaterial = _material; text.fontSize = _size; text.fontSizeMin = _minimum; text.fontSizeMax = _maximum;
                 text.enableAutoSizing = _auto; text.enableWordWrapping = Wrap; text.overflowMode = Overflow; text.alignment = Alignment;
+                text.fontStyle = (FontStyles)BaseStyle((int)text.fontStyle);
             }
         }
     }

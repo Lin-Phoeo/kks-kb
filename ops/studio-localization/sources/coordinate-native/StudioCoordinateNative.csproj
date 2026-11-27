@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <AssemblyName>Codex.StudioCoordinateNative</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AutomaticallyUseReferenceAssemblyPackages>false</AutomaticallyUseReferenceAssemblyPackages>
+    <FrameworkPathOverride Condition="'$(FrameworkPathOverride)' == ''">$(MSBuildProgramFiles32)/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.7.2</FrameworkPathOverride>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="NativeCoordinateStrings.cs" />
+    <Compile Include="StudioCoordinateNative.cs" />
+    <Compile Include="CoordinateConsumerCompatibility.cs" />
+    <Reference Include="BepInEx" HintPath="$(GameRoot)/BepInEx/core/BepInEx.dll" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(GameRoot)/BepInEx/core/0Harmony.dll" Private="false" />
+    <Reference Include="UnityEngine" HintPath="$(GameRoot)/CharaStudio_Data/Managed/UnityEngine.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(GameRoot)/CharaStudio_Data/Managed/UnityEngine.CoreModule.dll" Private="false" />
+  </ItemGroup>
+  <Target Name="KeepHostProvidedReferences" AfterTargets="ResolveAssemblyReferences">
+    <ItemGroup><ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" /></ItemGroup>
+  </Target>
+</Project>

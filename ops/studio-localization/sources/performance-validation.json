@@ -1,0 +1,184 @@
+{
+  "candidate_version": "0.3.0-rc.2",
+  "baseline_release": "0.3.0-rc.1",
+  "published": true,
+  "runtime_acceptance": "See font-controls-validation.json for accepted 1.1.0 and font-panel-validation.json for final 1.1.1 offline-only scope.",
+  "components": {
+    "Codex.StudioFontController.dll": "fb771b9f867aba06bc7eed2435bbafbae7a57f40f159b15ac96bd0995061178c",
+    "Codex.StudioPanelTypography.dll": "214708dbe2f8ace230cc1ec047df2ea904203b85b4e9273f7b30ac4673fef1b3",
+    "Codex.StudioImGuiDynamicBridge.dll": "896efe60c0095c4592d219f1d7bd64041c8f9c469bb4c5a5b4ef7e4851a671a2",
+    "Codex.StudioConfigLocalization.dll": "268e235b245506b011a0532ea8addc04a26550978daa09a4cfc2d4c7b1c02ca1",
+    "Codex.StudioCoordinateNative.dll": "6d62829da61fe00687ab1399a163754f31e253334705b1ae51632a40c4cf7c7c"
+  },
+  "configuration": {
+    "regressions": 33,
+    "public_catalog_rows": 1525,
+    "reference_installation_rows": 4023,
+    "benchmarks": [
+      {
+        "name": "plain_hits",
+        "callsPerRound": 200000,
+        "rounds": 7,
+        "baselineMedianMs": 47.5213,
+        "optimizedMedianMs": 18.3987,
+        "timeReductionPercent": 61.283256139878326,
+        "baselineBytesPerCall": 609.56032,
+        "optimizedBytesPerCall": 0
+      },
+      {
+        "name": "mixed_hits_and_misses",
+        "callsPerRound": 200000,
+        "rounds": 7,
+        "baselineMedianMs": 48.1192,
+        "optimizedMedianMs": 18.3164,
+        "timeReductionPercent": 61.93536052137192,
+        "baselineBytesPerCall": 614.09152,
+        "optimizedBytesPerCall": 0
+      },
+      {
+        "name": "CRLF_description_hits",
+        "callsPerRound": 200000,
+        "rounds": 7,
+        "baselineMedianMs": 54.8793,
+        "optimizedMedianMs": 47.4967,
+        "timeReductionPercent": 13.452431062349568,
+        "baselineBytesPerCall": 807.84064,
+        "optimizedBytesPerCall": 150.28032
+      },
+      {
+        "name": "observe_without_diagnostics",
+        "callsPerRound": 200000,
+        "rounds": 7,
+        "baselineMedianMs": 28.1285,
+        "optimizedMedianMs": 5.2335,
+        "timeReductionPercent": 81.39431537408677,
+        "baselineBytesPerCall": 312,
+        "optimizedBytesPerCall": 0
+      },
+      {
+        "name": "observe_with_diagnostics_repeated_identity",
+        "callsPerRound": 200000,
+        "rounds": 7,
+        "baselineMedianMs": 29.1182,
+        "optimizedMedianMs": 28.1971,
+        "timeReductionPercent": 3.1633136663667516,
+        "baselineBytesPerCall": 312,
+        "optimizedBytesPerCall": 312
+      }
+    ],
+    "enabled_diagnostics_unchanged": true
+  },
+  "dynamic": {
+    "checks": 5246,
+    "public_exact_rows": 5204,
+    "benchmarks": [
+      {
+        "name": "exact-hit",
+        "operations": 200000,
+        "repetitions": 5,
+        "medianBytesPerOperation": 0,
+        "medianNanosecondsPerOperation": 31.362
+      },
+      {
+        "name": "regex-cache-hit",
+        "operations": 200000,
+        "repetitions": 5,
+        "medianBytesPerOperation": 0,
+        "medianNanosecondsPerOperation": 57.005
+      },
+      {
+        "name": "negative-cache-hit",
+        "operations": 200000,
+        "repetitions": 5,
+        "medianBytesPerOperation": 0,
+        "medianNanosecondsPerOperation": 58.7515
+      },
+      {
+        "name": "global-fallback-cache-hit",
+        "operations": 200000,
+        "repetitions": 5,
+        "medianBytesPerOperation": 0,
+        "medianNanosecondsPerOperation": 57.3255
+      },
+      {
+        "name": "cold-negative-eviction",
+        "operations": 8192,
+        "repetitions": 5,
+        "medianBytesPerOperation": 145.3134765625,
+        "medianNanosecondsPerOperation": 175.439453125
+      }
+    ]
+  },
+  "font": {
+    "passed": true,
+    "checks": 10027,
+    "iterationsPerRun": 200000,
+    "runs": 5,
+    "runtime": "10.0.8",
+    "tieredCompilation": "0",
+    "baselineMedianMs": 74.9843,
+    "optimizedMedianMs": 7.4517,
+    "ratio": 10.062710522431123,
+    "optimizedAllocatedBytes": 0,
+    "limitation": "Synthetic repeated labels on .NET 10, not Unity Mono or complete font drawing; first-seen or changing text still requires glyph checks.",
+    "default_enabled": false,
+    "default_policy": "Preserve existing Chinese fonts; opt-in DengXian/KaiTi shortcuts and restore original Chinese without selecting another font.",
+    "version": "1.0.7",
+    "restore_action_il_checks": 8
+  },
+  "coordinate_native": {
+    "checks": 91,
+    "resource_and_loading_checks": 47,
+    "consumer_regression_checks": 44,
+    "resource_keys": 24,
+    "scope": "Explicit read-only installed DLL/resource/IL checks and managed prefix/comparison calls, including failure cleanup attempts. Not complete Unity garment transfer.",
+    "version": "1.0.1",
+    "real_add_mode_unsupported": true,
+    "consumer_mode_source": "CoordinateLoadOption.Patches.addAccModeFlag",
+    "empty_label_compatibility": [
+      "Empty",
+      "空"
+    ],
+    "known_limitation": "An actual accessory named exactly 空 shares the display-label ambiguity already present for Empty.",
+    "runtime": {
+      "consumers_patched": 2,
+      "native_resource_lookups_served": 41,
+      "replacement_checks": 2,
+      "true_addition_rejected": 2,
+      "missing_button_checks": 0,
+      "empty_slot_checks": 0,
+      "cleanup_failures": 0,
+      "process_exited": true,
+      "interpretation": "Chinese replacement-mode misclassification fixed; actual unsupported addition continues to warn. Empty slot path not observed in this run."
+    }
+  },
+  "sidebar": {
+    "change": "Reuse native GetComponentsInChildren list overload and pruning buffers; preserve polling cadence and layout policy.",
+    "unity_2019_overload_metadata_reviewed": true,
+    "runtime_allocation_measurement": false
+  },
+  "installer_synthetic_tests": 18,
+  "limitations": [
+    "Measurements use .NET 10, not the Unity Mono runtime or whole-game frame rate.",
+    "CRLF source normalization and explicitly enabled audit capture still allocate.",
+    "Unopened plugin windows and hardcoded non-resource labels are not fully verified.",
+    "Previous ConsoleLogListener Invalid handle issue remains separate."
+  ],
+  "package_fixture": {
+    "manifest_files": 700,
+    "installed_files": 693,
+    "optional_skipped": 7,
+    "repeat_install_no_changes": true,
+    "rollback_restored": true,
+    "real_game_modified": false
+  },
+  "initial_runtime_result": {
+    "user_reported_common_ui": "normal_and_smooth",
+    "perspective_controls_translated": 7,
+    "font_switch_reports": 27,
+    "font_switch_failures": 0,
+    "observed_tmp_missing_max": 0,
+    "later_regression": "DBDE and AssetImport interpreted Chinese replacement/empty labels as business state. First native candidate failed clothing transfer compatibility."
+  },
+  "release_tag": "studio-zh-cn-v0.3.0-rc.2"
+}

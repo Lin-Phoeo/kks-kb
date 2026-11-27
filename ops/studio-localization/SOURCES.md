@@ -11,6 +11,7 @@
 | 社区词表 | [固定归档](https://github.com/angel12538/KoikatsuSunshine-zh-CN/tree/aad584eecb25d5c3988abbdc9f2ad0981ffef9c6) | 未确认再分发许可，值不附包，本地导入器需显式选择来源 |
 | 字体、游戏图集、第三方插件 DLL | 使用者现有安装 | 不随本包源树或基础 ZIP 复制 |
 | 原生对话框补丁 | 对已安装受检 DLL 的四个常量修改 | 在使用者本机生成候选，原件须备份 |
+| Coordinate Load Option 原生资源适配 | 已校验 SHA 的安装版中 24 个英文资源键，按调用位置独立校对简中；身份见 sources/coordinate-native/NativeCoordinateStrings.cs | 仅分发本项目适配器和独立译文，不附原插件、反编译文件或原资源 |
 
 官方 XUnity ZIP SHA-256 为 6c3ff03aafe9708f25c2115c0c04c255b6a9d88e716896ae7bacb590a8777609，官方 Core SHA-256 为 e5c95cb8f78bf208cbf5c552e437d4f51048d9bff6452394ad135e6ca75c8286，单指令修订 Core 为 9700854b20f25b7a81cff2c46da08c12bd5f27cc2544efdfe62dc4cb548bd002。
 

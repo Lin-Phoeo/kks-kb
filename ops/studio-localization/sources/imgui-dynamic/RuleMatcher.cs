@@ -15,10 +15,29 @@ namespace Codex.StudioImGuiDynamicBridge
         public const int MaximumExactInput = 12000;
         public const int MaximumCached = 2048;
         private sealed class Rule { internal RuleData Data; internal Regex Regex; internal bool TimedOut; internal string Prefix; }
-        private sealed class Cached { internal string Key, Value, RuleId; }
+        private struct CacheKey : IEquatable<CacheKey>
+        {
+            internal readonly string Owner, Input;
+            internal readonly bool AllowGlobal;
+            internal CacheKey(string owner, string input, bool allowGlobal)
+            { Owner = owner; Input = input; AllowGlobal = allowGlobal; }
+            public bool Equals(CacheKey other)
+            {
+                return AllowGlobal == other.AllowGlobal &&
+                    string.Equals(Owner, other.Owner, StringComparison.Ordinal) &&
+                    string.Equals(Input, other.Input, StringComparison.Ordinal);
+            }
+            public override bool Equals(object other) { return other is CacheKey && Equals((CacheKey)other); }
+            public override int GetHashCode()
+            {
+                unchecked { return ((StringComparer.Ordinal.GetHashCode(Owner) * 397) ^
+                    StringComparer.Ordinal.GetHashCode(Input)) * 397 ^ (AllowGlobal ? 1 : 0); }
+            }
+        }
+        private sealed class Cached { internal CacheKey Key; internal string Value, RuleId; }
         private readonly Dictionary<string, List<Rule>> _rules = new Dictionary<string, List<Rule>>(StringComparer.Ordinal);
         private readonly Dictionary<string, Dictionary<string, RuleData>> _exact = new Dictionary<string, Dictionary<string, RuleData>>(StringComparer.Ordinal);
-        private readonly Dictionary<string, LinkedListNode<Cached>> _cache = new Dictionary<string, LinkedListNode<Cached>>(StringComparer.Ordinal);
+        private readonly Dictionary<CacheKey, LinkedListNode<Cached>> _cache = new Dictionary<CacheKey, LinkedListNode<Cached>>();
         private readonly LinkedList<Cached> _lru = new LinkedList<Cached>();
         public int CachedCount { get { return _cache.Count; } }
         public int RuleCount { get; private set; }
@@ -91,7 +110,7 @@ namespace Codex.StudioImGuiDynamicBridge
             if(Exact(owner,input,out output,out ruleId))return output!=input;
             if(input.Length>MaximumInput)
                 return allowGlobal&&owner!="global"&&Exact("global",input,out output,out ruleId)&&output!=input;
-            string key = owner.Length + ":" + owner + (allowGlobal?"1":"0") + input;
+            var key = new CacheKey(owner, input, allowGlobal);
             LinkedListNode<Cached> cached;
             if (_cache.TryGetValue(key, out cached))
             {
@@ -99,9 +118,10 @@ namespace Codex.StudioImGuiDynamicBridge
                 output = cached.Value.Value; ruleId = cached.Value.RuleId;
                 return output != null && output != input;
             }
-            string[] owners=allowGlobal&&owner!="global"?new[]{owner,"global"}:new[]{owner};
-            foreach(string sourceOwner in owners)
+            int ownerCount = allowGlobal && owner != "global" ? 2 : 1;
+            for (int ownerIndex = 0; ownerIndex < ownerCount; ownerIndex++)
             {
+                string sourceOwner = ownerIndex == 0 ? owner : "global";
                 if(sourceOwner!=owner && Exact(sourceOwner,input,out output,out ruleId)) break;
                 List<Rule> rules;
                 if(!_rules.TryGetValue(sourceOwner,out rules))continue;

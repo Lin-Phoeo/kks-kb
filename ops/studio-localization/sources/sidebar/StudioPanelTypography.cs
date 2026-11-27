@@ -14,7 +14,7 @@ using UnityEngine.UI;
 
 namespace Codex.StudioPanelTypography
 {
-    [BepInPlugin("codex.studio.paneltypography", "Studio Sidebar Chinese Typography", "1.2.0")]
+    [BepInPlugin("codex.studio.paneltypography", "Studio Sidebar Chinese Typography", "1.3.0")]
     [BepInDependency("codex.studio.fontcontroller", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("starstorm.lightsettings")]
     [BepInProcess("CharaStudio")]
@@ -57,7 +57,7 @@ namespace Codex.StudioPanelTypography
         };
 
         private Harmony harmony;
-        private SidebarTypography sidebar;
+        private static SidebarTypography sidebar;
 
         private void Awake()
         {
@@ -117,6 +117,7 @@ namespace Codex.StudioPanelTypography
             text.resizeTextForBestFit = true;
             text.resizeTextMinSize = 11;
             text.resizeTextMaxSize = BodySize;
+            if (sidebar != null) sidebar.ApplyCurrent(text);
         }
 
         private static void TogglePostfix(string __1, Transform __result)
@@ -180,6 +181,7 @@ namespace Codex.StudioPanelTypography
         private void OnDestroy()
         {
             if (sidebar != null) sidebar.Stop();
+            sidebar = null;
             harmony?.UnpatchSelf();
         }
     }

@@ -43,8 +43,11 @@ __pycache__/
 htmlcov/
 test-results/
 node_modules/
+ops/studio-localization/**/bin/
+ops/studio-localization/**/obj/
 .vscode/
 .idea/
+.memorax-code/
 Thumbs.db
 desktop.ini
 nul

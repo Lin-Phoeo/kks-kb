@@ -37,7 +37,7 @@ Issue 写明目标 → 功能分支 → AI 修改与本地验证 → PR → Acti
 
 ## Studio 简中与字体工具
 
-[Studio 汉化工具](ops/studio-localization/README.md)提供可回滚的安装器、插件设置显示适配、动态文本兼容和字体选择源码。普通用户可按[安装教程](ops/studio-localization/TUTORIAL.zh-CN.md)使用发行 ZIP，维护者和其他 AI 从[接续说明](ops/studio-localization/AI-HANDOFF.md)开始。游戏、字体与第三方汉化来源由使用者自行准备，适用版本和实际验证范围写在对应发行记录中。
+[Studio 汉化工具](ops/studio-localization/README.md)提供可回滚的安装器、插件设置显示适配、动态文本兼容和字体选择源码。普通用户先看[快速开始](ops/studio-localization/START-HERE.zh-CN.md)，再按[使用教程](ops/studio-localization/TUTORIAL.zh-CN.md)使用发行 ZIP，维护者和其他 AI 从[接续说明](ops/studio-localization/AI-HANDOFF.md)开始。游戏、字体与第三方汉化来源由使用者自行准备，适用版本和实际验证范围写在对应发行记录中。
 
 ## 源码范围与许可
 
