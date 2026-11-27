@@ -134,5 +134,11 @@ Check(ChineseFontCatalog.DisplayName("Unknown Family") == "Unknown Family", "unk
 Check(ChineseFontCatalog.DisplayName("Microsoft YaHei").EndsWith(" / Microsoft YaHei"), "friendly labels retain raw identity");
 Check(ChineseFontCatalog.DisplayName("Arial Unicode MS") == "Arial 多语言字体 / Arial Unicode MS", "Arial Unicode uses an accurate descriptive label");
 Check(ChineseFontCatalog.DisplayName("yyb Sans Regular") == "yyb Sans（常规） / yyb Sans Regular", "author family name retained with localized regular style");
+foreach (var mapping in new Dictionary<string, string> {
+    ["STZhongsong"] = "华文中宋", ["STSong"] = "华文宋体", ["STKaiti"] = "华文楷体",
+    ["STLiti"] = "华文隶书", ["STCaiyun"] = "华文彩云", ["STFangsong"] = "华文仿宋",
+    ["STHupo"] = "华文琥珀", ["STXinwei"] = "华文新魏", ["STXingkai"] = "华文行楷"
+}) Check(ChineseFontCatalog.DisplayName(mapping.Key) == mapping.Value + " / " + mapping.Key, "actual Huawen runtime family " + mapping.Key + " uses its Chinese family name");
+Check(ChineseFontCatalog.DisplayName("STSong Alternate") == "华文宋体（Alternate） / STSong Alternate", "unknown style suffix is retained without a guessed translation");
 Console.WriteLine(JsonSerializer.Serialize(new { passed = true, checks = checks.Count, results = checks,
     limitation = "Synthetic in-memory SFNT/name/cmap fixtures and injected probe only. No registry, installed font, game installation or native GDI calls." }, new JsonSerializerOptions { WriteIndented = true }));

@@ -1,7 +1,7 @@
 {
   "font_controller_version": "1.1.0",
   "sidebar_version": "1.3.0",
-  "runtime_status": "installed_pending_real_UI_acceptance",
+  "runtime_status": "user_accepted_and_normally_exited",
   "components": {
     "Codex.StudioFontController.dll": "f7d1f61c4975e1ae634852bfedf8b2ac3792f71f77bce92416d4682e79a23cdf",
     "Codex.StudioPanelTypography.dll": "282410eec0fb6cf0d0e2dc933e733724a90216222247410b387130983731db6e"
@@ -41,6 +41,35 @@
     "GDI candidates are additionally filtered by actual Unity OS font names in the running game.",
     "Common Chinese sample coverage is not complete rare-character coverage.",
     "TTC non-first faces, variable fonts and mismatched native/file faces remain excluded.",
-    "Default font override, bold and size delta are off/off/0; optional effects still require real F1 and sidebar acceptance."
-  ]
+    "Default override/bold/size remain off/off/0 for new configuration; installed user selections are preserved."
+  ],
+  "runtime": {
+    "process_count_after_exit": 0,
+    "catalog_families_in_Unity": 23,
+    "catalog_background_ms": 193.7,
+    "font_switches": 18,
+    "font_max_reported_tmp_missing": 0,
+    "font_failures": 0,
+    "layout_errors": 0,
+    "startup_default_preserved": true,
+    "sidebar_snapshot": {
+      "phase": "active-ready",
+      "active_count": 9,
+      "overflow": 0,
+      "visible_tmp_missing": 0
+    },
+    "limits": [
+      "Sidebar exit snapshot has zero live controls and is not used as visual proof.",
+      "Observed bold/size changes occurred with font override enabled; independent styling without family override also has source/state regression evidence but no separate runtime event in this run.",
+      "Known console exit Invalid handle remains separate."
+    ],
+    "bold_enabled_then_disabled_observed": true,
+    "size_deltas_observed": [
+      0,
+      1,
+      2
+    ],
+    "font_override_restore_observed": true,
+    "user_confirmed": "加粗、字号、字体列表和恢复都正常，已退出"
+  }
 }

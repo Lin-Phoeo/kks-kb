@@ -132,8 +132,8 @@ namespace Codex.StudioFontController
         {
             if (family.Equals("Arial Unicode MS", StringComparison.OrdinalIgnoreCase)) return "Arial 多语言字体 / " + family;
             if (family.Equals("yyb Sans Regular", StringComparison.OrdinalIgnoreCase)) return "yyb Sans（常规） / " + family;
-            string[] english = { "Microsoft YaHei UI", "Microsoft JhengHei UI", "Microsoft YaHei", "Microsoft JhengHei", "Noto Sans SC", "Noto Serif SC", "Source Han Sans SC", "Source Han Serif SC", "DengXian", "STXihei", "NSimSun", "SimSun", "SimHei", "KaiTi", "FangSong" };
-            string[] chinese = { "微软雅黑（界面版）", "微软正黑体（界面版）", "微软雅黑", "微软正黑体", "Noto 黑体简中", "Noto 宋体简中", "思源黑体（简中）", "思源宋体（简中）", "等线", "华文细黑", "新宋体", "宋体", "黑体", "楷体", "仿宋" };
+            string[] english = { "Microsoft YaHei UI", "Microsoft JhengHei UI", "Microsoft YaHei", "Microsoft JhengHei", "Noto Sans SC", "Noto Serif SC", "Source Han Sans SC", "Source Han Serif SC", "DengXian", "STXihei", "STZhongsong", "STSong", "STKaiti", "STLiti", "STCaiyun", "STFangsong", "STHupo", "STXinwei", "STXingkai", "NSimSun", "SimSun", "SimHei", "KaiTi", "FangSong" };
+            string[] chinese = { "微软雅黑（界面版）", "微软正黑体（界面版）", "微软雅黑", "微软正黑体", "Noto 黑体简中", "Noto 宋体简中", "思源黑体（简中）", "思源宋体（简中）", "等线", "华文细黑", "华文中宋", "华文宋体", "华文楷体", "华文隶书", "华文彩云", "华文仿宋", "华文琥珀", "华文新魏", "华文行楷", "新宋体", "宋体", "黑体", "楷体", "仿宋" };
             for (int index = 0; index < english.Length; index++)
             {
                 if (!family.Equals(english[index], StringComparison.OrdinalIgnoreCase) && !family.StartsWith(english[index] + " ", StringComparison.OrdinalIgnoreCase)) continue;

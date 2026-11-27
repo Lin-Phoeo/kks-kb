@@ -20,6 +20,9 @@ namespace Codex.StudioFontController
         internal readonly string LegacyFamily;
         internal readonly float LegacyPreferredHeight;
         internal bool ImGuiValidated;
+        internal bool Rejected;
+        private bool _disposed;
+        private int _disposeFailures;
         private readonly GlyphCoverage _coverage;
         internal FontResources(string path, FontSourceResolver resolver, string requestedFamily)
         {
@@ -57,6 +60,7 @@ namespace Codex.StudioFontController
         }
         internal bool Matches(string path)
         {
+            if (Rejected || _disposed) return false;
             var info = new FileInfo(path);
             return string.Equals(Path, path, StringComparison.OrdinalIgnoreCase) && Length == info.Length && WriteTicks == info.LastWriteTimeUtc.Ticks;
         }
@@ -69,16 +73,26 @@ namespace Codex.StudioFontController
             if (!font || font == Tmp || font.name.StartsWith("Studio selected ", StringComparison.Ordinal) || Tmp.fallbackFontAssetTable.Contains(font)) return;
             Tmp.fallbackFontAssetTable.Add(font);
         }
-        internal void Dispose()
+        internal int Dispose()
         {
-            if (Tmp)
+            if (_disposed) return _disposeFailures;
+            _disposed = true;
+            int failures = 0;
+            try
             {
-                foreach (Texture2D atlas in Tmp.atlasTextures) if (atlas) UnityEngine.Object.Destroy(atlas);
-                if (Tmp.material) UnityEngine.Object.Destroy(Tmp.material);
-                UnityEngine.Object.Destroy(Tmp);
+                if (Tmp)
+                {
+                    foreach (Texture2D atlas in Tmp.atlasTextures)
+                        try { if (atlas) UnityEngine.Object.Destroy(atlas); } catch (Exception) { failures++; }
+                    try { if (Tmp.material) UnityEngine.Object.Destroy(Tmp.material); } catch (Exception) { failures++; }
+                }
             }
-            if (Font) UnityEngine.Object.Destroy(Font);
-            if (PathFont) UnityEngine.Object.Destroy(PathFont);
+            catch (Exception) { failures++; }
+            try { if (Tmp) UnityEngine.Object.Destroy(Tmp); } catch (Exception) { failures++; }
+            try { if (Font) UnityEngine.Object.Destroy(Font); } catch (Exception) { failures++; }
+            try { if (PathFont) UnityEngine.Object.Destroy(PathFont); } catch (Exception) { failures++; }
+            _disposeFailures = failures;
+            return failures;
         }
     }
 }

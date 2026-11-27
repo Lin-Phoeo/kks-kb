@@ -6,6 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="StudioFontController.cs"/><Compile Include="FontResources.cs"/><Compile Include="FontSelection.cs"/><Compile Include="FontSourceResolver.cs"/>
+    <Compile Include="StudioFontPanel.cs"/><Compile Include="FontPickerState.cs"/><Compile Include="FontSettingsSnapshot.cs"/>
     <Compile Include="ImGuiMetricObservation.cs"/>
     <Compile Include="FontDefaults.cs"/>
     <Compile Include="TypographyPolicy.cs"/>

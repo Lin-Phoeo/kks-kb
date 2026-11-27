@@ -115,6 +115,18 @@ namespace Codex.StudioFontController
             return CatalogReady && family != null && _paths.TryGetValue(family, out path) && _chineseCatalog.Supports(family, path) &&
                 (_runtimeNames == null || _chineseCatalog.RuntimeFamilyForPath(path, _runtimeNames) != null);
         }
+        internal string CanonicalChineseFamily(string family)
+        {
+            if (_runtimeFamilies == null || !IsChineseFamily(family)) return null;
+            string path = _paths[family];
+            foreach (string candidate in _runtimeFamilies)
+            {
+                string candidatePath;
+                if (_paths.TryGetValue(candidate, out candidatePath) && IsChineseFamily(candidate) &&
+                    string.Equals(path, candidatePath, StringComparison.OrdinalIgnoreCase)) return candidate;
+            }
+            return null;
+        }
         internal string RegisteredFamily(string path, string actualFamily, string requestedFamily, string[] unityFamilies)
         {
             var available = new HashSet<string>(unityFamilies, StringComparer.OrdinalIgnoreCase);

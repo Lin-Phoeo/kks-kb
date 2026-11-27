@@ -15,9 +15,9 @@ using UnityEngine.UI;
 
 namespace Codex.StudioFontController
 {
-    [BepInPlugin(PluginGuid, "自定义字体 / Studio Font Controller", "1.1.0")]
+    [BepInPlugin(PluginGuid, "自定义字体 / Studio Font Controller", "1.1.1")]
     [BepInProcess("CharaStudio")]
-    public sealed class Plugin : BaseUnityPlugin
+    public sealed partial class Plugin : BaseUnityPlugin
     {
         public const string PluginGuid = "codex.studio.fontcontroller";
         private const BindingFlags All = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
@@ -50,31 +50,23 @@ namespace Codex.StudioFontController
         private double _sampleFrameSeconds, _sampleUpdateMilliseconds;
         private long _sampleFontAssignments, _sampleStyleAssignments;
         private bool _sampleArmed;
-        private bool _showFamilies, _pendingFamilyList;
-        private Vector2 _familyScroll;
         private string[] _chineseFamilies, _familyLabels;
         private bool _catalogPublished;
+        private bool _suppressSettingsEvents;
+        private FontSettingsSnapshot _lastSuccessfulSettings;
 
         private sealed class TextOriginal { internal Font Font; internal TypographyState Typography; }
         private sealed class TmpOriginal { internal TMP_FontAsset Font; internal Material Material; internal TypographyState Typography; }
         private sealed class StyleOriginal { internal Font Font; internal readonly TypographyScope Scope = new TypographyScope(); }
         private struct StyleCall { internal GUIStyle Style; internal StyleOriginal Original; }
-        public sealed class ConfigurationManagerAttributes { public Action<ConfigEntryBase> CustomDrawer; public bool HideDefaultButton = true; public bool HideSettingName = true; }
 
         private void Awake()
         {
             _instance = this;
             _resolver = new FontSourceResolver(Paths.GameRootPath);
             _resolver.StartCatalogBuild();
-            _enabled = Config.Bind("字体", "统一界面字体", FontDefaults.Enabled, "默认保留原中文字体。开启后替换字体家族；保留原中文字体也可单独加粗、微调字号。");
-            string[] families = _resolver.Families();
-            string defaultFamily = FontDefaults.Family(families);
-            _family = Config.Bind("字体", "系统字体", defaultFamily, new ConfigDescription("仅在统一界面字体开启时生效。列表只显示已检测到中文字形的本机字体。", null,
-                new ConfigurationManagerAttributes { CustomDrawer = DrawFamily }));
-            _file = Config.Bind("字体", "字体文件", "", "可填写本地 TTF、OTF 或 TTC 路径；字体须已安装到系统，才能用于全部界面。填写后优先使用该文件；相对路径从 UserData/StudioFonts 查找。");
-            _bold = Config.Bind("字体", "文字加粗", false, "保留原中文字体也可单独加粗，原有斜体等样式会保留。关闭后恢复各控件本来的粗细。");
-            _sizeDelta = Config.Bind("字体", "字号微调", 0, new ConfigDescription("在各控件原字号上微调，0 为原大小；紧凑输入框会限制放大，避免文字被裁切。", new AcceptableValueRange<int>(-2, 3)));
-            Config.Bind("字体", "预览与状态", 0, new ConfigDescription("", null, new ConfigurationManagerAttributes { CustomDrawer = DrawStatus }));
+            BindPanelSettings();
+            _lastSuccessfulSettings = new FontSettingsSnapshot(false, _family.Value, "", false, 0);
             _enabled.SettingChanged += Changed; _family.SettingChanged += Changed; _file.SettingChanged += Changed;
             _bold.SettingChanged += Changed; _sizeDelta.SettingChanged += Changed;
             _chineseFamilies = new string[0]; _familyLabels = new string[0];
@@ -133,7 +125,8 @@ namespace Codex.StudioFontController
         }
         private void Changed(object sender, EventArgs args)
         {
-            _changeAt = Time.unscaledTime + 0.65f;
+            if (_suppressSettingsEvents) return;
+            _changeAt = Time.unscaledTime + (ReferenceEquals(sender, _bold) || ReferenceEquals(sender, _sizeDelta) ? 0.1f : 0.65f);
             string changed = ReferenceEquals(sender, _family) ? "system-family" : ReferenceEquals(sender, _file) ? "local-file" : ReferenceEquals(sender, _bold) ? "bold" : ReferenceEquals(sender, _sizeDelta) ? "size" : "enabled";
             _status = "正在应用字体设置…";
             Logger.LogInfo("STUDIO_FONT_CHANGE_QUEUED field=" + changed + " enabled=" + _enabled.Value +
@@ -160,7 +153,8 @@ namespace Codex.StudioFontController
             bool sample = _sampleArmed && _verifyOutput != null && Time.unscaledTime >= _sampleAfter;
             long updateStart = sample ? Stopwatch.GetTimestamp() : 0;
             _studioReady = SceneManager.GetActiveScene().name == "Studio";
-            if (_changeAt >= 0 && Time.unscaledTime >= _changeAt && _studioReady)
+            if (_changeAt >= 0 && Time.unscaledTime >= _changeAt && _studioReady &&
+                (!_enabled.Value || _catalogPublished || _resolver.CatalogError != null))
             {
                 _changeAt = -1;
                 Switch();
@@ -171,6 +165,7 @@ namespace Codex.StudioFontController
                 _textRefs.RemoveAll(item => !(item.Target as Text));
                 _tmpRefs.RemoveAll(item => !(item.Target as TMP_Text));
                 _styleRefs.RemoveAll(item => !item.IsAlive);
+                PruneFontCache();
             }
             if (sample)
             {
@@ -183,33 +178,39 @@ namespace Codex.StudioFontController
         {
             bool previousBold = FontSelection.Bold;
             int previousDelta = FontSelection.SizeDelta;
-            FontSelection.Bold = _bold.Value;
-            FontSelection.SizeDelta = TypographyPolicy.Delta(_sizeDelta.Value);
-            if (!_enabled.Value)
-            {
-                _sampleArmed = false;
-                FontSelection.Active = false;
-                Restore();
-                if (FontSelection.TypographyActive)
-                {
-                    foreach (Text text in Resources.FindObjectsOfTypeAll<Text>()) if (ScreenUi(text)) Apply(text);
-                    foreach (TextMeshProUGUI text in Resources.FindObjectsOfTypeAll<TextMeshProUGUI>()) if (ScreenUi(text)) Apply(text);
-                }
-                FontSelection.Generation++;
-                _status = FontSelection.TypographyActive ? "保留原中文字体；已应用粗细与字号" : "已恢复默认中文字体和字号";
-                LogTypography();
-                return;
-            }
             FontResources previous = _selected;
             bool previousActive = FontSelection.Active;
             int previousGeneration = FontSelection.Generation;
+            FontSettingsSnapshot previousSettings = _lastSuccessfulSettings;
+            FontResources created = null;
             var undo = new List<Action>();
             try
             {
+                FontSelection.Bold = _bold.Value;
+                FontSelection.SizeDelta = TypographyPolicy.Delta(_sizeDelta.Value);
+                if (!_enabled.Value)
+                {
+                    _sampleArmed = false;
+                    FontSelection.Active = false;
+                    int failures = Restore(undo);
+                    if (FontSelection.TypographyActive)
+                    {
+                        foreach (Text text in Resources.FindObjectsOfTypeAll<Text>())
+                            try { if (ScreenUi(text)) { Remember(text); CaptureUndo(text, undo); Apply(text); } } catch (Exception) { failures++; }
+                        foreach (TextMeshProUGUI text in Resources.FindObjectsOfTypeAll<TextMeshProUGUI>())
+                            try { if (ScreenUi(text)) { Remember(text); CaptureUndo(text, undo); Apply(text); } } catch (Exception) { failures++; }
+                    }
+                    if (failures != 0) throw new InvalidOperationException("有 " + failures + " 个控件未能恢复，已尝试其余控件。");
+                    FontSelection.Generation++;
+                    _status = FontSelection.TypographyActive ? "保留原中文字体；已应用粗细与字号" : "已恢复默认中文字体和字号";
+                    _lastSuccessfulSettings = CaptureSettings();
+                    LogTypography();
+                    return;
+                }
                 string path = _resolver.Resolve(_family.Value, _file.Value);
                 FontResources candidate = _cache.Find(item => item.Matches(path));
                 bool cached = candidate != null;
-                if (candidate == null) { candidate = new FontResources(path, _resolver, _family.Value); _cache.Add(candidate); }
+                if (candidate == null) { candidate = new FontResources(path, _resolver, _family.Value); created = candidate; _cache.Add(candidate); }
                 if (!_baselineUgui)
                     foreach (Text text in Resources.FindObjectsOfTypeAll<Text>())
                         if (ScreenUi(text) && text.font && !IsOwned(text.font)) { _baselineUgui = text.font; break; }
@@ -230,23 +231,17 @@ namespace Codex.StudioFontController
                     if (ScreenUi(text))
                     {
                         Remember(text);
-                        TextOriginal original; _texts.TryGetValue(text, out original);
-                        TypographyState savedState = original.Typography.Copy(); TypographyValue typography = Read(text);
-                        Text captured = text; Font font = text.font;
-                        undo.Add(delegate { if (captured) { captured.font = font; Write(captured, typography); original.Typography = savedState; } });
+                        CaptureUndo(text, undo);
                         Apply(text);
                     }
                 foreach (TextMeshProUGUI text in Resources.FindObjectsOfTypeAll<TextMeshProUGUI>())
                     if (ScreenUi(text))
                     {
                         Remember(text);
-                        TmpOriginal original; _tmp.TryGetValue(text, out original);
-                        TypographyState savedState = original.Typography.Copy(); TypographyValue typography = Read(text);
-                        TextMeshProUGUI captured = text; TMP_FontAsset font = text.font; Material material = text.fontSharedMaterial;
-                        undo.Add(delegate { if (captured) { captured.font = font; captured.fontSharedMaterial = material; Write(captured, typography); original.Typography = savedState; } });
+                        CaptureUndo(text, undo);
                         Apply(text);
                     }
-                RestoreOutOfScope();
+                if (RestoreOutOfScope(undo) != 0) throw new InvalidOperationException("部分离开界面的文字控件未能恢复。");
                 if (!FontSelection.Active) throw new InvalidOperationException("Selected font has invalid IMGUI metrics");
                 long applyMilliseconds = watch.ElapsedMilliseconds;
                 int validationMissing = CountMissingActiveTmp();
@@ -259,6 +254,7 @@ namespace Codex.StudioFontController
                     " sameSource=" + (previous != null && string.Equals(previous.Path, candidate.Path, StringComparison.OrdinalIgnoreCase)) +
                     " legacyFamily=" + candidate.LegacyFamily + " legacyHeight=" + candidate.LegacyPreferredHeight);
                 WriteSwitchObservation(candidate, cached, applyMilliseconds, validationMissing);
+                _lastSuccessfulSettings = CaptureSettings();
                 LogTypography();
                 if (_verifyOutput != null)
                 {
@@ -269,20 +265,15 @@ namespace Codex.StudioFontController
                     _sampleStyleAssignments = _styleAssignments;
                     _sampleArmed = true;
                 }
-                while (_cache.Count > 2)
-                {
-                    FontResources old = _cache.Find(item => item != _selected && !StillReferenced(item));
-                    if (old == null) break;
-                    _cache.Remove(old); old.Dispose();
-                }
+                PruneFontCache();
             }
             catch (Exception error)
             {
-                _assigning = true;
                 int restoreFailures = 0;
-                for (int index = undo.Count - 1; index >= 0; index--)
-                    try { undo[index](); } catch { restoreFailures++; }
-                _assigning = false;
+                _assigning = true;
+                try
+                { for (int index = undo.Count - 1; index >= 0; index--) try { undo[index](); } catch (Exception) { restoreFailures++; } }
+                finally { _assigning = false; }
                 _selected = previous;
                 FontSelection.UguiFont = previous == null ? null : previous.Font;
                 FontSelection.TmpFont = previous == null ? null : previous.Tmp;
@@ -292,8 +283,71 @@ namespace Codex.StudioFontController
                 FontSelection.Active = previousActive;
                 FontSelection.Bold = previousBold;
                 FontSelection.SizeDelta = previousDelta;
-                _status = restoreFailures == 0 ? error is ArgumentException ? error.Message : "未切换字体，已保留上一字体。请检查字体名称或文件。" : "切换中断，部分控件恢复失败。请关闭统一字体后重试。";
-                Logger.LogWarning("STUDIO_FONT_SWITCH_FAILED " + error.GetType().Name);
+                _lastSuccessfulSettings = previousSettings;
+                int settingsFailures = RestoreSuccessfulSettings();
+                int resourceFailures = RejectCandidate(created);
+                _status = "未应用，已恢复上次设置。" +
+                    (error is ArgumentException || error is InvalidOperationException ? error.Message : "请检查字体名称或文件后重试。");
+                if (restoreFailures != 0 || settingsFailures != 0) _status += "部分控件或设置未能完全恢复，请点击恢复默认中文。";
+                Logger.LogWarning("STUDIO_FONT_SWITCH_FAILED " + error.GetType().Name + " rollbackFailures=" + restoreFailures +
+                    " settingsFailures=" + settingsFailures + " resourceFailures=" + resourceFailures);
+            }
+        }
+        private FontSettingsSnapshot CaptureSettings()
+        { return new FontSettingsSnapshot(_enabled.Value, _family.Value, _file.Value, _bold.Value, _sizeDelta.Value); }
+        private int RestoreSuccessfulSettings()
+        {
+            FontSettingsSnapshot settings = _lastSuccessfulSettings ?? new FontSettingsSnapshot(false, _family.Value, "", false, 0);
+            int failures = 0;
+            _suppressSettingsEvents = true;
+            try
+            {
+                Action[] restore = { () => _enabled.Value = settings.Enabled, () => _family.Value = settings.Family,
+                    () => _file.Value = settings.File, () => _bold.Value = settings.Bold, () => _sizeDelta.Value = settings.SizeDelta };
+                foreach (Action action in restore) try { action(); } catch (Exception) { failures++; }
+            }
+            finally { _suppressSettingsEvents = false; _changeAt = -1; }
+            return failures;
+        }
+        private void CaptureUndo(Text text, List<Action> undo)
+        {
+            TextOriginal original; _texts.TryGetValue(text, out original);
+            TypographyState state = original.Typography.Copy(); TypographyValue typography = Read(text); Font font = text.font;
+            undo.Add(delegate { if (text) try { text.font = font; Write(text, typography); } finally { original.Typography = state; } });
+        }
+        private void CaptureUndo(TMP_Text text, List<Action> undo)
+        {
+            TmpOriginal original; _tmp.TryGetValue(text, out original);
+            TypographyState state = original.Typography.Copy(); TypographyValue typography = Read(text);
+            TMP_FontAsset font = text.font; Material material = text.fontSharedMaterial;
+            undo.Add(delegate { if (text) try { text.font = font; text.fontSharedMaterial = material; Write(text, typography); } finally { original.Typography = state; } });
+        }
+        private int RejectCandidate(FontResources candidate)
+        {
+            if (candidate == null) return 0;
+            candidate.Rejected = true;
+            try
+            {
+                if (StillReferenced(candidate)) return 0;
+                _cache.Remove(candidate);
+                return candidate.Dispose();
+            }
+            catch (Exception) { return 1; }
+        }
+        private void PruneFontCache()
+        {
+            for (int index = _cache.Count - 1; index >= 0; index--)
+            {
+                FontResources resource = _cache[index];
+                if (resource == _selected || !resource.Rejected && _cache.Count <= 2) continue;
+                try
+                {
+                    if (StillReferenced(resource)) continue;
+                    _cache.RemoveAt(index);
+                    int failures = resource.Dispose();
+                    if (failures != 0) Logger.LogWarning("STUDIO_FONT_RESOURCE_RELEASE_PARTIAL failures=" + failures);
+                }
+                catch (Exception error) { Logger.LogWarning("STUDIO_FONT_RESOURCE_RETAINED " + error.GetType().Name); }
             }
         }
         private void LogTypography()
@@ -301,25 +355,35 @@ namespace Codex.StudioFontController
             Logger.LogInfo("STUDIO_FONT_TYPOGRAPHY_APPLIED bold=" + FontSelection.Bold + " delta=" + FontSelection.SizeDelta +
                 " ugui=" + _textRefs.Count + " tmp=" + _tmpRefs.Count + " fontOverride=" + FontSelection.Active);
         }
-        private void RestoreOutOfScope()
+        private int RestoreOutOfScope(List<Action> undo)
         {
+            int failures = 0;
             _assigning = true;
             try
             {
                 foreach (WeakReference reference in _textRefs)
                 {
-                    Text text = reference.Target as Text; TextOriginal original;
-                    if (text && !ScreenUi(text) && _texts.TryGetValue(text, out original))
-                    { if (IsOwned(text.font)) text.font = original.Font; Write(text, original.Typography.Restore(Read(text))); }
+                    try
+                    {
+                        Text text = reference.Target as Text; TextOriginal original;
+                        if (text && !ScreenUi(text) && _texts.TryGetValue(text, out original))
+                        { CaptureUndo(text, undo); if (IsOwned(text.font)) text.font = original.Font; Write(text, original.Typography.Restore(Read(text))); }
+                    }
+                    catch (Exception) { failures++; }
                 }
                 foreach (WeakReference reference in _tmpRefs)
                 {
-                    TMP_Text text = reference.Target as TMP_Text; TmpOriginal original;
-                    if (text && !ScreenUi(text) && _tmp.TryGetValue(text, out original))
-                    { if (IsOwned(text.font)) { text.font = original.Font; text.fontSharedMaterial = original.Material; } Write(text, original.Typography.Restore(Read(text))); }
+                    try
+                    {
+                        TMP_Text text = reference.Target as TMP_Text; TmpOriginal original;
+                        if (text && !ScreenUi(text) && _tmp.TryGetValue(text, out original))
+                        { CaptureUndo(text, undo); if (IsOwned(text.font)) { text.font = original.Font; text.fontSharedMaterial = original.Material; } Write(text, original.Typography.Restore(Read(text))); }
+                    }
+                    catch (Exception) { failures++; }
                 }
             }
             finally { _assigning = false; }
+            return failures;
         }
         private bool StillReferenced(FontResources resource)
         {
@@ -398,8 +462,14 @@ namespace Codex.StudioFontController
             _instance.Remember(__instance);
             TmpOriginal original;
             if (!_instance.IsOwned(value) && _instance._tmp.TryGetValue(__instance, out original))
-            { original.Font = value; original.Material = value ? value.material : null; }
+                RememberExternalTmpFont(original, value);
             if (FontSelection.Active) value = FontSelection.TmpFont;
+        }
+        private static void RememberExternalTmpFont(TmpOriginal original, TMP_FontAsset value)
+        {
+            if (original.Font == value) return;
+            original.Font = value;
+            original.Material = value ? value.material : null;
         }
         private static void TextEnabled(Text __instance) { if (Ready) _instance.Apply(__instance); }
         private static void TmpEnabled(TextMeshProUGUI __instance) { if (Ready) _instance.Apply(__instance); }
@@ -607,82 +677,43 @@ namespace Codex.StudioFontController
             finally { _assigning = assigning; }
         }
 
-        private void Restore()
+        private int Restore(List<Action> undo = null)
         {
+            int failures = 0;
             _assigning = true;
             try
             {
                 foreach (WeakReference reference in _textRefs)
                 {
-                    Text text = reference.Target as Text; TextOriginal original;
-                    if (text && _texts.TryGetValue(text, out original))
-                    { if (IsOwned(text.font)) text.font = original.Font; if (!FontSelection.ExternalTypography(text)) Write(text, original.Typography.Restore(Read(text))); }
+                    try
+                    {
+                        Text text = reference.Target as Text; TextOriginal original;
+                        if (text && _texts.TryGetValue(text, out original))
+                        {
+                            if (undo != null) CaptureUndo(text, undo);
+                            if (IsOwned(text.font)) text.font = original.Font;
+                            if (!FontSelection.ExternalTypography(text)) Write(text, original.Typography.Restore(Read(text)));
+                        }
+                    }
+                    catch (Exception) { failures++; }
                 }
                 foreach (WeakReference reference in _tmpRefs)
                 {
-                    TMP_Text text = reference.Target as TMP_Text; TmpOriginal original;
-                    if (text && _tmp.TryGetValue(text, out original))
-                    { if (IsOwned(text.font)) { text.font = original.Font; text.fontSharedMaterial = original.Material; } if (!FontSelection.ExternalTypography(text)) Write(text, original.Typography.Restore(Read(text))); }
+                    try
+                    {
+                        TMP_Text text = reference.Target as TMP_Text; TmpOriginal original;
+                        if (text && _tmp.TryGetValue(text, out original))
+                        {
+                            if (undo != null) CaptureUndo(text, undo);
+                            if (IsOwned(text.font)) { text.font = original.Font; text.fontSharedMaterial = original.Material; }
+                            if (!FontSelection.ExternalTypography(text)) Write(text, original.Typography.Restore(Read(text)));
+                        }
+                    }
+                    catch (Exception) { failures++; }
                 }
             }
             finally { _assigning = false; }
-        }
-        private void DrawStatus(ConfigEntryBase entry)
-        {
-            GUILayout.BeginVertical();
-            GUILayout.Label(_status);
-            GUILayout.Label("字体预览　工作室 Studio 0123");
-            GUILayout.Label("保留原中文字体也可单独加粗、微调字号。");
-            GUILayout.BeginHorizontal();
-            QuickChoice("等线");
-            QuickChoice("楷体");
-            GUILayout.EndHorizontal();
-            if (GUILayout.Button("恢复默认中文")) RestoreDefaultChinese();
-            if (GUILayout.Button("重新应用字体")) _changeAt = Time.unscaledTime;
-            GUILayout.EndVertical();
-        }
-        private void DrawFamily(ConfigEntryBase entry)
-        {
-            if (Event.current.type == EventType.Layout) _showFamilies = _pendingFamilyList;
-            GUILayout.BeginVertical();
-            GUILayout.Label("中文字体：" + FontSourceResolver.DisplayName(_family.Value));
-            if (!_catalogPublished)
-            {
-                GUILayout.Label(_resolver.CatalogError == null ? "正在筛选中文字体…" : "字体列表暂不可用，当前设置已保留。");
-                GUILayout.EndVertical();
-                return;
-            }
-            if (Array.IndexOf(_chineseFamilies, _family.Value) < 0) GUILayout.Label("当前选项未通过中文检测，保留设置值但不列入列表。");
-            if (GUILayout.Button(_showFamilies ? "收起字体列表" : "选择中文字体")) _pendingFamilyList = !_showFamilies;
-            if (_showFamilies)
-            {
-                _familyScroll = GUILayout.BeginScrollView(_familyScroll, GUILayout.Height(200));
-                for (int index = 0; index < _chineseFamilies.Length; index++)
-                    if (GUILayout.Button(_familyLabels[index])) { SelectFamily(_chineseFamilies[index]); _pendingFamilyList = false; }
-                GUILayout.EndScrollView();
-            }
-            GUILayout.EndVertical();
-        }
-        private void QuickChoice(string family)
-        {
-            if (!_resolver.HasFamily(family)) return;
-            if (!GUILayout.Button(family)) return;
-            SelectFamily(family);
-        }
-        private void RestoreDefaultChinese()
-        {
-            _enabled.Value = false;
-            _bold.Value = false;
-            _sizeDelta.Value = 0;
-            _changeAt = Time.unscaledTime;
-        }
-        private void SelectFamily(string family)
-        {
-            if (!_resolver.HasFamily(family)) return;
-            _file.Value = "";
-            _family.Value = family;
-            _enabled.Value = true;
-            _changeAt = Time.unscaledTime + 0.1f;
+            return failures;
         }
         private void OnDestroy() { Cleanup(); }
         private void Cleanup()
@@ -690,7 +721,7 @@ namespace Codex.StudioFontController
             FontSelection.Active = false;
             FontSelection.Bold = false;
             FontSelection.SizeDelta = 0;
-            try { Restore(); }
+            try { int failures = Restore(); if (failures != 0) Logger.LogWarning("STUDIO_FONT_RESTORE_PARTIAL failures=" + failures); }
             catch (Exception error) { Logger.LogWarning("STUDIO_FONT_RESTORE_PARTIAL " + error.GetType().Name); }
             finally
             {
@@ -705,12 +736,14 @@ namespace Codex.StudioFontController
                         try { _harmony.Unpatch(method, HarmonyPatchType.All, PluginGuid); }
                         catch (Exception error) { Logger.LogWarning("STUDIO_FONT_UNPATCH_PARTIAL " + error.GetType().Name); }
                 _patches.Clear();
+                int resourceFailures = 0;
                 foreach (FontResources resource in _cache)
-                    if (!StillReferenced(resource)) resource.Dispose();
+                    try { if (!StillReferenced(resource)) resourceFailures += resource.Dispose(); } catch (Exception) { resourceFailures++; }
                 _cache.Clear();
                 FontSelection.UguiFont = null; FontSelection.TmpFont = null;
                 FontSelection.SourcePath = null; FontSelection.Family = null;
                 _instance = null;
+                if (resourceFailures != 0) Logger.LogWarning("STUDIO_FONT_RESOURCE_RELEASE_PARTIAL failures=" + resourceFailures);
             }
         }
     }
