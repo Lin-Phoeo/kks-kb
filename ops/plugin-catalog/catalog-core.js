@@ -1,7 +1,7 @@
 (function (root) {
   'use strict';
-  const installed = new Set(['installed', 'installed_script', 'installed_framework', '已安装', '已装', 'installed_verified', 'installed_repaired', 'installed_identity_verified', 'installed_repaired_startup_verified', 'installed_upstream_package_unverified']);
-  const absent = new Set(['not_installed', '未安装', '未装', 'archived', '已归档未装']);
+  const installed = new Set(['installed', 'installed_exact', 'installed_script', 'installed_framework', '已安装', '已装', 'installed_verified', 'installed_repaired', 'installed_identity_verified', 'installed_repaired_startup_verified', 'installed_upstream_package_unverified']);
+  const absent = new Set(['not_installed', 'not_installed_candidate', 'not_installed_source_only', '未安装', '未装', 'archived', '已归档未装']);
   function installGroup(record) {
     const status = String(record.install_status_code || record.install_status || '').trim();
     return installed.has(status) ? 'installed' : absent.has(status) ? 'not_installed' : 'unknown';
@@ -13,6 +13,8 @@
     const words = String(filters.query || '').normalize('NFKC').toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
     return words.every(word => searchText(record).includes(word)) &&
       (!filters.category || (record.category || '未分类') === filters.category) &&
+      (!filters.resourceType || record.resource_type === filters.resourceType) &&
+      (!filters.withTutorial || Array.isArray(record.tutorials) && record.tutorials.length > 0) &&
       (!filters.install || installGroup(record) === filters.install) &&
       (!filters.archive || (Array.isArray(record.archive_paths) && record.archive_paths.length > 0 ? 'yes' : 'no') === filters.archive) &&
       (!filters.selectedOnly || filters.selected.has(record.id));
