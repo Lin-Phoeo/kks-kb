@@ -1,0 +1,4 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+モブ=背景角色
+用務員=校工
+用務員(裸)=校工（无服装）

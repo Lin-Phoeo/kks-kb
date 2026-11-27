@@ -1,0 +1,5 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+うさ耳=兔耳
+モコモコバンド=毛绒带
+モコモコボール=毛绒球
+モコモコリング=毛绒环

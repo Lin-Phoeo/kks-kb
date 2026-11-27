@@ -1,0 +1,4 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+r:"\\AVideo\\ format\\ is\\ incompatible\\ with\\ the\\ current\\ screenshot\\ plugin\\ or\\ its\\ settings\\.\\ Reason:\\ (?<v0>[^\\r\\n]+)\\z"=r:"视频格式与当前截图插件或设置不兼容，原因：${v0}"

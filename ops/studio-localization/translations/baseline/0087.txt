@@ -1,0 +1,2 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+休日=假日

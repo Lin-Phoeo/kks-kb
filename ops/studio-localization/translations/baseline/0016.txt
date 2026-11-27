@@ -1,0 +1,17 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+しゃがみ=蹲下
+しゃがみ歩き=蹲下行走
+しんきゃく=侧弓步压腿
+シャドーボクシング=空击练习
+スクワット=深蹲
+パタパタ=上下拍动
+勉強をする=学习
+呼び出し=打电话
+座り=坐
+待機=待机
+本を読む1=读书1
+本を読む2=读书2
+歩く=行走
+腰振り=摆动腰部
+話す=对话
+走り=奔跑

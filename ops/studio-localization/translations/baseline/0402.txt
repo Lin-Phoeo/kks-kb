@@ -1,0 +1,12 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+2連鞘刀=2连鞘刀
+刀の鞘=刀鞘
+小悪魔フォーク=小恶魔叉
+小悪魔フォーク(小)=小恶魔叉(小)
+白木拵えの納刀=带白木鞘的刀
+白木拵えの鞘=白木刀鞘
+白木拵え刀=白木装具刀
+矢=箭
+竹刀=竹剑
+鞘小太刀=小太刀鞘
+鬼神の金棒=鬼神铁棒

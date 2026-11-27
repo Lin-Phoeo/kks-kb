@@ -1,0 +1,6 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+お風呂の湯気=浴缸里的蒸汽
+キャンプの火=营火
+水しぶき=溅起的水花
+水槽の泡=水族馆气泡
+海(夕方)=海(傍晚)

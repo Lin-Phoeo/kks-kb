@@ -1,0 +1,13 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+アーマープレート=装甲板
+タングルショルダー=混纹护肩
+ナイトバイザー=骑士面甲
+ロイヤルクラウン=皇家皇冠
+ロイヤルリボン=皇家蝴蝶结
+毛玉=毛球
+羽の髪飾り右用=羽毛发饰(右)
+羽の髪飾り左用=羽毛发饰(左)
+鎧兜=甲胄头盔
+鎧肩当て=铠甲护肩
+騎士の肩当て=骑士护肩
+騎士の腰当=骑士护腰

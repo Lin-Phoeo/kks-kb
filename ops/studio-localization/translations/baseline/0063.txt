@@ -1,0 +1,5 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ダイブ１=跳水1
+ダイブ２=跳水2
+ダイブ３=跳水3
+ダイブ４=跳水4

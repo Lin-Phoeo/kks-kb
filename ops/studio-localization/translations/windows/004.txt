@@ -1,0 +1,6 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Attractor...=吸引对象…
+Kill on Removal: False=移除时销毁：否
+Kill on Removal: True=移除时销毁：是

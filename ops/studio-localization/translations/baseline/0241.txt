@@ -1,0 +1,4 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ループ=循环
+ループIN=循环进入
+ループOUT=循环退出

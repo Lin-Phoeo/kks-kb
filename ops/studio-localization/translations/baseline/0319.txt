@@ -1,0 +1,4 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+保健室ベッド=保健室床
+布団=地铺
+自室ベッド=自宅床

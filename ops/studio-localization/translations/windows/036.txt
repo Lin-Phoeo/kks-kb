@@ -1,0 +1,43 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+An error occured=发生错误
+Delete Preset=删除预设
+Enter Preset Name=输入预设名称
+Exclude Option=排除选项
+Excute=执行
+Keep Color Property =保留颜色属性
+Keep Float Property =保留数值属性
+Keep RenderQueue=保留渲染队列
+Keep Texture Property =保留纹理属性
+Load Preset=加载预设
+Material or Shader name keywords to exclude=要排除的材质或着色器名称关键词
+More=更多
+No Data to Load!=没有可加载的数据！
+Please Copy Edit on Material Editor first.=请先在材质编辑器中复制编辑内容。
+Processed=处理完成
+Replace  Whole Chara Shader=替换整个角色的着色器
+Replace Chara Shader=替换角色着色器
+Replace Item Shader=替换物件着色器
+Save Preset=保存预设
+Select Body=选择身体着色器
+Select Clothes=选择服装着色器
+Select ClothesAlpha=选择透明服装着色器
+Select Eye=选择眼睛着色器
+Select Eyew=选择眼白着色器
+Select Face=选择面部着色器
+Select Hair=选择头发着色器
+Select Preset=选择预设
+Select Property to Copy=选择要复制的属性
+Select Shader to Replace=选择要替换的着色器
+Select Source Material=选择来源材质
+Select Source Shader=选择来源着色器
+Set=应用
+Shader Management Tool=着色器管理工具
+Shader name to Replace=要替换的着色器名称
+Use Preset =使用预设
+Use Shader Default =使用着色器默认值
+with Color Property =包含颜色属性
+with Float Property =包含数值属性
+with Shader=包含着色器
+with Texture Property =包含纹理属性

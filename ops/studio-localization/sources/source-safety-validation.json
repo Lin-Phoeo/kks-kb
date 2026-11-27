@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-27",
+  "gitleaks": {
+    "version": "8.30.1",
+    "scope": "ops/studio-localization",
+    "mode": "dir",
+    "redacted": true,
+    "exit_code": 0,
+    "findings": 0,
+    "bytes_scanned": 4688302
+  },
+  "public_tree": {
+    "files": 932,
+    "violations": 0
+  },
+  "machine_path_scan": {
+    "patterns": [
+      "absolute user-profile path",
+      "absolute development game root",
+      "specific local account name"
+    ],
+    "matches": 0
+  },
+  "raw_runtime_artifacts_in_public_sources": false
+}

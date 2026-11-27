@@ -1,0 +1,7 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ススキ=日本蒲苇
+三方=供品台
+和雲A=和风云纹A
+和雲B=和风云纹B
+団子=团子
+月=月亮

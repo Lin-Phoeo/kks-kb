@@ -1,0 +1,9 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+1 renderer=1 个渲染器
+1 shader=1 个着色器
+no renderers=无渲染器
+no shaders=无着色器
+r:"\\A(?<n>(?:[0-9]+|\\{\\{[^{}\\r\\n]+\\}\\})) renderers\\z"=r:"${n} 个渲染器"
+r:"\\A(?<n>(?:[0-9]+|\\{\\{[^{}\\r\\n]+\\}\\})) shaders\\z"=r:"${n} 个着色器"

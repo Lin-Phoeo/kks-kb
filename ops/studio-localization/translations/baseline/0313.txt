@@ -1,0 +1,13 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+スクリーン=投影屏
+ブロック壁1=块壁1
+ブロック壁2=块壁2
+ブロック壁3=块壁3
+体育館壁=体育馆墙壁
+木製壁=木制墙壁
+石壁1=石墙1
+石壁2=石墙2
+石壁3=石墙3
+石壁4=石墙4
+窓=窗户
+黒板=黑板

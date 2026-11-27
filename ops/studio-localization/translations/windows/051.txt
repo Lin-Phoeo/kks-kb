@@ -1,0 +1,12 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Patches:=补丁：
+Use the search box to search for currently applied Harmony patches by method, class, or namespace.\n\nExamples: 'OnClick', 'method:OnClick class:AddButtonCtrl', 'namespace:SimpleGame'=在搜索框中按方法、类或命名空间搜索当前应用的 Harmony 补丁。\n\n例如：'OnClick'、'method:OnClick class:AddButtonCtrl'、'namespace:SimpleGame'
+r:"\\AAssembly:\\ (?<v0>[^\\r\\n]+)\\z"=r:"程序集：${v0}"
+r:"\\AFile:\\ (?<v0>[^\\r\\n]+)\\\n\\\nClick\\ to\\ open\\ explorer\\ focused\\ on\\ this\\ file\\.\\ Right\\ click\\ for\\ to\\ inspect\\ the\\ Assembly\\ instance\\.\\z"=r:"文件：${v0}\n\n点击在文件管理器中定位此文件，右键检查程序集实例。"
+r:"\\AFound\\ (?<v0>(?:[0-9０-９]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\ patches\\z"=r:"找到 ${v0} 个补丁"
+r:"\\AIL\\ Code\\ for:\\ (?<v0>[^\\r\\n]+)\\z"=r:"IL 代码：${v0}"
+r:"\\APatcher:\\ (?<v0>[^\\r\\n]+)\\z"=r:"补丁所属命名空间：${v0}"
+r:"\\ATarget:\\ (?<v0>[^\\r\\n]+)\\z"=r:"目标：${v0}"
+r:"\\A\\\nPriority:\\ (?<v0>(?:[0-9０-９]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\ \\|\\ (?<v1>[^\\r\\n]+)\\z"=r:"\n优先级：${v0} | ${v1}"

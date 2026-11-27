@@ -1,0 +1,3 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+座り会話 右=坐着交谈 右
+座り会話 左=坐着交谈 左

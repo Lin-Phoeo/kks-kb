@@ -1,0 +1,7 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ねこ=猫
+ウミガメ=海龟
+ヤシガニ=椰子蟹
+ヤマネコ=野猫
+牛車=牛车
+鳥のヒナ=鸟宝宝

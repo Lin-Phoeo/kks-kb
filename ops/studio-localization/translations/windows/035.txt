@@ -1,0 +1,5 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+To access the Sex Faces menu, go to Char Maker > ❤ > SexFaces.=打开表情菜单的位置为角色编辑器 > ❤ > SexFaces。
+r:"\\A(?<v>(?:[+-]?[0-9]+(?:[.,][0-9]+)?|\\{\\{[^{}\\r\\n]+\\}\\})) sec\\z"=r:"${v} 秒"

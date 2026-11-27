@@ -1,0 +1,9 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+AmazingNewAccessoryLogic v0.1.1=饰品逻辑编辑器 v0.1.1
+r:"\\A(?<v>[^\\r\\n]+): Off\\z"=r:"${v}：关"
+r:"\\A--- (?<v>[^\\r\\n]+): On ---\\z"=r:"--- ${v}：开 ---"
+r:"\\AAccs\\ for\\ state\\ (?<v0>(?:[0-9０-９]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"状态 ${v0} 的饰品"
+r:"\\AGroup\\ state:\\ (?<v0>(?:[0-9０-９]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"分组状态：${v0}"
+r:"\\AHelp\\ \\(\\ (?<v0>(?:[0-9０-９]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\ /\\ (?<v1>(?:[0-9０-９]+|\\{\\{[^{}\\r\\n]+\\}\\}))\\ \\)\\z"=r:"帮助（${v0} / ${v1}）"

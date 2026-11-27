@@ -35,6 +35,10 @@ Issue 写明目标 → 功能分支 → AI 修改与本地验证 → PR → Acti
 - [项目结构](docs/architecture.md)：源码、数据和运行时的关系。
 - [验证说明](docs/verification.md)：本地与 CI 的相同入口及覆盖边界。
 
+## Studio 简中与字体工具
+
+[Studio 汉化工具](ops/studio-localization/README.md)提供可回滚的安装器、插件设置显示适配、动态文本兼容和字体选择源码。普通用户可按[安装教程](ops/studio-localization/TUTORIAL.zh-CN.md)使用发行 ZIP，维护者和其他 AI 从[接续说明](ops/studio-localization/AI-HANDOFF.md)开始。游戏、字体与第三方汉化来源由使用者自行准备，适用版本和实际验证范围写在对应发行记录中。
+
 ## 源码范围与许可
 
 这是经过公开范围整理的源码基线，不携带旧的私人运维历史或聊天导出。安全问题请先看 [SECURITY.md](SECURITY.md)。

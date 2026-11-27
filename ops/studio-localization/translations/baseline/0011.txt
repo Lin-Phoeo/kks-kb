@@ -1,0 +1,8 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+食事B1=进餐B1
+食事B2=进餐B2
+食事C1=进餐C1
+食事C2=进餐C2
+食事Ａ1=进餐Ａ1
+食事Ａ2=进餐Ａ2
+食事Ａ3=进餐Ａ3

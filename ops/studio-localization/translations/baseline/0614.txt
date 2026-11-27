@@ -1,0 +1,5 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Disable Fade=禁用淡入淡出
+Fade Color=淡入淡出颜色

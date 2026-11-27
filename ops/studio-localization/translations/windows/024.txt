@@ -1,0 +1,6 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Brw=眉毛
+Def=默认
+Freq.=频率

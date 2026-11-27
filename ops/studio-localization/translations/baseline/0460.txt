@@ -1,0 +1,4 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+串焼きを作る=制作烤串
+串焼きを食べる1=吃烤肉串1
+串焼きを食べる2=吃烤肉串 2

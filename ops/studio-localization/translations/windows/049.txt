@@ -1,0 +1,5 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+r:"\\A\\[Field\\]\\ (?<v0>[^\\r\\n]+)\\z"=r:"[字段] ${v0}"
+r:"\\A\\[Property\\]\\ (?<v0>[^\\r\\n]+)\\z"=r:"[属性] ${v0}"

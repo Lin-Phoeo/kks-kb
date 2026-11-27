@@ -1,0 +1,4 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Save_PostProcessingEffects  0.1=保存后期处理效果 0.1

@@ -1,0 +1,18 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+のむ=吞下
+のむIN=吞下IN
+のむ事後=吞下事后
+はく=吐出
+はくIN=吐出IN
+はく事後=吐出事后
+中出しループ=中出循环
+中出し開始=中出开始
+口内待機=口内待机
+口内待機IN=口内待机IN
+外出しループ=外出循环
+外出し事後=外出事后
+外出し開始=外出开始
+弱ループ=弱循环
+強ループ=强循环
+待機=待机
+絶頂前ループ=高潮前循环

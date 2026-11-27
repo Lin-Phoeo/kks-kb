@@ -1,0 +1,5 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Redo pose change=重做姿势更改
+Toggle undocked pose stash=切换浮动姿势暂存

@@ -1,0 +1,24 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+- Off: Renderer casts no shadows\r\n- On: Renderer casts shadows\r\n- Two Sided: Always cast shadows from any direction, even for single sided objects\r\n- Shadows Only: Renderer is invisible but still casts shadows=- 关闭：渲染器不投射阴影\r\n- 开启：渲染器投射阴影\r\n- 双面：始终从任何方向投射阴影，即使物件只有单面\r\n- 仅阴影：渲染器不可见，但仍投射阴影
+Clothes Bottom=服装 下装
+Clothes Bra=服装 胸罩
+Clothes Gloves=服装 手套
+Clothes Indoor Shoes=服装 室内鞋
+Clothes Legwear=服装 袜子
+Clothes Outdoor Shoes=服装 室外鞋
+Clothes Pantyhose=服装 连裤袜
+Clothes Top=服装 上装
+Clothes Underwear=服装 内裤
+Collapse Mat. Renderers=折叠材质渲染器列表
+Collapse Materials=折叠材质列表
+Collapse Renderers=折叠渲染器列表
+Expand Mat. Renderers=展开材质渲染器列表
+Expand Materials=展开材质列表
+Expand Renderers=展开渲染器列表
+Export the UV map of this renderer.\n\nThe UV map is the 2d projection of the renderer with which to map textures to the 3d model. You can use this UV map as a guide to drawing on textures=导出此渲染器的 UV 布局图。\n\nUV 布局图是渲染器网格的二维展开，用于把纹理映射到三维模型上。绘制纹理时可用此图作为参考。
+Hair Back=头发 后发
+Hair Extension=头发 扩展发型
+Hair Front=头发 前发
+Hair Side=头发 侧发

@@ -1,0 +1,4 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+r:"\\Adrawer error: (?<v>[^\\r\\n]+)\\z"=r:"控件绘制错误：${v}"

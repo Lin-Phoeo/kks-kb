@@ -1,0 +1,13 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+卓球のラリー=乒乓球对打
+夏の夕暮れ=夏日黄昏
+川の流れ=流水声
+森の中=在森林里
+水の反響=水的回声
+水流=水流声
+波打ち際=海滩
+滝の激流=瀑布的激流
+真夏の蝉=仲夏蝉
+虫のなく夜=虫鸣之夜
+鐘の音=铃声
+鳥の声=鸟的声音

@@ -1,0 +1,8 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+FK先端1=FK尖端1
+FK先端2=FK尖端2
+FK軸=FK轴
+FK関節=FK关节
+メカチューブ=机甲管
+土台1=台基1
+土台2=台基2

@@ -1,0 +1,3 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+コイカツ=恋爱活动
+ファンタジー=幻想

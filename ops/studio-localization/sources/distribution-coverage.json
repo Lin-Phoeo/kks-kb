@@ -1,0 +1,13 @@
+{
+  "baseline_version": "0.2.0-rc.3",
+  "baseline_sha256": "8471dc4f94c32116ea8d929e7f2d5fa7aadbdc7c6ce0cc28cd2e2f3bb7a46cd3",
+  "baseline_files": 633,
+  "independent_window_entries": 885,
+  "optional_window_entries": 566,
+  "independent_configuration_contexts": 1525,
+  "optional_configuration_contexts": 2498,
+  "optional_requests": 2420,
+  "total_configuration_contexts": 4023,
+  "raw_machine_evidence_included": false,
+  "private_generated_cache_used": false
+}

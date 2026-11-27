@@ -1,0 +1,7 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+メカハンド握り右用=机甲手握拳(右)
+メカハンド握り左用=机甲手握拳(左)
+メカハンド開き右用=机甲手张开(右)
+メカハンド開き左用=机甲手张开(左)
+メカフット=机械脚
+玉飾り=球形饰品

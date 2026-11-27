@@ -1,0 +1,4 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+スポットライト=聚光灯
+ポイントライト=点光源
+全体光=全光

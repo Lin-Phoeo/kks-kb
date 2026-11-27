@@ -1,0 +1,7 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Other=其他
+r:"\\A(?<v0>[^\\r\\n]+?)\\ Picker\\z"=r:"${v0}选择器"
+r:"\\AOther:\\ (?<v0>[^\\r\\n]+?)\\z"=r:"其他：${v0}"
+r:"\\ASlot\\ (?<v0>(?:[+-]?[0-9０-９]+(?:[.,][0-9０-９]+)?|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"槽位 ${v0}"

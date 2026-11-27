@@ -1,0 +1,14 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+お金持ちの指輪=富豪戒指
+クリップ=夹子
+コントローラー=手柄
+ステージマイク=舞台麦克风
+テニスボール=网球
+テニスラケット=网球拍
+ポンポン=绒毛球
+傘=伞
+出席名簿=出席名册
+持ち看板=手持看板
+洗濯ばさみ=晾衣夹
+番傘=油纸伞
+食べかけアイスバー=吃剩的冰棒

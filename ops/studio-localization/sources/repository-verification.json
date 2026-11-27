@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-27",
+  "reported_by": "parent task after running locked repository checks",
+  "repository_unit_tests": 367,
+  "browser_tests": 8,
+  "pip_audit_findings": 0,
+  "localization_installer_tests": 18,
+  "portable_source_projects_built": 8,
+  "limitations": "Repository tests use synthetic inputs. Game-specific font and dynamic text runtime validation is recorded separately by exact build."
+}

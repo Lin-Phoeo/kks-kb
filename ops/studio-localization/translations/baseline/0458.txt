@@ -1,0 +1,8 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+悩みつつ休憩=烦恼着休息
+筆で色乗せる=用画笔上色
+筆で色乗せる 確認=用画笔上色 确认
+粘土形整えてる in=整理黏土形状（开始）
+粘土形整えてる loop=整理黏土形状（循环）
+粘土形整えてる out=整理黏土形状（结束）
+顔遠ざけて悩む=移开脸思考

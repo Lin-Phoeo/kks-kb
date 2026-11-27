@@ -1,0 +1,7 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+歩く1=行走1
+歩く2=行走2
+走る1=奔跑1
+走る2=奔跑2
+走る3=奔跑3
+走る4=奔跑4

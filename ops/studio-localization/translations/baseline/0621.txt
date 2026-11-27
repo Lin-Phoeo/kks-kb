@@ -1,0 +1,25 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Rotate Around=绕点旋转
+Alias=别名
+Collider=碰撞器
+Height=高度
+Force=外力
+Select a target to spwan GuideObject=选择目标以生成操作手柄（GuideObject）
+Local=局部坐标
+World=世界坐标
+L. Foot=左脚
+R. Foot=右脚
+L. Knee=左膝
+R. Knee=右膝
+L. Thigh=左大腿
+R. Thigh=右大腿
+L. Hand=左手
+R. Hand=右手
+L. Elbow=左肘
+R. Elbow=右肘
+L. Shoulder=左肩
+R. Shoulder=右肩
+cf_O_noseline=cf_O_noseline
+cf_O_noseline*=cf_O_noseline*

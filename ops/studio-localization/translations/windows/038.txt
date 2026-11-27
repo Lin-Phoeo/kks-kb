@@ -1,0 +1,18 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ 画面效果 & 角色光照 预设  /  FX & Chara Light Presets=画面效果与角色光照预设
+ 画面效果 FX=画面效果
+ 角色光照 Chara light=角色光照
+Not in a CharaStudio scene. Open the studio first.=当前不在工作室场景中，请先打开工作室。
+r:"\\A再点一次『删除 Del』确认删除: (?<v>[^\\r\\n]+)\\z"=r:"再次点击“删除”以确认删除：${v}"
+保存 Save=保存
+关闭 Close=关闭
+删除 Del=删除
+刷新列表 Refresh=刷新列表
+应用 Apply=应用
+打开预设目录 Open folder=打开预设目录
+确认? Del=确认删除？
+覆盖 Over=覆盖
+预设 Presets=预设
+（还没有预设。输入名称 -> 保存 Save）=（尚无预设，输入名称后点击保存）

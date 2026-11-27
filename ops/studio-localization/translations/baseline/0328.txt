@@ -1,0 +1,5 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ウサギの置物=兔子摆件
+ポール=长杆
+狸の置物=狸摆件
+野点傘=遮阳伞

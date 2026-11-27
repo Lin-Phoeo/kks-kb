@@ -1,0 +1,15 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+いちごみるく=草莓牛奶
+コーヒー=咖啡
+ドリンク缶=饮料罐
+バナナジュース=香蕉果汁
+パックのお茶=盒装茶
+ビール=啤酒
+ペットボトルのお茶=瓶装茶
+ペットボトルの水=瓶装水
+ラムネ瓶=波子汽水瓶
+受け皿=茶碟
+抹茶ラテ=抹茶拿铁
+牛乳コーヒー=牛奶咖啡
+紙コップ=纸杯
+茶筅=茶筅（抹茶搅拌刷）

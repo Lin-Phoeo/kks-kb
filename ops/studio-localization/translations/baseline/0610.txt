@@ -1,0 +1,10 @@
+// Reviewed candidate; actual UI verification pending.
+#set exe CharaStudio
+#enable fallback
+Accessories menu=饰品菜单
+Advanced Accessories Menu=高级饰品菜单
+Ungrouped=未分组
+Hide=隐藏
+Show=显示
+Groups=分组
+No character selected.=未选择角色。

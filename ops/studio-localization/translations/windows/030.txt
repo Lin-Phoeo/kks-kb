@@ -1,0 +1,12 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+KKSPE was not found=未找到 KKSPE
+No P+ blendshapes found.  Use the 'Create' button to capture a snapshot of the current P+ slider values as blendshapes.  Make sure Inflation Size is not 0.=未找到 P+ 形态键。点击“创建”，将当前 P+ 滑块值保存为形态键快照。请确保膨胀尺寸不为 0。
+No clothing found=未找到服装
+Note: This is the old way to do timeline scenes.  Look for the Preg+ interpolable in timeline for the new way.=注意，这是制作时间轴场景的旧方法。新方法请使用 Timeline 中的 Preg+ 可插值轨道。
+One or more blendshapes no longer match their mesh and need to be recreated with 'Create New'.  Things like changing Uncensor, or clothing, can cause this.=一个或多个形态键已不再匹配其网格，需要使用“新建”重新创建。更换身体模型或服装等操作可能造成此问题。
+Pregnancy+ Cloth Offsets=Pregnancy+ 服装偏移
+Reset Sliders=重置滑块
+The blendshape sliders above can be adjusted and then saved to Timeline (Ctrl+T) or VNGE > Clip Manager.  The blendshapes will persist to the character card after the scene is saved. But the character must be using the same uncensor.=可以调整上方形态键滑块，再保存到 Timeline（Ctrl+T）或 VNGE > Clip Manager。保存场景后，形态键会保留在角色卡中，但角色必须继续使用相同的身体模型。
+The sliders above control the offset amount for each clothing item.\nSlider offsets will save with the character/scene.=上方滑块控制每件服装的偏移量。\n滑块偏移会随角色或场景保存。

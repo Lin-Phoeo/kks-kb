@@ -1,0 +1,4 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ストレッチ=拉伸
+ダイブ=跳水
+動き回る=到处活动

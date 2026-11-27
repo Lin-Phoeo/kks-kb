@@ -1,0 +1,15 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Hダークネス=H黑暗
+H女複数=H女复数
+H愛撫=H爱抚
+アウトドア=户外
+アフタースクール=放学后
+キャラ=角色
+サマー=夏季
+スタジオ=工作室
+バトル=战斗
+女H奉仕=女H侍奉
+女H挿入=女H插入
+汎用=通用
+男H奉仕=男H侍奉
+男H挿入=男H插入

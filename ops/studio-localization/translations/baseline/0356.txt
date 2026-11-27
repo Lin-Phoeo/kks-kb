@@ -1,0 +1,5 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+クリスマスリボン=圣诞节缎带
+サンタ帽子=圣诞帽
+雪の結晶(キャラ)=雪结晶(角色)
+雪の結晶ステッキ=雪结晶手杖

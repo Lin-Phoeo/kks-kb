@@ -1,0 +1,5 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+StudioItemIK v0.2.0=工作室物件 IK v0.2.0
+r:"\\APole Amount: (?<v>(?:[+-]?[0-9]+(?:[.,][0-9]+)?|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"极向控制点数量：${v}"

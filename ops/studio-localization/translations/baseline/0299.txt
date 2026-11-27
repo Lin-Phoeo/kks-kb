@@ -1,0 +1,15 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+アフタースクール=放学后
+クリスマス=圣诞节
+サマー=夏季
+ダークネス=黑暗
+ハロウィン=万圣节
+ファンタジー=幻想
+メカ=机甲
+胴=躯体
+腕=手臂
+腰=腰部
+頭=头部
+顔=脸部
+首=颈部
+髪=头发

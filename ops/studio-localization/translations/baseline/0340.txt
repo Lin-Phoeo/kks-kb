@@ -1,0 +1,5 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ぼんぼりピアス=灯笼耳环
+コンシェルジュハット=接待员帽子
+シトリースカーフ=Sitri 领巾
+シトリータイ=Sitri 领带

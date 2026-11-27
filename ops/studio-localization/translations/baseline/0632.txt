@@ -1,0 +1,5 @@
+#set exe CharaStudio
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Equals=等号键“\=”
+Keypad Equals=小键盘等号键“\=”
+Alt Gr=Alt Gr 键

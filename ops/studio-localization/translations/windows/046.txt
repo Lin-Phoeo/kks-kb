@@ -1,0 +1,17 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Add1=加算（限 1）
+Add2=加算
+Are you sure you want to reset the shaders of ALL items in the scene=确定重置场景中全部物件的着色器吗？
+Col=颜色
+Filter by material name. (Filter is set)=按材质名称筛选。（已设置筛选）
+Filter by renderer name. (Filter is set)=按渲染器名称筛选。（已设置筛选）
+Filter by shader name. (Filter is set)=按着色器名称筛选。（已设置筛选）
+Modify Selected=修改选中项
+Rend=渲染器
+Tex=纹理
+Welcome to Mass Shader Editor! To get started, I first recommend checking out the Help section, which will tell you how to best use this plugin, and any specifics on what each of the buttons and options do.\n\nTo access the help section, click the yellow '?' symbol in the top right corner of the plugin window.\n\nAfterwards, you should check out the various settings of the plugin, accessible either in the F1 menu or by clicking the cogwheel icon next to the help button. The available settings are different in Maker and in Studio!\n\nHappy creating!=欢迎使用批量着色器编辑器！建议先阅读帮助，了解插件用法以及各按钮和选项的具体作用。\n\n点击窗口右上角黄色的“?”可打开帮助。\n\n之后可在 F1 菜单或帮助按钮旁的齿轮图标中检查插件设置。角色编辑器与工作室提供的设置有所不同。\n\n祝创作顺利！
+r:"\\AAre\\ you\\ sure\\ you\\ want\\ to\\ reset\\ the\\ "(?<v0>[^\\r\\n]+?)"\\ property\\ of\\ ALL\\ items\\ in\\ the\\ scene\\?\\z"=r:"确定重置场景中全部物件的“${v0}”属性吗？"
+r:"\\AAre\\ you\\ sure\\ you\\ want\\ to\\ set\\ the\\ "(?<v0>[^\\r\\n]+?)"\\ property\\ of\\ ALL\\ items\\ in\\ the\\ scene\\ to\\ (?<v1>[^\\r\\n]+?)\\?\\z"=r:"确定将场景中全部物件的“${v0}”属性设为 ${v1} 吗？"
+r:"\\AAre\\ you\\ sure\\ you\\ want\\ to\\ set\\ the\\ shaders\\ of\\ ALL\\ items\\ in\\ the\\ scene\\ to\\ (?<v0>[^\\r\\n]+?)\\z"=r:"确定将场景中全部物件的着色器设为 ${v0} 吗？"

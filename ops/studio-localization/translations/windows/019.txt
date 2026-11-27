@@ -1,0 +1,5 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Character folder=角色文件夹
+r:"\\AFolders placed inside your (?<v>[^\\r\\n]+) folder will appear on this list\\.\\z"=r:"放入 ${v} 目录的文件夹会显示在此列表中。"

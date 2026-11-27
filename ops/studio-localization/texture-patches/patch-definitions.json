@@ -1,0 +1,2040 @@
+{
+  "font_requirement": "locally installed Chinese font; no font distributed",
+  "patches": [
+    {
+      "image": 1,
+      "rect": [
+        3,
+        23,
+        45,
+        38
+      ],
+      "source": "Delete",
+      "translation": "删除",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        54,
+        24,
+        90,
+        37
+      ],
+      "source": "Load",
+      "translation": "加载",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        94,
+        24,
+        129,
+        38
+      ],
+      "source": "Fixed",
+      "translation": "固定",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        0,
+        39,
+        52,
+        58
+      ],
+      "source": "Clothing",
+      "translation": "服装",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        1,
+        59,
+        74,
+        75
+      ],
+      "source": "Accessories",
+      "translation": "配饰",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        7,
+        99,
+        142,
+        116
+      ],
+      "source": "AnimationController",
+      "translation": "动画控制",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        243,
+        95,
+        259,
+        109
+      ],
+      "source": "off",
+      "translation": "关",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        255,
+        129,
+        311,
+        144
+      ],
+      "source": "Clear List",
+      "translation": "清空列表",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        247,
+        149,
+        306,
+        170
+      ],
+      "source": "Import",
+      "translation": "导入",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        49,
+        166,
+        120,
+        183
+      ],
+      "source": "Import File",
+      "translation": "导入文件",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        255,
+        175,
+        300,
+        195
+      ],
+      "source": "Load",
+      "translation": "加载",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        310,
+        180,
+        348,
+        197
+      ],
+      "source": "Reset",
+      "translation": "重置",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        243,
+        233,
+        289,
+        254
+      ],
+      "source": "Juices",
+      "translation": "液体",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        243,
+        252,
+        282,
+        270
+      ],
+      "source": "Other",
+      "translation": "其他",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        46,
+        257,
+        116,
+        274
+      ],
+      "source": "Ambience",
+      "translation": "环境音",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        276,
+        270,
+        349,
+        290
+      ],
+      "source": "Copy to IK",
+      "translation": "复制到IK",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        277,
+        287,
+        354,
+        308
+      ],
+      "source": "Copy to FK",
+      "translation": "复制到FK",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        170,
+        316,
+        210,
+        335
+      ],
+      "source": "Follow",
+      "translation": "跟随",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        262,
+        307,
+        385,
+        322
+      ],
+      "source": "RefertoAnimation",
+      "translation": "参考动画",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        302,
+        324,
+        350,
+        341
+      ],
+      "source": "Confirm",
+      "translation": "确认",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        174,
+        335,
+        208,
+        351
+      ],
+      "source": "Save",
+      "translation": "保存",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        171,
+        350,
+        210,
+        370
+      ],
+      "source": "Avert",
+      "translation": "避开",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        277,
+        341,
+        373,
+        359
+      ],
+      "source": "Switch Costume",
+      "translation": "切换服装",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        170,
+        370,
+        211,
+        387
+      ],
+      "source": "Adjust",
+      "translation": "调整",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        273,
+        361,
+        376,
+        375
+      ],
+      "source": "Change Character",
+      "translation": "替换角色",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        173,
+        390,
+        209,
+        405
+      ],
+      "source": "Anim",
+      "translation": "动画",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        267,
+        386,
+        309,
+        411
+      ],
+      "source": "Yes",
+      "translation": "是",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        337,
+        393,
+        374,
+        408
+      ],
+      "source": "Front",
+      "translation": "前方",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        401,
+        402,
+        440,
+        417
+      ],
+      "source": "Import",
+      "translation": "导入",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        337,
+        415,
+        397,
+        432
+      ],
+      "source": "Cancel",
+      "translation": "取消",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        397,
+        418,
+        439,
+        436
+      ],
+      "source": "Name",
+      "translation": "名称",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        70,
+        435,
+        123,
+        454
+      ],
+      "source": "Playlist",
+      "translation": "播放列表",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        271,
+        429,
+        305,
+        453
+      ],
+      "source": "No",
+      "translation": "否",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        338,
+        437,
+        393,
+        459
+      ],
+      "source": "Save",
+      "translation": "保存",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        403,
+        441,
+        461,
+        458
+      ],
+      "source": "Delete",
+      "translation": "删除",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        308,
+        465,
+        398,
+        485
+      ],
+      "source": "ItemSettings",
+      "translation": "物品设置",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        193,
+        497,
+        217,
+        511
+      ],
+      "source": "def",
+      "translation": "默认",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        309,
+        493,
+        407,
+        509
+      ],
+      "source": "Map Controller",
+      "translation": "地图控制",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        44,
+        501,
+        74,
+        515
+      ],
+      "source": "joint",
+      "translation": "关节",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        3,
+        526,
+        39,
+        540
+      ],
+      "source": "Sound",
+      "translation": "声音",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        43,
+        568,
+        72,
+        582
+      ],
+      "source": "undo",
+      "translation": "撤销",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        106,
+        582,
+        127,
+        594
+      ],
+      "source": "lock",
+      "translation": "锁定",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        182,
+        583,
+        215,
+        597
+      ],
+      "source": "release,",
+      "translation": "解除",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        101,
+        622,
+        141,
+        639
+      ],
+      "source": "anim",
+      "translation": "动画",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        15,
+        641,
+        112,
+        660
+      ],
+      "source": "Folder Name",
+      "translation": "文件夹名称",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        235,
+        642,
+        269,
+        652
+      ],
+      "source": "color",
+      "translation": "颜色",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        2,
+        666,
+        32,
+        681
+      ],
+      "source": "Name",
+      "translation": "名称",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        339,
+        741,
+        365,
+        751
+      ],
+      "source": "parent",
+      "translation": "父级",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        339,
+        808,
+        363,
+        819
+      ],
+      "source": "MAP",
+      "translation": "地图",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        25,
+        937,
+        126,
+        957
+      ],
+      "source": "Gaze Control",
+      "translation": "视线控制",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        348,
+        976,
+        451,
+        998
+      ],
+      "source": "Neck Control",
+      "translation": "头颈控制",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        39,
+        1060,
+        377,
+        1088
+      ],
+      "source": "Scene has been imported",
+      "translation": "场景已导入",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        997,
+        1052,
+        1137,
+        1071
+      ],
+      "source": "Directional Light (Map)",
+      "translation": "平行光（地图）",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1203,
+        1085,
+        1504,
+        1111
+      ],
+      "source": "Scene has been loaded",
+      "translation": "场景已加载",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1647,
+        1085,
+        1895,
+        1112
+      ],
+      "source": "Saved successfully",
+      "translation": "保存成功",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        98,
+        1112,
+        318,
+        1138
+      ],
+      "source": "Delete this scene?",
+      "translation": "删除此场景？",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        621,
+        1118,
+        746,
+        1140
+      ],
+      "source": "External Images",
+      "translation": "外部图片",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1565,
+        1127,
+        1705,
+        1144
+      ],
+      "source": "Directional Light (All)",
+      "translation": "平行光（全部）",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        67,
+        1142,
+        348,
+        1169
+      ],
+      "source": "This can not be undone!",
+      "translation": "此操作无法撤销！",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        851,
+        1149,
+        975,
+        1169
+      ],
+      "source": "Point Light (All)",
+      "translation": "点光源（全部）",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        994,
+        1197,
+        1033,
+        1216
+      ],
+      "source": "Pos. ",
+      "translation": "位置",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        994,
+        1217,
+        1029,
+        1236
+      ],
+      "source": "Rot.",
+      "translation": "旋转",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1421,
+        1215,
+        1542,
+        1232
+      ],
+      "source": "Light Controller",
+      "translation": "灯光控制",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        993,
+        1235,
+        1030,
+        1255
+      ],
+      "source": "Scale",
+      "translation": "缩放",
+      "basis": "Manual source review: preserve adjacent red X axis marker outside text ROI.",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1167,
+        1265,
+        1255,
+        1282
+      ],
+      "source": "Female List",
+      "translation": "女性角色列表",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        69,
+        1275,
+        345,
+        1301
+      ],
+      "source": "Delete this voice data?",
+      "translation": "删除此语音数据？",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        67,
+        1306,
+        348,
+        1331
+      ],
+      "source": "This can not be undone!",
+      "translation": "此操作无法撤销！",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        853,
+        1336,
+        973,
+        1356
+      ],
+      "source": "Spotlight (Map)",
+      "translation": "聚光灯（地图）",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1410,
+        1390,
+        1551,
+        1412
+      ],
+      "source": "Point Light (Char)",
+      "translation": "点光源（角色）",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1741,
+        1499,
+        1816,
+        1519
+      ],
+      "source": "Pose List",
+      "translation": "姿势列表",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1716,
+        1525,
+        1744,
+        1539
+      ],
+      "source": "Name",
+      "translation": "名称",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        355,
+        1548,
+        391,
+        1562
+      ],
+      "source": "work",
+      "translation": "工作区",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1477,
+        1577,
+        1551,
+        1597
+      ],
+      "source": "Male List",
+      "translation": "男性角色列表",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        397,
+        1578,
+        725,
+        1605
+      ],
+      "source": "Do you want to exit studio?",
+      "translation": "退出工作室？",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1596,
+        1577,
+        1692,
+        1597
+      ],
+      "source": "Clothes List",
+      "translation": "服装列表",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        388,
+        1609,
+        737,
+        1637
+      ],
+      "source": "Unsaved changes will be lost!",
+      "translation": "未保存的修改将丢失！",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1321,
+        1608,
+        1428,
+        1625
+      ],
+      "source": "Spotlight (All)",
+      "translation": "聚光灯（全部）",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1741,
+        1683,
+        1817,
+        1703
+      ],
+      "source": "Voice List",
+      "translation": "语音列表",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1715,
+        1709,
+        1744,
+        1724
+      ],
+      "source": "Name",
+      "translation": "名称",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1848,
+        1723,
+        1990,
+        1740
+      ],
+      "source": "Directional Light (Char)",
+      "translation": "平行光（角色）",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        333,
+        1741,
+        535,
+        1767
+      ],
+      "source": "Reset the scene?",
+      "translation": "重置场景？",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        651,
+        1757,
+        679,
+        1772
+      ],
+      "source": "add",
+      "translation": "添加",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        260,
+        1771,
+        609,
+        1799
+      ],
+      "source": "Unsaved changes will be lost!",
+      "translation": "未保存的修改将丢失！",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        751,
+        1765,
+        780,
+        1780
+      ],
+      "source": "Redo",
+      "translation": "重做",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1089,
+        1779,
+        1176,
+        1801
+      ],
+      "source": "Expression",
+      "translation": "表情",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        750,
+        1808,
+        788,
+        1822
+      ],
+      "source": "option",
+      "translation": "选项",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        793,
+        1810,
+        828,
+        1821
+      ],
+      "source": "menu",
+      "translation": "菜单",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1112,
+        1801,
+        1153,
+        1818
+      ],
+      "source": "Brows",
+      "translation": "眉毛",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        873,
+        1836,
+        939,
+        1856
+      ],
+      "source": "Character",
+      "translation": "角色",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        971,
+        1836,
+        1031,
+        1856
+      ],
+      "source": "Category",
+      "translation": "分类",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1566,
+        1837,
+        1684,
+        1854
+      ],
+      "source": "Spotlight(Char)",
+      "translation": "聚光灯（角色）",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1116,
+        1865,
+        1149,
+        1883
+      ],
+      "source": "Eyes",
+      "translation": "眼睛",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1710,
+        1866,
+        1848,
+        1888
+      ],
+      "source": "Point Light (Map)",
+      "translation": "点光源（地图）",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        326,
+        1903,
+        540,
+        1929
+      ],
+      "source": "Remove the pose?",
+      "translation": "删除此姿势？",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        293,
+        1932,
+        575,
+        1960
+      ],
+      "source": "This can not be undone!",
+      "translation": "此操作无法撤销！",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        918,
+        1936,
+        991,
+        1953
+      ],
+      "source": "Voice Lines",
+      "translation": "语音台词",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1109,
+        1968,
+        1152,
+        1985
+      ],
+      "source": "Mouth",
+      "translation": "嘴部",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 3,
+      "rect": [
+        1,
+        287,
+        31,
+        299
+      ],
+      "source": "route",
+      "translation": "路径",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 3,
+      "rect": [
+        43,
+        329,
+        70,
+        341
+      ],
+      "source": "ALL",
+      "translation": "全部",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 3,
+      "rect": [
+        4,
+        357,
+        40,
+        380
+      ],
+      "source": "Day",
+      "translation": "白天",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 3,
+      "rect": [
+        56,
+        387,
+        75,
+        398
+      ],
+      "source": "obj",
+      "translation": "物体",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 3,
+      "rect": [
+        3,
+        408,
+        47,
+        426
+      ],
+      "source": "Dusk",
+      "translation": "黄昏",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 3,
+      "rect": [
+        254,
+        483,
+        301,
+        500
+      ],
+      "source": "Night",
+      "translation": "夜晚",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 4,
+      "rect": [
+        406,
+        50,
+        441,
+        62
+      ],
+      "source": "Reset",
+      "translation": "重置",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 9,
+      "rect": [
+        50,
+        4,
+        102,
+        22
+      ],
+      "source": "Hands",
+      "translation": "手部",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 10,
+      "rect": [
+        770,
+        826,
+        1153,
+        874
+      ],
+      "source": "STUDIO is starting",
+      "translation": "工作室正在启动",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text",
+      "background_mode": "row-edge-linear-color"
+    },
+    {
+      "image": 10,
+      "rect": [
+        821,
+        928,
+        1102,
+        976
+      ],
+      "source": "Please wait...",
+      "translation": "请稍候……",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text",
+      "background_mode": "row-edge-linear-color"
+    },
+    {
+      "image": 11,
+      "rect": [
+        20,
+        5,
+        131,
+        21
+      ],
+      "source": "Joint correction",
+      "translation": "关节修正",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 12,
+      "rect": [
+        9,
+        8,
+        407,
+        40
+      ],
+      "source": "You cannot add any more lightsources]",
+      "translation": "无法继续添加光源",
+      "basis": "OCR box manually read against texture contact sheet",
+      "style": "inpaint-text",
+      "background_mode": "original-panel-alpha-222"
+    },
+    {
+      "image": 1,
+      "rect": [
+        185,
+        264,
+        207,
+        279
+      ],
+      "source": "on",
+      "translation": "开",
+      "basis": "manual original-pixel inspection, distinct from ×2",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 1,
+      "rect": [
+        191,
+        478,
+        216,
+        493
+      ],
+      "source": "Off",
+      "translation": "关",
+      "basis": "manual original-pixel inspection",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1,
+        483,
+        40,
+        498
+      ],
+      "source": "camera",
+      "translation": "相机",
+      "basis": "manual enlarged source icon",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1,
+        568,
+        40,
+        583
+      ],
+      "source": "camera",
+      "translation": "相机",
+      "basis": "manual enlarged disabled icon",
+      "style": "inpaint-text",
+      "text_fill": [
+        145,
+        145,
+        145,
+        255
+      ]
+    },
+    {
+      "image": 2,
+      "rect": [
+        199,
+        809,
+        241,
+        825
+      ],
+      "source": "system",
+      "translation": "系统",
+      "basis": "manual enlarged source icon",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        249,
+        847,
+        292,
+        869
+      ],
+      "source": "work",
+      "translation": "工作区",
+      "basis": "manual enlarged disabled icon",
+      "style": "inpaint-text",
+      "text_fill": [
+        150,
+        150,
+        150,
+        255
+      ]
+    },
+    {
+      "image": 2,
+      "rect": [
+        372,
+        806,
+        402,
+        821
+      ],
+      "source": "Cam",
+      "translation": "相机",
+      "basis": "manual enlarged source icon",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        386,
+        855,
+        429,
+        874
+      ],
+      "source": "move",
+      "translation": "移动",
+      "basis": "manual enlarged source icon",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        646,
+        923,
+        678,
+        939
+      ],
+      "source": "free",
+      "translation": "自由",
+      "basis": "manual enlarged source camera icon",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        840,
+        952,
+        879,
+        971
+      ],
+      "source": "paste",
+      "translation": "粘贴",
+      "basis": "manual enlarged source icon",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        838,
+        996,
+        883,
+        1012
+      ],
+      "source": "option",
+      "translation": "选项",
+      "basis": "manual enlarged disabled icon",
+      "style": "inpaint-text",
+      "text_fill": [
+        145,
+        145,
+        145,
+        255
+      ]
+    },
+    {
+      "image": 2,
+      "rect": [
+        938,
+        1128,
+        980,
+        1148
+      ],
+      "source": "move",
+      "translation": "移动",
+      "basis": "manual enlarged disabled icon",
+      "style": "inpaint-text",
+      "text_fill": [
+        145,
+        145,
+        145,
+        255
+      ]
+    },
+    {
+      "image": 2,
+      "rect": [
+        357,
+        1497,
+        389,
+        1521
+      ],
+      "source": "obj copy",
+      "translation": "复制\n对象",
+      "basis": "manual original two-line icon label",
+      "style": "inpaint-text",
+      "preserve_color_pixels": true,
+      "spacing": 0
+    },
+    {
+      "image": 2,
+      "rect": [
+        772,
+        1694,
+        809,
+        1711
+      ],
+      "source": "move copy",
+      "translation": "移动\n复制",
+      "basis": "manual source grid: two lines at1694-1711; retain red figure/arrow icon",
+      "style": "inpaint-text",
+      "preserve_color_pixels": true,
+      "spacing": 0
+    },
+    {
+      "image": 2,
+      "rect": [
+        773,
+        1727,
+        809,
+        1745
+      ],
+      "source": "copy",
+      "translation": "复制",
+      "basis": "manual original copy icon label",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        1843,
+        1698,
+        1887,
+        1718
+      ],
+      "source": "menu",
+      "translation": "菜单",
+      "basis": "manual enlarged disabled icon",
+      "style": "inpaint-text",
+      "text_fill": [
+        145,
+        145,
+        145,
+        255
+      ]
+    },
+    {
+      "image": 2,
+      "rect": [
+        1856,
+        2030,
+        1901,
+        2048
+      ],
+      "source": "color",
+      "translation": "颜色",
+      "basis": "manual enlarged disabled icon",
+      "style": "inpaint-text",
+      "text_fill": [
+        145,
+        145,
+        145,
+        255
+      ]
+    },
+    {
+      "image": 2,
+      "rect": [
+        325,
+        957,
+        354,
+        974
+      ],
+      "source": "Axis",
+      "translation": "操作轴",
+      "basis": "independent source sprite review; separate from ReALL",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 2,
+      "rect": [
+        358,
+        957,
+        390,
+        974
+      ],
+      "source": "ReALL",
+      "translation": "全重置",
+      "basis": "independent source sprite review; separate from Axis",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 3,
+      "rect": [
+        1,
+        321,
+        42,
+        343
+      ],
+      "source": "Transl Parallel",
+      "translation": "平行\n移动",
+      "basis": "manual original-pixel inspection; single two-line label, not two buttons",
+      "style": "inpaint-text",
+      "spacing": 0
+    },
+    {
+      "image": 3,
+      "rect": [
+        52,
+        420,
+        88,
+        442
+      ],
+      "source": "Center Point",
+      "translation": "中心点",
+      "basis": "independent source sprite review; combined two lines",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 3,
+      "rect": [
+        311,
+        496,
+        340,
+        513
+      ],
+      "source": "def",
+      "translation": "默认",
+      "basis": "manual original source icon",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 3,
+      "rect": [
+        408,
+        548,
+        443,
+        566
+      ],
+      "source": "camera",
+      "translation": "相机",
+      "basis": "manual original source icon",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 3,
+      "rect": [
+        385,
+        1013,
+        401,
+        1024
+      ],
+      "source": "ALL",
+      "translation": "全部",
+      "basis": "manual original bottom small icon; distinct from upper ALL",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 5,
+      "rect": [
+        0,
+        20,
+        32,
+        32
+      ],
+      "source": "Gimick",
+      "translation": "机关",
+      "basis": "manual 32px icon inspection",
+      "style": "inpaint-text"
+    },
+    {
+      "image": 7,
+      "rect": [
+        13,
+        38,
+        403,
+        132
+      ],
+      "source": "VR Mode is only available in the 64 bit version and will not work in the 32 bit version.",
+      "translation": "VR 模式仅支持 64 位版本。\n32 位版本无法使用。",
+      "basis": "full-image visual review",
+      "style": "solid-panel"
+    },
+    {
+      "image": 8,
+      "rect": [
+        15,
+        28,
+        402,
+        137
+      ],
+      "source": "VR mode could not be started. Please check the HMD and surrounding environment and reload the game.",
+      "translation": "无法启动 VR 模式。\n请检查头戴设备与运行环境，\n然后重新启动游戏。",
+      "basis": "full-image visual review",
+      "style": "solid-panel"
+    }
+  ],
+  "help_bindings": [
+    [
+      "Z",
+      "撤销"
+    ],
+    [
+      "Shift+Z",
+      "重做"
+    ],
+    [
+      "Ctrl+S",
+      "保存"
+    ],
+    [
+      "A",
+      "重置相机"
+    ],
+    [
+      "F",
+      "相机吸附"
+    ],
+    [
+      "= ] ;",
+      "相机视野角"
+    ],
+    [
+      ". / \\",
+      "相机滚转"
+    ],
+    [
+      "P",
+      "设为父级"
+    ],
+    [
+      "O",
+      "解除父级"
+    ],
+    [
+      "Ctrl+X",
+      "粘贴位置"
+    ],
+    [
+      "Alt+鼠标",
+      "移动相机"
+    ],
+    [
+      "W",
+      "移动模式"
+    ],
+    [
+      "E",
+      "旋转模式"
+    ],
+    [
+      "R",
+      "缩放模式"
+    ],
+    [
+      "Q",
+      "显示/隐藏操作轴"
+    ],
+    [
+      "1",
+      "调用相机 1"
+    ],
+    [
+      "2",
+      "调用相机 2"
+    ],
+    [
+      "3",
+      "调用相机 3"
+    ],
+    [
+      "4",
+      "调用相机 4"
+    ],
+    [
+      "5",
+      "调用相机 5"
+    ],
+    [
+      "6",
+      "调用相机 6"
+    ],
+    [
+      "7",
+      "调用相机 7"
+    ],
+    [
+      "8",
+      "调用相机 8"
+    ],
+    [
+      "9",
+      "调用相机 9"
+    ],
+    [
+      "0",
+      "调用相机 10"
+    ],
+    [
+      "Delete",
+      "删除选中项"
+    ],
+    [
+      "Home / End",
+      "相机缩放"
+    ],
+    [
+      "PgUp / PgDn",
+      "相机高度"
+    ],
+    [
+      "方向键",
+      "移动相机"
+    ],
+    [
+      "小键盘 5",
+      "重置相机旋转"
+    ],
+    [
+      "Ctrl+D",
+      "复制对象"
+    ],
+    [
+      "V+移动对象",
+      "吸附移动"
+    ],
+    [
+      "B+右键拖动",
+      "调整操作轴大小"
+    ],
+    [
+      "小键盘4/6/8/2",
+      "旋转相机"
+    ],
+    [
+      "Esc",
+      "退出"
+    ],
+    [
+      "F2",
+      "快捷键帮助"
+    ],
+    [
+      "F11",
+      "截图"
+    ],
+    [
+      "J",
+      "显示/隐藏平移手柄"
+    ],
+    [
+      "K",
+      "显示/隐藏中心点手柄"
+    ],
+    [
+      "C",
+      "选中项移到相机位置"
+    ],
+    [
+      "H",
+      "切换相机"
+    ]
+  ],
+  "preserved_labels": [
+    {
+      "image": 1,
+      "rect": [
+        0,
+        2,
+        32,
+        22
+      ],
+      "source": "Date",
+      "reason": "Original pixels spell Date. No sprite-to-controller mapping proving Data obtained; preserve original rather than guess date/data."
+    },
+    {
+      "image": 2,
+      "rect": [
+        646,
+        990,
+        669,
+        1007
+      ],
+      "source": "Re",
+      "reason": "Readable abbreviation but its exact action has not been resolved; preserve rather than guess Reset/Return."
+    },
+    {
+      "images": [
+        1,
+        2,
+        3,
+        6,
+        10
+      ],
+      "source": "IK / FK / BGM / CHARA STUDIO / ILLUSION / key legends and numeric axes",
+      "reason": "Technical abbreviations, brand marks, keyboard names and numeric bindings intentionally preserved."
+    }
+  ],
+  "alpha_policy": "Original RGBA outside patch ROIs and at every source alpha-zero pixel; inside remaining text ROIs restore local surface alpha and draw new glyphs. Image12 panel surface remains222, not blanket255.",
+  "special_rois": {
+    "6": [
+      [
+        625,
+        28,
+        1301,
+        91
+      ],
+      [
+        20,
+        570,
+        1906,
+        1079
+      ]
+    ]
+  },
+  "semantic_evidence": {
+    "Juices": "Installed Assembly-CSharp.dll has Studio.MPCharCtrl.StateInfo.liquidInfo, LiquidInfo.SetFunc(...,ChaFileDefine.SiruParts), StateInfo.OnClickLiquid and OCIChar.SetSiruFlags/GetSiruFlags; translated as liquid-state control, not beverage.",
+    "Date": "Unresolved sprite mapping; original Date kept."
+  },
+  "publication": "Generator and patch definitions only; original images, candidate images and local fonts excluded from public package."
+}

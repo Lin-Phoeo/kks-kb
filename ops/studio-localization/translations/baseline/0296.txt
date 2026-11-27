@@ -1,0 +1,8 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+その他=其他
+アフタースクール=放学后
+クリスマス=圣诞节
+サマー=夏季
+スポーツ=运动
+ハロウィン=万圣节
+置物=摆件

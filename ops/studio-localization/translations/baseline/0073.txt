@@ -1,0 +1,3 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+フィーバー=狂热舞动
+モンキーダンス=猴子舞

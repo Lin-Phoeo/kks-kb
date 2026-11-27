@@ -1,0 +1,9 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+いたずら=恶作剧
+仰向け=仰面
+四つん這い=四肢着地
+本棚=书柜
+机しゃがみ=蹲桌
+机座り=坐桌
+椅子座り=坐椅
+立ち=站立

@@ -1,0 +1,6 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ME Clipboard=ME 剪贴板
+Monitor=监视
+Use this enry as clipboard content=将此条目用作剪贴板内容

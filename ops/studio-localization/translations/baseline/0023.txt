@@ -1,0 +1,6 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+倒れる=倒下
+攻撃１=攻击1
+攻撃２=攻击2
+攻撃３=攻击3
+攻撃４=攻击4

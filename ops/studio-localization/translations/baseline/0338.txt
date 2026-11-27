@@ -1,0 +1,10 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+うちわ=团扇
+ぶたの置物=小猪摆设
+カブトムシ=独角仙
+クワガタ=锹形虫
+ビーチボール=沙滩球
+提灯=灯笼
+水着=泳装
+虫かご(大)=虫笼(大)
+虫かご(小)=虫笼(小)

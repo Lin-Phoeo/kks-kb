@@ -1,0 +1,7 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ビーチチェア=沙滩椅
+ビーチパラソル=沙滩遮阳伞
+木の机=木桌
+木の椅子=木椅
+木の箱=木箱
+木の長椅子=木长椅

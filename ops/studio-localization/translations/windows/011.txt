@@ -1,0 +1,21 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ Modified= 仅已修改
+ Sort= 按名称排序
+Bend Weight	=弯曲权重	
+FreezeAxis	=冻结轴	
+Left is : origin=左侧为：原角色
+Left is : preset=左侧为：预设
+LoadMatch=载入匹配关系
+NonOriginChar=清除原角色参照
+OriginChar=设为原角色
+Pos Weight	=位置权重	
+Priority : origin=优先：原角色
+Priority : preset=优先：预设
+Rot Weight	=旋转权重	
+SaveMatch=保存匹配关系
+Tolerance		=容差		
+nonMatched=未匹配项
+r:"\\Amax\\ :\\ (?<v0>(?:[+-]?[0-9０-９]+(?:[.,][0-9０-９]+)?|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"最大值：${v0}"
+r:"\\Aratio\\ :\\ (?<v0>(?:[+-]?[0-9０-９]+(?:[.,][0-9０-９]+)?|\\{\\{[^{}\\r\\n]+\\}\\}))\\z"=r:"混合比例：${v0}"

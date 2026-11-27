@@ -36,6 +36,16 @@ Linux 首次安装浏览器时可使用 `python -m playwright install --with-dep
 
 公开 CI 不访问真实服务器、教材、角色/存档、游戏安装或外部模型。它验证程序在合成资料上的行为，不证明真实语料覆盖率、线上检索质量、手机实机手势或游戏画面正确。生产发布和游戏配置变更需要单独的验收记录。
 
+## Studio 汉化工具
+
+Studio 汉化安装器使用临时合成目录验证备份、路径检查、更新和回滚。以下命令在本机运行，不访问游戏安装。
+
+```powershell
+py -B -m unittest discover -s ops/studio-localization/tests -p 'test_*.py' -v
+```
+
+Unity 中的动态文本、字体切换、缺字和性能测量有独立的运行范围，见 [Studio 验证记录](../ops/studio-localization/VALIDATION.md)。
+
 ## 更新依赖
 
 维护 `pyproject.toml` 中的版本范围，用 `uv pip compile --generate-hashes` 重新生成对应锁文件，然后重新安装、测试并执行 `pip-audit`。不要手工编写下载哈希或为过检查忽略已知漏洞。

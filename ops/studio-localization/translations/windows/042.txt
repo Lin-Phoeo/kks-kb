@@ -1,0 +1,8 @@
+#set exe CharaStudio
+#enable fallback
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+Done=完成
+No search results! Clear your search string to see all available uncensors.=没有搜索结果！清空搜索内容可查看全部可用模型。
+No uncensors were found! Install uncensors by putting their .zipmod files inside of your mods folder.=未找到可选模型！请把相应的 .zipmod 文件放入 mods 文件夹后安装。
+Select uncensors to *exclude* from random selection=选择要从随机选择中排除的模型
+Toggle all=反选全部

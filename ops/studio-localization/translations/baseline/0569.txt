@@ -1,0 +1,3 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+サンシャイン=阳光
+島っ娘=海岛少女

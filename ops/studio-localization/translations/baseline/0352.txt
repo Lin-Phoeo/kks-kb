@@ -1,0 +1,7 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+3ポイント=3点
+つば広帽子=宽檐帽
+オーバル腕時計=椭圆手表
+ヘルメット=防护帽
+野球バット=球棒
+雫=水滴

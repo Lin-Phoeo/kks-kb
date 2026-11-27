@@ -1,0 +1,7 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+三線の音を合わせる=三线琴调音
+三線を弾く=弹三线琴
+三線持ち待機=持三线琴待机
+体洗う=洗身体
+団扇で涼む=用团扇扇凉
+頭洗う=洗头

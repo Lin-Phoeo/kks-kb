@@ -1,0 +1,4 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+三角木馬=三角木马
+木製拘束具=木制拘束器
+錘=配重

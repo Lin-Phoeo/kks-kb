@@ -1,0 +1,8 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+カエデ=槭树
+木=树
+生垣1=树篱1
+生垣2=树篱2
+観葉植物1=观赏植物1
+観葉植物2=观赏植物2
+観葉植物3=观赏植物3

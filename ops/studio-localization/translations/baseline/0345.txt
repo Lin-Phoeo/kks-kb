@@ -1,0 +1,12 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+ギターケース=吉他箱
+ポスターリュックサック=海报背包
+リュックサック=背包
+天使の翼右用=天使翅膀(右)
+天使の翼左用=天使翅膀(左)
+小悪魔の翼右用=小恶魔翅膀(右)
+小悪魔の翼左用=小恶魔翅膀(左)
+悪魔の翼右用=恶魔翅膀(右)
+悪魔の翼左用=恶魔翅膀(左)
+背負いカバン=背包
+背負いボストン=背负式旅行包

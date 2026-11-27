@@ -1,0 +1,5 @@
+// Reviewed offline Chinese corrections. Keep original files and use the installer for rollback.
+立ち1=站立1
+立ち2=站立2
+立ち3=站立3
+立ち4=站立4
