@@ -2,13 +2,13 @@
   "candidate_version": "0.3.0-rc.2",
   "baseline_release": "0.3.0-rc.1",
   "published": false,
-  "runtime_acceptance": "pending_user_window_check",
+  "runtime_acceptance": "final_clothing_fix_and_STXihei_check_pending",
   "components": {
-    "Codex.StudioFontController.dll": "2c84c96e4ab71339f0afd2cc271b792726bf74e42ff3b38f8a529e5d07799e68",
+    "Codex.StudioFontController.dll": "32087a707ecf9c45edb29e97296441db22940757af8ea26d94dc6a193ac5ea65",
     "Codex.StudioPanelTypography.dll": "214708dbe2f8ace230cc1ec047df2ea904203b85b4e9273f7b30ac4673fef1b3",
     "Codex.StudioImGuiDynamicBridge.dll": "896efe60c0095c4592d219f1d7bd64041c8f9c469bb4c5a5b4ef7e4851a671a2",
     "Codex.StudioConfigLocalization.dll": "268e235b245506b011a0532ea8addc04a26550978daa09a4cfc2d4c7b1c02ca1",
-    "Codex.StudioCoordinateNative.dll": "760a46a52e527754717ec3efb14734ef74fc9758cd6948d433bdac97b24f39d5"
+    "Codex.StudioCoordinateNative.dll": "6d62829da61fe00687ab1399a163754f31e253334705b1ae51632a40c4cf7c7c"
   },
   "configuration": {
     "regressions": 33,
@@ -111,21 +111,32 @@
   },
   "font": {
     "passed": true,
-    "checks": 10015,
+    "checks": 10027,
     "iterationsPerRun": 200000,
     "runs": 5,
     "runtime": "10.0.8",
     "tieredCompilation": "0",
-    "baselineMedianMs": 67.8151,
-    "optimizedMedianMs": 7.6893,
-    "ratio": 8.819411389853432,
+    "baselineMedianMs": 74.9843,
+    "optimizedMedianMs": 7.4517,
+    "ratio": 10.062710522431123,
     "optimizedAllocatedBytes": 0,
-    "limitation": "Synthetic repeated labels on .NET 10, not Unity Mono or complete font drawing; first-seen or changing text still requires glyph checks."
+    "limitation": "Synthetic repeated labels on .NET 10, not Unity Mono or complete font drawing; first-seen or changing text still requires glyph checks.",
+    "default_family": "STXihei"
   },
   "coordinate_native": {
-    "checks": 43,
+    "checks": 91,
+    "resource_and_loading_checks": 47,
+    "consumer_regression_checks": 44,
     "resource_keys": 24,
-    "scope": "Authorized read-only installed DLL/resource/IL checks and isolated managed prefix calls. Not 24 Studio controls rendered. Explicit language and unknown keys retain original behavior."
+    "scope": "Explicit read-only installed DLL/resource/IL checks and managed prefix/comparison calls, including failure cleanup attempts. Not complete Unity garment transfer.",
+    "version": "1.0.1",
+    "real_add_mode_unsupported": true,
+    "consumer_mode_source": "CoordinateLoadOption.Patches.addAccModeFlag",
+    "empty_label_compatibility": [
+      "Empty",
+      "空"
+    ],
+    "known_limitation": "An actual accessory named exactly 空 shares the display-label ambiguity already present for Empty."
   },
   "sidebar": {
     "change": "Reuse native GetComponentsInChildren list overload and pruning buffers; preserve polling cadence and layout policy.",
@@ -147,13 +158,12 @@
     "rollback_restored": true,
     "real_game_modified": false
   },
-  "runtime_startup": {
-    "font": "SimSun",
-    "visible_tmp_missing": 0,
-    "configuration_entries_loaded": 4023,
-    "dynamic_rules_loaded": 239,
-    "dynamic_exact_entries_loaded": 6386,
-    "coordinate_adapter_ready": true,
-    "user_acceptance": "pending"
+  "initial_runtime_result": {
+    "user_reported_common_ui": "normal_and_smooth",
+    "perspective_controls_translated": 7,
+    "font_switch_reports": 27,
+    "font_switch_failures": 0,
+    "observed_tmp_missing_max": 0,
+    "later_regression": "DBDE and AssetImport interpreted Chinese replacement/empty labels as business state. First native candidate failed clothing transfer compatibility."
   }
 }

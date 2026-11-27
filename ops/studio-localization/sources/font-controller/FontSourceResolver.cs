@@ -18,6 +18,10 @@ namespace Codex.StudioFontController
             AddAlias("宋体", "SimSun");
             AddAlias("楷体", "KaiTi");
             AddAlias("仿宋", "FangSong");
+            AddAlias("华文细黑", "STXihei");
+            AddAlias("STXihei", "华文细黑");
+            AddAlias("等线", "DengXian");
+            AddAlias("DengXian", "等线");
         }
         private void ReadRegistry(RegistryKey hive)
         {
@@ -78,6 +82,8 @@ namespace Codex.StudioFontController
         }
         internal static string DisplayName(string actualFamily)
         {
+            if (actualFamily == "STXihei" || actualFamily == "华文细黑") return "华文细黑 / STXihei";
+            if (actualFamily == "DengXian" || actualFamily == "等线") return "等线 / DengXian";
             if (actualFamily == "Microsoft YaHei") return "微软雅黑 / Microsoft YaHei";
             if (actualFamily == "SimSun" || actualFamily == "NSimSun") return "宋体 / " + actualFamily;
             if (actualFamily == "KaiTi") return "楷体 / KaiTi";

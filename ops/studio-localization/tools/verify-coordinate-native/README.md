@@ -1,36 +1,19 @@
-# Coordinate Load Option explicit installation verifier
+# Coordinate 原生兼容离线检查
 
-This is an opt-in, read-only installation acceptance tool. It is not part of the automated test suite. Run it only when the user has authorized inspection of an installation and explicitly supplied the game root, installed Coordinate Load Option DLL, and candidate adapter DLL paths. It does not discover an installation or use a default game path.
+本工具由维护者显式指定现有游戏目录和候选适配器。只读插件 DLL 和嵌入资源，不读取人物卡、场景、用户配置或启动 Unity；不属于默认测试套件。
 
-The game root supplies the local BepInEx and Unity reference assemblies. Build and intermediate output must be directed to an external evidence directory. Neither proprietary binaries nor local reports belong in the public source tree.
-
-## Invocation
-
-Requires the .NET 10 SDK for the verifier and .NET Framework 4.7.2 reference assemblies for the candidate build. Substitute authorized absolute local paths for the placeholders:
+需要 .NET 10 SDK；先在仓库外构建 `sources/coordinate-native/StudioCoordinateNative.csproj`，再构建本工具，二者传入 `-p:GameRoot=<游戏目录>`。本工具引用游戏自带的 Mono.Cecil 和 Harmony，运行时从指定游戏目录解析依赖。
 
 ```powershell
-$gameRoot = '<authorized game root>'
-$installedPlugin = '<authorized Coordinate Load Option DLL>'
-$evidenceRoot = '<external local evidence directory>'
-
-dotnet build ops/studio-localization/sources/coordinate-native/StudioCoordinateNative.csproj -c Release "-p:GameRoot=$gameRoot" --artifacts-path "$evidenceRoot/build"
-dotnet build ops/studio-localization/tools/verify-coordinate-native/CoordinateNativeVerifier.csproj -c Release "-p:GameRoot=$gameRoot" --artifacts-path "$evidenceRoot/build"
-
-dotnet "$evidenceRoot/build/bin/CoordinateNativeVerifier/release/CoordinateNativeVerifier.dll" $gameRoot $installedPlugin "$evidenceRoot/build/bin/StudioCoordinateNative/release/Codex.StudioCoordinateNative.dll"
+dotnet <构建目录>/CoordinateNativeVerifier.dll <游戏目录> <KKS_CoordinateLoadOption.dll> <候选Codex.StudioCoordinateNative.dll>
 ```
 
-The JSON output reports the inspected binary hashes and the evidence limits. A failed assertion exits unsuccessfully. The tool never invokes Unity native code, opens Studio UI, loads a character or scene, changes configuration, or installs an adapter.
+输出 JSON 包含：
 
-## What the 43 checks establish
+- 原插件／资源 SHA、24 个原生键、显式语言和未就绪回退、软依赖顺序。
+- 两个消费者真实方法中的 `Replace Mode`、`Empty` 比较指令位置。
+- 改前中文误判的红基线、改后替换模式通过且追加模式继续拒绝、空槽排除、缺失按钮、未知版本和结构变化拒绝。
+- 原 IL 指令数量、除两个调用外的指令对象、替换调用上的分支标签和异常块均保持。
+- 一次性诊断和诊断接收器失败不干扰模式决定。
 
-| Checks | Evidence | Limit |
-| --- | --- | --- |
-| 8 | Actual installed DLL hash; native getter signature and embedded English resource via Mono.Cecil; exact set of resource identities; getter caller modules; English-culture literal and enum enumeration in the UI builder; unchanged source hash | Static metadata and IL observations. The enum check establishes the presence of enum enumeration, not a complete proof of UI identity semantics. |
-| 24 | Every resource key extracted from the actual DLL resolves to a nonempty candidate Chinese value | A managed dictionary check using real keys. It does not establish translation quality or rendered labels. |
-| 6 | Synthetic dictionary cases for unknown keys, explicit language, null keys, case sensitivity, ABMX preservation, and distinct mode labels | Managed boundary behavior only. |
-| 3 | Reflection calls to the actual candidate prefix for known, unknown, and explicit-language requests | Candidate managed behavior, without installing a Harmony hook in Studio. |
-| 2 | Candidate process filter and direct prefix call references via Mono.Cecil | Static metadata/IL checks, not a general side-effect proof. |
-
-Review Chinese wording against the original resource and plugin behavior separately. The adapter covers the 24 known resource identities; literal UI strings outside that resource API, including the two `All` buttons, remain outside this hook. A successful report does not mean the whole plugin is translated, has zero translation overhead, or performs better in a running game.
-
-Runtime acceptance still requires opening the coordinate-load UI in Studio, checking the selection labels and add/replace mode labels, and closing Studio normally.
+测试执行的是来自实际 IL 的比较表达式与实际候选辅助方法，并用同一委托生成器读取可变的合成模式字段。它不执行完整 Unity 方法，也不证明真实服装或 DBDE／AssetImport 数据已经正确转移。

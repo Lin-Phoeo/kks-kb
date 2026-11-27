@@ -7,8 +7,8 @@ namespace Codex.StudioFontController
         internal const bool Enabled = true;
         internal static string Family(string[] available)
         {
-            if (Array.IndexOf(available, "宋体") >= 0) return "宋体";
-            if (Array.IndexOf(available, "SimSun") >= 0) return "SimSun";
+            foreach (string family in new[] { "华文细黑", "STXihei", "等线", "DengXian", "楷体", "KaiTi", "微软雅黑", "Microsoft YaHei" })
+                if (Array.IndexOf(available, family) >= 0) return family;
             return available.Length > 0 ? available[0] : "";
         }
     }

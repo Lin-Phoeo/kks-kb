@@ -20,6 +20,7 @@ internal static class Program
     }
     private static void Main()
     {
+        FontDefaultsRegression.Run(Check);
         int requests = 0;
         var coverage = new GlyphCoverage(c => { requests++; return Available(c); });
         foreach (string text in new[] { null, "", " \t\r\n", "宋体设置0123", "缺字\u25a1", "\ud840\udc00", "<b>中文</b>", new string('中', 513) })
