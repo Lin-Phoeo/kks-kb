@@ -3,16 +3,20 @@ using Mono.Cecil.Cil;
 using System.Security.Cryptography;
 using System.Text.Json;
 
+if(args.Length==3&&args[0]=="--from-base") { FromBase.Run(args[1],args[2]); return; }
 if (args.Length == 4 && args[0] == "--extract") { ProbeExtractor.Run(args[1], args[2], args[3]); return; }
+bool lifecycleOnly=args.Length==4&&args[0]=="--lifecycle";
+if(lifecycleOnly)args=args.Skip(1).ToArray();
 if (args.Length != 3) throw new ArgumentException("Input, helper, new output required.");
 string input = args[0], helper = args[1], output = args[2];
 const string originalSha = "be9a83e1619a7bf332f7c0a54c3f88a5b920135b3c0096ebd2326c3d33238736";
-const string candidateSha = "530dc95e00cfb34486687a3de85cb995d4f6ae1cacc7169d58c07b97dacd15d7";
+const string candidateSha = "0d983e64424b5baed8cf6d81adc6752876c9e77dd04b0645417958040d5247ad";
 if (Hash(input) != originalSha) throw new InvalidOperationException("Unknown input SHA-256.");
 if (File.Exists(output) || File.Exists(output + ".receipt.json")) throw new InvalidOperationException("Output already exists.");
 using var assembly = AssemblyDefinition.ReadAssembly(input);
 using var helperAssembly = AssemblyDefinition.ReadAssembly(helper);
 var module = assembly.MainModule;
+var originalHandles = Types(module.Types).SelectMany(t=>t.Methods).ToDictionary(m=>m.MetadataToken.ToInt32(),m=>m);
 TypeDefinition safety = Clone.Type(helperAssembly.MainModule.GetType("GreyExportRepair.ExportSafety"), module);
 MethodDefinition Safety(string name) => safety.Methods.Single(method => method.Name == name);
 var exporter = module.GetType("Exporter.TextureExporter");
@@ -108,25 +112,28 @@ foreach (var method in new[] { skinned, meshExport })
     method.Body.GetILProcessor().InsertAfter(process, Instruction.Create(OpCodes.Call, Safety("RequireMesh")));
 }
 
+var generalMethods=lifecycleOnly?Array.Empty<MethodDefinition>():GeneralPatch.Apply(module);
 foreach (var method in new[] { save, write, convert, export, skinned, meshExport }) Widen(method);
 using var bytes = new MemoryStream(); assembly.Write(bytes);
 using var source = AssemblyDefinition.ReadAssembly(input);
 bytes.Position = 0; using var candidate = AssemblyDefinition.ReadAssembly(bytes);
-var old = Types(source.MainModule.Types).SelectMany(type => type.Methods).ToDictionary(method => method.FullName);
-var changed = Types(candidate.MainModule.Types).SelectMany(type => type.Methods)
-    .Where(method => old.ContainsKey(method.FullName) && Shape(method) != Shape(old[method.FullName])).Select(method => method.FullName).Order().ToArray();
-var expectedMethods = new[] { save.FullName, write.FullName, convert.FullName, export.FullName, skinned.FullName, meshExport.FullName }.Order().ToArray();
-if (!changed.SequenceEqual(expectedMethods)) throw new InvalidOperationException("Unexpected changed methods.");
+var old = Types(source.MainModule.Types).SelectMany(type => type.Methods).ToDictionary(method => method.MetadataToken.ToInt32());
+var methodMap=old.Select(pair=>new{originalToken=pair.Key,original=pair.Value,current=(MethodDefinition)candidate.MainModule.LookupToken(originalHandles[pair.Key].MetadataToken)}).ToArray();
+if(methodMap.Any(p=>p.original.Name!=p.current.Name || p.original.DeclaringType.FullName!=p.current.DeclaringType.FullName))throw new InvalidOperationException("Original token mapping lost method identity");
+var changed=methodMap.Where(p=>Shape(p.original)!=Shape(p.current)).Select(p=>p.current.FullName).Order().ToArray();
+var expectedMethods = new[] { save.FullName, write.FullName, convert.FullName, export.FullName, skinned.FullName, meshExport.FullName }.Concat(generalMethods.Select(m=>m.FullName)).Order().ToArray();
+if (!changed.SequenceEqual(expectedMethods)) throw new InvalidOperationException("Unexpected changed methods: " + JsonSerializer.Serialize(new{changed,expectedMethods}));
 if (!source.MainModule.AssemblyReferences.Select(r => r.FullName).SequenceEqual(candidate.MainModule.AssemblyReferences.Select(r => r.FullName)))
     throw new InvalidOperationException("New runtime references introduced.");
 string outputHash = Convert.ToHexString(SHA256.HashData(bytes.ToArray())).ToLowerInvariant();
-if (outputHash != candidateSha) throw new InvalidOperationException("Output differs from reviewed candidate identity: " + outputHash);
+
+if(outputHash!=(lifecycleOnly?"530dc95e00cfb34486687a3de85cb995d4f6ae1cacc7169d58c07b97dacd15d7":candidateSha))throw new InvalidOperationException("Reviewed output hash differs: "+outputHash);
 Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(output))!);
 using (var stream = new FileStream(output, FileMode.CreateNew)) stream.Write(bytes.ToArray());
 var receipt = new { inputSha256 = originalSha, outputSha256 = outputHash, changedMethods = changed,
-    unchangedOriginalMethods = old.Count - changed.Length, addedMethods = safety.Methods.Select(method => method.FullName),
+    unchangedOriginalMethods = old.Count - changed.Length, originalMethodTokenMap=methodMap.Select(p=>new{originalToken=p.originalToken,outputToken=p.current.MetadataToken.ToInt32(),originalSignature=p.original.FullName,outputSignature=p.current.FullName}), addedMethods = safety.Methods.Select(method => method.FullName),
     referencesUnchanged = true, runtime = candidate.MainModule.RuntimeVersion,
-    scope = "File truncation/failure propagation, texture and skinned-state ownership cleanup, zero-mesh refusal and common unique output directory. Image processing and FBX algorithms retained." };
+    scope = "File truncation/failure propagation, texture and skinned-state ownership cleanup, zero-mesh refusal and common unique output directory." + (lifecycleOnly ? " Lifecycle baseline only." : " Root optional-property presence and raw shader-property albedo binding corrected; texture conversion and output naming retained.") };
 File.WriteAllText(output + ".receipt.json", JsonSerializer.Serialize(receipt, new JsonSerializerOptions { WriteIndented = true }));
 Console.WriteLine(JsonSerializer.Serialize(receipt, new JsonSerializerOptions { WriteIndented = true }));
 

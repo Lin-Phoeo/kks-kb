@@ -1,6 +1,6 @@
 {
   "original_sha256": "be9a83e1619a7bf332f7c0a54c3f88a5b920135b3c0096ebd2326c3d33238736",
-  "candidate_sha256": "530dc95e00cfb34486687a3de85cb995d4f6ae1cacc7169d58c07b97dacd15d7",
+  "candidate_sha256": "0d983e64424b5baed8cf6d81adc6752876c9e77dd04b0645417958040d5247ad",
   "public_source_rebuild_matches_candidate": true,
   "original_cases": {
     "passed": true,
@@ -20,42 +20,81 @@
       "existing output unchanged"
     ]
   },
-  "total_observed_checks": 172,
+  "total_observed_checks": 206,
   "changed_original_methods": [
     "TextureExporter.WriteAllBytes",
     "TextureExporter.SaveTexture",
     "TextureExporter.ConvertToRGBNormalMap",
     "Grey.Export",
     "Fbx.ExportSkinnedMeshOrCloth",
-    "Fbx.ExportMesh"
+    "Fbx.ExportMesh",
+    "UnityFbxExporterBinding.ScanHierarchy",
+    "TextureExporter.ExportTextures",
+    "TextureExporter.AddTextureToMaterial"
   ],
-  "unchanged_original_methods": 341,
+  "unchanged_original_methods": 338,
   "helper_methods": 6,
   "new_assembly_references": 0,
   "runtime": "v4.0.30319",
   "build_warnings": 0,
   "build_errors": 0,
-  "independent_il_checks": 7,
   "original_preserved": true,
   "offline_checks_game_started": false,
   "candidate_installed": true,
-  "validation_boundary": "The 172 offline observations use actual extracted CIL and synthetic Unity/native FBX. A separate constrained real ordinary-cube runtime check is recorded below; its scope is not general export acceptance.",
+  "validation_boundary": "206 offline observations include 5 expected baseline failures. Actual extracted CIL executes with synthetic Unity/native FBX. The previous 530dc95e candidate real cube result is retained as historical evidence and does not accept the current candidate.",
   "preserved_existing_limits": [
     "Export remains synchronous on the main thread.",
     "Original assignment of an empty shared mesh name remains.",
     "BuildTextureExporter failure before its surrounding try is not covered.",
     "Creating the Textures subdirectory can still leave the original UI busy flag set on failure."
   ],
-  "reference_installation": {
+  "general_control_cases": {
+    "sha256": "530dc95e00cfb34486687a3de85cb995d4f6ae1cacc7169d58c07b97dacd15d7",
+    "checks": 17,
+    "passed_checks": 12,
+    "failed_checks": 5,
+    "expected_failures_reproduced": true,
+    "failures": [
+      "renderer root without optional properties throws",
+      "renderer root with optional properties skips Apply",
+      "ordinary named material lacks albedo binding",
+      "name containing _MainTex lacks albedo binding",
+      "Chinese named material lacks albedo binding"
+    ]
+  },
+  "general_candidate_cases": {
+    "passed": true,
+    "checks": 17,
+    "actual_data_initializer_extracted": true,
+    "scope": "Actual extracted ScanHierarchy/GetTexture/ExportTextures/classifiers/AddTextureToMaterial CIL; synthetic hierarchy preprocessing, Unity and native FBX delegates."
+  },
+  "method_identity_audit": {
+    "original_methods": 347,
+    "changed_original_methods": 9,
+    "unchanged_original_methods": 338,
+    "previous_lifecycle_methods": 353,
+    "changed_from_previous_lifecycle": 3,
+    "unchanged_from_previous_lifecycle": 350,
+    "private_signature_changes": 1,
+    "direct_call_sites_updated": 1,
+    "reflective_name_string_sites": 0,
+    "source_data_initializer_unchanged": true,
+    "new_assembly_references": 0,
+    "mapping": "Original MethodDefinition handles mapped to output token; independent declaring-type method-order comparison including IL, locals, EH and signatures."
+  },
+  "historical_independent_lifecycle_il_checks": 7,
+  "candidate_runtime_verified": false,
+  "historical_reference_installation": {
     "installed": true,
     "files": [
       "managed reviewed plugin",
       "unchanged x64 native dependency"
     ],
     "original_outputs_overwritten": false,
-    "runtime_verified": "constrained_ordinary_cube_passed"
+    "runtime_verified": "constrained_ordinary_cube_passed",
+    "managed_sha256": "530dc95e00cfb34486687a3de85cb995d4f6ae1cacc7169d58c07b97dacd15d7"
   },
-  "runtime_cube": {
+  "historical_runtime_cube": {
     "status": "passed",
     "source_result_sha256": "30d45559112a8dd9e8ba6718ef162f0bc6aeb026c00bb3b8f9da1c9c2ee46fc1",
     "managed_sha256": "530dc95e00cfb34486687a3de85cb995d4f6ae1cacc7169d58c07b97dacd15d7",
@@ -98,6 +137,60 @@
       "Empty owned material name makes the original exact albedo property match; other named materials were not validated.",
       "Binary FBX topology/reference parsing is not Blender or Assimp import acceptance.",
       "No user character/card/scene, skinned mesh, cloth or runtime failure injection was exercised."
-    ]
+    ],
+    "accepts_current_candidate": false
+  },
+  "independent_general_review": {
+    "completed": true,
+    "candidate_sha256": "0d983e64424b5baed8cf6d81adc6752876c9e77dd04b0645417958040d5247ad",
+    "method_boundary_confirmed": true,
+    "private_signature_and_callsite_confirmed": true,
+    "baseline_rerun_checks": 17,
+    "baseline_rerun_failures": 5,
+    "candidate_rerun_checks": 17,
+    "candidate_rerun_failures": 0,
+    "lifecycle_rerun_checks": 107,
+    "lifecycle_rerun_failures": 0,
+    "conclusion": "No blocker found to directed live validation. No game started or installation performed by review."
+  },
+  "current_candidate_runtime": {
+    "status": "passed",
+    "actual_unity_native_export": true,
+    "fixture": {
+      "direct_renderer_root": true,
+      "material_named": true,
+      "cube_only": true,
+      "no_user_card_or_scene": true
+    },
+    "fbx": {
+      "bytes": 21504,
+      "Version": 7400,
+      "Nodes": 395,
+      "Geometries": 1,
+      "Models": 2,
+      "Vertices": 24,
+      "Indices": 36,
+      "Polygons": 12,
+      "FiniteVertices": true,
+      "IndicesInRange": true
+    },
+    "named_texture_relative_link_verified": true,
+    "png": {
+      "width": 2,
+      "height": 2,
+      "finalIend": true,
+      "maxRgbaByteDifference": 0
+    },
+    "render_target_restored": true,
+    "config_unchanged": true,
+    "owned_objects_destroyed": true,
+    "studio_objects_after": 0,
+    "test_report_sha256": "71e3ecf05e94933bad0d90906a7f94fed52075d1d33945a4ed6b70af6c7ce070",
+    "long_output_path_comparison": {
+      "failed_png_path_characters": 260,
+      "short_root_same_candidate_passed": true,
+      "all_other_fixture_conditions_unchanged": true
+    },
+    "limits": "Single ordinary mesh fixture; no user characters, skinned/cloth, complex materials or Blender import acceptance. Use a short output root; long path support not implemented."
   }
 }

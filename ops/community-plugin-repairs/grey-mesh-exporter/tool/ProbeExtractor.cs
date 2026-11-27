@@ -9,7 +9,8 @@ internal static class ProbeExtractor
         if (File.Exists(output)) throw new InvalidOperationException("Probe output exists");
         string sha = Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(input))).ToLowerInvariant();
         if (sha != "be9a83e1619a7bf332f7c0a54c3f88a5b920135b3c0096ebd2326c3d33238736" &&
-            sha != "530dc95e00cfb34486687a3de85cb995d4f6ae1cacc7169d58c07b97dacd15d7") throw new InvalidOperationException("Unsupported probe input identity");
+            sha != "530dc95e00cfb34486687a3de85cb995d4f6ae1cacc7169d58c07b97dacd15d7" &&
+            sha != "0d983e64424b5baed8cf6d81adc6752876c9e77dd04b0645417958040d5247ad") throw new InvalidOperationException("Unsupported probe input identity");
         using var source = AssemblyDefinition.ReadAssembly(input);
         using var test = AssemblyDefinition.ReadAssembly(fixture);
         var module = test.MainModule;
@@ -20,6 +21,12 @@ internal static class ProbeExtractor
                 module.GetType("Exporter.TextureExporter").Methods.Single(m => m.Name == name));
         Copy(source.MainModule.GetType("Grey").Methods.Single(m => m.Name == "Export"), module.GetType("Grey").Methods.Single(m => m.Name == "Export"));
         Copy(source.MainModule.GetType("Exporter.Fbx").Methods.Single(m => m.Name == "ExportSkinnedMeshOrCloth"), module.GetType("Exporter.Fbx").Methods.Single(m => m.Name == "ExportSkinnedMeshOrCloth"));
+        Copy(source.MainModule.GetType("Exporter.UnityFbxExporterBinding").Methods.Single(m=>m.Name=="ScanHierarchy"),module.GetType("Exporter.UnityFbxExporterBinding").Methods.Single(m=>m.Name=="ScanHierarchy"));
+        foreach(string name in new[]{"GetTexture","ExportTextures","calculateTextureUseFromTextureName","calculateChannelFromTextureName","AddTextureToMaterial"})
+        {var method=source.MainModule.GetType("Exporter.TextureExporter").Methods.Single(m=>m.Name==name);Copy(method,module.GetType("Exporter.TextureExporter").Methods.Single(m=>m.Name==name&&m.Parameters.Count==method.Parameters.Count));}
+        var dataSource=source.MainModule.GetType("Data");var dataTarget=module.GetType("Data");
+        foreach(var field in dataSource.Fields)if(!dataTarget.Fields.Any(f=>f.Name==field.Name))dataTarget.Fields.Add(new FieldDefinition(field.Name,field.Attributes,MapType(field.FieldType)));
+        Copy(dataSource.Methods.Single(m=>m.Name==".cctor"),dataTarget.Methods.Single(m=>m.Name==".cctor"));
         Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(output))!);
         test.Write(output);
 
