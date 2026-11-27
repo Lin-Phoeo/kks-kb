@@ -1,0 +1,57 @@
+{
+  "candidate": "v3",
+  "original_sha256": "a3a8422471cfd71b44d4199caac932809b74d48c8abd809678c580d295e58893",
+  "candidate_sha256": "55ec9023c84aaa775cb460d38e95d42348d652411b0431084c124eac8172f356",
+  "kkpe_sha256": "1c8e2b66ccd613b0a0fb6cb794fb0221b8bc427356c5f30724ba50cf0a4ee92f",
+  "public_source_rebuild": {
+    "with_archived_v2": { "passed": true, "builds": 3, "cases_per_build": 25, "total_checks": 75 },
+    "without_v2": { "passed": true, "builds": 2, "cases_per_build": 25, "total_checks": 50 },
+    "both_outputs_match_candidate": true,
+    "build_warnings": 0,
+    "build_errors": 0,
+    "original_preserved": true
+  },
+  "known_control_failures_reproduced": {
+    "original_owning_root_results": [0, 0],
+    "v2_owning_root_results": [1, 1],
+    "v2_destroyed_transform_escapes": true,
+    "v2_full_lookup_destroyed_owner_escapes": true
+  },
+  "v3_results": {
+    "owning_root_results": [1, 1],
+    "destroyed_transform_escapes": false,
+    "full_lookup_destroyed_owner_escapes": false,
+    "face_map_priority_preserved": true,
+    "existing_fallback_order_preserved": true,
+    "unexpected_business_exception_still_propagates": true
+  },
+  "independent_metadata": {
+    "original_methods": 629,
+    "changed_original_methods": ["KkpeBridge.EditorsFor", "KkpeBridge.ScanUnity"],
+    "unchanged_original_methods": 627,
+    "added_helper_methods": ["PoseEditorLookupRepair.Harvest", "PoseEditorLookupRepair.ReadMember"],
+    "helper_fields": 0,
+    "helper_exception_handlers": 0,
+    "new_assembly_references": 0,
+    "unity_fake_null_guards": 4,
+    "direct_component_get_calls": 1,
+    "runtime": "v4.0.30319"
+  },
+  "rejection_checks": {
+    "unknown_input": true,
+    "already_patched_input": true,
+    "existing_output_preserved": true
+  },
+  "reference_installation": {
+    "status": "backed_up_and_installed_waiting_for_natural_use",
+    "backup_and_target_hashes_verified": true,
+    "helper_installed_separately": false,
+    "user_data_or_config_modified": false
+  },
+  "limits": [
+    "Actual extracted CIL and helper execute against synthetic Unity lifetime and fallback implementations.",
+    "No new real Unity/Mono expression apply, capture, scene reload or character lifecycle acceptance.",
+    "Existing global/static/scene fallbacks remain; the patch does not guarantee every fallback result belongs to the requested character.",
+    "The user ended repeated font manual testing; this record does not request a new manual acceptance round."
+  ]
+}
