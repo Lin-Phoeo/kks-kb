@@ -2,6 +2,8 @@
 
 这里保存针对明确 KKS 插件版本的自有修复工具、合成验证和来源说明。用户从作者取得原件后，在独立目录生成候选；仓库不携带原插件、游戏程序集、社区聊天或用户作品。每项都有精确输入哈希和范围，不能套用到未知版本。
 
+从[使用步骤](QUICKSTART.zh-CN.md)选择入口；其他AI可用[接续说明](AI-HANDOFF.md)复现。已核的新创作插件用途和作者来源见[候选说明](reviewed-candidates/README.md)。
+
 | 修复 | 具体问题 | 结果边界 |
 | --- | --- | --- |
 | [ManageableSkirts 状态所有权](manageable-skirts/README.md) | 原版为隐藏裙链重建共享骨骼列表，恢复时覆盖其他节点的可见性和颜色 | 候选只管理当前裙链的自身属性，不写共享列表；26项真实方法配合成依赖通过，参考试装待自然使用观察 |
@@ -10,6 +12,8 @@
 | [Vanity 与 PseudoMaker 保护注册](vanity-pseudomaker/README.md) | 已有防止被动刷新改值及保留槽位的保护仅认旧版，参考安装新版被跳过 | 只额外接受精确SHA的1.5.2.0，两个组件各改一个门控；178项观察和4项拒绝通过，空启动已加载 |
 | [AssetImport 局部依赖补齐](assetimport-dependencies/README.md) | 随包自定义AssimpNetter缺两个程序集，类型扫描仅390/394 | 官方精确包局部新增，不替换全局依赖；真实Unity中GetTypes已394/394，模型导入另验 |
 | [CloXray 导入对象映射](cloxray-import/README.md) | 导入源ID与当前场景ID重叠时恢复错对象 | Import仅用本次对象快照；原25项中13红、候选25绿，普通Load与保存格式保持 |
+| [PerceptiveHeightX截图隐藏](perceptive-height-compatibility/README.md) | 按旧程序集名找截图管理器失败，事件缺少成对取消 | 真实GUID优先查找并保留旧名回退，48项候选检查与拒绝保护通过 |
+| [Bust原生中文](bust-native-localization/README.md) | 原生控件不经过IMGUI owner，直接翻构造值又会改节点身份 | 两个创建回调只改13处可见文字，68项合成检查，原插件与数据身份保持 |
 
 运行入口必须显式提供本地原 DLL 与依赖路径，输出到新的隔离目录。生成候选不等于安装，安装应先核同 GUID、备份、核对目标前后哈希并保留回执。不要将测试夹具或工具 DLL 当游戏插件安装。
 

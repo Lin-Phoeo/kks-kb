@@ -1,0 +1,116 @@
+{
+  "passed": true,
+  "matrix": [
+    {
+      "expected": true,
+      "assembly": "KKS_Screencap",
+      "mode": "original",
+      "failures": 7,
+      "checks": 12
+    },
+    {
+      "expected": true,
+      "assembly": "KKS_Screencap",
+      "mode": "candidate",
+      "failures": 0,
+      "checks": 12
+    },
+    {
+      "expected": true,
+      "assembly": "KK_Screencap",
+      "mode": "original",
+      "failures": 7,
+      "checks": 12
+    },
+    {
+      "expected": true,
+      "assembly": "KK_Screencap",
+      "mode": "candidate",
+      "failures": 0,
+      "checks": 12
+    },
+    {
+      "expected": true,
+      "assembly": "Screencap",
+      "mode": "original",
+      "failures": 5,
+      "checks": 12
+    },
+    {
+      "expected": true,
+      "assembly": "Screencap",
+      "mode": "candidate",
+      "failures": 0,
+      "checks": 12
+    },
+    {
+      "expected": true,
+      "assembly": "CaptureProbe",
+      "mode": "original",
+      "failures": 6,
+      "checks": 12
+    },
+    {
+      "expected": true,
+      "assembly": "CaptureProbe",
+      "mode": "candidate",
+      "failures": 0,
+      "checks": 12
+    }
+  ],
+  "candidateChecks": 48,
+  "originalChecks": 48,
+  "originalExpectedFailures": 25,
+  "refusalChecks": [
+    {
+      "name": "unknown-input",
+      "unchanged": true,
+      "rejected": true
+    },
+    {
+      "name": "patched-input",
+      "unchanged": true,
+      "rejected": true
+    },
+    {
+      "name": "same-input-output",
+      "unchanged": true,
+      "rejected": true
+    },
+    {
+      "name": "existing-output",
+      "unchanged": true,
+      "rejected": true
+    }
+  ],
+  "candidateSha256": "d2016fa189a6ec3108282a47ca184ca4bcef4f6992345298b310d91237b16931",
+  "originalUnchanged": true,
+  "installed": false,
+  "scope": "Actual extracted subscription/lifecycle/helper CIL. Synthetic registry/event sources; no Unity or screenshot capture.",
+  "originalSha256": "a7de711fae624aa1a780eb6e041c4e9c0c4b066f987b024ff52c4c2f067de35b",
+  "totalObservedChecks": 100,
+  "originalMethods": 18,
+  "changedOriginalMethods": [
+    "Awake"
+  ],
+  "unchangedOriginalMethods": 17,
+  "addedPluginMethods": [
+    "OnEnable",
+    "OnDisable",
+    "OnDestroy"
+  ],
+  "embeddedHelperMethods": 7,
+  "newAssemblyReferences": 0,
+  "independentReview": {
+    "passed": true,
+    "candidateChecks": 48,
+    "expectedBaselineFailures": 25,
+    "memberReferencesResolved": 172,
+    "memberReferencesUnresolved": 0,
+    "scope": "Metadata and extracted synthetic CIL; no game execution"
+  },
+  "buildWarnings": [
+    "CS0169 on synthetic _captureHook field before actual CIL injection"
+  ],
+  "runtimeVerified": false
+}

@@ -1,0 +1,154 @@
+[
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "header",
+    "section": null,
+    "settingKey": null,
+    "source": "PerceptiveHeightX 1.0.0",
+    "value": "感知身高 / PerceptiveHeightX 1.0.0"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "General",
+    "value": "常规"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "Appearance",
+    "value": "外观"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "setting",
+    "section": "General",
+    "settingKey": "Show perceived height HUD",
+    "source": "Show perceived height HUD",
+    "value": "显示感知身高"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "description",
+    "section": "General",
+    "settingKey": "Show perceived height HUD",
+    "source": "While PerspectiveX's POV is active, show the POV character's reference height and how tall the other character appears relative to it. Does nothing if PerspectiveX is not installed.",
+    "value": "启用 PerspectiveX 第一人称视角时，显示视角角色的参考身高，以及其眼中另一角色的身高。未安装 PerspectiveX 时不生效。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "setting",
+    "section": "General",
+    "settingKey": "Relock reference height",
+    "source": "Relock reference height",
+    "value": "重设参考身高"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "description",
+    "section": "General",
+    "settingKey": "Relock reference height",
+    "source": "Snapshot the POV character's CURRENT height as their new reference height (the height they mentally feel like they are). Locked automatically the first time a character enters POV.",
+    "value": "将视角角色当前的身高记为新的参考身高（角色主观认定的自身身高）。首次进入该角色的第一人称视角时自动记录。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "setting",
+    "section": "General",
+    "settingKey": "Relock on every POV enter",
+    "source": "Relock on every POV enter",
+    "value": "每次进入视角时重设"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "description",
+    "section": "General",
+    "settingKey": "Relock on every POV enter",
+    "source": "OFF: the reference height sticks to each character for the whole session, so toggling POV off and on keeps the built-up size mismatch. ON: every POV enter snapshots a fresh reference.",
+    "value": "关闭：在本次运行期间保留各角色的参考身高，退出再进入视角也保留已产生的身高感知差异。开启：每次进入视角都重新记录当前身高。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "setting",
+    "section": "General",
+    "settingKey": "Units",
+    "source": "Units",
+    "value": "身高单位"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "description",
+    "section": "General",
+    "settingKey": "Units",
+    "source": "Unit system used to display heights.",
+    "value": "选择身高的显示单位。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "setting",
+    "section": "Appearance",
+    "settingKey": "Font size",
+    "source": "Font size",
+    "value": "文字大小"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "description",
+    "section": "Appearance",
+    "settingKey": "Font size",
+    "source": "Size of the HUD text.",
+    "value": "身高显示文字的字号。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "setting",
+    "section": "Appearance",
+    "settingKey": "HUD position X",
+    "source": "HUD position X",
+    "value": "显示框横向位置"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "description",
+    "section": "Appearance",
+    "settingKey": "HUD position X",
+    "source": "Horizontal position as a fraction of screen width. The HUD can also be dragged with the mouse.",
+    "value": "显示框在屏幕可移动范围内的横向位置比例。也可以用鼠标拖动显示框。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "setting",
+    "section": "Appearance",
+    "settingKey": "HUD position Y",
+    "source": "HUD position Y",
+    "value": "显示框纵向位置"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "description",
+    "section": "Appearance",
+    "settingKey": "HUD position Y",
+    "source": "Vertical position as a fraction of screen height. The HUD can also be dragged with the mouse.",
+    "value": "显示框在屏幕可移动范围内的纵向位置比例。也可以用鼠标拖动显示框。"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "enum",
+    "section": "General",
+    "settingKey": "Units",
+    "source": "Centimeters",
+    "value": "厘米"
+  },
+  {
+    "pluginGuid": "bucky.kk.perceptiveheightx",
+    "kind": "enum",
+    "section": "General",
+    "settingKey": "Units",
+    "source": "Feet Inches",
+    "value": "英尺与英寸"
+  }
+]

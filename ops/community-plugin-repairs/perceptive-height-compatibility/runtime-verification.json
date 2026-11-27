@@ -1,0 +1,76 @@
+{
+  "date": "2026-11-28",
+  "process_exited": true,
+  "normal_close_requests": 2,
+  "force_terminated": false,
+  "observer_archived": true,
+  "studio_objects": 0,
+  "user_card_or_scene_read_write": false,
+  "new_user_manual_acceptance": false,
+  "existing_diagnostics": {
+    "invalid_handle_mentions": 10,
+    "job_temp_alloc_warning_count": 31,
+    "thread_abort_mentions": 1,
+    "fixed_by_this_work": false
+  },
+  "source_summary_sha256": "438c7a5cc7555f09608f61c8a4b7f5badf42492f07d7f14fad32630e357e7e82",
+  "source_log_sha256": "56fe056fe5b050311e142c968b399753d9811a21b5b0eebd3599a5e61833d3cc",
+  "source_files_published": false,
+  "candidate_sha256": "d2016fa189a6ec3108282a47ca184ca4bcef4f6992345298b310d91237b16931",
+  "candidate_installed": true,
+  "checks": {
+    "lifecycle_initial_pair": true,
+    "lifecycle_disabled_pair": true,
+    "lifecycle_reenabled_pair": true,
+    "capture_hud_hidden": true,
+    "capture_actual_render": true,
+    "capture_hud_restored": true,
+    "capture_active_restored": true
+  },
+  "checks_passed": 7,
+  "subscription_pairs": {
+    "initial": {
+      "pre": 1,
+      "post": 1
+    },
+    "component_disabled": {
+      "pre": 0,
+      "post": 0
+    },
+    "component_reenabled": {
+      "pre": 1,
+      "post": 1
+    }
+  },
+  "png": {
+    "sha256": "543b3969b999c5d272ea461a2426c0aac35ad4862340da8e669e6a96657b037e",
+    "bytes": 530,
+    "width": 128,
+    "height": 128,
+    "bit_depth": 8,
+    "color_type": 6,
+    "chunks": [
+      "IHDR",
+      "IDAT",
+      "IEND"
+    ],
+    "crc_valid": true,
+    "decompressed_bytes": 65664,
+    "scope": "Actual ScreenshotManager.CaptureRender output, empty Studio, public pre/post event wrapping; not original screenshot hotkey coroutine or a character HUD composition test."
+  },
+  "configuration": {
+    "before_keys": 1,
+    "after_keys": 7,
+    "existing_values_semantically_preserved": true,
+    "note": "BepInEx serialized the same modifier keys in a different order; semantic shortcut unchanged."
+  },
+  "verified_scope": "Actual Unity component enable/disable lifecycle and public pre/post events around ScreenshotManager.CaptureRender in empty Studio.",
+  "not_verified": [
+    "Original screenshot hotkey coroutine",
+    "Actual key press",
+    "Character POV or HUD visible layout",
+    "Chinese HUD drawing; localization installed after this run",
+    "All third-party plugin combinations"
+  ],
+  "runtime_localization_verified": false
+}

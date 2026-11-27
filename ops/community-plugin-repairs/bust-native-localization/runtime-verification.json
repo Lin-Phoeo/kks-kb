@@ -1,0 +1,109 @@
+{
+  "date": "2026-11-28",
+  "process_exited": true,
+  "normal_close_requests": 2,
+  "force_terminated": false,
+  "observer_archived": true,
+  "studio_objects": 0,
+  "user_card_or_scene_read_write": false,
+  "new_user_manual_acceptance": false,
+  "existing_diagnostics": {
+    "invalid_handle_mentions": 10,
+    "job_temp_alloc_warning_count": 31,
+    "thread_abort_mentions": 1,
+    "fixed_by_this_work": false
+  },
+  "source_summary_sha256": "438c7a5cc7555f09608f61c8a4b7f5badf42492f07d7f14fad32630e357e7e82",
+  "source_log_sha256": "56fe056fe5b050311e142c968b399753d9811a21b5b0eebd3599a5e61833d3cc",
+  "source_files_published": false,
+  "helper_sha256": "9903e7226f4a3521ba7411634822968c03e3a9f309b32d5e6937e024011ba9eb",
+  "original_bust_sha256": "a07e33d8768b6a1540aee3b727cf3ad43cd62335fc3ecad04f6256e5ac53098f",
+  "kkapi_sha256": "866464809d1bd04450a35850c23f9d17a0d1e5a166ed9f5dc525c506fc04ef01",
+  "candidate_installed": true,
+  "header_chinese": true,
+  "slider_labels": [
+    {
+      "node": "Text    Nipple Protrusion",
+      "caption": "   乳头突出",
+      "font_size": 14,
+      "active_in_hierarchy": false
+    },
+    {
+      "node": "Text    Nipple Circumference",
+      "caption": "   乳头宽度",
+      "font_size": 14,
+      "active_in_hierarchy": false
+    },
+    {
+      "node": "Text    Areola Bulge",
+      "caption": "   乳晕隆起",
+      "font_size": 14,
+      "active_in_hierarchy": false
+    },
+    {
+      "node": "Text    Weight",
+      "caption": "   重量",
+      "font_size": 14,
+      "active_in_hierarchy": false
+    },
+    {
+      "node": "Text    Softness",
+      "caption": "   柔软度",
+      "font_size": 14,
+      "active_in_hierarchy": false
+    },
+    {
+      "node": "Text    Shape",
+      "caption": "   圆润度",
+      "font_size": 14,
+      "active_in_hierarchy": false
+    },
+    {
+      "node": "Text    Pointiness",
+      "caption": "   前凸程度",
+      "font_size": 14,
+      "active_in_hierarchy": false
+    },
+    {
+      "node": "Text    Vertical Angle",
+      "caption": "   垂直角度",
+      "font_size": 14,
+      "active_in_hierarchy": false
+    },
+    {
+      "node": "Text    Horizontal Position",
+      "caption": "   左右间距",
+      "font_size": 14,
+      "active_in_hierarchy": false
+    },
+    {
+      "node": "Text    Horizontal Angle",
+      "caption": "   水平角度",
+      "font_size": 14,
+      "active_in_hierarchy": false
+    },
+    {
+      "node": "Text    Vertical Position",
+      "caption": "   上下位置",
+      "font_size": 14,
+      "active_in_hierarchy": false
+    },
+    {
+      "node": "Text    Size",
+      "caption": "   大小",
+      "font_size": 14,
+      "active_in_hierarchy": false
+    }
+  ],
+  "total_chinese_caption_components": 13,
+  "node_identity_preserved": true,
+  "interaction_or_visible_layout_verified": false,
+  "verified_scope": "Read actual native TMP header and twelve Text captions after creation. All twelve slider captions were inactive in hierarchy.",
+  "not_verified": [
+    "Visible glyphs, clipping or layout",
+    "Slider interaction and numerical values",
+    "Character data editing or persistence",
+    "Pushup, ABMX or Timeline behavior",
+    "Unpatch behavior through component.enabled=false"
+  ]
+}

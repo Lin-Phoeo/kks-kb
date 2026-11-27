@@ -1,0 +1,520 @@
+[
+  {
+    "id": "RC-2861b682c608710b",
+    "owner": "GIN Rope This",
+    "source": "GIN Rope This",
+    "pattern": null,
+    "replacement": "绳索工具 / GIN Rope This"
+  },
+  {
+    "id": "RC-392d62be8b448f5d",
+    "owner": "GIN Rope This",
+    "source": "Cancel bake",
+    "pattern": null,
+    "replacement": "取消烘焙"
+  },
+  {
+    "id": "RC-ea42734c7f161d16",
+    "owner": "GIN Rope This",
+    "source": "Use selected item",
+    "pattern": null,
+    "replacement": "使用选中物品"
+  },
+  {
+    "id": "RC-6431c12bf360ae5c",
+    "owner": "GIN Rope This",
+    "source": "Close panel",
+    "pattern": null,
+    "replacement": "关闭面板"
+  },
+  {
+    "id": "RC-d9c142cd643b55f5",
+    "owner": "GIN Rope This",
+    "source": "Direction: automatic (along the item's length)",
+    "pattern": null,
+    "replacement": "方向：自动沿物品长度方向"
+  },
+  {
+    "id": "RC-4148080d875de52f",
+    "owner": "GIN Rope This",
+    "source": "Rope This",
+    "pattern": null,
+    "replacement": "创建绳索"
+  },
+  {
+    "id": "RC-028d3eb543200c8c",
+    "owner": "GIN Rope This",
+    "source": "Option",
+    "pattern": null,
+    "replacement": "选项"
+  },
+  {
+    "id": "RC-07224635c3d5aaf6",
+    "owner": "GIN Rope This",
+    "source": "Option (hide bone list)",
+    "pattern": null,
+    "replacement": "选项（收起骨骼列表）"
+  },
+  {
+    "id": "RC-fb916138442ef802",
+    "owner": "GIN Rope This",
+    "source": "Choose the part of the chain to simulate.",
+    "pattern": null,
+    "replacement": "选择骨骼链中需要模拟的部分。"
+  },
+  {
+    "id": "RC-7626a0e630fad1b4",
+    "owner": "GIN Rope This",
+    "source": "Choose A",
+    "pattern": null,
+    "replacement": "选择 A 端"
+  },
+  {
+    "id": "RC-ae337042dc08a4e6",
+    "owner": "GIN Rope This",
+    "source": "Choose B",
+    "pattern": null,
+    "replacement": "选择 B 端"
+  },
+  {
+    "id": "RC-1a952315057c2f0b",
+    "owner": "GIN Rope This",
+    "source": "Restore suggested endpoints",
+    "pattern": null,
+    "replacement": "恢复推荐端点"
+  },
+  {
+    "id": "RC-7fbcb67857a39cc4",
+    "owner": "GIN Rope This",
+    "source": "Filter bones",
+    "pattern": null,
+    "replacement": "筛选骨骼"
+  },
+  {
+    "id": "RC-faa3b6014759acff",
+    "owner": "GIN Rope This",
+    "source": "Saved baked motion",
+    "pattern": null,
+    "replacement": "已保存烘焙运动"
+  },
+  {
+    "id": "RC-640e1fef2704a465",
+    "owner": "GIN Rope This",
+    "source": "Pause physics",
+    "pattern": null,
+    "replacement": "暂停物理"
+  },
+  {
+    "id": "RC-ccae6cd2cc838818",
+    "owner": "GIN Rope This",
+    "source": "Handles: GIN Rope A / GIN Rope B",
+    "pattern": null,
+    "replacement": "端点手柄：GIN Rope A / GIN Rope B"
+  },
+  {
+    "id": "RC-d5a59b935d40a87d",
+    "owner": "GIN Rope This",
+    "source": "Use NodesConstraints to link each handle's Position to a target.",
+    "pattern": null,
+    "replacement": "用 NodesConstraints 将各手柄的位置连接到目标。"
+  },
+  {
+    "id": "RC-899ad468aa17ccbe",
+    "owner": "GIN Rope This",
+    "source": "Select A",
+    "pattern": null,
+    "replacement": "选中 A 端"
+  },
+  {
+    "id": "RC-69a6e300c8fa0bf0",
+    "owner": "GIN Rope This",
+    "source": "Select B",
+    "pattern": null,
+    "replacement": "选中 B 端"
+  },
+  {
+    "id": "RC-37ded8d753f335a8",
+    "owner": "GIN Rope This",
+    "source": "Reset motion",
+    "pattern": null,
+    "replacement": "重置运动"
+  },
+  {
+    "id": "RC-01b1528a45793de0",
+    "owner": "GIN Rope This",
+    "source": "Remove rope (restore item; keep handles)",
+    "pattern": null,
+    "replacement": "移除绳索（恢复物品，保留手柄）"
+  },
+  {
+    "id": "RC-6b82c6991aba370c",
+    "owner": "GIN Rope This",
+    "source": "Rope removed. Handles remain for your constraints.",
+    "pattern": null,
+    "replacement": "绳索已移除；手柄保留，供原有约束继续使用。"
+  },
+  {
+    "id": "RC-41d9231b21874c19",
+    "owner": "GIN Rope This",
+    "source": "Select one Studio item first.",
+    "pattern": null,
+    "replacement": "请先选中一个工作室物品。"
+  },
+  {
+    "id": "RC-da8a0ae6322fe758",
+    "owner": "GIN Rope This",
+    "source": "This item is already controlled.",
+    "pattern": null,
+    "replacement": "该物品已受控制。"
+  },
+  {
+    "id": "RC-e13a4e82182c3a32",
+    "owner": "GIN Rope This",
+    "source": "Generate a rope along the item's length automatically.",
+    "pattern": null,
+    "replacement": "沿物品长度方向自动生成绳索。"
+  },
+  {
+    "id": "RC-70d66126ef2fad2f",
+    "owner": "GIN Rope This",
+    "source": "Needs at least 3 chain nodes, or an item without an FK chain.",
+    "pattern": null,
+    "replacement": "需要至少 3 个骨骼链节点，或不带 FK 骨骼链的物品。"
+  },
+  {
+    "id": "RC-8b88cce38a411231",
+    "owner": "GIN Rope This",
+    "source": "Ready. Constrain GIN Rope A/B to scene targets, or move them directly.",
+    "pattern": null,
+    "replacement": "已就绪。可将 GIN Rope A/B 约束到场景目标，也可直接移动它们。"
+  },
+  {
+    "id": "RC-9342923c999b8740",
+    "owner": "GIN Rope This",
+    "source": "Ready. Use NodesConstraints or move GIN Rope A/B directly.",
+    "pattern": null,
+    "replacement": "已就绪。可使用 NodesConstraints，或直接移动 GIN Rope A/B。"
+  },
+  {
+    "id": "RC-7a2086745bbc53d3",
+    "owner": "GIN Rope This",
+    "source": "Many skin bones. Select endpoints manually.",
+    "pattern": null,
+    "replacement": "蒙皮骨骼较多，请手动选择端点。"
+  },
+  {
+    "id": "RC-372ca96fc1d80968",
+    "owner": "GIN Rope This",
+    "source": "Several bone chains found. Select A and B manually.",
+    "pattern": null,
+    "replacement": "发现多条骨骼链，请手动选择 A、B 端。"
+  },
+  {
+    "id": "RC-12104dbe558c431e",
+    "owner": "GIN Rope This",
+    "source": "No unique supported chain. Select A and B manually.",
+    "pattern": null,
+    "replacement": "无法唯一确定支持的骨骼链，请手动选择 A、B 端。"
+  },
+  {
+    "id": "RC-e26b9f1e5e9350f0",
+    "owner": "GIN Rope This",
+    "source": "Select a skinned chain item, then Rope This.",
+    "pattern": null,
+    "replacement": "选中带蒙皮骨骼链的物品，再点击“创建绳索”。"
+  },
+  {
+    "id": "RC-0c46cd0987c68a6b",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "BlendshapeCreator  1.1",
+    "pattern": null,
+    "replacement": "混合形状创建器 / BlendshapeCreator 1.1"
+  },
+  {
+    "id": "RC-17af6c40d2dffc4c",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Show Blendshapes Data",
+    "pattern": null,
+    "replacement": "查看形变数据"
+  },
+  {
+    "id": "RC-65c48cdbef4d93e0",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Show the list of all the saved data in the current scene/card",
+    "pattern": null,
+    "replacement": "列出当前场景或人物卡中保存的全部形变数据。"
+  },
+  {
+    "id": "RC-d73595d080d551fe",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Go back",
+    "pattern": null,
+    "replacement": "返回"
+  },
+  {
+    "id": "RC-d80ed7056d2573a8",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Return to main menu",
+    "pattern": null,
+    "replacement": "返回主界面"
+  },
+  {
+    "id": "RC-c8cf6eaa85f997c7",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Meshes List:",
+    "pattern": null,
+    "replacement": "网格列表："
+  },
+  {
+    "id": "RC-2a1ca903ae8dec61",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Show Hidden",
+    "pattern": null,
+    "replacement": "显示隐藏对象"
+  },
+  {
+    "id": "RC-7cbd245196bc7f3c",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Show all the renderers, even the hidden ones (if any)",
+    "pattern": null,
+    "replacement": "显示所有渲染器，包括隐藏的渲染器。"
+  },
+  {
+    "id": "RC-ff6dea96e4f17115",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Refresh List",
+    "pattern": null,
+    "replacement": "刷新列表"
+  },
+  {
+    "id": "RC-63eba936458aff12",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Refresh list of renderers, do it to update the meshes (after changing clothes/accs/etc)",
+    "pattern": null,
+    "replacement": "刷新渲染器列表；更换服装、饰品等之后可用来更新网格。"
+  },
+  {
+    "id": "RC-63eecd3590dab4eb",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Search...",
+    "pattern": null,
+    "replacement": "搜索…"
+  },
+  {
+    "id": "RC-dc1b73501be84c9e",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Selected object doesn't\n contain meshes!",
+    "pattern": null,
+    "replacement": "选中对象\n不包含网格！"
+  },
+  {
+    "id": "RC-9f1e54475aa79cbb",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Clear Selection",
+    "pattern": null,
+    "replacement": "清空选择"
+  },
+  {
+    "id": "RC-5cfdd89b524d0bad",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Import BlendShapes",
+    "pattern": null,
+    "replacement": "导入混合形状"
+  },
+  {
+    "id": "RC-7ce8cbf9e56d9a7e",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Import BlendShapes from a .bscd file into the selected mesh",
+    "pattern": null,
+    "replacement": "从 .bscd 文件向选中网格导入混合形状。"
+  },
+  {
+    "id": "RC-37ea93f262c8bc33",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Repeat Last Import",
+    "pattern": null,
+    "replacement": "重复上次导入"
+  },
+  {
+    "id": "RC-2afcd6992676a567",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Repeat the last import operation without duplicating existing blendshapes (Existing blendshapes will be updated)",
+    "pattern": null,
+    "replacement": "重复上次导入；已存在的混合形状会更新，不重复创建。"
+  },
+  {
+    "id": "RC-0e282ff45082f8ef",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Export Meshes",
+    "pattern": null,
+    "replacement": "导出网格"
+  },
+  {
+    "id": "RC-0894fa2e36e92ff0",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Export the selected meshes to a .obj files",
+    "pattern": null,
+    "replacement": "将选中网格导出为 .obj 文件。"
+  },
+  {
+    "id": "RC-b8799c387a093a88",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Export Textures",
+    "pattern": null,
+    "replacement": "导出贴图"
+  },
+  {
+    "id": "RC-820fa6be2b7315c6",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Export the main texture of the selected meshes along with their .mtl file",
+    "pattern": null,
+    "replacement": "同时导出选中网格的主贴图和 .mtl 材质文件。"
+  },
+  {
+    "id": "RC-317145ed35438d1d",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Mirror X Axis",
+    "pattern": null,
+    "replacement": "镜像 X 轴"
+  },
+  {
+    "id": "RC-4c683be1ed985b6f",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Mirror the X axis when importing a BlendShape",
+    "pattern": null,
+    "replacement": "导入混合形状时镜像 X 轴。"
+  },
+  {
+    "id": "RC-d9d2f374a295e0f1",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Bake Mesh",
+    "pattern": null,
+    "replacement": "烘焙网格"
+  },
+  {
+    "id": "RC-66855637b94f8bb4",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "The exported meshes will be baked with the current pose",
+    "pattern": null,
+    "replacement": "按当前姿势烘焙导出的网格。"
+  },
+  {
+    "id": "RC-83afd2fc1f80b7f9",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Highlight Selected",
+    "pattern": null,
+    "replacement": "高亮选中项"
+  },
+  {
+    "id": "RC-e2b7475bf2e87409",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Search",
+    "pattern": null,
+    "replacement": "搜索"
+  },
+  {
+    "id": "RC-06e8b368c71639af",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Hide vanilla blendshapes",
+    "pattern": null,
+    "replacement": "隐藏原有混合形状"
+  },
+  {
+    "id": "RC-95b520d650ed2cf4",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Only show the BlendShapes created by this plugin",
+    "pattern": null,
+    "replacement": "只显示本插件创建的混合形状。"
+  },
+  {
+    "id": "RC-e5d2f9a60215e9f5",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Delete",
+    "pattern": null,
+    "replacement": "删除"
+  },
+  {
+    "id": "RC-1ef6ed5d3253c072",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "There is no BlendshapeCreator data!",
+    "pattern": null,
+    "replacement": "当前没有混合形状创建器数据。"
+  },
+  {
+    "id": "RC-fe72d2f79fc3cd32",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "BlendshapeCreator Data",
+    "pattern": null,
+    "replacement": "混合形状创建器数据"
+  },
+  {
+    "id": "RC-a6cb56c0d27f6f33",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Reload",
+    "pattern": null,
+    "replacement": "重新载入"
+  },
+  {
+    "id": "RC-616d846c833ccec1",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "Reload all the blendshapes for this item.",
+    "pattern": null,
+    "replacement": "重新载入此物品的全部混合形状。"
+  },
+  {
+    "id": "RC-8a7231a739524786",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "You can select multiple meshes with Left Shift (only for exporting).",
+    "pattern": null,
+    "replacement": "按住左 Shift 可多选网格，仅用于导出。"
+  },
+  {
+    "id": "RC-84aa5041dbd2d83e",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "These sliders values will not be saved, use KKPE sliders instead, they also works with Timeline.",
+    "pattern": null,
+    "replacement": "这里的滑块值不会保存；请改用 KKPE 的滑块，它们也支持 Timeline。"
+  },
+  {
+    "id": "RC-d3bd1a370d85ea1e",
+    "owner": "KKS_BlendshapeCreator",
+    "source": "After deleting you have to save and reload the scene to see the changes.",
+    "pattern": null,
+    "replacement": "删除后需保存并重新载入场景，才能看到变化。"
+  },
+  {
+    "id": "RC-rope-length",
+    "owner": "GIN Rope This",
+    "source": null,
+    "pattern": "\\ALength: (-?\\d+\\.\\d{2})\\z",
+    "replacement": "长度：$1"
+  },
+  {
+    "id": "RC-rope-gravity",
+    "owner": "GIN Rope This",
+    "source": null,
+    "pattern": "\\AGravity: (-?\\d+\\.\\d{2})\\z",
+    "replacement": "重力：$1"
+  },
+  {
+    "id": "RC-rope-damping",
+    "owner": "GIN Rope This",
+    "source": null,
+    "pattern": "\\ADamping: (-?\\d+\\.\\d{2})\\z",
+    "replacement": "阻尼：$1"
+  },
+  {
+    "id": "RC-rope-bend-stiffness",
+    "owner": "GIN Rope This",
+    "source": null,
+    "pattern": "\\ABend stiffness: (-?\\d+\\.\\d{2})\\z",
+    "replacement": "弯曲刚度：$1"
+  },
+  {
+    "id": "RC-rope-quality",
+    "owner": "GIN Rope This",
+    "source": null,
+    "pattern": "\\AQuality: (-?\\d+\\.\\d{2})\\z",
+    "replacement": "求解质量：$1"
+  }
+]

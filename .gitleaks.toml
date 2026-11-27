@@ -1,0 +1,12 @@
+[extend]
+useDefault = true
+
+# This is the independently verified KKSAPI.dll SHA-256, not an API credential.
+# Restrict the exception to this exact hash in the three identity/verification files.
+[[allowlists]]
+description = "Reviewed KKSAPI binary SHA-256 identity"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "secret"
+regexes = ['''^866464809d1bd04450a35850c23f9d17a0d1e5a166ed9f5dc525c506fc04ef01$''']
+paths = ['''(^|/)ops/community-plugin-repairs/bust-native-localization/(NativeTextPolicy\.cs|build\.ps1|runtime-verification\.json)$''']

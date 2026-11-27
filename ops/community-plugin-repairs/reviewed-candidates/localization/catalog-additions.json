@@ -1,0 +1,178 @@
+[
+  {
+    "pluginGuid": "local.kkworkshop.0a52b20541f5.gin-rope-this",
+    "kind": "header",
+    "section": null,
+    "settingKey": null,
+    "source": "GIN Rope This 1.1.3",
+    "value": "绳索工具 / GIN Rope This 1.1.3"
+  },
+  {
+    "pluginGuid": "local.kkworkshop.0a52b20541f5.gin-rope-this",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "Interface",
+    "value": "界面"
+  },
+  {
+    "pluginGuid": "local.kkworkshop.0a52b20541f5.gin-rope-this",
+    "kind": "setting",
+    "section": "Interface",
+    "settingKey": "Toggle panel",
+    "source": "Toggle panel",
+    "value": "切换绳索面板"
+  },
+  {
+    "pluginGuid": "local.kkworkshop.0a52b20541f5.gin-rope-this",
+    "kind": "description",
+    "section": "Interface",
+    "settingKey": "Toggle panel",
+    "source": "Show or hide GIN Rope This.",
+    "value": "显示或隐藏 GIN Rope This 绳索面板。"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "header",
+    "section": null,
+    "settingKey": null,
+    "source": "BlendshapeCreator 1.1",
+    "value": "混合形状创建器 / BlendshapeCreator 1.1"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "category",
+    "section": null,
+    "settingKey": null,
+    "source": "MAIN",
+    "value": "常规"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "setting",
+    "section": "MAIN",
+    "settingKey": "Keyboard shortcut",
+    "source": "Keyboard shortcut",
+    "value": "窗口快捷键"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "description",
+    "section": "MAIN",
+    "settingKey": "Keyboard shortcut",
+    "source": "Press this button to launch the UI.",
+    "value": "显示或隐藏混合形状创建器界面。"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "setting",
+    "section": "MAIN",
+    "settingKey": "Default directory",
+    "source": "Default directory",
+    "value": "默认目录"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "description",
+    "section": "MAIN",
+    "settingKey": "Default directory",
+    "source": "The default location for the file dialog box.",
+    "value": "文件选择对话框默认打开的目录。"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "setting",
+    "section": "MAIN",
+    "settingKey": "Export textures",
+    "source": "Export textures",
+    "value": "导出贴图"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "description",
+    "section": "MAIN",
+    "settingKey": "Export textures",
+    "source": "Export textures to PNG files.",
+    "value": "将贴图导出为 PNG 文件。"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "setting",
+    "section": "MAIN",
+    "settingKey": "Inverse X",
+    "source": "Inverse X",
+    "value": "镜像 X 轴"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "description",
+    "section": "MAIN",
+    "settingKey": "Inverse X",
+    "source": "Inverse X axis.",
+    "value": "导入混合形状时镜像 X 轴。"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "setting",
+    "section": "MAIN",
+    "settingKey": "Bake mesh",
+    "source": "Bake mesh",
+    "value": "烘焙网格"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "description",
+    "section": "MAIN",
+    "settingKey": "Bake mesh",
+    "source": "Bake mesh.",
+    "value": "以当前姿势烘焙导出的网格。"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "setting",
+    "section": "MAIN",
+    "settingKey": "Highlight enabled",
+    "source": "Highlight enabled",
+    "value": "高亮选中网格"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "description",
+    "section": "MAIN",
+    "settingKey": "Highlight enabled",
+    "source": "Highlight selected renderer.",
+    "value": "高亮显示选中的渲染器。"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "setting",
+    "section": "MAIN",
+    "settingKey": "Hide vanilla blendshapes",
+    "source": "Hide vanilla blendshapes",
+    "value": "隐藏原有混合形状"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "description",
+    "section": "MAIN",
+    "settingKey": "Hide vanilla blendshapes",
+    "source": "Only show the BlendShapes created by this plugin.",
+    "value": "只显示本插件创建的混合形状。"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "setting",
+    "section": "MAIN",
+    "settingKey": "Show hidden",
+    "source": "Show hidden",
+    "value": "显示隐藏对象"
+  },
+  {
+    "pluginGuid": "com.shallty.blendshapecreator",
+    "kind": "description",
+    "section": "MAIN",
+    "settingKey": "Show hidden",
+    "source": "Show hidden objects in the list.",
+    "value": "在列表中显示隐藏的对象。"
+  }
+]

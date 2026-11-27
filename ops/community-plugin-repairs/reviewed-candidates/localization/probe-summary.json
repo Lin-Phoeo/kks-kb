@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "configurationEntries": 22,
+  "ropeExact": 32,
+  "blendshapeCreatorExact": 37,
+  "ropeNumericRegex": 5,
+  "actualManagedChecks": 178,
+  "scopeFiles": 2,
+  "installed": false,
+  "runtimeWindowObserved": false,
+  "configurationValuesChanged": false,
+  "independentSourceOwnerAndMatcherChecks": 177,
+  "syntheticAdapterTests": 9,
+  "adapterDoctor": {
+    "passed": true,
+    "plannedFiles": 4,
+    "configurationChanges": 0,
+    "applied": false
+  },
+  "files": {
+    "catalog-additions.json": "f70307f3949c92ff3eda884331bea2c0f1e22a6b50729b2d4f95a43c96873bf6",
+    "imgui-additions.json": "51fc1178b63db953c4d261cc40bda8d574c30ba1f0d637d84d8f2efb4c8d5ad5",
+    "Text/Plugins/GIN Rope This/0000_ReviewedCandidates.zh-CN.txt": "2a14e1fb26511aa91b1d24c71b406534dc6cb38aee2aadb1db317f7493d4e97a",
+    "Text/Plugins/KKS_BlendshapeCreator/0000_ReviewedCandidates.zh-CN.txt": "0e2e40d711ca118bc6c7fd235804643c5d4cefaa00e032384b879165dda82cf9"
+  }
+}
