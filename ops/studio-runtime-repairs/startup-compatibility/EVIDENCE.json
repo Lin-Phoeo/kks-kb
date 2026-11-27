@@ -1,0 +1,55 @@
+{
+  "ResearchDate": "2026-11-26",
+  "Status": "candidate generated; live installation and Studio validation pending",
+  "Artifacts": [
+    {
+      "Kind": "autokeyframe",
+      "InputSHA256": "3E2C29E54268FE76DED1A14F6A6C4FF90275957988DD4BA69C92E77A5440CF86",
+      "OutputSHA256": "0EE625FEC99A884AFF322BB0E87B33D7105F531CCD88F99B4818711873EDC0C7",
+      "AllowedChanges": "one private empty method renamed, original Camera parameter retained",
+      "ReadbackLogicalComparison": "pass"
+    },
+    {
+      "Kind": "charaanime",
+      "InputSHA256": "283B71CDD608AE0780087F3BC9D0C435EDB9ECB199A445FDCAC831C00B9EFB5F",
+      "OutputSHA256": "8B0521D0655E1D439219E0CE61741396C8B0ECF19397384A94DA746E85EB5E74",
+      "AllowedChanges": "four end-cap ldstr operands renamed together",
+      "ReadbackLogicalComparison": "pass"
+    }
+  ],
+  "ManagedReferenceAudit": {
+    "CharaAnimeVectorStringOccurrences": 4,
+    "CharaAnimeConsumerOccurrences": 3,
+    "DynamicCandidatesResolved": "BoneLineCtrl reflective patch; Python callback dispatch; Camera onPostRender field detection (2 strings)",
+    "CharaAnimeRegistrationOccurrences": 1,
+    "DynamicCandidates": 4,
+    "ReadableAssemblies": 355,
+    "AutoKeyframeDirectReferences": 0,
+    "UnmanagedExcluded": "KKSAPI.NativeHelper.dll"
+  },
+  "LocalMetadata": {
+    "CharaAnimePlugin": "2.8.0",
+    "MMDDMenuVersion": "3.0",
+    "MMDDLatestNotEstablished": true,
+    "CharaAnimeAssembly": "2.9.0.0",
+    "AutoKeyframeAssembly": "1.0.0.0",
+    "AutoKeyframePlugin": "1.3.0.0"
+  },
+  "Upstream": {
+    "AutoKeyframeAuthorRepositoryEstablished": false,
+    "CharaAnimeCommit": "7a03fe74c4dcba05175ac6f1a0832e179a87a8b6",
+    "OfficialReleases": 0,
+    "ReadyFixEstablished": false,
+    "OfficialIssuesOrPRs": 1,
+    "ForksCompared": 2,
+    "AutoKeyframeHFPatchCommit": "5c5a3d75f258cbc5e2caf8c1ab051c9e7f80dcee"
+  },
+  "Verification": {
+    "ActualPluginFunctionality": "not tested",
+    "SyntheticTests": 11,
+    "RealUnityRuntime": "not tested",
+    "WriteReadbackLogicalComparison": "pass both candidates",
+    "ExactILDelta": "one method name; four ldstr operands",
+    "Build": "0 warnings, 0 errors"
+  }
+}

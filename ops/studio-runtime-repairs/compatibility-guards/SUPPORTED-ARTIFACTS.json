@@ -1,0 +1,34 @@
+{
+  "verificationDate": "2026-11-26",
+  "runtimeValidation": "pending",
+  "syntheticChecksPassed": 19,
+  "syntheticChecksTotal": 19,
+  "syntheticSourceFixture": "The RangeSlider GUI-init fixture uses code shape proven byte-identical to the Codeberg v1.4.0 source and the Codeberg KKS DLL method was separately rebuilt and read back.",
+  "artifacts": [
+    {
+      "mode": "shallty",
+      "file": "KKS_ShalltyUtils.dll",
+      "pluginVersion": "1.3.2",
+      "inputSHA256": "8D399B206AA812E4968AAEF6065F54F09C9FF11B8A6EEBEBAA0C297F9C5529C7",
+      "outputSHA256": "E8A0EEE98907641227E01A4F6545621829D11394B52DC0F96C1B94A2CC1BFE59"
+    },
+    {
+      "mode": "sexfaces",
+      "file": "KKS_SexFaces.dll",
+      "pluginVersion": "1.4.0",
+      "sourceReleaseCommit": "ac43dbd990",
+      "releaseArchiveSHA256": "e6065eea60e826992a96a5d7f7177a06abdecc64c3726ec9a147f503041ae461",
+      "releaseAsset": "KKS_SexFaces.zip",
+      "dependency": "KKSAPI >= 1.31.2",
+      "inputSHA256": "8C3A9CED83022489AAE8A66D01A9D9307949B701E356321817831E4E2CB0E13E",
+      "outputSHA256": "96CD154A34EACB9B5CA3714B92E22A5BEF8466E4719951FA993E69F37FFC0662"
+    },
+    {
+      "mode": "kls",
+      "file": "KoikatsuSunshineLightingSuite.dll",
+      "pluginVersion": "1.3.0",
+      "inputSHA256": "7450C453A6AF8E2205543BFEE5429D843A7F384B1CC8716F65E06118D342EF3A",
+      "outputSHA256": "5AD109BE818B63C6797D8ABBE8392CE7C9ABC1CBC69F21CD22E7EA61FC0BAA5A"
+    }
+  ]
+}

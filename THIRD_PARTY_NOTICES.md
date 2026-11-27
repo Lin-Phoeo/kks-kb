@@ -10,4 +10,6 @@
 
 ## 文档与素材
 
+`ops/studio-runtime-repairs/` 的自有工具按各目录 MIT 许可提供。HSPlugins 的最小源码差异保留上游 MIT 声明；ShalltyUtils、SexFaces 的两个 `.patch` 保持上游 GPLv3，全文位于 `compatibility-guards/UPSTREAM-LICENSE-GPL-3.0.txt`。Unity、BepInEx、HarmonyX、Mono.Cecil、MaterialEditor 与其他插件程序集由使用者本机提供，不随仓库分发。KLS 原作者源码/许可尚未确认，仅提供自写的精确输入哈希补丁逻辑，不分发其程序集或完整源码。来源与版本见各工具目录。
+
 演示和测试使用合成资料。使用者导入的教程、图片、角色、场景和游戏资产不因使用本应用而改变原有权属；应保留其作者和出处信息。

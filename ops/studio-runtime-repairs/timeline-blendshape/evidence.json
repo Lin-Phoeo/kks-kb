@@ -1,0 +1,37 @@
+{
+  "status": "reviewable_source_patch_and_verified_binary_candidate; Unity scene replay pending",
+  "upstream_repository": "https://github.com/IllusionMods/HSPlugins",
+  "source_commit": "9220f2a6b2e6f8e0f62ea9acec6238f5ab6ed1cf",
+  "source_path": "PoseEditor.Core/AMModules/BlendShapesEditor.cs",
+  "source_git_blob": "8eec8a31cc8a8235790f860aeacf7f565251332c",
+  "source_sha256": "fbee52aaac4722f1768f84ef3a9d20ef9540225b2346832760d533dbed140898",
+  "normalized_original_sha256": "fbee52aaac4722f1768f84ef3a9d20ef9540225b2346832760d533dbed140898",
+  "normalized_patched_sha256": "d77ed3abc13bc7abbd0347dab8f4d945a4862dbd59745b146dd403f796f82659",
+  "patch_sha256": "11a225450a4a4f1a029b9a6ef053d68216fb84609fad6c5ae060bab657e7b62b",
+  "official_release": "r2.25",
+  "official_KKSPE_version": "2.21.5.0",
+  "official_binary_sha256": "af9a94a010b48681c84b6bb9ff4e11157f8cf228f5776a905cebc9b6031c8396",
+  "candidate_binary_sha256": "1c8e2b66ccd613b0a0fb6cb794fb0221b8bc427356c5f30724ba50cf0a4ee92f",
+  "candidate_changed_methods": [
+    "BlendShapesEditor.Init",
+    "TimelineCompatibility.<>c.<Populate>b__2_10",
+    "TimelineCompatibility.<>c.<Populate>b__2_13"
+  ],
+  "candidate_unchanged_methods": 1718,
+  "metadata_and_resource_bytes_unchanged": true,
+  "extracted_IL_fixture": {
+    "baseline_passed": 12,
+    "baseline_failed": 10,
+    "candidate_passed": 22,
+    "candidate_failed": 0,
+    "total": 22,
+    "runtime": ".NET 10 with targeted Unity/editor stubs"
+  },
+  "source_full_build": "not performed; full game reference build not claimed",
+  "actual_Unity_scene_replay": "pending",
+  "attribution": [
+    "https://github.com/IllusionMods/HSPlugins/pull/45",
+    "https://github.com/IllusionMods/HSPlugins/commit/61a9195cbe2c3b45f5e78d28e27519431620c716"
+  ],
+  "notes": "The source patch is a minimal KKS-only backport of PR #45's dictionary overwrite plus new guards for unequal group keyframe arrays and stale original blendshape indices. The current local binary candidate and this source patch are semantically aligned for the three changed methods."
+}

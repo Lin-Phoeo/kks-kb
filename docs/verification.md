@@ -36,6 +36,16 @@ Linux 首次安装浏览器时可使用 `python -m playwright install --with-dep
 
 公开 CI 不访问真实服务器、教材、角色/存档、游戏安装或外部模型。它验证程序在合成资料上的行为，不证明真实语料覆盖率、线上检索质量、手机实机手势或游戏画面正确。生产发布和游戏配置变更需要单独的验收记录。
 
+## Studio 维护工具
+
+维护工具与 Web 应用分开验证。Harvex 注册生成器仅依赖 Python 标准库：
+
+```powershell
+py -B -m unittest discover -s ops/studio-runtime-repairs/harvex-registration -p 'test_*.py' -v
+```
+
+MaterialEditor 的公开替身回归需要 .NET SDK；兼容补丁回归还需使用者现有 Mono.Cecil。构建与测试输出放在仓库外，命令见 [工具说明](../ops/studio-runtime-repairs/README.md)。公开 CI 不下载游戏程序集；这些本地检查与真实 Studio 结果分别记录，不据 Web 测试推断游戏功能。完整原场景复测仍需使用者在自己的安装中完成。
+
 ## 更新依赖
 
 维护 `pyproject.toml` 中的版本范围，用 `uv pip compile --generate-hashes` 重新生成对应锁文件，然后重新安装、测试并执行 `pip-audit`。不要手工编写下载哈希或为过检查忽略已知漏洞。

@@ -1,0 +1,12 @@
+PASS baseline Unity message rejects Camera parameter
+PASS rename removes message discovery, retains signature and body
+PASS nonempty callback refused
+PASS direct callback caller refused
+PASS repeated callback patch refused
+PASS baseline duplicate cap is rejected in either order
+PASS four names change together, all other IL retained
+PASS both plugin registration orders preserve distinct caps
+PASS missing consumer refuses partial patch
+PASS unrelated vector consumer refuses broad replacement
+PASS repeated cap patch refused
+11 synthetic regression cases passed. Unity runtime and physical rendering remain untested.

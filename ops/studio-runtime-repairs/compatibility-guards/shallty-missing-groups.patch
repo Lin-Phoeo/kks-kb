@@ -1,0 +1,13 @@
+--- a/ShalltyUtils.Core/ShalltyUtils.KeyframesGroups.cs
++++ b/ShalltyUtils.Core/ShalltyUtils.KeyframesGroups.cs
+@@ -393,7 +393,9 @@
+ 
+             ClearSceneData();
+ 
+-            string data = (string)pluginData.data["keyframesGroupsData"];
++            if (pluginData.data == null ||
++                !pluginData.data.TryGetValue("keyframesGroupsData", out var value)) return;
++            string data = value as string;
+             if (data.IsNullOrEmpty()) return;
+ 
+             ShalltyUtils._self.ExecuteDelayed2(() =>

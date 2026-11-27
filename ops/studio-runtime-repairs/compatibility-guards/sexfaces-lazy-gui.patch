@@ -1,0 +1,39 @@
+--- a/KK_SexFaces/RangeSlider.cs
++++ b/KK_SexFaces/RangeSlider.cs
+@@ -4,15 +4,21 @@
+ {
+     public struct RangeSlider
+     {
+-        private static readonly GUIStyle sliderStyle = GUI.skin.horizontalSlider;
+-        private static readonly GUIStyle thumbStyle = GUI.skin.horizontalSliderThumb;
+-        private static readonly GUIStyle bandStyle = new GUIStyle
++        private static GUIStyle sliderStyle;
++        private static GUIStyle thumbStyle;
++        private static GUIStyle bandStyle;
++
++        private static void EnsureStylesInsideOnGUI()
+         {
+-            normal = new GUIStyleState
++            if (sliderStyle != null) return;
++            sliderStyle = GUI.skin.horizontalSlider;
++            thumbStyle = GUI.skin.horizontalSliderThumb;
++            bandStyle = new GUIStyle
+             {
+-                background = BandTexture()
+-            }
+-        };
++                normal = new GUIStyleState { background = BandTexture() }
++            };
++        }
++
+         private readonly Rect position;
+         private float value1;
+         private float value2;
+@@ -32,6 +38,7 @@
+ 
+         public static void Create(ref float lower, ref float upper, float min, float max, params GUILayoutOption[] options)
+         {
++            EnsureStylesInsideOnGUI();
+             var position = GUILayoutUtility.GetRect(GUIContent.none, sliderStyle, options);
+             int id = GUIUtility.GetControlID("Slider".GetHashCode(), FocusType.Passive, position);
+             new RangeSlider(position, lower, upper, min, max, id).Handle(out lower, out upper);
