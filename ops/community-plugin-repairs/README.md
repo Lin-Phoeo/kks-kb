@@ -10,6 +10,8 @@
 
 运行入口必须显式提供本地原 DLL 与依赖路径，输出到新的隔离目录。生成候选不等于安装，安装应先核同 GUID、备份、核对目标前后哈希并保留回执。不要将测试夹具或工具 DLL 当游戏插件安装。
 
+参考环境已完成三插件的自动空Studio启动检查：ManageableSkirts、修复后的DragDoll与Grey均加载；DragDoll原合同错误没有再出现，正常关闭后进程退出。没有激活裙链、操作姿势或执行真实导出，旧控制台退出句柄错误仍单独保留。详情见[启动验证](startup-verification.json)。
+
 已有运行故障修复在独立 PR 的 `ops/studio-runtime-repairs/`；汉化与字体发行在 `ops/studio-localization/`。各分支的公开源码与真实安装分别记录，不因 GitHub 合并推定游戏已部署。
 
 ## 本轮来源核查结论
