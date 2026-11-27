@@ -1,6 +1,6 @@
 # 验证与失败历史
 
-参考检查执行实际原插件和候选的 CIL，Unity 纹理、渲染和 native FBX 是合成实现；System.IO 只访问独立临时目录。没有在游戏中执行真实导出或读取用户卡片。
+下表是隔离回归：执行实际原插件和候选的 CIL，Unity 纹理、渲染和 native FBX 是合成实现；System.IO 只访问独立临时目录。后续真实普通立方体检查单独记录如下，两种证据不混为同一范围。
 
 | 范围 | 结果与含义 |
 | --- | --- |
@@ -22,4 +22,15 @@
 
 完整ExportSkinnedMeshOrCloth原CIL也在合成运行时执行，覆盖正常、材料／编码／Bake／ProcessMesh抛错、零网格、部分权重捕获、清零失败、cloth及无BlendShape分支。候选恢复已捕获前缀、清理自有Mesh和static引用；原异常继续传播。两调用处RequireMesh的精确位置由独立IL检查确认。
 
-尚未观察真实Unity的正常导出、异常后的窗口状态、FBX导入建模工具、GPU资源或真实颜色误差；不能用172个合成观察结果替代这些结论。原插件的空sharedMesh.name赋名、BuildTextureExporter前置失败和创建Textures子目录失败后busy标志仍是既存边界，本轮未宣称覆盖这些路径。导出主线程阻塞也不改变。
+## 一次真实普通立方体导出
+
+受检托管候选为 `530dc95e…`，原生x64库为 `7aac45fd…`。空Studio对象数为0，一次性观察器只创建自己的wrapper根、子cube、克隆Mesh、材质和2×2纹理，调用真实Grey.Export及原生FBX库；没有载入卡片、保存场景或导出用户对象。
+
+- 生成二进制FBX 7400，21,232字节；独立节点解析394个节点、1个Mesh geometry、2个Model、24顶点、36索引、12多边形，坐标有限、索引有效，贴图相对引用对应实际PNG。
+- PNG为2×2，IEND位于文件末尾；Unity LoadImage读取黑／红／绿／白四角，RGBA最大字节误差为0。
+- 导出器在观察器清理前已自行恢复原RenderTexture.active；ConfigEntry引用恢复失败0、配置文件字节前后相同、自有对象全部销毁、清理失败0，Studio对象数仍0。
+- 随后通过正常主窗口关闭退出，最终进程数0，临时观察器已移出插件目录。
+
+精确结果文件SHA-256为 `30d45559112a8dd9e8ba6718ef162f0bc6aeb026c00bb3b8f9da1c9c2ee46fc1`；公开仅保留这个身份和脱敏指标，不附私人路径、运行令牌或原日志。
+
+wrapper根无renderer（createRoot=false），用于避开原插件直接renderer根的FbxNodeCustomProperties空判断缺陷；自有材质名为空，使原material-name+property-name的exact albedo比较正确命中_MainTex。该夹具明确限制了结论，其他命名材质绑定不算通过。FBX节点／拓扑解析不是Blender或Assimp完整导入；未覆盖真实人物、蒙皮／cloth、导出失败后的游戏状态或真实GPU故障注入。原插件的空sharedMesh.name赋名、BuildTextureExporter前置失败和创建Textures子目录失败后busy标志仍保留为既存边界，导出主线程阻塞也不改变。

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "syntheticTests": 21,
+  "syntheticTestsPassed": 21,
+  "networkInTests": false,
+  "realInstallationInTests": false,
+  "referenceDoctor": {
+    "identityGatesMatched": 3,
+    "targetHashesMatched": 2,
+    "mutation": false
+  },
+  "runtime": {
+    "assimpBefore": {
+      "totalTypes": 394,
+      "loadedTypes": 390,
+      "loaderExceptions": 4
+    },
+    "assimpAfter": {
+      "totalTypes": 394,
+      "loadedTypes": 394,
+      "loaderExceptions": 0
+    },
+    "addedAssembliesLoadedFromPluginLocalDirectory": true,
+    "globalSystemAssembliesReplaced": false,
+    "microsoftDynamic": {
+      "totalTypes": 726,
+      "loadedTypes": 725,
+      "loaderExceptions": 1,
+      "status": "unchanged optional remote console dependency"
+    },
+    "actualModelImportVerified": false
+  },
+  "installerLines": 199
+}

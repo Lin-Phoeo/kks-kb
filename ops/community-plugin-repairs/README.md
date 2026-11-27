@@ -7,6 +7,8 @@
 | [ManageableSkirts 状态所有权](manageable-skirts/README.md) | 原版为隐藏裙链重建共享骨骼列表，恢复时覆盖其他节点的可见性和颜色 | 候选只管理当前裙链的自身属性，不写共享列表；26项真实方法配合成依赖通过，参考试装待自然使用观察 |
 | [Grey Mesh Exporter 导出保护](grey-mesh-exporter/README.md) | 较短PNG遗留旧尾部、渲染目标与临时贴图异常未清理、导出异常跳过蒙皮状态恢复 | 六方法精确补丁，原62/候选107及3项拒绝检查通过；真实GPU/FBX效果另验 |
 | [DragDoll 基础轴兼容](dragdoll-compatibility/README.md) | 将同类型名的基础Extra Move Axis误当作Plus，启动时要求不存在的输入合同 | 仅已知基础版本跳过Plus专用桥，保留原生Guide钩子；10场景运行34项检查与拒绝保护通过 |
+| [Vanity 与 PseudoMaker 保护注册](vanity-pseudomaker/README.md) | 已有防止被动刷新改值及保留槽位的保护仅认旧版，参考安装新版被跳过 | 只额外接受精确SHA的1.5.2.0，两个组件各改一个门控；178项观察和4项拒绝通过，空启动已加载 |
+| [AssetImport 局部依赖补齐](assetimport-dependencies/README.md) | 随包自定义AssimpNetter缺两个程序集，类型扫描仅390/394 | 官方精确包局部新增，不替换全局依赖；真实Unity中GetTypes已394/394，模型导入另验 |
 
 运行入口必须显式提供本地原 DLL 与依赖路径，输出到新的隔离目录。生成候选不等于安装，安装应先核同 GUID、备份、核对目标前后哈希并保留回执。不要将测试夹具或工具 DLL 当游戏插件安装。
 

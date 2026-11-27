@@ -1,0 +1,8 @@
+# Sources and limits
+
+- Vanity Studio author release thread: <https://discord.com/channels/447114928785063977/1563766290026598432>. The current reviewed KKS Free 1.6 attachment is on the author's special-color-mask fix message <https://discord.com/channels/447114928785063977/1563766290026598432/1564707137848868984>. Original DLLs and private DOM captures are not included.
+- PseudoMaker author repository: <https://github.com/RikkiBalboa/Rikki-Koi-Plugins>. Relevant source blobs read during review: `src/StudioPseudoMaker.Core/UI/Components/InputFieldComponent.cs` blob `3b1b9e6451df485a5c622f8be32a9c4cf1167c0e`; `src/StudioPseudoMaker.Core/Hooks.cs` blob `175b1c3cf36ce80a3cc63680306d398e6759263c`. These correspond to the observed current refresh/clamping and coordinate-tail trimming logic.
+- Actual installed PseudoMaker 1.5.2.0 metadata/CIL, not source-version naming alone, establishes the allowed build. No complete 1.5.1.1 versus 1.5.2.0 binary equivalence is claimed. The original old-version branch remains unchanged.
+- Mono.Cecil: <https://github.com/jbevain/cecil>, MIT; supplied locally by the operator.
+
+Only newly authored identity helper, exact-input patcher, CIL extraction mapper, synthetic fixture and documentation are published. No third-party source class, original/candidate DLL, game reference, private message, card, texture or machine-specific report is included. Public attachment access is not treated as redistribution permission, and this directory does not alter upstream license obligations.
