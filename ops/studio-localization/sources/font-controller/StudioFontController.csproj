@@ -8,6 +8,8 @@
     <Compile Include="StudioFontController.cs"/><Compile Include="FontResources.cs"/><Compile Include="FontSelection.cs"/><Compile Include="FontSourceResolver.cs"/>
     <Compile Include="ImGuiMetricObservation.cs"/>
     <Compile Include="FontDefaults.cs"/>
+    <Compile Include="TypographyPolicy.cs"/>
+    <Compile Include="ChineseFontData.cs"/><Compile Include="ChineseFontProbe.cs"/><Compile Include="ChineseFontCatalog.cs"/>
     <Compile Include="GlyphCoverage.cs"/>
     <Reference Include="BepInEx" HintPath="$(GameRoot)/BepInEx/core/BepInEx.dll" Private="false"/>
     <Reference Include="0Harmony" HintPath="$(GameRoot)/BepInEx/core/0Harmony.dll" Private="false"/>

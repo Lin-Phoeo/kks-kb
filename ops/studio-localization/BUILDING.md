@@ -48,8 +48,12 @@ LocalTools 的 import/encode/rules 入口调用实际 XUnity parser，native 入
 ~~~powershell
 dotnet run --project ops/studio-localization/tests/managed-dynamic-performance -c Release -- --rules ops/studio-localization/translations/dynamic-original.json
 dotnet run --project ops/studio-localization/tests/managed-font-performance -c Release
+dotnet run --project ops/studio-localization/tests/managed-font-catalog -c Release
+dotnet run --project ops/studio-localization/tests/managed-typography -c Release
 ~~~
 
 耗时只比较相同运行条件下的函数，不代表游戏帧率。字形缓存保持缺字回退，动态缓存保持作用域、优先级、长度和容量边界。
+
+中文目录测试用内存生成的 SFNT/name/cmap，样式测试用实际状态与嵌套作用域实现；两者不访问用户安装。`tools/verify-font-catalog/` 是单独显式运行的 Windows 字体/GDI 核验工具，不属于常规测试，不复制字体文件。
 
 `tools/verify-configuration-performance/` 和 `tools/verify-coordinate-native/` 是显式安装验收工具，需要使用者授权提供本机依赖，常规自动测试不运行它们。前者隔离调用配置适配器并对比查询分配，后者只读核对特定插件的资源及 IL、调用候选前缀；两者均不替代真实游戏窗口验收。
