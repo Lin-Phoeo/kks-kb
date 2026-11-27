@@ -49,6 +49,17 @@ class CatalogTests(unittest.TestCase):
         self.assertNotRegex(first, r'<(?:script|link|img)[^>]+(?:src|href)="https?://')
         self.assertIn("connect-src 'none'", first)
 
+    def test_tutorials_preserve_text_and_validate_shape(self):
+        guide = {'title': '法线工作流', 'content': '1. 保留输入\n2. <script>alert(1)</script>\n3. 检查结果'}
+        record = {'id': 'guide', 'name': '制作工具', 'resource_type': '独立工具', 'tutorials': [guide]}
+        document = builder.render([record])
+        raw = re.search(r'type="application/json">(.*?)</script>', document, re.S).group(1)
+        self.assertEqual(json.loads(raw)['records'][0]['tutorials'], [guide])
+        self.assertNotIn('<script>alert(1)</script>', document)
+        for tutorials in ['text', [{}], [{'title': 'A', 'content': ''}]]:
+            with self.subTest(tutorials=tutorials), self.assertRaises(ValueError):
+                builder.render([dict(record, tutorials=tutorials)])
+
 
 if __name__ == '__main__':
     unittest.main()

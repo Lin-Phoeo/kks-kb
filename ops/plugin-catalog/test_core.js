@@ -36,4 +36,19 @@ test('machine status takes precedence and partial installs stay uncertain', () =
   assert.equal(core.installGroup({install_status:'已安装脚本',install_status_code:'installed_script'}),'installed');
   assert.equal(core.installGroup({install_status:'合集中部分已安装',install_status_code:'installed_partial_bundle'}),'unknown');
   assert.equal(core.installGroup({install_status:'仅有旧报告',install_status_code:'installed_report_only'}),'unknown');
+  assert.equal(core.installGroup({install_status_code:'installed_exact'}),'installed');
+  assert.equal(core.installGroup({install_status_code:'installed_exact_subset'}),'unknown');
+  assert.equal(core.installGroup({install_status_code:'not_installed_candidate'}),'not_installed');
+});
+test('resource form and tutorial filters preserve selected records and guide content', () => {
+  const resources = [
+    {...rows[0], resource_type:'插件', tutorials:[]},
+    {...rows[1], resource_type:'独立工具', tutorials:[{title:'使用步骤',content:'先备份\n再导出'}]},
+    {...rows[2], resource_type:'独立工具'}
+  ];
+  assert.deepEqual(resources.filter(r=>core.matches(r,{resourceType:'独立工具',withTutorial:true})).map(r=>r.id),['b']);
+  const exported=core.exportSelection({records:resources,title:'资源'},new Set(['b','c']),'fixed');
+  assert.equal(exported.selected_count,2);
+  assert.equal(exported.records[0].tutorials[0].content,'先备份\n再导出');
+  assert.equal(core.matches(rows[0],{withTutorial:true}),false);
 });

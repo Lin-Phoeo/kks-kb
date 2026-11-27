@@ -22,6 +22,7 @@
           <label><span>安装状态</span><select id="install"><option value="">全部状态</option><option value="installed">已安装</option><option value="not_installed">未安装</option><option value="unknown">状态待核</option></select></label>
           <label><span>本地原包</span><select id="archive"><option value="">全部项目</option><option value="yes">有原包记录</option><option value="no">无原包记录</option></select></label>
         </div>
+        <div id="guide-filters" class="guide-filters" hidden><label><span>资源形式</span><select id="resource-type"><option value="">全部形式</option></select></label><label class="inline-check"><input id="with-tutorial" type="checkbox"> 有提炼教程</label></div>
         <div class="list-toolbar"><div><span id="result-count" aria-live="polite">载入中</span><span class="dot-divider">/</span><label class="inline-check"><input id="selected-only" type="checkbox"> 只看已选</label></div><div class="list-actions"><button id="select-visible" class="quiet">选择当前结果</button><button id="reset-filters" class="quiet">重置筛选</button></div></div>
         <div class="table-scroll"><table><caption class="sr-only">可选择的插件及当前资料</caption><thead><tr><th class="pick-col">选取</th><th>插件 / 类别</th><th>主要用途</th><th>兼容与状态</th><th class="open-col"><span class="sr-only">详情</span></th></tr></thead><tbody id="rows"></tbody></table></div>
         <div id="empty" class="empty" hidden><span class="empty-number">∅</span><h2>没有符合条件的项目</h2><p>减少关键词或重置筛选，已勾选的项目仍会保留。</p><button id="empty-reset" class="secondary">显示全部项目</button></div>

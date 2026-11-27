@@ -7,7 +7,7 @@
   const byId = new Map(records.map(record => [record.id, record]));
   const el = id => document.getElementById(id);
   const text = (tag, value, className) => { const node = document.createElement(tag); node.textContent = value; if (className) node.className = className; return node; };
-  const knownFields = new Set(['id','name','category','purpose','compatibility','install_status','version','author','sources','dependencies','conflicts','difficulty','recommendation','archive_paths']);
+  const knownFields = new Set(['id','name','category','resource_type','tutorials','purpose','compatibility','install_status','version','author','sources','dependencies','conflicts','difficulty','recommendation','archive_paths']);
   let storageAvailable = true, selected = new Set(), currentDetail = null, visible = [], noticeTimer;
   try { selected = core.restoreSelection(localStorage.getItem(storageKey), records); } catch (_) { storageAvailable = false; }
 
@@ -22,7 +22,8 @@
   }
   function filters() {
     return {query:el('query').value, category:el('category').value, install:el('install').value,
-      archive:el('archive').value, selectedOnly:el('selected-only').checked, selected};
+      archive:el('archive').value, resourceType:el('resource-type').value, withTutorial:el('with-tutorial').checked,
+      selectedOnly:el('selected-only').checked, selected};
   }
   function statusText(record) {
     const raw = record.install_status;
@@ -56,6 +57,8 @@
       const identity = document.createElement('td');
       const name = text('button', record.name, 'plugin-name'); name.type = 'button'; name.addEventListener('click', () => showDetail(record));
       const meta = text('div', '', 'plugin-meta'); meta.append(text('span', record.category || '未分类', 'category-tag'));
+      if (record.resource_type) meta.append(text('span', record.resource_type, 'category-tag'));
+      if (record.tutorials?.length) meta.append(text('span', `${record.tutorials.length} 篇教程`, 'category-tag'));
       if (record.version) meta.append(text('span', record.version));
       identity.append(name, meta);
       const purpose = document.createElement('td'); purpose.append(text('p', record.purpose || '用途说明尚未提供。', 'purpose'));
@@ -108,6 +111,12 @@
     section('上手难度', record.difficulty);
     section('依赖项目', record.dependencies);
     section('冲突与限制', record.conflicts);
+    for (const guide of record.tutorials || []) {
+      const article = text('details', '', 'detail-section tutorial');
+      article.append(text('summary', guide.title));
+      article.append(text('div', guide.content, 'tutorial-content'));
+      el('detail-content').append(article);
+    }
     section('作者与资料来源', record.sources, 'sources');
     section('本地原包记录', record.archive_paths);
     const extras = Object.fromEntries(Object.entries(record).filter(([key]) => !knownFields.has(key)));
@@ -116,7 +125,8 @@
     el('detail').showModal();
   }
   function resetFilters() {
-    for (const id of ['query','category','install','archive']) el(id).value = '';
+    for (const id of ['query','category','resource-type','install','archive']) el(id).value = '';
+    el('with-tutorial').checked = false;
     el('selected-only').checked = false; render();
   }
   function exportData() { return core.exportSelection(catalog, selected); }
@@ -145,7 +155,12 @@
   for (const category of [...new Set(records.map(record => record.category || '未分类'))].sort((a,b) => a.localeCompare(b, 'zh-CN'))) {
     const option = text('option', category); option.value = category; el('category').append(option);
   }
-  for (const id of ['query','category','install','archive','selected-only']) el(id).addEventListener(id === 'query' ? 'input' : 'change', render);
+  const resourceTypes = [...new Set(records.map(record => record.resource_type).filter(Boolean))];
+  for (const type of resourceTypes.sort((a,b) => a.localeCompare(b, 'zh-CN'))) {
+    const option = text('option', type); option.value = type; el('resource-type').append(option);
+  }
+  el('guide-filters').hidden = !resourceTypes.length && !records.some(record => record.tutorials?.length);
+  for (const id of ['query','category','resource-type','with-tutorial','install','archive','selected-only']) el(id).addEventListener(id === 'query' ? 'input' : 'change', render);
   el('reset-filters').addEventListener('click', resetFilters); el('empty-reset').addEventListener('click', resetFilters);
   el('select-visible').addEventListener('click', () => { visible.forEach(record => selected.add(record.id)); persist(); render(); notify('当前筛选结果已加入清单。'); });
   el('clear-selection').addEventListener('click', () => { selected.clear(); persist(); render(); });

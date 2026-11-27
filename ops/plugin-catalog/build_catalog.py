@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-TEXT_FIELDS = ('category', 'purpose', 'compatibility', 'install_status', 'version', 'author', 'difficulty', 'recommendation')
+TEXT_FIELDS = ('category', 'resource_type', 'purpose', 'compatibility', 'install_status', 'version', 'author', 'difficulty', 'recommendation')
 LIST_FIELDS = ('dependencies', 'conflicts', 'archive_paths')
 
 
@@ -30,6 +30,12 @@ def validate(records):
         for field in LIST_FIELDS:
             if row.get(field) is not None and (not isinstance(row[field], list) or any(not isinstance(x, str) for x in row[field])):
                 raise ValueError(f'{row["id"]}: {field} 需要字符串数组或 null。')
+        if row.get('tutorials') is not None:
+            if not isinstance(row['tutorials'], list):
+                raise ValueError(f'{row["id"]}: tutorials 需要数组。')
+            for guide in row['tutorials']:
+                if not isinstance(guide, dict) or any(not isinstance(guide.get(key), str) or not guide[key].strip() for key in ('title', 'content')):
+                    raise ValueError(f'{row["id"]}: 每篇教程需要非空 title 和 content。')
         if row.get('sources') is not None:
             if not isinstance(row['sources'], list):
                 raise ValueError(f'{row["id"]}: sources 需要数组。')
