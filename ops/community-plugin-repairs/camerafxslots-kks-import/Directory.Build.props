@@ -1,0 +1,1 @@
+<Project><PropertyGroup><Deterministic>true</Deterministic><DebugType>portable</DebugType><PathMap>$(MSBuildThisFileDirectory)=/_/camerafxslots-kks-import/,$(ArtifactsPath)=/_/camerafxslots-artifacts/</PathMap></PropertyGroup></Project>
