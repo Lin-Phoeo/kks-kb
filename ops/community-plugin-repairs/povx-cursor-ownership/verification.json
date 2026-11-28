@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "installed": false,
+  "runtimeVerified": false,
+  "originalSha256": "b1fa80dc3147b071daf90a91ae2bff4ff1216919ab168bd56f30b976cbc1c789",
+  "candidateSha256": "e73fb5eebe2913817d89981e798953f1011deafb43e8bffa34e57d46db6d115b",
+  "checks": 18,
+  "originalFailures": 6,
+  "candidateFailures": 0,
+  "refusals": {
+    "unknown": true,
+    "repatch": true,
+    "inplace": true,
+    "existing": true
+  },
+  "scope": "Actual Update_Cursor and ToggleCursorLock CIL with synthetic cursor/input collaborators; no Unity native execution."
+}
