@@ -1,0 +1,26 @@
+using System.Runtime.InteropServices;
+if(args.Length!=6)throw new ArgumentException("game-root binding-probe candidate helper method-tokens mono-runtime-relative-path");
+string game=Path.GetFullPath(args[0]);var library=NativeLibrary.Load(Path.Combine(game,args[5]));
+T Load<T>(string name)where T:Delegate=>Marshal.GetDelegateForFunctionPointer<T>(NativeLibrary.GetExport(library,name));
+Load<SetDirs>("mono_set_dirs")(Path.Combine(game,"CharaStudio_Data/Managed"),Path.Combine(game,"MonoBleedingEdge/etc"));
+Load<ConfigParse>("mono_set_assemblies_path")(Path.Combine(game,"CharaStudio_Data/Managed"));
+Load<ConfigParse>("mono_config_parse")(null);
+var domain=Load<Init>("mono_jit_init_version")("dragdoll-binding-probe","v4.0.30319");if(domain==IntPtr.Zero)throw new InvalidOperationException("Mono init failed");
+var assembly=Load<AssemblyOpen>("mono_domain_assembly_open")(domain,Path.GetFullPath(args[1]));if(assembly==IntPtr.Zero)throw new InvalidOperationException("Probe assembly failed");
+var image=Load<GetImage>("mono_assembly_get_image")(assembly);var type=Load<GetClass>("mono_class_from_name")(image,"","BindingProbe");var method=Load<GetMethod>("mono_class_get_method_from_name")(type,"Run",4);
+if(method==IntPtr.Zero)throw new InvalidOperationException("Probe method failed");
+var nativeArgs=Marshal.AllocHGlobal(IntPtr.Size*4);var str=Load<NewString>("mono_string_new");
+foreach(var row in new[]{(0,args[2]),(1,args[3]),(2,game),(3,args[4])})Marshal.WriteIntPtr(nativeArgs,row.Item1*IntPtr.Size,str(domain,row.Item2));
+var value=Load<Invoke>("mono_runtime_invoke")(method,IntPtr.Zero,nativeArgs,out var error);Marshal.FreeHGlobal(nativeArgs);
+if(error!=IntPtr.Zero){Console.Error.WriteLine("MONO_BINDING_UNHANDLED");return 2;}
+int result=Marshal.ReadInt32(Load<Unbox>("mono_object_unbox")(value));Console.WriteLine("MONO_BINDING_EXIT="+result);return result;
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]delegate void SetDirs([MarshalAs(UnmanagedType.LPStr)]string assemblies,[MarshalAs(UnmanagedType.LPStr)]string config);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]delegate void ConfigParse([MarshalAs(UnmanagedType.LPStr)]string path);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]delegate IntPtr Init([MarshalAs(UnmanagedType.LPStr)]string name,[MarshalAs(UnmanagedType.LPStr)]string version);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]delegate IntPtr AssemblyOpen(IntPtr domain,[MarshalAs(UnmanagedType.LPStr)]string path);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]delegate IntPtr GetImage(IntPtr assembly);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]delegate IntPtr GetClass(IntPtr image,[MarshalAs(UnmanagedType.LPStr)]string ns,[MarshalAs(UnmanagedType.LPStr)]string name);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]delegate IntPtr GetMethod(IntPtr type,[MarshalAs(UnmanagedType.LPStr)]string name,int count);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]delegate IntPtr NewString(IntPtr domain,[MarshalAs(UnmanagedType.LPStr)]string text);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]delegate IntPtr Invoke(IntPtr method,IntPtr instance,IntPtr arguments,out IntPtr exception);
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]delegate IntPtr Unbox(IntPtr value);

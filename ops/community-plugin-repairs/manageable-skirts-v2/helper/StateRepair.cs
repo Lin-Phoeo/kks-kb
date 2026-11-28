@@ -46,7 +46,19 @@ namespace Codex.ManageableSkirtsV2State
         private static IList Entries(object data){return (IList)Field(data,"allEntries");}
         private static OCIChar Character(object data){return (OCIChar)Field(data,"ociChar");}
         private static bool Valid(OCIChar.BoneInfo bone){return bone!=null&&bone.guideObject&&bone.guideObject.transformTarget;}
-        public static bool CanActivate(OCIChar c){return c!=null&&c.charInfo&&c.charInfo.animBody;}
+        private const string NoWeightedSkirtMessage="当前衣装未使用可用的原生裙骨，无法启用裙骨方向柄；可在 KKPE 中检查衣装的自定义骨骼。";
+        public static bool CanActivate(object plugin,OCIChar c)
+        {
+            if(c==null||!c.charInfo||!c.charInfo.animBody)return false;
+            var parse=plugin.GetType().GetMethod("TryParseSkirtBone",All);
+            foreach(var bone in c.listBones)
+            {
+                if(!Valid(bone)||!bone.boneWeight||bone.boneGroup!=(OIBoneInfo.BoneGroup)1024)continue;
+                object[] args={bone.guideObject.transformTarget.name,-1,-1};
+                if((bool)parse.Invoke(null,args))return true;
+            }
+            Log(plugin).LogMessage(NoWeightedSkirtMessage);return false;
+        }
         private static Stamp Mark(object data)
         {return Stamps.GetValue(data,d=>{var c=Character(d).charInfo;return new Stamp{Control=c,Body=c?c.animBody:null};});}
         public static bool IsLive(object data)
@@ -118,16 +130,16 @@ namespace Codex.ManageableSkirtsV2State
             if(errors.Count>0)throw new AggregateException("Some V2 skirt state could not be restored",errors);
             Stamps.Remove(data);
         }
-        private static bool Reconcile(object plugin,object data)
+        private static bool Reconcile(object plugin,object data,out bool weighted)
         {
-            var c=Character(data);IList entries=Entries(data);bool changed=false;var current=new HashSet<OCIChar.BoneInfo>(c.listBones);var known=new HashSet<OCIChar.BoneInfo>();
-            for(int i=entries.Count-1;i>=0;i--){object e=entries[i];var b=(OCIChar.BoneInfo)Field(e,"boneInfo");if(!current.Contains(b)||!Valid(b)){RestoreEntry(plugin,e);entries.RemoveAt(i);changed=true;}else known.Add(b);}
+            var c=Character(data);IList entries=Entries(data);bool changed=false;weighted=false;var current=new HashSet<OCIChar.BoneInfo>(c.listBones);var known=new HashSet<OCIChar.BoneInfo>();
+            for(int i=entries.Count-1;i>=0;i--){object e=entries[i];var b=(OCIChar.BoneInfo)Field(e,"boneInfo");if(!current.Contains(b)||!Valid(b)){RestoreEntry(plugin,e);entries.RemoveAt(i);changed=true;}else{known.Add(b);if((bool)Field(e,"isSkirt")&&b.boneWeight)weighted=true;}}
             Type entryType=plugin.GetType().GetNestedType("BoneEntry",BindingFlags.NonPublic);
             foreach(var bone in c.listBones)
             {
                 if(!Valid(bone)||known.Contains(bone))continue;object e=Activator.CreateInstance(entryType,true);Put(e,"boneInfo",bone);Put(e,"chainIdx",-1);Put(e,"nodeIdx",-1);
                 object[] args={bone.guideObject.transformTarget.name,-1,-1};bool skirt=bone.boneGroup==(OIBoneInfo.BoneGroup)1024&&(bool)plugin.GetType().GetMethod("TryParseSkirtBone",All).Invoke(null,args);
-                Put(e,"isSkirt",skirt);if(skirt){Put(e,"chainIdx",args[1]);Put(e,"nodeIdx",args[2]);Put(e,"guideSelect",bone.guideObject.gameObject.GetComponentInChildren<GuideSelect>());}entries.Add(e);changed=true;
+                Put(e,"isSkirt",skirt);if(skirt){Put(e,"chainIdx",args[1]);Put(e,"nodeIdx",args[2]);Put(e,"guideSelect",bone.guideObject.gameObject.GetComponentInChildren<GuideSelect>());if(bone.boneWeight)weighted=true;}entries.Add(e);changed=true;
             }
             return changed;
         }
@@ -138,7 +150,9 @@ namespace Codex.ManageableSkirtsV2State
             foreach(var c in keys)
             {
                 object data=tracked[c];if(!IsLive(data)){Restore(plugin,c);tracked.Remove(c);continue;}
-                bool changed=Reconcile(plugin,data);bool color=Config(plugin,"enableColoring");Put(data,"chainColored",color);
+                bool weighted;bool changed=Reconcile(plugin,data,out weighted);
+                if(!weighted){Restore(plugin,c);tracked.Remove(c);Log(plugin).LogMessage("裙骨方向柄已停用。"+NoWeightedSkirtMessage);continue;}
+                bool color=Config(plugin,"enableColoring");Put(data,"chainColored",color);
                 foreach(object e in Entries(data)){if(!(bool)Field(e,"isSkirt"))continue;var select=Field(e,"guideSelect") as GuideSelect;if(color)Color(plugin,select,(int)Field(e,"chainIdx"));else RestoreStyle(select);}
                 if(changed){foreach(object e in Entries(data))Call(plugin,"DestroyDirectionalGuide",e);Call(plugin,"SetDirectionalGuideMode",data,Config(plugin,"enableDirectionalCones"));Call(plugin,"SetLastVisibleNodesHidden",data,Config(plugin,"enableHideLastVisibleNode"));}
                 if(!Config(plugin,"enableDepthHiding"))Put(data,"hiddenChains",new bool[8]);else if(ReferenceEquals(c,selected)&&c.treeNodeObject&&c.treeNodeObject.visible)Call(plugin,"UpdateDepthForChar",data);

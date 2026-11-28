@@ -4,17 +4,17 @@
   "installed": false,
   "runtimeVerified": false,
   "originalSha256": "17ae25d3f4654687b6b180abc04ca7528790363ecf24b7f461081f30b2d5fc4d",
-  "candidateSha256": "f511d6e546f2deacde3b86b558a74e50327e2e68f2f795aa41d87aa686bf43ce",
-  "helperSha256": "946c61eaf6f14002baf1d76c7e65ed41a908c16a5492857ced0592a3e555beff",
+  "candidateSha256": "8d89ff3b0c9c561ab33071d094e09c453c7fd9f9b7190ab6d57f18e2a41d6417",
+  "helperSha256": "c5d43bd121d691a2c51ce0926640b1051295641fb3cae9a9042d95897c0f3e90",
   "baseline": {
-    "checks": 33,
-    "passed": 8,
-    "failed": 25,
+    "checks": 43,
+    "passed": 9,
+    "failed": 34,
     "exitCode": 1
   },
   "candidate": {
-    "checks": 33,
-    "passed": 33,
+    "checks": 43,
+    "passed": 43,
     "failed": 0,
     "exitCode": 0
   },

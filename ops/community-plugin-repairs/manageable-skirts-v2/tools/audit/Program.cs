@@ -30,6 +30,16 @@ foreach(var member in h.MainModule.GetMemberReferences()){
 var calls=b.MainModule.GetMemberReferences().OfType<MethodReference>().Where(m=>m.DeclaringType.Scope.Name==h.Name.Name).ToArray();
 var badCalls=new List<string>();
 foreach(var call in calls){var target=h.MainModule.GetType(call.DeclaringType.FullName)?.Methods.SingleOrDefault(m=>m.FullName==call.FullName);if(target==null||target.HasThis||!target.IsPublic)badCalls.Add(call.FullName);}
+var scopeFailures=new List<string>();var helperNames=new HashSet<string>(All(h.MainModule.Types).Select(t=>t.FullName));var pluginNames=new HashSet<string>(All(b.MainModule.Types).Select(t=>t.FullName));
+foreach(var type in b.MainModule.GetTypeReferences())if(helperNames.Contains(type.FullName)&&(!(type.Scope is AssemblyNameReference reference)||reference.FullName!=h.Name.FullName))scopeFailures.Add("plugin helper TypeRef "+type.FullName+" scope="+type.Scope);
+foreach(var type in h.MainModule.GetTypeReferences())if(pluginNames.Contains(type.FullName))scopeFailures.Add("helper unexpectedly references plugin type "+type.FullName);
+foreach(var call in calls)
+{
+ var target=h.MainModule.GetType(call.DeclaringType.FullName)?.Methods.SingleOrDefault(m=>m.FullName==call.FullName);if(target==null)continue;
+ var actual=new[]{call.ReturnType}.Concat(call.Parameters.Select(p=>p.ParameterType));var expectedTypes=new[]{target.ReturnType}.Concat(target.Parameters.Select(p=>p.ParameterType));
+ foreach(var pair in actual.Zip(expectedTypes))if(pair.First.Namespace!="System"&&pair.First.Scope.Name!=pair.Second.Scope.Name)scopeFailures.Add(call.FullName+" signature scope "+pair.First.FullName+":"+pair.First.Scope+" expected "+pair.Second.Scope);
+ try{if(call.Resolve()?.DeclaringType.Module.Assembly.Name.FullName!=h.Name.FullName)scopeFailures.Add("call resolves outside helper "+call.FullName);}catch(Exception e){scopeFailures.Add("helper call cannot resolve "+call.FullName+":"+e.GetType().Name);}
+}
 var plugin=b.MainModule.GetType("ManageableSkirts.ManageableSkirtsPlugin");
 var reflectionFailures=new List<string>();
 void Require(bool condition,string name){if(!condition)reflectionFailures.Add(name);}
@@ -52,7 +62,7 @@ var added=newRefs.Except(oldRefs).ToArray();var removed=oldRefs.Except(newRefs).
 bool refs=removed.Length==0&&added.Length==1&&added[0].StartsWith("Codex.ManageableSkirtsV2State,",StringComparison.Ordinal);
 bool coneMeshUnchanged=left.Values.Where(m=>new[]{"GetConeMesh","UpdateConeGuideTransform"}.Contains(m.Name)).All(m=>Body(m)==Body(right[m.FullName]));
 bool noPInvoke=All(h.MainModule.Types).SelectMany(t=>t.Methods).All(m=>!m.IsPInvokeImpl);
-bool passed=onlyExpected&&nativeListWrites.Length==0&&helperTransformWrites.Length==0&&unresolved.Count==0&&badCalls.Count==0&&reflectionFailures.Count==0&&refs&&coneMeshUnchanged&&noPInvoke;
+bool passed=onlyExpected&&nativeListWrites.Length==0&&helperTransformWrites.Length==0&&unresolved.Count==0&&badCalls.Count==0&&scopeFailures.Count==0&&reflectionFailures.Count==0&&refs&&coneMeshUnchanged&&noPInvoke;
 string Hash(string p)=>Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(p))).ToLowerInvariant();
-var result=new{passed,originalSha256=Hash(original),candidateSha256=Hash(candidate),helperSha256=Hash(helper),originalMethodCount=left.Count,unchangedMethods=left.Count-changes.Length,changedMethods=changes,onlyElevenExpectedMethodsChanged=onlyExpected,nativeListWrites,helperTransformWrites,helperResolvedGameMembers=resolved,helperUnresolvedMembers=unresolved,helperCallReferences=calls.Select(m=>m.FullName),helperInvalidCalls=badCalls,reflectionFailures,referenceContract=refs,addedReferences=added,removedReferences=removed,coneMeshUnchanged,noHelperPInvoke=noPInvoke,scope="Static IL and installed metadata only. Managed fixture execution and real Unity rendering are separate evidence."};
+var result=new{passed,originalSha256=Hash(original),candidateSha256=Hash(candidate),helperSha256=Hash(helper),originalMethodCount=left.Count,unchangedMethods=left.Count-changes.Length,changedMethods=changes,onlyElevenExpectedMethodsChanged=onlyExpected,nativeListWrites,helperTransformWrites,helperResolvedGameMembers=resolved,helperUnresolvedMembers=unresolved,helperCallReferences=calls.Select(m=>m.FullName),helperInvalidCalls=badCalls,serializedTypeRefScopeFailures=scopeFailures,reflectionFailures,referenceContract=refs,addedReferences=added,removedReferences=removed,coneMeshUnchanged,noHelperPInvoke=noPInvoke,scope="Static IL and installed metadata only. Managed fixture execution and real Unity rendering are separate evidence."};
 File.WriteAllText(report,JsonSerializer.Serialize(result,new JsonSerializerOptions{WriteIndented=true}));Console.WriteLine(JsonSerializer.Serialize(result));if(!passed)Environment.ExitCode=1;

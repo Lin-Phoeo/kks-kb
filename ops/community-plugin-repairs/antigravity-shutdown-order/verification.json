@@ -1,0 +1,55 @@
+{
+  "originalSha256": "99b38b09709e09a65a4e3e78f4f11ba3745ced0e075f8f06476e66fed8a929ab",
+  "candidateSha256": "6ca7290a08415ed9cd88226eaaf13caf3a4b5ac70c66b33617b7a4847e12d913",
+  "original": {
+    "passed": 4,
+    "failed": 11
+  },
+  "candidate": {
+    "passed": 15,
+    "failed": 0
+  },
+  "actualCilMethods": 1,
+  "guardChecks": [
+    "unknown-input",
+    "already-patched",
+    "same-path",
+    "existing-output",
+    "runtime-output",
+    "repository-output",
+    "unknown-probe",
+    "unknown-harmony"
+  ],
+  "changedMethods": [
+    "System.Void AntiGravity.TimelinePhysics::Dispose()"
+  ],
+  "totalMethods": 451,
+  "unchangedMethods": 450,
+  "genuineHarmonyVerified": true,
+  "genuineHarmonyActualCil": {
+    "original": {
+      "passed": 5,
+      "failed": 0,
+      "expectedUnpatchFailure": true
+    },
+    "candidate": {
+      "passed": 9,
+      "failed": 0,
+      "expectedUnpatchFailure": false
+    }
+  },
+  "installed": true,
+  "runtimeVerified": true,
+  "runtimeVerificationScope": "One reference empty-Studio startup and normal process exit; target AntiGravity finalizer-unpatch error absent. No character physics or general console-cleanliness claim.",
+  "referenceRun": {
+    "date": "2026-11-28",
+    "candidateHashReadbackMatched": true,
+    "processExited": true,
+    "normalCloseRequests": 2,
+    "targetUnpatchErrorCount": 0,
+    "otherLegacyConsoleDiagnosticsRemain": true,
+    "temporaryObserversRemoved": true,
+    "additionalCharacterTests": "not performed; user stopped further testing"
+  },
+  "buildToolInstallsOrStartsGame": false
+}
