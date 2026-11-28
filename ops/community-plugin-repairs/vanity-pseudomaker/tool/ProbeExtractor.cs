@@ -7,7 +7,7 @@ internal static class ProbeExtractor
  internal static void Run(string vanity,string pseudo,string fixture,string output)
  {
   string Hash(string path)=>Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(path))).ToLowerInvariant();
-  if(!new[]{"69b355bf1018ab22e55e4ddfd146421b97c66542ad89ed9037c94f8eaa0ee19b","0c05fc9066d39c039358bd79283510efff400ae8ac5b3519398ba34504347d6a","2dc5cb77fff929814e912d42b5a38de85ad9e5cfd99ebd1a1103967b9ef1e24f","6f4271ccb0d92b6745f1cdce91c415d87da224d5a81e758395a43d1538fdc222"}.Contains(Hash(vanity))||Hash(pseudo)!="72e1c3a3dcb2120225f2d2823729cea81b2a2dffc8243de63ac6a4c901061882")throw new InvalidOperationException("Unknown actual IL input identity");
+  if(!new[]{"69b355bf1018ab22e55e4ddfd146421b97c66542ad89ed9037c94f8eaa0ee19b","23f28a4528211bbcdbcb47ad0e2696e4299ae19353747e7b15668bd73313b0c2","0c05fc9066d39c039358bd79283510efff400ae8ac5b3519398ba34504347d6a","2dc5cb77fff929814e912d42b5a38de85ad9e5cfd99ebd1a1103967b9ef1e24f","6961ec6cc0dcc52b0f593dde2f4034056f6734c3ad40420c721b37b7f467b91e","6f4271ccb0d92b6745f1cdce91c415d87da224d5a81e758395a43d1538fdc222"}.Contains(Hash(vanity))||Hash(pseudo)!="72e1c3a3dcb2120225f2d2823729cea81b2a2dffc8243de63ac6a4c901061882")throw new InvalidOperationException("Unknown actual IL input identity");
   if(File.Exists(output))throw new InvalidOperationException("Probe output exists");
   using var a=AssemblyDefinition.ReadAssembly(vanity);using var p=AssemblyDefinition.ReadAssembly(pseudo);using var f=AssemblyDefinition.ReadAssembly(fixture);var module=f.MainModule;
   var helper=a.MainModule.GetType("Codex.VanityCompatibility.PseudoMakerIdentity");

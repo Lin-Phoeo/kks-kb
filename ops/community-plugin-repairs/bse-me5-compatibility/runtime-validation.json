@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-28",
+  "environment": "Reference KKS CharaStudio, Unity 2019.4.9, BepInEx 5",
+  "bsc_sha256": "513a6f88d2e61e80341071dcff3ce2f4c00ebe62f05af2c9838aec9ce25a821a",
+  "bse_sha256": "cf2c8a6b08c5148e2253dd8d6f32563f2320f70a7184b81ae3e80ac1372239dd",
+  "material_editor_sha256": "9e72d250ca262df8a3c3aa93922113e3cdc0103ca1b22ee6cf9c44b04981278b",
+  "passed": 45,
+  "failed": 0,
+  "awake_count": 1,
+  "start_count": 1,
+  "completed": true,
+  "cleaned": true,
+  "observed": [
+    "Exact BSC, BSE and ME assemblies loaded in an empty Studio without characters",
+    "BSE bridge registered and Studio window initialized hidden",
+    "Actual BSE to BSC registration and update passed JIT and private constructor access, with checked mesh deltas and weight",
+    "Production MessagePack SceneBlendShapesData payload written to disk, read back and applied to a fresh synthetic mesh",
+    "Synthetic legacy keys 0 to 5 decoded; absent owner remained null until explicit synthetic item migration",
+    "Four owner union types survived serialization roundtrip",
+    "Actual ME SelectRenderers selection and name filtering reached the BSE bridge",
+    "Same renderer sequence retained selection; changed sequence cleared stale primary and extra selection when filtering was enabled",
+    "Empty selection and release helper cleared the bridge; filter-off helper retained manual selection",
+    "Cached current-object property getter returned the synthetic target",
+    "Target-release Harmony postfix registration verified",
+    "Cleanup restored original renderer and bridge list identities and contents, filter, primary and extra selection and ME target",
+    "Studio user object dictionary and BSC data store remained empty after cleanup; no targeted runtime errors observed"
+  ],
+  "not_verified": [
+    "Full Studio scene PNG save/load",
+    "Maker outfit switching or real clothing/accessory owner migration",
+    "User character/card editing or automatic migration",
+    "Brush interaction, Blender import/export or all-plugin performance",
+    "The target-release original method itself: only its registration and clear helper were exercised",
+    "Normal process exit: coordinated separately from this observer"
+  ]
+}

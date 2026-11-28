@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-28",
+  "upstream_version": "5.7.1",
+  "local_plugin_version": "5.7.1.1",
+  "original_sha256": "d044e20742b7cfdf6dcf9ecf1c10c66a7376dfe263d42c50a33cb8cdbece3743",
+  "candidate_sha256": "4a038039a29d930bd34799cc8c177f76817526bbeba1123f2af833e92aa3b9ec",
+  "checks": 62,
+  "failures": 0,
+  "completed": true,
+  "cleaned": true,
+  "scope": "Actual Unity decoding of synthetic silent WAVs, production save-data capture and LoadV6 roundtrip in an isolated manager, empty native audio window Repaint, state restoration and normal process exit.",
+  "not_verified": [
+    "Full Studio scene PNG disk save/load",
+    "Legacy scene versions in native Unity (covered only by extracted IL tests)",
+    "Playback sound/output quality",
+    "Other media formats",
+    "VideoExport integration",
+    "Long-session performance"
+  ],
+  "retained_failures": [
+    {
+      "stage": "upstream native run",
+      "passed": 53,
+      "failed": 1,
+      "cause": "Fade values lost during asynchronous restore."
+    },
+    {
+      "stage": "candidate expanded native check",
+      "passed": 61,
+      "failed": 1,
+      "cause": "Strict nonnegative trim assertion hit existing float32 -9.313226E-09 rounding. Candidate unchanged; final test records value with1e-6 tolerance."
+    }
+  ],
+  "normal_close_requests": 2,
+  "temporary_observer_removed": true,
+  "preexisting_console_shutdown_warnings_resolved": false
+}

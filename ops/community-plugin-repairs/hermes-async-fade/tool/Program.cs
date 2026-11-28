@@ -1,0 +1,34 @@
+using Mono.Cecil;
+using Mono.Cecil.Cil;
+using System.Security.Cryptography;
+using System.Text.Json;
+if(args.Length!=3)throw new ArgumentException("EXACT_ORIGINAL NEW_OUTPUT GAME_ROOT");
+string Hash(byte[] b)=>Convert.ToHexString(SHA256.HashData(b)).ToLowerInvariant();
+const string originalHash="d044e20742b7cfdf6dcf9ecf1c10c66a7376dfe263d42c50a33cb8cdbece3743";
+if(Hash(File.ReadAllBytes(args[0]))!=originalHash)throw new InvalidOperationException("Unsupported original identity");
+if(File.Exists(args[1])||File.Exists(args[1]+".receipt.json"))throw new InvalidOperationException("Output or receipt exists");
+using var resolver=new DefaultAssemblyResolver();foreach(string d in new[]{"CharaStudio_Data/Managed","BepInEx/core","BepInEx/plugins"})resolver.AddSearchDirectory(Path.Combine(args[2],d));foreach(string d in Directory.GetDirectories(Path.Combine(args[2],"BepInEx/plugins"),"*",SearchOption.AllDirectories))resolver.AddSearchDirectory(d);
+using var a=AssemblyDefinition.ReadAssembly(args[0],new ReaderParameters{AssemblyResolver=resolver});var track=a.MainModule.GetType("TheBirdOfHermes.AudioTrack");
+MethodDefinition Method(string n)=>track.Methods.Single(m=>m.Name==n);
+var fade=Method("ClampFade");var poll=Method("PollAsyncCompletion");
+if(fade.Body.Instructions.Any(i=>i.Operand is MethodReference m&&m.Name=="get_HasAudio"))throw new InvalidOperationException("Unexpected original fade gate");
+var il=fade.Body.GetILProcessor();var first=fade.Body.Instructions.First();var early=Instruction.Create(OpCodes.Ret);
+il.InsertBefore(first,Instruction.Create(OpCodes.Ldarg_0));il.InsertBefore(first,Instruction.Create(OpCodes.Call,Method("get_HasAudio")));il.InsertBefore(first,Instruction.Create(OpCodes.Brtrue,first));il.InsertBefore(first,early);
+var init=poll.Body.Instructions.Single(i=>i.Operand is MethodReference m&&m.Name=="InitFromDecodedData");
+var samples=poll.Body.Instructions.Skip(poll.Body.Instructions.IndexOf(init)+1).First(i=>i.Operand is MethodReference m&&m.Name=="SetSamples");
+if(samples.Next.OpCode!=OpCodes.Br_S)throw new InvalidOperationException("Unexpected decode branch layout");
+var pi=poll.Body.GetILProcessor();var tail=samples;
+foreach(var i in new[]{Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Call,Method("ClampTrim")),Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Call,fade)}){pi.InsertAfter(tail,i);tail=i;}
+foreach(var i in poll.Body.Instructions)if(i.OpCode.OperandType==OperandType.ShortInlineBrTarget)i.OpCode=i.OpCode.Code switch{Code.Br_S=>OpCodes.Br,Code.Brfalse_S=>OpCodes.Brfalse,Code.Brtrue_S=>OpCodes.Brtrue,Code.Beq_S=>OpCodes.Beq,_=>throw new InvalidOperationException("Unexpected short branch")};
+var plugin=a.MainModule.GetType("TheBirdOfHermes.HermesDAW").CustomAttributes.Single(c=>c.AttributeType.FullName=="BepInEx.BepInPlugin");
+if((string)plugin.ConstructorArguments[0].Value!="org.fox.thebirdofhermes"||(string)plugin.ConstructorArguments[2].Value!="5.7.1")throw new InvalidOperationException("Unexpected plugin identity");
+plugin.ConstructorArguments[2]=new CustomAttributeArgument(a.MainModule.TypeSystem.String,"5.7.1.1");
+using var buffer=new MemoryStream();a.Write(buffer);byte[] bytes=buffer.ToArray();using var reread=AssemblyDefinition.ReadAssembly(new MemoryStream(bytes));using var original=AssemblyDefinition.ReadAssembly(args[0]);
+if(Hash(bytes)!="4a038039a29d930bd34799cc8c177f76817526bbeba1123f2af833e92aa3b9ec")throw new InvalidOperationException("Candidate hash changed");
+string Shape(MethodDefinition m){if(!m.HasBody)return "none";string Op(object o)=>o switch{Instruction b=>"#"+m.Body.Instructions.IndexOf(b),Instruction[] bs=>string.Join(",",bs.Select(b=>"#"+m.Body.Instructions.IndexOf(b))),MemberReference r=>r.FullName,_=>o?.ToString()};return string.Join("|",m.Body.Variables.Select(v=>v.VariableType.FullName))+"\n"+string.Join("\n",m.Body.Instructions.Select(i=>i.OpCode.Name+" "+Op(i.Operand)))+"\n"+string.Join("|",m.Body.ExceptionHandlers.Select(h=>h.HandlerType+":"+m.Body.Instructions.IndexOf(h.TryStart)+":"+m.Body.Instructions.IndexOf(h.TryEnd)+":"+m.Body.Instructions.IndexOf(h.HandlerStart)+":"+m.Body.Instructions.IndexOf(h.HandlerEnd)));}
+var before=original.MainModule.GetTypes().SelectMany(t=>t.Methods).ToDictionary(m=>m.FullName);var after=reread.MainModule.GetTypes().SelectMany(t=>t.Methods).ToDictionary(m=>m.FullName);
+var changes=after.Values.Where(m=>before.ContainsKey(m.FullName)&&Shape(m)!=Shape(before[m.FullName])).Select(m=>m.FullName).OrderBy(x=>x).ToArray();
+if(changes.Length!=2||!changes.Contains(fade.FullName)||!changes.Contains(poll.FullName)||!before.Keys.OrderBy(x=>x).SequenceEqual(after.Keys.OrderBy(x=>x)))throw new InvalidOperationException("Unexpected method change scope");
+if(!original.MainModule.AssemblyReferences.Select(r=>r.FullName).SequenceEqual(reread.MainModule.AssemblyReferences.Select(r=>r.FullName)))throw new InvalidOperationException("Unexpected new reference");
+Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(args[1]))!);using(var f=new FileStream(args[1],FileMode.CreateNew))f.Write(bytes);
+var receipt=new{originalHash,candidateHash=Hash(bytes),originalVersion="5.7.1",localVersion="5.7.1.1",changedMethods=changes,unchangedMethods=before.Count-2,noAddedOrRemovedMethods=true,referencesUnchanged=true,installed=false};File.WriteAllText(args[1]+".receipt.json",JsonSerializer.Serialize(receipt,new JsonSerializerOptions{WriteIndented=true}));Console.WriteLine(JsonSerializer.Serialize(receipt));
