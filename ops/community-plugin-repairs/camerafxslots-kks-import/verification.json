@@ -1,0 +1,88 @@
+{
+  "passed": true,
+  "installed": true,
+  "runtimeVerified": true,
+  "runtimeVerificationIsBounded": true,
+  "originalSha256": "432aa2935d257b11d7fff680a2fb357b0ac6cca08f72f9e24780083b28e7685b",
+  "importControlSha256": "0aa7bb2db66b86b4e03251d7506c734e4f3c046fccb9188c36cceddc27d834ef",
+  "candidateSha256": "5cf6b7b8f410055067f81c2c013eeca5f8bf47c5f7117e7ad2745564c0e4cfd8",
+  "actualCil": {
+    "checks": 41,
+    "originalFailures": 26,
+    "importControlFailures": 14,
+    "candidateFailures": 0
+  },
+  "guards": {
+    "unknown": true,
+    "repatch": true,
+    "existing": true,
+    "existingReceipt": true,
+    "inplace": true,
+    "originalAndReceiptPreserved": true,
+    "changedTargetEventSignatureRejected": true,
+    "lifecycleUnknownSource": true,
+    "lifecycleWrongHelper": true,
+    "lifecycleAlreadyPatched": true,
+    "lifecycleExistingOutput": true,
+    "lifecycleExistingReceipt": true,
+    "lifecycleInplace": true
+  },
+  "importPolicy": "Native import retains camera slots; preserve all current FX slots and do not import source camera FX.",
+  "offlineScope": "Actual managed event/data/UI creation methods with synthetic dependencies plus installed API metadata. Lifecycle helper and cloned-FX ownership marker embedded.",
+  "runtime": {
+    "date": "2026-11-28",
+    "run": "Run 9",
+    "candidateSha256": "5cf6b7b8f410055067f81c2c013eeca5f8bf47c5f7117e7ad2745564c0e4cfd8",
+    "moar": {
+      "checks": 58,
+      "failures": 0,
+      "nativeAddDeletePairs": 1,
+      "scope": "One actual installed MoarCamz list-add/AddCameraSlot and DelCameraSlot pair. Confirm inherited owned FX marker, immediate disable, next-frame destruction, exactly one new owned FX control with correct new slot callback, foreign same-name control preservation. Broader replacement/reorder/count/event/layout cases use actual Unity controls on a private inactive clone Canvas; no user scene load.",
+      "originalRootsListenersDataAndLayoutRestored": true
+    },
+    "materials": {
+      "checks": 40,
+      "failures": 0,
+      "sequencingChecks": 2,
+      "materialAndRestorationChecks": 38,
+      "startedAfterMoarFinishedAndPassedPlusOneFrame": true,
+      "nativeNamesPreserved": true,
+      "dofFloatMaxAbsoluteError": 0,
+      "fogFloatMaxAbsoluteError": 0,
+      "colorMaxAbsoluteError": 2.98023224e-8,
+      "restoreTolerance": 1e-6,
+      "scope": "Existing Bokeh and Two Tone Fog item creation, attached private material reads, actual Save/Restore values and visibility, state restoration and owned-object destruction. No GPU/pixel assertion."
+    },
+    "finalSceneEmpty": true,
+    "allOwnedUnityObjectsDestroyed": true,
+    "originalCameraFxSelectionExtendedDataAndConfigPreserved": true,
+    "preCloseErrorFatalCount": 0,
+    "newResourcesInstalled": false,
+    "userSceneFilesReadOrWritten": false,
+    "actualGlobalSceneLoadSaveEventsDispatched": false,
+    "unverified": [
+      "GPU visual or pixel correctness",
+      "Physical mouse interaction",
+      "User scene disk save/load/import roundtrip",
+      "Arbitrary hot-unload behavior",
+      "All third-party plugin combinations"
+    ]
+  },
+  "runtimeHistory": [
+    {
+      "runs": "Run 6 and Run 7",
+      "candidate": "import control 0aa7",
+      "checksEach": 37,
+      "failuresEach": 3,
+      "cause": "Observer compared detached construction material instead of renderer.material clone and compared input color literals against Unity converted readback. Original failures retained; business Save/Restore code was not changed to hide them."
+    },
+    {
+      "run": "Run 8",
+      "candidateSha256": "0aa7bb2db66b86b4e03251d7506c734e4f3c046fccb9188c36cceddc27d834ef",
+      "checks": 38,
+      "failures": 0,
+      "scope": "Corrected attached-material observer baseline only; does not prove final lifecycle repair."
+    }
+  ],
+  "scope": "Offline exact-input validation plus separately bounded installed KKS Run9 native Moar/UI/material observations. No GPU or real user scene disk-roundtrip claim."
+}
