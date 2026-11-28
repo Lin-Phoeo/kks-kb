@@ -1,0 +1,11 @@
+# SoftFlesh诊断计时器的可选停用步骤
+
+SoftFlesh1.1.0的Awake无条件调用SFStallSpy.Apply，先于配置绑定。它给其它组件LateUpdate增加计时和字典统计，并监视资源卸载与Canvas更新，没有配置开关。此工具只将准确Awake调用的5字节替换为NOP，目标静态方法无参数、返回void，因此不改变栈；原日志初始化、其余Awake指令、异常区域与OnDestroy/Remove保持。
+
+支持准确KKS原件`4ef0d800e979a0b597d95dfadee41d546fd17fef8936d9ec3b007bcddf337cf1`，以及同级Camera步骤产物`2830695d778ae6b6c99d66aa4d63825efa26d6cbd8ff0eebf5e782877d409c2b`。后者生成camera+spy阶段`7f6786bbfc8a97bf224472d91d9c99b1cb73a9ba5c71a8a96af9a3843723313b`；该阶段仍未含Timeline门，不能当最终组合产物。请通过相邻`physics-camera-delegate-compatibility/run.py`统一生成和验证。
+
+原535方法只Awake改变；完整PE仅该5字节范围内3个原非零字节改变，其它字节全同。实际Awake前段与Remove提取到自造logger/Harmony夹具，原8/0预期Apply1、候选8/0预期Apply0；Remove空状态、不重复取消和原异常合同通过。未修改其它Harmony owner、不新增每帧补丁或全局关闭日志。
+
+这只移除诊断启用，不证明帧率提高或物理功能完全正常。首版静态保护把Awake后半段无关catch也拒绝，已根据准确偏移修为检查调用本身是否在异常区/分支目标；原catch仍保持。公开目录不包含作者DLL或完整源码，变换工具本身不执行安装。
+
+该步骤随后包含在组合候选的真实空Studio验收中：64项定向检查通过，实际Harmony诊断owner不存在、stall-spy日志0。正常窗口关闭后进程退出，既有控制台InvalidHandle错误另记，不归入该诊断修复。仍未量测帧率收益；详细范围见相邻组合修复README。
