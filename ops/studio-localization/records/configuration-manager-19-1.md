@@ -14,4 +14,4 @@ A coordinated empty-Studio run completed 45 checks with no failures against the 
 
 This does not verify physical typing, enum dropdown interaction, tooltip pixels, scrolling, expand/collapse, font switching, AniMorph row width, slider clipping, PerspectiveX's window or every plugin combination. Those should remain explicit follow-up checks. The native test changed no font preference or ConfigEntry. Roll back the manager and both helpers together; preserve user configuration and dictionaries. Generated DLL hashes are build artifacts and must be independently verified after rebuilding with another toolchain or path.
 
-A new distributable must use a new version identifier such as 0.3.0-rc.3-cm19.1; do not overwrite or republish the prior rc.2 artifact. The package builder's legacy default requires an explicit --version for this candidate.
+A new distributable must use a new version identifier such as 0.3.0-rc.3-cm19.1; do not overwrite or republish the prior rc.2 artifact. The package builder now defaults to 0.3.0-rc.3-cm19.1; release automation should still pass --version explicitly.
