@@ -61,7 +61,7 @@ public static class ProbeEnv{
  public static string ReadHash(){HashReads++;return Hash;}
 }
 public static class Program{
- public static int Main(string[]args){bool repaired=args[0]=="candidate";string scenario=args[1];if(scenario=="legacy")ProbeEnv.Version="1.5.1.1";if(scenario=="unknown")ProbeEnv.Hash=new string('0',64);if(scenario=="wrong-guid")ProbeEnv.Guid="wrong.guid";
+ public static int Main(string[]args){bool repaired=args[0]=="candidate";string scenario=args[1];if(scenario=="legacy")ProbeEnv.Version="1.5.1.1";if(scenario=="unknown")ProbeEnv.Hash=new string('0',64);if(scenario=="wrong-guid")ProbeEnv.Guid="wrong.guid";if(scenario=="future")ProbeEnv.Version="1.5.3.0";
  var checks=new List<object>();void Check(bool pass,string name){checks.Add(new{name,passed=pass});if(!pass)throw new Exception(name);}
  Freelancer604.Wardrobe.WardrobePseudoMakerGuards.EnsureInstalled();bool wanted=scenario=="legacy"||repaired&&scenario=="current";
  Check(Freelancer604.Wardrobe.WardrobePseudoMakerGuards.installed==wanted,"exact supported build is the only extra permitted version");

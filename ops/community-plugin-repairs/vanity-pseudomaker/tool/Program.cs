@@ -8,6 +8,7 @@ string Hash(string path)=>Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(
 string inputHash=Hash(args[0]);
 var identities=new Dictionary<string,(string guid,string original,string patched,string output)>{
  ["69b355bf1018ab22e55e4ddfd146421b97c66542ad89ed9037c94f8eaa0ee19b"]=("com.freelancer604.wardrobe","1.11.7","1.11.7.1","2dc5cb77fff929814e912d42b5a38de85ad9e5cfd99ebd1a1103967b9ef1e24f"),
+ ["23f28a4528211bbcdbcb47ad0e2696e4299ae19353747e7b15668bd73313b0c2"]=("com.freelancer604.wardrobe","1.11.9","1.11.9.1","6961ec6cc0dcc52b0f593dde2f4034056f6734c3ad40420c721b37b7f467b91e"),
  ["0c05fc9066d39c039358bd79283510efff400ae8ac5b3519398ba34504347d6a"]=("com.freelancer604.makeup","1.0.3","1.0.3.1","6f4271ccb0d92b6745f1cdce91c415d87da224d5a81e758395a43d1538fdc222")};
 if(!identities.TryGetValue(inputHash,out var identity)||Hash(args[1])!="72e1c3a3dcb2120225f2d2823729cea81b2a2dffc8243de63ac6a4c901061882")throw new InvalidOperationException("Unknown Vanity or PseudoMaker identity");
 if(File.Exists(args[3])||File.Exists(args[3]+".receipt.json"))throw new InvalidOperationException("Output must be new");

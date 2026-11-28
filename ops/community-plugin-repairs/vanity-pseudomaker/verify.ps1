@@ -16,11 +16,17 @@ $cecil=(Resolve-Path -LiteralPath $CecilPath).Path
 $artifacts=[IO.Path]::GetFullPath($ArtifactsPath)
 if(Test-Path -LiteralPath $artifacts){throw 'ArtifactsPath must not already exist.'}
 if($artifacts.StartsWith([IO.Path]::GetFullPath($PSScriptRoot)+[IO.Path]::DirectorySeparatorChar,[StringComparison]::OrdinalIgnoreCase)){throw 'Keep local artifacts outside public source.'}
+$dressCandidates=@{
+    '69b355bf1018ab22e55e4ddfd146421b97c66542ad89ed9037c94f8eaa0ee19b'='2dc5cb77fff929814e912d42b5a38de85ad9e5cfd99ebd1a1103967b9ef1e24f'
+    '23f28a4528211bbcdbcb47ad0e2696e4299ae19353747e7b15668bd73313b0c2'='6961ec6cc0dcc52b0f593dde2f4034056f6734c3ad40420c721b37b7f467b91e'
+}
+$dressHash=(Get-FileHash -LiteralPath $dress).Hash.ToLowerInvariant()
+if(!$dressCandidates.ContainsKey($dressHash)){throw 'Unsupported Dress-Up input identity.'}
 $expected=@{
-    Dress='69b355bf1018ab22e55e4ddfd146421b97c66542ad89ed9037c94f8eaa0ee19b'
+    Dress=$dressHash
     Makeup='0c05fc9066d39c039358bd79283510efff400ae8ac5b3519398ba34504347d6a'
     Pseudo='72e1c3a3dcb2120225f2d2823729cea81b2a2dffc8243de63ac6a4c901061882'
-    DressPatched='2dc5cb77fff929814e912d42b5a38de85ad9e5cfd99ebd1a1103967b9ef1e24f'
+    DressPatched=$dressCandidates[$dressHash]
     MakeupPatched='6f4271ccb0d92b6745f1cdce91c415d87da224d5a81e758395a43d1538fdc222'
 }
 if((Get-FileHash -LiteralPath $dress).Hash.ToLowerInvariant() -ne $expected.Dress -or (Get-FileHash -LiteralPath $makeup).Hash.ToLowerInvariant() -ne $expected.Makeup -or (Get-FileHash -LiteralPath $pseudo).Hash.ToLowerInvariant() -ne $expected.Pseudo){throw 'Unsupported input identity.'}
@@ -48,7 +54,7 @@ foreach($item in $items){
         & dotnet $tool --extract $input $pseudo $fixture $probe
         if($LASTEXITCODE -ne 0){throw 'Actual IL extraction failed.'}
         Copy-Item -LiteralPath ([IO.Path]::ChangeExtension($fixture,'runtimeconfig.json')) -Destination ([IO.Path]::ChangeExtension($probe,'runtimeconfig.json'))
-        foreach($scenario in @('current','legacy','unknown','wrong-guid')){
+        foreach($scenario in @('current','legacy','unknown','wrong-guid','future')){
             $report=Join-Path $artifacts ($item.label+'-'+$mode+'-'+$scenario+'.json')
             & dotnet $probe $mode $scenario $report $item.label
             if($LASTEXITCODE -ne 0){throw 'Actual IL regression failed.'}
@@ -73,5 +79,5 @@ try{$cleanupAuthorityAbsent=$null -eq $metadata.MainModule.GetType('Freelancer60
 if(!$cleanupAuthorityAbsent){throw 'Unexpected cleanup authority in reviewed Free host.'}
 $summary=[ordered]@{passed=$true;receipts=$receipts;scenarioRuns=$reports.Count;checks=($reports|Measure-Object -Property checks -Sum).Sum;results=$reports;refusals=$refusals;reviewedFreeHostCleanupAuthorityAbsent=$cleanupAuthorityAbsent;inputsUnchanged=$true;installed=$false;scope='Actual Vanity gate/guard and installed PseudoMaker UI/trim CIL using synthetic discovery/hash/native UI/reservation storage. No real Unity, saved content or cleanup moves.'}
 [IO.File]::WriteAllText((Join-Path $artifacts 'verification-summary.json'),($summary|ConvertTo-Json -Depth 10),[Text.UTF8Encoding]::new($false))
-Write-Output 'PASS: two exact candidates, 178 actual-IL checks, four refusals, absent cleanup authority and preserved inputs.'
+Write-Output ('PASS: two exact candidates, ' + $summary.checks + ' actual-IL checks, four refusals, absent cleanup authority and preserved inputs.')
 $global:LASTEXITCODE=0
