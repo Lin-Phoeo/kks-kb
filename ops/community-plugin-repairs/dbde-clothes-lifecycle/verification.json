@@ -1,0 +1,15 @@
+{
+  "scope": "Exact-input offline repair; actual CIL with synthetic collaborators",
+  "original_sha256": "baa0fcc5c5658182385eb59694e34f5264fd68d87a2885b1ec91f15ee1d98f19",
+  "candidate_sha256": "981b4d5137f3884e84fe9490874eebfe4e91671e036237239b9b847c4716bbb2",
+  "actual_cil_methods": 3,
+  "original": {"passed": 6, "failed": 16},
+  "candidate": {"passed": 22, "failed": 0},
+  "refusal_checks": 7,
+  "original_methods": 619,
+  "modified_methods": 2,
+  "unchanged_methods": 617,
+  "metadata_and_resources_verified_after_serialization": true,
+  "installed": false,
+  "game_character_validation": "pending independent review and separately authorized installation"
+}

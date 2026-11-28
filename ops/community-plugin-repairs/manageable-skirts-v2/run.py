@@ -99,15 +99,15 @@ def main() -> None:
         raise RuntimeError("Patcher refusal failed")
     baseline = json.loads((output / "baseline.json").read_text(encoding="utf-8"))
     current = json.loads((output / "candidate.json").read_text(encoding="utf-8"))
-    if baseline["checks"] != 33 or sum(row["passed"] for row in baseline["results"]) != 8:
+    if baseline["checks"] != 43 or sum(row["passed"] for row in baseline["results"]) != 9:
         raise RuntimeError("Unexpected baseline; do not count loading errors as expected failures")
-    if current["checks"] != 33 or not all(row["passed"] for row in current["results"]):
+    if current["checks"] != 43 or not all(row["passed"] for row in current["results"]):
         raise RuntimeError("Candidate behavior failed")
     result = {
         "schemaVersion": 1, "passed": True, "installed": False, "runtimeVerified": False,
         "originalSha256": EXPECTED, "candidateSha256": sha(candidate), "helperSha256": sha(helper),
-        "baseline": {"checks": 33, "passed": 8, "failed": 25, "exitCode": 1},
-        "candidate": {"checks": 33, "passed": 33, "failed": 0, "exitCode": 0},
+        "baseline": {"checks": 43, "passed": 9, "failed": 34, "exitCode": 1},
+        "candidate": {"checks": 43, "passed": 43, "failed": 0, "exitCode": 0},
         "guards": guards,
         "limitation": "Real DLL managed methods against synthetic dependencies and installed metadata. No Unity native execution, installation or configuration writes.",
     }
