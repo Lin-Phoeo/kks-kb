@@ -6,6 +6,13 @@
   "originalSha256": "432aa2935d257b11d7fff680a2fb357b0ac6cca08f72f9e24780083b28e7685b",
   "importControlSha256": "0aa7bb2db66b86b4e03251d7506c734e4f3c046fccb9188c36cceddc27d834ef",
   "candidateSha256": "5cf6b7b8f410055067f81c2c013eeca5f8bf47c5f7117e7ad2745564c0e4cfd8",
+  "reproducibility": {
+    "currentPublicSourceFullBuildPassed": true,
+    "copiedSourceOutsideGitFullBuildPassed": true,
+    "bothCandidateSha256Match": true,
+    "candidateWrittenOnlyAfterExactInMemoryShaCheck": true,
+    "limitation": "Verified with recorded local SDK and explicit game dependencies; different compilers or target APIs still require validation. Helper PDB/SourceLink identity is not included as an independent deployed assembly."
+  },
   "actualCil": {
     "checks": 41,
     "originalFailures": 26,
@@ -57,6 +64,10 @@
     "allOwnedUnityObjectsDestroyed": true,
     "originalCameraFxSelectionExtendedDataAndConfigPreserved": true,
     "preCloseErrorFatalCount": 0,
+    "processExitedNormally": true,
+    "normalCloseRequests": 2,
+    "temporaryObserversRemoved": true,
+    "wholeShutdownLogClaim": "Normal process exit confirmed. Historical console InvalidHandle and JobTempAlloc messages remain separately recorded; no claim that the entire shutdown log is warning-free.",
     "newResourcesInstalled": false,
     "userSceneFilesReadOrWritten": false,
     "actualGlobalSceneLoadSaveEventsDispatched": false,
