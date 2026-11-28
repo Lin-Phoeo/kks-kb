@@ -68,6 +68,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--artifacts', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
-    parser.add_argument('--version', default='0.3.0-rc.2')
+    parser.add_argument('--version', default='0.3.0-rc.3-cm19.1')
     args = parser.parse_args()
     print(json.dumps(build(args.artifacts.resolve(), args.output.resolve(), args.version), ensure_ascii=False, indent=2))
