@@ -16,13 +16,13 @@ using UnityEngine.SceneManagement;
 
 namespace Codex.StudioConfigLocalization
 {
-    [BepInPlugin(Guid, "Studio Configuration Chinese Display", "1.0.1")]
+    [BepInPlugin(Guid, "Studio Configuration Chinese Display", "1.0.2")]
     [BepInProcess("CharaStudio")]
     [BepInDependency("com.bepis.bepinex.configurationmanager", BepInDependency.DependencyFlags.HardDependency)]
     public sealed class Plugin : BaseUnityPlugin
     {
         private const string Guid = "codex.studio.configuration.chinese.display";
-        private const string ManagerHash = "91b1c972d397df93681c197f77badcbfcd39f8957e200eaf7ee989cbbf74636c";
+        private const string ManagerHash = "143bb25e8f03ed8728224de0b72752de29c0962ff69d20ec685831ec7491b323";
         private const BindingFlags All = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
         private static TranslationCatalog _catalog;
         private static PropertyInfo _entry;

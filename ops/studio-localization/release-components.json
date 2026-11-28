@@ -13,7 +13,7 @@
     },
     "configuration_manager": {
       "sha256": [
-        "91b1c972d397df93681c197f77badcbfcd39f8957e200eaf7ee989cbbf74636c"
+        "143bb25e8f03ed8728224de0b72752de29c0962ff69d20ec685831ec7491b323"
       ],
       "paths": [
         "BepInEx/plugins/ConfigurationManager/ConfigurationManager.dll"
@@ -103,14 +103,15 @@
     },
     {
       "artifact": "Codex.StudioConfigLocalization.dll",
-      "sha256": "9e936202e6671f85572e4f9667fa21de2ab2831a1d285efa5066b2db3284acb6",
+      "sha256": "ee16d852accf1ada082d385138dd9c7984da26e525583d3bb76d22c867e0e0b9",
       "destination": "BepInEx/plugins/Codex.StudioConfigLocalization.dll",
       "kind": "helper",
       "source": "components/Codex.StudioConfigLocalization.dll",
       "replace_sha256": [
         "c8e70625cdd8a1ac4c2b927260540dcdacc3b0a75f743aaf71f1a9822f119cd9",
         "5e2b72cccd0cb5e6f23c7fadacf8a372eafe5ceab1c1202e1710c8bd60c3b837",
-        "268e235b245506b011a0532ea8addc04a26550978daa09a4cfc2d4c7b1c02ca1"
+        "268e235b245506b011a0532ea8addc04a26550978daa09a4cfc2d4c7b1c02ca1",
+        "9e936202e6671f85572e4f9667fa21de2ab2831a1d285efa5066b2db3284acb6"
       ],
       "requires": [
         "configuration_manager"
@@ -187,14 +188,15 @@
       "artifact": "Codex.StudioAniMorphLayoutCompat.dll",
       "source": "components/Codex.StudioAniMorphLayoutCompat.dll",
       "destination": "BepInEx/plugins/Codex.StudioAniMorphLayoutCompat.dll",
-      "sha256": "f639b818afe3cffc3998df36575ab646df5383ea72a4f545787d1c3dbc914ac9",
+      "sha256": "afdfcfc89989281c3a6bc57d20d6d004b640ec6f58518aa9192062bc27b53742",
       "kind": "helper",
       "requires": [
         "animorph",
         "configuration_manager"
       ],
       "replace_sha256": [
-        "5aab51321ca167fa3172d0bf0958ecb9a9b5b9a44eb0da9979382f2e3d595f1e"
+        "5aab51321ca167fa3172d0bf0958ecb9a9b5b9a44eb0da9979382f2e3d595f1e",
+        "f639b818afe3cffc3998df36575ab646df5383ea72a4f545787d1c3dbc914ac9"
       ]
     },
     {
