@@ -1,0 +1,95 @@
+{
+  "checks": {
+    "camera-original": {
+      "checks": 22,
+      "failed": 13
+    },
+    "camera-final": {
+      "checks": 22,
+      "failed": 0
+    },
+    "spy-original": {
+      "checks": 8,
+      "failed": 0,
+      "expectedApplyCount": 1
+    },
+    "spy-final": {
+      "checks": 8,
+      "failed": 0,
+      "expectedApplyCount": 0
+    },
+    "timeline-readiness": {
+      "checks": 40,
+      "failed": 0,
+      "scope": "Actual original and final EnsureReady plus final injected helper; UI/bridge collaborators synthetic"
+    },
+    "mono-LiquidFluid.KKS.dll": {
+      "checks": 4,
+      "failed": 0,
+      "scope": "actual final helper and EnsureReady called with empty Chainloader registry; no plugin instantiated"
+    },
+    "mono-SoftFlesh.KKS.dll": {
+      "checks": 4,
+      "failed": 0,
+      "scope": "actual final helper and EnsureReady called with empty Chainloader registry; no plugin instantiated"
+    }
+  },
+  "refusal_checks": [
+    "unknown-input",
+    "repatch",
+    "in-place",
+    "overwrite",
+    "live-output",
+    "repo-output",
+    "timeline-wrong-stage",
+    "spy-repatch"
+  ],
+  "final_sha256": {
+    "LiquidFluid.KKS.dll": "5df105e5b4e6d5db59473a1a99fa5d3b9c0c1a027fb48cc2f676b19f18a98ae8",
+    "SoftFlesh.KKS.dll": "716cef2c94ee9680ca39db8102e8c258dd735708980a801c22f4859921a7f7a6"
+  },
+  "originals_unchanged": true,
+  "installed": true,
+  "unity_runtime_verified": true,
+  "scope": "Private offline transformation + actual CIL synthetic tests + installed game Mono binding; not Unity functional/runtime UI validation",
+  "limitations": [
+    "Panel-hover camera blocking intentionally disabled for these two plugins; all other original functional methods preserved except exact diagnostic activation and Timeline readiness gate",
+    "Readiness fixture has3 intentional private-field reflection warnings; builds otherwise passed.",
+    "Public source scope check currently has one unrelated existing memorax file violation; publishing must exclude it."
+  ],
+  "unity_runtime_scope": "One emptyStudio run only, no characters/user scenes/effect targets or physical shortcut validation",
+  "runtime": {
+    "status": "passed_empty_studio_native_ui_lifecycle_scope",
+    "checks": 64,
+    "failures": 0,
+    "complete": true,
+    "cleanup_completed": true,
+    "single_execution": true,
+    "liquid_draws": 4,
+    "soft_draws": 4,
+    "process_exited": true,
+    "normal_close_requests": 2,
+    "observer_quit": true,
+    "observer_destroy": true,
+    "observer_removed": true,
+    "gate_absent": true,
+    "startup_error_headers": 0,
+    "final_error_headers": 10,
+    "final_fatal_headers": 0,
+    "stack_overflow_count": 0,
+    "timeline_early_nre": false,
+    "stall_spy_logs": 0,
+    "character_effects_tested": false,
+    "physical_hotkeys_tested": false,
+    "limitation": "Two plugin panels no longer suppress camera motion on hover; character effects and physical shortcuts not tested. Shutdown errors separately classified.",
+    "shutdown_error_categories": {
+      "InvalidHandle": 10
+    },
+    "actual_on_gui_draws": {
+      "liquid": 4,
+      "soft": 4
+    },
+    "target_exit_callbacks_directly_instrumented": false
+  },
+  "full_functionality_verified": false
+}
