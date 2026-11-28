@@ -1,0 +1,16 @@
+{
+  "originalSha256": "ea95a650360cd7f54c1905276afc3afa4829e2e4bf01d7ffb0b2900924c42cae",
+  "candidateSha256": "30e35088ec27b94209459a4c63a0f1468f488496bf176147ef61a49a85817b25",
+  "actualCilMethods": 17,
+  "original": {"checks": 33, "passed": 22, "failed": 11},
+  "candidate": {"checks": 33, "passed": 33, "failed": 0},
+  "refusalChecks": 7,
+  "originalMethods": 510,
+  "changedMethods": 2,
+  "unchangedMethods": 508,
+  "newAssemblyReferences": 0,
+  "installed": false,
+  "runtimeVerified": false,
+  "missingMaterialResourcesRestored": false,
+  "scope": "Processed-call status and snapshot refresh; a normal return from the original reflection wrapper is not proof of target API success. Target material/controller/reflection collaborators are synthetic. No user content or live game."
+}

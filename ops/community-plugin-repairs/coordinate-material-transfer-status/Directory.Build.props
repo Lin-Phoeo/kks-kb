@@ -1,0 +1,1 @@
+<Project><PropertyGroup><Deterministic>true</Deterministic><EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries><EnableSourceLink>false</EnableSourceLink><DebugType>portable</DebugType><PathMap>$(MSBuildThisFileDirectory)=/_/coordinate-material-transfer-status/,$(ArtifactsPath)=/_/coordinate-artifacts/</PathMap></PropertyGroup></Project>
