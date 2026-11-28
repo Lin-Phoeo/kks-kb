@@ -1,0 +1,34 @@
+{
+  "originalSha256": "864b641f5458b8099980f7ced378e1df7023fe60b70195f8de6272dee3d790d0",
+  "candidateSha256": "2fdf17fb9a2d2748c489bae3e80464d286adf237702183f405d51c81a42f1c14",
+  "actualCilMethods": 1,
+  "original": {
+    "checks": 10,
+    "passed": 8,
+    "failed": 2
+  },
+  "candidate": {
+    "checks": 10,
+    "passed": 10,
+    "failed": 0
+  },
+  "originalMethods": 302,
+  "changedMethods": 1,
+  "unchangedMethods": 301,
+  "newAssemblyReferences": 0,
+  "refusalChecks": 7,
+  "installed": true,
+  "runtimeVerified": true,
+  "scope": "Actual ObjectsSelected callback with synthetic game collaborators; only empty-list early return before First, last focus retained. No rendering or real selection event proof.",
+  "runtime": {
+    "checks": 26,
+    "failed": 0,
+    "callbacks": 3,
+    "emptyCallbacks": 1,
+    "callbackExceptions": 0,
+    "temporaryObjects": "one native Folder plus one temporary non-scene focus Transform",
+    "normalShutdownObserved": true,
+    "temporaryObserverRemoved": true,
+    "scope": "Native selection event and retained focus; scene/history/indices/changes/camera/cursor/config restored. No character hierarchy or rendering quality test."
+  }
+}
