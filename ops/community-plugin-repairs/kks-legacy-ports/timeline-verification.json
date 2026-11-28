@@ -1,0 +1,105 @@
+{
+  "passed": true,
+  "installed": false,
+  "runtimeVerified": false,
+  "originalSha256": "36daa827fccce2165297a0944dd4087c59ebdc02a12fa077f8739bf61eea2775",
+  "candidateSha256": "b96ca0ab518a98bd1039c1aeb1aace0628c937c9448aa9c2b00544bc5717f754",
+  "resolvedMembers": 279,
+  "unresolvedMembers": 0,
+  "declaredHarmonyTargets": [
+    {
+      "patch": "System.Void TimelinePOVSwitchX.TimelinePOVSwitchX::TimelinePlayPrefix()",
+      "target": "Timeline.Timeline",
+      "name": "Play",
+      "parameterTypes": null,
+      "matchedMethods": [
+        "System.Void Timeline.Timeline::Play()"
+      ],
+      "handlers": [
+        "System.Void TimelinePOVSwitchX.TimelinePOVSwitchX::TimelinePlayPrefix()"
+      ],
+      "valid": true,
+      "errors": []
+    },
+    {
+      "patch": "System.Void TimelinePOVSwitchX.TimelinePOVSwitchX::TimelinePlayPostfix()",
+      "target": "Timeline.Timeline",
+      "name": "Play",
+      "parameterTypes": null,
+      "matchedMethods": [
+        "System.Void Timeline.Timeline::Play()"
+      ],
+      "handlers": [
+        "System.Void TimelinePOVSwitchX.TimelinePOVSwitchX::TimelinePlayPostfix()"
+      ],
+      "valid": true,
+      "errors": []
+    },
+    {
+      "patch": "System.Void TimelinePOVSwitchX.TimelinePOVSwitchX::TimelinePausePostfix()",
+      "target": "Timeline.Timeline",
+      "name": "Pause",
+      "parameterTypes": null,
+      "matchedMethods": [
+        "System.Void Timeline.Timeline::Pause()"
+      ],
+      "handlers": [
+        "System.Void TimelinePOVSwitchX.TimelinePOVSwitchX::TimelinePausePostfix()"
+      ],
+      "valid": true,
+      "errors": []
+    },
+    {
+      "patch": "System.Void TimelinePOVSwitchX.TimelinePOVSwitchX::TimelineStopPostfix()",
+      "target": "Timeline.Timeline",
+      "name": "Stop",
+      "parameterTypes": null,
+      "matchedMethods": [
+        "System.Void Timeline.Timeline::Stop()"
+      ],
+      "handlers": [
+        "System.Void TimelinePOVSwitchX.TimelinePOVSwitchX::TimelineStopPostfix()"
+      ],
+      "valid": true,
+      "errors": []
+    },
+    {
+      "patch": "System.Void TimelinePOVSwitchX.TimelinePOVSwitchX::StudioSceneLoadPrefix(System.String)",
+      "target": "Studio.SceneInfo",
+      "name": "Load",
+      "parameterTypes": [
+        "System.String"
+      ],
+      "matchedMethods": [
+        "System.Boolean Studio.SceneInfo::Load(System.String)"
+      ],
+      "handlers": [
+        "System.Void TimelinePOVSwitchX.TimelinePOVSwitchX::StudioSceneLoadPrefix(System.String)"
+      ],
+      "valid": true,
+      "errors": []
+    },
+    {
+      "patch": "System.Void TimelinePOVSwitchX.TimelinePOVSwitchX::TimelineUpdateCursorPostfix()",
+      "target": "Timeline.Timeline",
+      "name": "UpdateCursor2",
+      "parameterTypes": null,
+      "matchedMethods": [
+        "System.Void Timeline.Timeline::UpdateCursor2()"
+      ],
+      "handlers": [
+        "System.Void TimelinePOVSwitchX.TimelinePOVSwitchX::TimelineUpdateCursorPostfix()"
+      ],
+      "valid": true,
+      "errors": []
+    }
+  ],
+  "mouth": null,
+  "guards": {
+    "unknown": true,
+    "repatch": true,
+    "inplace": true,
+    "existing": true
+  },
+  "scope": "Metadata plus explicit synthetic actual-CIL mouth test when applicable. No Unity native or live plugin execution. Harmony owner registration, voice data coverage and Timeline camera behavior remain runtime gates."
+}

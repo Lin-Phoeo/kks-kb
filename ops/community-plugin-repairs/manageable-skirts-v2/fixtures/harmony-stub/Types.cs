@@ -1,0 +1,1 @@
+namespace HarmonyLib; public class Harmony {public void UnpatchSelf(){}} public class HarmonyPatch:Attribute{public HarmonyPatch(Type t,string n){}} public class HarmonyPostfix:Attribute{}

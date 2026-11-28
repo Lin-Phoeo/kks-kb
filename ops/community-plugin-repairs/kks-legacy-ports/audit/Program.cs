@@ -1,0 +1,24 @@
+using Mono.Cecil;using System.Text.Json;using System.Security.Cryptography;
+var game=args[0];var output=args[1];var candidates=args.Skip(2).ToArray();
+var all=new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase);
+foreach(var root in new[]{"CharaStudio_Data/Managed","BepInEx/core","BepInEx/plugins"})foreach(var file in Directory.GetFiles(Path.Combine(game,root),"*.dll",SearchOption.AllDirectories))try{using var a=AssemblyDefinition.ReadAssembly(file);all.TryAdd(a.Name.Name,file);}catch(BadImageFormatException){}
+using var resolver=new Resolver(all);var rp=new ReaderParameters{AssemblyResolver=resolver};
+IEnumerable<TypeDefinition> Types(IEnumerable<TypeDefinition> ts){foreach(var t in ts){yield return t;foreach(var s in Types(t.NestedTypes))yield return s;}}
+var results=new List<object>();
+foreach(var input in candidates){using var a=AssemblyDefinition.ReadAssembly(input,rp);var ms=new List<object>();foreach(var m in a.MainModule.GetMemberReferences()){
+ var scope=m.DeclaringType.Scope.Name;if(scope.StartsWith("System")||scope=="mscorlib")continue;try{IMemberDefinition def=m is MethodReference mr?mr.Resolve():m is FieldReference fr?fr.Resolve():null;ms.Add(new{member=m.FullName,scope,resolved=def?.FullName,source=def?.DeclaringType.Module.FileName,error=(string)null});}catch(Exception e){ms.Add(new{member=m.FullName,scope,resolved=(string)null,source=(string)null,error=e.Message});}}
+ var attrs=Types(a.MainModule.Types).SelectMany(t=>t.CustomAttributes.Where(c=>c.AttributeType.FullName.StartsWith("BepInEx.BepIn")).Select(c=>new{type=t.FullName,attribute=c.AttributeType.FullName,args=c.ConstructorArguments.Select(x=>x.Value?.ToString())})).ToArray();
+ var patches=new List<object>();
+ foreach(var type in Types(a.MainModule.Types))foreach(var provider in new ICustomAttributeProvider[]{type}.Concat(type.Methods))foreach(var attr in provider.CustomAttributes.Where(c=>c.AttributeType.FullName=="HarmonyLib.HarmonyPatch")){
+  var target=attr.ConstructorArguments.Select(x=>x.Value).OfType<TypeReference>().FirstOrDefault();var name=attr.ConstructorArguments.Where(x=>x.Type.FullName=="System.String").Select(x=>(string)x.Value).FirstOrDefault();
+  var parameterTypes=attr.ConstructorArguments.Select(x=>x.Value).OfType<CustomAttributeArgument[]>().FirstOrDefault()?.Select(x=>((TypeReference)x.Value).FullName).ToArray();
+  var handlers=provider is MethodDefinition md?new[]{md}:type.Methods.Where(m=>m.Name=="Prefix"||m.Name=="Postfix"||m.CustomAttributes.Any(c=>c.AttributeType.FullName=="HarmonyLib.HarmonyPrefix"||c.AttributeType.FullName=="HarmonyLib.HarmonyPostfix")).ToArray();
+  var errors=new List<string>();var matches=Array.Empty<MethodDefinition>();
+  try{matches=target.Resolve().Methods.Where(m=>m.Name==name&&(parameterTypes==null||m.Parameters.Select(p=>p.ParameterType.FullName).SequenceEqual(parameterTypes))).ToArray();}catch(Exception e){errors.Add(e.Message);}
+  if(matches.Length!=1)errors.Add("Target match count="+matches.Length);
+  if(matches.Length==1)foreach(var handler in handlers)foreach(var parameter in handler.Parameters){var n=parameter.Name;var pt=parameter.ParameterType is ByReferenceType br?br.ElementType.FullName:parameter.ParameterType.FullName;var method=matches[0];if(n=="__instance"){if(method.IsStatic||pt!="System.Object"&&pt!=method.DeclaringType.FullName)errors.Add("Invalid __instance");}else if(n=="__result"){if(method.ReturnType.FullName=="System.Void"||pt!=method.ReturnType.FullName)errors.Add("Invalid __result");}else if(n=="__state"){}else{var actual=method.Parameters.FirstOrDefault(x=>x.Name==n);if(actual==null||actual.ParameterType.FullName!=pt)errors.Add("Unmatched parameter "+n);}}
+  patches.Add(new{patch=provider is MethodDefinition methodDef?methodDef.FullName:type.FullName,target=target?.FullName,name,parameterTypes,matchedMethods=matches.Select(m=>m.FullName).ToArray(),handlers=handlers.Select(m=>m.FullName).ToArray(),valid=errors.Count==0,errors});
+ }
+ results.Add(new{input,sha=Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(input))).ToLowerInvariant(),assembly=a.Name.FullName,attributes=attrs,references=a.MainModule.AssemblyReferences.Select(r=>new{name=r.FullName,installed=all.GetValueOrDefault(r.Name)}),harmonyTargets=patches,members=ms});}
+File.WriteAllText(output,JsonSerializer.Serialize(results,new JsonSerializerOptions{WriteIndented=true}));Console.WriteLine(output);
+class Resolver(Dictionary<string,string> paths):DefaultAssemblyResolver{public override AssemblyDefinition Resolve(AssemblyNameReference name,ReaderParameters p){if(paths.TryGetValue(name.Name,out var file))return AssemblyDefinition.ReadAssembly(file,new ReaderParameters{AssemblyResolver=this});return base.Resolve(name,p);}public override AssemblyDefinition Resolve(AssemblyNameReference name)=>Resolve(name,new ReaderParameters());}

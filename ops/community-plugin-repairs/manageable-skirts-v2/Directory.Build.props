@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <Deterministic>true</Deterministic>
+    <DebugType>portable</DebugType>
+    <PathMap>$(MSBuildThisFileDirectory)=/_/community-plugin-repairs/manageable-skirts-v2/,$(ArtifactsPath)=/_/community-artifacts/</PathMap>
+  </PropertyGroup>
+</Project>

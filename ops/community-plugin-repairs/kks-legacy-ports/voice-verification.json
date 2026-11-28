@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "installed": false,
+  "runtimeVerified": false,
+  "originalSha256": "1283d17f92e24d8d4b735b4d2d95c5c550b25e4b0f93ab3b36b83ae20a611df0",
+  "candidateSha256": "bd61e6522ae5bce52797e34069c0d427bb4fc96b0a0f38a8ba2ff70cd05b16b7",
+  "resolvedMembers": 204,
+  "unresolvedMembers": 0,
+  "declaredHarmonyTargets": [
+    {
+      "patch": "KK_StudioVoice.MouthPatch",
+      "target": "FBSCtrlMouth",
+      "name": "CalcBlend",
+      "parameterTypes": null,
+      "matchedMethods": [
+        "System.Void FBSCtrlMouth::CalcBlend(System.Single)"
+      ],
+      "handlers": [
+        "System.Void KK_StudioVoice.MouthPatch::Prefix(FBSCtrlMouth,System.Single&)"
+      ],
+      "valid": true,
+      "errors": []
+    }
+  ],
+  "mouth": {
+    "checks": 11,
+    "originalFailures": 4,
+    "candidateFailures": 0,
+    "scope": "Exact author mouth patch and actual KKS CalcBlend CIL with synthetic character/blend collaborators; direct prefix dispatch after reflected target/argument contract resolution. Not a Harmony engine installation test."
+  },
+  "guards": {
+    "unknown": true,
+    "repatch": true,
+    "inplace": true,
+    "existing": true,
+    "changedKksMouthTargetSignature": true
+  },
+  "scope": "Metadata plus explicit synthetic actual-CIL mouth test when applicable. No Unity native or live plugin execution. Harmony owner registration, voice data coverage and Timeline camera behavior remain runtime gates."
+}

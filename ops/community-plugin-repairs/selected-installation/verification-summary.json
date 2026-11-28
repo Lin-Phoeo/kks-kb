@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "record_date": "2026-11-28",
+  "distribution_scope": "Own patching source, synthetic fixtures, reviewed documentation and sanitized verification summaries only. No third-party binaries, private logs, machine paths or user content.",
+  "tool_execution_does_not_install": true,
+  "reference_installation": {
+    "separate_from_tool_runs": true,
+    "candidate_hashes_read_back": true,
+    "components": [
+      "scenenotes-import",
+      "manageable-skirts-v2",
+      "povx-cursor-ownership",
+      "kks-legacy-ports"
+    ]
+  },
+  "offline": {
+    "scene_notes": {
+      "checks": 50,
+      "original_expected_failures": 27,
+      "candidate_failures": 0,
+      "refusal_checks": 4,
+      "changed_original_methods": 1,
+      "unchanged_original_methods": 29
+    },
+    "skirts_v2": {
+      "checks": 33,
+      "original_expected_failures": 25,
+      "candidate_failures": 0,
+      "guards": 8,
+      "independent_lifecycle_checks_total": 37,
+      "changed_original_methods": 11,
+      "unchanged_original_methods": 40,
+      "native_list_writes": 0,
+      "helper_game_member_resolution": 36,
+      "unresolved_game_members": 0
+    },
+    "povx_cursor": {
+      "checks": 18,
+      "original_expected_failures": 6,
+      "candidate_failures": 0,
+      "refusal_checks": 4,
+      "changed_original_methods": 1,
+      "unchanged_original_methods": 117
+    },
+    "legacy_ports": {
+      "timeline_resolved_members": 279,
+      "voice_resolved_members": 204,
+      "unresolved_members": 0,
+      "timeline_original_methods": 95,
+      "timeline_changed_methods": 1,
+      "voice_original_methods": 300,
+      "voice_changed_methods": 2,
+      "independent_rebuild_hashes_match": true,
+      "refusal_cases_independently_verified": 5,
+      "voice_mouth_metadata_adaptation": {
+        "target": "FBSCtrlMouth.CalcBlend(float openValue)",
+        "handler": "void MouthPatch.Prefix(FBSCtrlMouth __instance, ref float openValue)",
+        "original_mouth_instruction_body_preserved": true,
+        "checks": 11,
+        "original_expected_failures": 4,
+        "candidate_failures": 0,
+        "guard_count": 5,
+        "independent_rebuild_sha256": "bd61e6522ae5bce52797e34069c0d427bb4fc96b0a0f38a8ba2ff70cd05b16b7",
+        "harmony_detour_installed_by_fixture": false
+      }
+    }
+  },
+  "runtime": {
+    "ui_empty_scene": {
+      "checks": 71,
+      "failures": 0,
+      "completed": true,
+      "tested": [
+        "SceneNotes actual SetNotes, button state, synchronous window state and import helper",
+        "Radial primary/secondary Canvas creation and cancellation",
+        "DragResize self-created RectTransform and isolated configuration persistence",
+        "StudioFixes module/button presence",
+        "Lite passive initialization",
+        "prior state restoration and owned object destruction"
+      ],
+      "not_tested": [
+        "favorites_maker",
+        "notes_real_scene_save_import",
+        "notes_rendered_window_hotkey",
+        "radial_actions_and_input",
+        "resize_physical_drag",
+        "studiofixes_quickAccessButton",
+        "studiofixes_actions",
+        "lite_data_and_playback"
+      ],
+      "process_exited": true,
+      "temporary_observers_removed": true
+    },
+    "media_first_attempt": {
+      "result": "partial_failed",
+      "failed_assertions": [
+        "video_playing",
+        "video_pause",
+        "reshade_live_frame_change"
+      ],
+      "retest_changes": [
+        "Call actual play/pause after the intentional paused first frame",
+        "Use a self-owned neutral active ReShade effect and visible rendering surface"
+      ]
+    },
+    "media_retest": {
+      "checks": 20,
+      "failures": 0,
+      "assertions": [
+        "empty_scene",
+        "video_prepared",
+        "video_render_texture",
+        "video_initial_frame_paused",
+        "video_playing",
+        "video_pause",
+        "video_loop",
+        "video_data_roundtrip_object",
+        "video_stop",
+        "video_nonuniform_frame",
+        "reshade_available",
+        "reshade_control",
+        "reshade_red_image",
+        "reshade_green_image",
+        "reshade_live_frame_change",
+        "reshade_disabled_before_image",
+        "reshade_disabled_after_image",
+        "reshade_capture_stopped",
+        "reshade_control_restored",
+        "workspace_still_empty"
+      ],
+      "process_exited": true,
+      "temporary_observer_removed": true,
+      "original_reshade_config_restored": true,
+      "not_tested": [
+        "Full video encoding",
+        "All ReShade effects",
+        "Transparent capture",
+        "User character/scene save and import"
+      ]
+    },
+    "ports_and_skirts_empty_scene": {
+      "status": "historical_partial_followed_by_voice_target_repair",
+      "observer_checks": 53,
+      "observer_failures": 0,
+      "whole_run_passed": false,
+      "observer_scope": [
+        "PerspectiveX reflection and Timeline track reading",
+        "PovX inactive cursor preservation",
+        "StudioVoice CSV, icon, tracks and limited UI observation",
+        "Skirts helper binding and empty-selection toggle"
+      ],
+      "separate_startup_error": "StudioVoice MouthPatch undefined Harmony target",
+      "reason_not_observed": "No real character mouth animation was exercised by the empty-scene observer",
+      "voice_first_candidate_sha256": "e541c704f215f0639f99d3419ca2e33cb89a296fd3a8dd0f97cf64b71a80a80b",
+      "voice_target_repair_status": "candidate_bd61_followup_runtime_registration_passed",
+      "not_tested": [
+        "Real character mouth animation",
+        "Voice playback",
+        "Timeline POV transition and restoration",
+        "Skirt cone interaction on characters",
+        "Scene save/import",
+        "Optional mirrors"
+      ],
+      "voice_target_repair_sha256": "bd61e6522ae5bce52797e34069c0d427bb4fc96b0a0f38a8ba2ff70cd05b16b7",
+      "required_next_observation": "Completed in ports_and_skirts_registration_retest; physical character/audio/scene behaviors remain unverified."
+    },
+    "ports_and_skirts_registration_retest": {
+      "status": "limited_scope_passed_and_cleanup_completed",
+      "checks": 57,
+      "failures": 0,
+      "complete": true,
+      "voice_candidate_sha256": "bd61e6522ae5bce52797e34069c0d427bb4fc96b0a0f38a8ba2ff70cd05b16b7",
+      "actual_harmony_registration": {
+        "voice_mouth_prefix": {
+          "target": "FBSCtrlMouth.CalcBlend(float)",
+          "owner": "com.kk.studiovoice.lipsync",
+          "patch": "KK_StudioVoice.MouthPatch.Prefix",
+          "exact_candidate_assembly_matched": true,
+          "match_count": 1
+        },
+        "perspectivex_expected_hooks_matched": 3,
+        "each_perspectivex_match_count": 1
+      },
+      "startup_preclose_log": {
+        "error_or_fatal_entries_found": false,
+        "undefined_harmony_target_found": false
+      },
+      "no_audio_played": true,
+      "no_characters_created": true,
+      "no_user_scenes_read_or_written": true,
+      "not_tested": [
+        "pov_active_camera_and_physical_input",
+        "timeline_pov_playback",
+        "voice_sound_and_character",
+        "skirts_real_skirt_fk",
+        "voice_visual_layout_acceptance"
+      ],
+      "process_exit_confirmed": true,
+      "temporary_observer_removed": true,
+      "startup_errors": [],
+      "legacy_exit_diagnostics": {
+        "invalid_handle_mentions": 11,
+        "job_temp_alloc_mentions": 29,
+        "repaired_by_this_work": false
+      }
+    }
+  },
+  "suite_audit": {
+    "official_repositories_refreshed": 12,
+    "member_and_support_file_decisions": 137,
+    "decision_counts": {
+      "keep_same_bytes": 74,
+      "preserve_support_file": 7,
+      "keep_newer_local": 4,
+      "keep_local_revision": 4,
+      "hold_camera_owner_conflict": 1,
+      "keep_same_version_fingerprint": 38,
+      "keep_disabled_existing": 1,
+      "hold_overlapping_render_changes": 1,
+      "install_candidate": 1,
+      "keep_no_newer_kks_release_asset": 5,
+      "reject_kk_bepinex4_target": 1
+    },
+    "scope": "Version, hash, source and deployment decisions; not 137 runtime tests."
+  },
+  "known_remaining_issue": "Legacy console Invalid handle and Unity JobTempAlloc messages were still observed at exit and are not declared repaired here.",
+  "no_user_card_or_scene_operations_in_reported_runtime_probes": true,
+  "third_party_user_supplied_payloads_in_public_tools": false,
+  "public_dependency_audit": {
+    "scope": "requirements-test.lock Python dependencies only",
+    "hashes_required": true,
+    "known_vulnerabilities_found": 0,
+    "third_party_game_dlls_covered": false,
+    "dependency_count": 68
+  }
+}
