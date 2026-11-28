@@ -203,6 +203,26 @@
         "job_temp_alloc_mentions": 29,
         "repaired_by_this_work": false
       }
+    },
+    "renamestuff_native_folders": {
+      "version": "2.0.0",
+      "author_binary_sha256": "fb89cfb6f90a46d615853ec79f5728f876464dedb753ed38201c3b20f12b4501",
+      "modified_binary": false,
+      "checks": 26,
+      "failures": 0,
+      "temporary_native_folders_created_and_removed": 2,
+      "scoped_import_map_verified": true,
+      "config_and_scene_extended_data_preserved": true,
+      "startup_errors": [],
+      "process_exit_confirmed": true,
+      "temporary_observer_removed": true,
+      "not_tested": [
+        "physical_context_menu_click",
+        "character_identity_changes",
+        "disk_scene_save_load"
+      ],
+      "legacy_invalid_handle_mentions": 11,
+      "legacy_job_temp_alloc_mentions": 27
     }
   },
   "suite_audit": {
@@ -232,5 +252,11 @@
     "known_vulnerabilities_found": 0,
     "third_party_game_dlls_covered": false,
     "dependency_count": 68
+  },
+  "additional_package_review": {
+    "koikdaisy_dlls_reviewed": 6,
+    "koikdaisy_dlls_installed": 0,
+    "koikdaisy_assets_in_install_scope": false,
+    "reason": "Old KK/VR workflows; MapUtils has missing KKS Harmony target and lighting/audio ownership risks. No direct installation or forced process-filter adaptation."
   }
 }
