@@ -1,0 +1,1 @@
+<Project><PropertyGroup><Deterministic>true</Deterministic><EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries><EnableSourceLink>false</EnableSourceLink><DebugType>portable</DebugType><PathMap>$(MSBuildThisFileDirectory)=/_/ppev3-empty-selection/,$(ArtifactsPath)=/_/ppe-artifacts/</PathMap></PropertyGroup></Project>
